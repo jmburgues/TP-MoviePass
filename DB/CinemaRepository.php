@@ -18,6 +18,16 @@ class CinemaRepository {
         $this->SaveData();
     }
 
+    public function Remove($cinemaObject){
+        $this->RetrieveData();
+
+        $objectKey = array_search($cinemaObject,$this->cinemasList,true);
+        unset($this->cinemasList[$objectKey]);
+
+        // Hay que decidir si borrar el elemento o modificar el valor "active" a false.
+        // si se modifica a false, hay que repensar el Add.
+    }
+
     public function GetAll(){
         $this->RetrieveData();
 
