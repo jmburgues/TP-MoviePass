@@ -12,9 +12,10 @@
 	use Config\Request 	as Request;
 		
 	Autoload::start();
-
+	Router::Route(new Request());
 	require_once(VIEWS_PATH."header.php");
-	require_once(VIEWS_PATH."index.php");
+	//require_once(VIEWS_PATH."index.php");
+	//require_once(VIEWS_PATH."adminView.php");
 	require_once(VIEWS_PATH."footer.php");
 
 
