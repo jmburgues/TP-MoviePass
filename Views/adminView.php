@@ -6,12 +6,12 @@
 <p>
 <div>
     <input type="submit" class="offset-md-1 mt-5  col-md-2 btn btn-secondary bg-danger text-black btn-block" value="Agregar Cine" onclick="location='cine-modify.php'"/> 
-    <input type="submit" class="offset-md-1 mt-3 col-md-2 btn btn-secondary bg-danger text-black btn-block" value="Agregar Película" onclick="location='film-modify.php'"/> 
+    <input type="submit" class="offset-md-1 mt-4 col-md-2 btn btn-secondary bg-danger text-black btn-block" value="Agregar Película" onclick="location='film-modify.php'"/> 
 </div>
 </p>    
 
 <p>
-    <a class="btn btn-primary bg-danger text-black col-md-2 offset-md-1 " data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <a class="btn btn-primary bg-danger text-black mt-2 col-md-2 offset-md-1 " data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample"> 
     Listar Cines
     </a>
 </p>
