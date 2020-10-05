@@ -1,3 +1,4 @@
-</body>
-<h1>FOOT</h1>
-</html>
+<br><br><br><br><br><br>
+<div class="p-4 mt-5 bg-danger text-dark">
+    
+</div>
