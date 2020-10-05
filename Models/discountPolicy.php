@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class Movie
+class DiscountPolicy
 {
     private $discountID;
     private $percentage;
