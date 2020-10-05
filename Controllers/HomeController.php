@@ -6,7 +6,7 @@
         public function Index($message = "")
         {
         
-            require_once(VIEWS_PATH."adminView.php");
+            require_once(VIEWS_PATH."index.php");
         }        
     }
 ?>
