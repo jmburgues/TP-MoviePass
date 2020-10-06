@@ -1,5 +1,12 @@
 <?php
     require_once('nav.php');
+    echo "<br>";
+    echo ROOT;
+  echo "<br>";
+  echo FRONT_ROOT;
+  echo "<br>";
+  echo VIEWS_PATH;
+  echo "<br>";
 ?>
 <!--Primer vista al entrar a la página-->
 <div class="jumbotron mb-5 mt-5 text-center bg-dark text-white homeTitle" style="opacity:0.9;">

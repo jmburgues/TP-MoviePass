@@ -11,7 +11,7 @@
         -o-background-size: cover;"   >
 	<ul class="navbar-nav mr-auto  mt-2 mt-lg-0" >
     <li class="nav-item active" >
-		<strong><a class="nav-link text-white" href="home">Home<span class="sr-only">(current)</span></a></strong>  
+		<strong><a class="nav-link text-white" href="Home">Home<span class="sr-only">(current)</span></a></strong>  
     </li>
 	</ul>
 
@@ -49,11 +49,11 @@ Soy un calendario
 
 <!--Boton SignIn-->
 		<li>
-			<strong><a class="nav-link  text-white" href="Views/login-view.php">SignIn</a></strong>  
+			<strong><a class="nav-link  text-white" href="<?php echo VIEWS_PATH?>login-view.php">SignIn</a></strong>  
 		</li>
 <!--Boton SignUp-->
 		<li class="nav-item">
-			<strong><a class="nav-link  text-white" href="Views/register-view.php">SignUp</a></strong>  
+			<strong><a class="nav-link  text-white" href="<?php echo VIEWS_PATH?>register-view.php">SignUp</a></strong>  
 		</li>
 <!--Boton Exit-->
 		<li class="nav-item">
