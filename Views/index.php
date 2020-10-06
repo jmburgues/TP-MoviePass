@@ -12,15 +12,15 @@
 <!--Últimas películas traídas desde la API-->
 <hr>
 <hr class=" mt-5 mb-1 bg-danger text-dark">
-<h3>Últimas</h3>
+<h3  class="text-white bg-dark text-center">Últimas</h3>
 <hr class=" mt-1 mb-1 bg-danger text-dark">
 <div class="card-group ">
 <?php
   for ($i = 1; $i <= 5; $i++) {
 ?>
-  <div class="card">
+  <div class="card" style="margin-right:4px;">
     <img class="card-img-top" src="Views/img/Logo.bmp" alt="Card image cap">
-    <div class="card-body">
+    <div class="card-body ">
       <h5 class="card-title">Card title</h5>
       <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -32,15 +32,16 @@
 </div>
 
 <!--Pŕoximas películas traídas desde la API-->
+<br>
 <hr class=" mt-4 mb-1 bg-danger text-dark">
-<h3>Próximamente</h3>
+<h3  class="text-white bg-dark text-center">Próximamente</h3>
 <hr class=" mt-1 mb-1 bg-danger text-dark">
 
 <div class="card-group ">
 <?php
   for ($i = 1; $i <= 5; $i++) {
 ?>
-  <div class="card">
+  <div class="card" style="margin-right:4px;">
     <img class="card-img-top" src="Views/img/Logo.bmp" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">Card title</h5>
