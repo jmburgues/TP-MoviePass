@@ -38,7 +38,7 @@
         }
 
         public static function getLatestMoviesJSON()
-        {  echo "HOLA";
+        {  //echo "HOLA";
             $curl = curl_init();
 
             curl_setopt_array($curl, array(

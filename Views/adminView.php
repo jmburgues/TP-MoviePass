@@ -1,9 +1,28 @@
-
 <?php
     require_once('nav.php');
     require_once('header.php');
-    ?>
-
+?>
+<!--Estilo de la página-->
+    <style type="text/css">
+            body {
+                background-color: white; 
+                background-image: none; 
+                    
+            }
+            </style>
+    <!--
+    <style type="text/css">
+            body {
+                background-attachment: fixed;
+                background-image: url("https://www.muycomputer.com/wp-content/uploads/2016/12/taquilleras_de_2016.jpg");
+                background-size: cover;
+                -moz-background-size: cover;
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                
+            }
+    </style>
+-->
 <!--<div>
 <p>
     <input type="submit" class="offset-md-1 mt-5  col-md-2 btn btn-secondary bg-danger text-black btn-block" value="Agregar Cine" onclick="location='cine-modify.php'"/> 
@@ -11,6 +30,9 @@
 </div>
 </p>    
 -->
+
+<!--Botones con las opciones del administrador-->
+<!--LISTAR CINES-->
 <p>
     <a class="btn btn-primary bg-danger text-black mt-5 col-md-2 offset-md-1 " data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample"> 
     Listar Cines
@@ -113,7 +135,7 @@
 </form>
 <p>
 <!---->
-
+<!--LISTAR PELICULAS-->
 <!---->
     <a class="btn btn-primary bg-danger text-black col-md-2 offset-md-1 mt-2" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
         Listar Películas
@@ -173,6 +195,7 @@
 </div>
 </div>
 </form>
+<!--LISTAR VENTAS-->
 <p>
     <a class="btn btn-primary bg-danger text-black col-md-2 offset-md-1 mt-2" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
     Ver Ventas

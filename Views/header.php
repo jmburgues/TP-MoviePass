@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-     
+
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+     
      <link rel="icon" href="Views/img/Logo.bmp"/>
 <!--BOOTSTRAP-->
      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -15,3 +15,19 @@
      <title>Framework Example</title>
 </head>
 <body>
+
+<!--CSS para el fondo, PASAR A .CSS-->
+              <!-- background-image: url("https://www.muycomputer.com/wp-content/uploads/2016/12/taquilleras_de_2016.jpg");-->
+     <style type="text/css">
+          body {
+               background-attachment: fixed;
+               background-image: url("https://cdnvos.lavoz.com.ar/sites/default/files/styles/width_1072/public/nota_periodistica/promos.jpg");
+               background-size: cover;
+               -moz-background-size: cover;
+               -webkit-background-size: cover;
+               -o-background-size: cover;
+               
+          }
+      
+     </style>
+</body>

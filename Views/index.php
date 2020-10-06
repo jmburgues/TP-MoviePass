@@ -1,17 +1,23 @@
 <?php
-     require_once('nav.php');
+    require_once('nav.php');
 ?>
-<div class="jumbotron mb-5 text-center homeTitle">
-     <h1 class="display-4">Movie Pass</h1>
-     <p class="lead">Hi!</p>
-     <hr class="my-4">
+<!--Primer vista al entrar a la página-->
+<div class="jumbotron mb-5 mt-5 text-center bg-dark text-white homeTitle" style="opacity:0.9;">
+    <h1 class="display-4">Movie Pass</h1>
+    <br>
+    <p class="lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid, hic repellendus. Harum, dolores aliquam! Tenetur sunt illo quis nulla architecto minima! Ipsam, veritatis? Quaerat explicabo error et at corrupti? Totam.</p>
+    <hr class="my-4"> 
 <input value="Admin tools" type="button" onclick="location='Views/adminView.php'" />
-
 </div>
-<?php
- //    require_once('footer.php');
-?>
+<!--Últimas películas traídas desde la API-->
+<hr>
+<hr class=" mt-5 mb-1 bg-danger text-dark">
+<h3>Últimas</h3>
+<hr class=" mt-1 mb-1 bg-danger text-dark">
 <div class="card-group ">
+<?php
+  for ($i = 1; $i <= 5; $i++) {
+?>
   <div class="card">
     <img class="card-img-top" src="Views/img/Logo.bmp" alt="Card image cap">
     <div class="card-body">
@@ -20,20 +26,33 @@
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
     </div>
   </div>
-  <div class="card">
-    <img class="card-img-top" src="Views/img/Logo.bmp"" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src="Views/img/Logo.bmp"" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
+<?php
+  }
+?>
 </div>
+
+<!--Pŕoximas películas traídas desde la API-->
+<hr class=" mt-4 mb-1 bg-danger text-dark">
+<h3>Próximamente</h3>
+<hr class=" mt-1 mb-1 bg-danger text-dark">
+
+<div class="card-group ">
+<?php
+  for ($i = 1; $i <= 5; $i++) {
+?>
+  <div class="card">
+    <img class="card-img-top" src="Views/img/Logo.bmp" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+<?php
+  }
+?>
+</div>
+<hr class=" mt-1 mb-1 bg-danger text-dark">
+<?php
+    require_once('footer.php');
+?>

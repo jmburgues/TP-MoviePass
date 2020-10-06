@@ -3,6 +3,14 @@
     require_once('header.php');
    if  (isset($cine)) echo $cine;
 ?>
+<!--Estilo de la página-->
+<style type="text/css">
+            body {
+                background-color: white; 
+                background-image: none; 
+                    
+            }
+            </style>
 <br>
   <hr class="my-4">
 <form class="mt-5 offset-md-1 col-md-5">

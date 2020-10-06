@@ -1,18 +1,28 @@
+<!--Barra de navegación que estará presente en todo el programa-->
+<!--Prensenta un boton de vuelta al inicio, 2 buscadores de películas, login, signin y exit en caso de estar logueado-->
 
-<nav class="navbar navbar-expand-lg p-3 mb-2 bg-danger text-dark">
-	<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-    <li class="nav-item active">
-    	<a class="nav-link text-dark href="#">Home<span class="sr-only">(current)</span></a>  
+<!--ESTO DEBERÍA ESTAR EN UN .CSS-->
+<!--Boton HOME-->
+<nav class="navbar navbar-expand-lg p-2" style="background-image: url(https://us.123rf.com/450wm/kebox/kebox1705/kebox170500033/77319728-fondo-degradado-rayas-colores-rojo-y-negro.jpg?ver=6); 
+		background-repeat: no-repeat;     
+		background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;"   >
+	<ul class="navbar-nav mr-auto  mt-2 mt-lg-0" >
+    <li class="nav-item active" >
+		<strong><a class="nav-link text-white" href="home">Home<span class="sr-only">(current)</span></a></strong>  
     </li>
 	</ul>
 
+<!--Dropdown buscar por género-->
 	<form class="form-inline my-2 my-lg-0 ">
 	<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 		
 	<li class="nav-item">
 
 	<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-secondary btn-light dropdown-toggle" style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Buscar por genero
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -24,8 +34,9 @@
 </li>
 <li class="nav-item">
 
+<!--Dropdown calendario, buscar por fecha-->
 <div class="dropdown">
-<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<button class="btn btn-secondary btn-light dropdown-toggle" style="margin-right:10px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 Soy un calendario
 </button>
 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -36,14 +47,17 @@ Soy un calendario
 </div>
 </li>
 
+<!--Boton SignIn-->
 		<li>
-			<a class="nav-link text-dark" href="#">SignIn</a>
+			<strong><a class="nav-link  text-white" href="#">SignIn</a></strong>  
 		</li>
+<!--Boton SignUp-->
 		<li class="nav-item">
-			<a class="nav-link text-dark" href="#">SignUp</a>
+			<strong><a class="nav-link  text-white" href="#">SignUp</a></strong>  
 		</li>
+<!--Boton Exit-->
 		<li class="nav-item">
-			<a class="nav-link text-dark" href="#">Exit</a>
+			<strong><a class="nav-link  text-white" href="#">Exit</a></strong>  
 		</li>
     </ul>      
     </form>
