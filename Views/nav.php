@@ -49,11 +49,11 @@ Soy un calendario
 
 <!--Boton SignIn-->
 		<li>
-			<strong><a class="nav-link  text-white" href="#">SignIn</a></strong>  
+			<strong><a class="nav-link  text-white" href="Views/login-view.php">SignIn</a></strong>  
 		</li>
 <!--Boton SignUp-->
 		<li class="nav-item">
-			<strong><a class="nav-link  text-white" href="#">SignUp</a></strong>  
+			<strong><a class="nav-link  text-white" href="Views/register-view.php">SignUp</a></strong>  
 		</li>
 <!--Boton Exit-->
 		<li class="nav-item">

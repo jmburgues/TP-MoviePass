@@ -43,7 +43,7 @@
 <div class="collapse offset-md-1 col-md-5" id="collapseExample1">
     <div class="card card-body">Cine 1    
     <ul>
-    <li>
+    <li style="list-style:none;">
     <div class="btn-group" role="group" aria-label="Basic example">
         <input type="submit" class="btn btn-secondary bg-danger text-black" value="Modificar"   name="cine1" /> 
         <input type="submit" class="btn btn-secondary bg-danger text-black" value="Eliminar"    name="cine1"/>    
