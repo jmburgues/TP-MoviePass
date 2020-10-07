@@ -5,7 +5,7 @@ use models\Genre as Genre;
 
 class DAOMovie{
   private $movieList;
-  private $fileName = ROOT."Data/students.json";
+  private $fileName = ROOT."Data/movies.json";
 
   public function add(Movie $movie){
     $this->retrieveData();

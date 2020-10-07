@@ -2,10 +2,12 @@
 
 namespace Controllers;
 
+use DAO\DAOShows as DAOShows;
 use Models\Movie as Movie;
 use Models\Genre as Genre;
 use DAO\DAOMovie as DAOMovie;
 use DAO\DAOGenre as DAOGenre;
+use DateTime;
 
 class MovieController{
   
@@ -26,5 +28,48 @@ class MovieController{
     }
   }
 
+  function getShowsGenres(){ // returns an array of strings with all movie show's genres.
+    
+    $genresList = array();
+    $daoShow = new DAOShows;
+    $showsList = $daoShow->getAll();
+    
+    foreach($showsList as $oneShow){
+      $movieGenre = $oneShow->getMovie()->getGenre();
+      if(!in_array($genresList,$movieGenre))
+        array_push($genresList,$movieGenre);
+    }
+
+    return $genresList;
+  }
+
+  function getShowsByDate($date){ // returns an array of movie shows to be projected on a given date 
+    
+    if($date instanceof DateTime){
+      $today = date("Y-m-d");
+
+      if($date >= $today){
+
+        $daoShow = new DAOShows();
+        $showsList = $daoShow->getAll();
+
+        $moviesToBeProjected = array();
+
+        foreach($showsList as $oneShow){
+/**
+ * IMPORTANTE - REVISAR
+ */
+          $movie = $oneShow->getMovie(); // Como obtengo esto, si un Show no tiene como atributo a Movie???
+
+          if($oneShow->getDate >= $today && !in_array($moviesToBeProjected,$movie)){
+            array_push($moviesToBeProjected,$oneShow->getMovie());
+          }
+        }
+
+        return $moviesToBeProjected;
+      }
+    }
+    return false;
+  }
 }
 ?>
