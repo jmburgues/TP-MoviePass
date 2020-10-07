@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class Play
+class Show
 {
     private $hour;
     private $spectators;
