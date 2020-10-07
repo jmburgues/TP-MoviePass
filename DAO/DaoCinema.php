@@ -2,7 +2,7 @@
 
 use Models\Cinema as Cinema;
 
-class DaoCinema {
+class DAOCinema {
     private $cinemasList = array();
     private $fileName;
 
