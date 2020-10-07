@@ -1,11 +1,11 @@
 <?php namespace Config;
 
 define("ROOT", dirname(__DIR__) . "/"); 
-define("FRONT_ROOT", "TP-MoviePass/");
+define("FRONT_ROOT", "/TP-MoviePass/");
 define("VIEWS_PATH", "Views/");
 define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "css/");
 define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js/");
-
+echo "SADADS";
 define('CONFIG',ROOT.'Config');
 //define('ROOT', str_replace('\\','/',dirname(__DIR__).'/'));
 
