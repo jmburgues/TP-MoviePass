@@ -1,22 +1,22 @@
 <?php
   namespace Controllers;
 
-  use Models\Cinema as Cinema;
   use DAO\DAOCinema as DAOCinema;
+  use Models\Cinema as Cinema;
 
   class CinemaController{
-    private $daoCinema;
+    private $cinemaDAO;
 
     public function __construct(){
-      $this->daoCinema = new DAOCinema;
+      $this->cinemaDAO = new DAOCinema;
     }
 
     public function showCinemas(){
-      $CinemaList = $this->daoCinema->getAll();
+      $cinemasList = $this->cinemaDAO->getAll();
       include VIEWS . 'cinemasList.php';
     }
 
-    public function createCinema($cinema = null, $mensaje= ''){
+    public function Add($cinema = null, $mensaje= ''){
       $placeholderName = 'Ingrese el nombre del cine';
       $placeholderAddress = 'Ingresar la direccion del cine';
       $placeholderOpenTime = 0;
@@ -57,7 +57,7 @@
 
     public function add($name,$address,$openTime,$closeTime){
       $newCinema = new Cinema($name,$address,$openTime,$closeTime);
-      $this->daoCinema->add($newCinema);
+      $this->cinemaDAO->add($newCinema);
       $this->showCienamas();
     }
 
@@ -90,7 +90,7 @@
 
       $cinemaModified = new Cinema($name,$address,$openTime,$closeTime,$id);
 
-      $this->daoCinema->update($cinemaModified);
+      $this->cinemaDAO->update($cinemaModified);
       $this->showCinemas();
     }
   }

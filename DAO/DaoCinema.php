@@ -1,4 +1,4 @@
-<?php namespace DAO; // PUEDE QUE ESTE REPOSITORIO LUEGO SEA MODIFICADO POR UNA BASE DE DATOS
+<?php namespace DAO; 
 
 use Models\Cinema as Cinema;
 
@@ -7,71 +7,58 @@ class DaoCinema {
     private $fileName;
 
     public function __construct(){
-        $this->fileName = dirname(__DIR__) . "/data/cinemas.json";
+        $this->fileName = dirname(__DIR__) . "/Data/cinemas.json";
     }
 
-    public function Add($cinemaObject){
+    public function Add(Cinema $cinema){
         $this->RetrieveData();
-
-        array_push($this->cinemasList,$cinemaObject);
-
+        array_push($this->cinemasList, $cinema);
         $this->SaveData();
     }
 
-    public function Remove($cinemaObject){
+    /*Función para eliminar un cine.
+    * Por el momento lo manejaremos con un borrado total del JSON, cuando comencemos con la base de datos se hará un borrado lógico
+    */
+    public function Remove($cinema){
         $this->RetrieveData();
-
-        $objectKey = array_search($cinemaObject,$this->cinemasList,true);
-        unset($this->cinemasList[$objectKey]);
-
-        // Hay que decidir si borrar el elemento o modificar el valor "active" a false.
-        // si se modifica a false, hay que repensar el Add.
+        //array_search — Busca un valor determinado en un array y devuelve la primera clave correspondiente en caso de éxito
+      //  $key = array_search($cinema, $this->cinemasList, true);
+        $key = array_search($cinema, $this->cinemasList);
+        unset($this->cinemasList[$key]);
     }
 
     public function GetAll(){
         $this->RetrieveData();
-
         return $this->cinemasList;
     }
 
-    private function SaveData()
-    {
+    private function SaveData(){
         $arrayToEncode = array();
-
-        foreach($this->cinemasList as $cinemaObject)
-        {
-            $valuesArray["name"] = $cinemaObject->getName();
-            $valuesArray["adress"] = $cinemaObject->getAdress();
-            $valuesArray["opening"] = $cinemaObject->getOpenning();
-            $valuesArray["closing"] = $cinemaObject->getClosing();
-            $valuesArray["ticketValue"] = $cinemaObject->getTicketValue();
-            $valuesArray["active"] = $cinemaObject->getActive();
-
+        foreach($this->cinemasList as $cinema){
+            $valuesArray["name"] = $cinema->getName();
+            $valuesArray["adress"] = $cinema->getAdress();
+            $valuesArray["opening"] = $cinema->getOpenning();
+            $valuesArray["closing"] = $cinema->getClosing();
+            $valuesArray["ticketValue"] = $cinema->getTicketValue();
             array_push($arrayToEncode, $valuesArray);
         }
-
         $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-        
         file_put_contents($this->fileName, $jsonContent);
     }
 
-    private function RetrieveData()
-    {
+    private function RetrieveData(){
         $this->cinemasList = array();
-
-        if(file_exists($this->fileName))
-        {
+        if(file_exists($this->fileName))        {
             $jsonContent = file_get_contents($this->fileName);
-
             $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
-
-            foreach($arrayToDecode as $valuesArray)
-            {
-                $cinemaObject = new Cinema($valuesArray["name"], $valuesArray["adress"], 
-                                            $valuesArray["opening"], $valuesArray["closing"], 
-                                            $valuesArray["ticketValue"], $valuesArray["active"]);
-                
-                array_push($this->cinemasList, $cinemaObject);
+            foreach($arrayToDecode as $valuesArray)            {
+                $cinema = new Cinema($valuesArray["name"], 
+                                    $valuesArray["adress"], 
+                                    $valuesArray["opening"], 
+                                    $valuesArray["closing"], 
+                                    $valuesArray["ticketValue"]
+                                );    
+                array_push($this->cinemasList, $cinema);
             }
         }
     }

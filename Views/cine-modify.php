@@ -13,7 +13,8 @@
             </style>
 <br>
   <hr class="my-4">
-<form class="mt-5 offset-md-1 col-md-5">
+
+<form class="mt-5 offset-md-1 col-md-5"  action="<?php echo FRONT_ROOT?> Cinema/Add" method="POST">
 <div class="form-group row ">
     <label for="inputName" class="col-sm-2 col-form-label">Nombre del Cine</label>
     <div class="col-sm-10">

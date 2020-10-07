@@ -1,3 +1,9 @@
+<?php
+
+	define("FROaNT_ROOT", "/TP-MoviePass/");
+	define("VIEWaS_PATH", "Views/");
+?>
+
 <!--Barra de navegación que estará presente en todo el programa-->
 <!--Prensenta un boton de vuelta al inicio, 2 buscadores de películas, login, signin y exit en caso de estar logueado-->
 
@@ -49,11 +55,14 @@ Soy un calendario
 
 <!--Boton SignIn-->
 		<li>
-			<strong><a class="nav-link  text-white" href="<?php echo VIEWS_PATH?>login-view.php">SignIn</a></strong>  
+		<!--Este anda-->
+			<strong><a class="nav-link  text-white" href="<?php echo FROaNT_ROOT?>User/showLogin">SignIn</a></strong>
+		<!--Este no-->
+			<strong><a class="nav-link  text-white" href="<?php echo FRONT_ROOT?>User/showLogin">SignIn</a></strong>
 		</li>
 <!--Boton SignUp-->
 		<li class="nav-item">
-			<strong><a class="nav-link  text-white" href="<?php echo VIEWS_PATH?>register-view.php">SignUp</a></strong>  
+	<!--		<strong><a class="nav-link  text-white" href="<?php echo VIEWaS_PATH?>register-view.php">SignUp</a></strong>-->  
 		</li>
 <!--Boton Exit-->
 		<li class="nav-item">

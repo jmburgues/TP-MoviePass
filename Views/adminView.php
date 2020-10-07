@@ -39,7 +39,7 @@
     </a>
 </p>
 <!---->
-<form action="cine-action.php" method="POST">
+<form action="<?php echo FRONT-ROOT?> Cinema/Add" method="POST">
 <div class="collapse offset-md-1 col-md-5" id="collapseExample1">
     <div class="card card-body">Cine 1    
     <ul>
