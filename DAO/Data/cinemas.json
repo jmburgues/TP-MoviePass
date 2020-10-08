@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Cine Ambassador",
+        "address": "Diagonal Centro 1673",
+        "opening": "08:30",
+        "closing": "00:30",
+        "ticketValue": "50"
+    },
+    {
+        "name": "Cinemacenter",
+        "address": "Diagonal Pueyrred\u00f3n 3050",
+        "opening": "08:00",
+        "closing": "00:00",
+        "ticketValue": "55"
+    },
+    {
+        "name": "Cine del Paseo",
+        "address": "Diagonal Pueyrred\u00f3n 3058",
+        "opening": "09:00",
+        "closing": "23:00",
+        "ticketValue": "45"
+    },
+    {
+        "name": "Cinema II",
+        "address": "Rivadavia 3050",
+        "opening": "10:00",
+        "closing": "21:00",
+        "ticketValue": "54"
+    }
+]

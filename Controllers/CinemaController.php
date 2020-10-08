@@ -1,49 +1,80 @@
 <?php
   namespace Controllers;
+  define("F_RR", "/TP-MoviePass/");
+  define("F_V", "Views/");
 
   use DAO\DAOCinema as DAOCinema;
   use Models\Cinema as Cinema;
 
-  class CinemaController{
-    private $cinemaDAO;
+  class CinemaController
+  {
+      private $DAOCinema;
 
-    public function __construct(){
-      $this->cinemaDAO = new DAOCinema;
-    }
+      public function __construct()
+      {
+          $this->DAOCinema = new DAOCinema;
+      }
 
-    public function showCinemas(){
-      $cinemasList = $this->cinemaDAO->getAll();
-      include VIEWS . 'cinemasList.php';
-    }
+      public function showCinemas()
+      {
+          //include dirname(__FILE__).'/../Views/login-view.php';
+          $cinemasList = $this->DAOCinema->getAll();
+          include VIEWS . 'cinemasList.php';
+      }
 
-    public function Add($cinema = null, $mensaje= ''){
-      $placeholderName = 'Ingrese el nombre del cine';
-      $placeholderAddress = 'Ingresar la direccion del cine';
-      $placeholderOpenTime = 0;
-      $placeholderCloseTime = 0;
-      if(!is_null($cinema)){
-        if(!empty($cinema->getName())){
-          $placeholderName = $cinema->getName();
-        }
-        if(!empty($cinema->getAddress())){
-          $placeholderAddress = $cinema->getAddress();
-        }
-        if(!empty($cinema->getOpenTime())){
-          $placeholderOpenTime = $cinema->getOpenTime();
-        }
-        if(!empty($cinema->getCloseTime())){
-          $placeholderCloseTime = $cinema->getCloseTime();
+
+      public function ShowAddView($message = "")
+      {
+          //require_once(VIEWS_PATH."student-add.php");
+          //echo FROaNT_ROOTUser/showLogin"
+          include F_V. 'adminView.php';
+      }
+
+      
+      //Por el momento compararía con el nombre.
+      //Según si es eliminar o modificar llama a sus funciones. 
+      public function action()      {
+          if (isset($_POST)) {
+            $option = current($_POST);
+            print_r($_POST);
+            if($option == "Eliminar"){
+            //$cinemasList = $this->DAOCinema->getAll();
+            echo "Elimiar";
+            
+          }else{
+              echo "Modificar";
+            }
+          }
+      }
+      
+
+      public function AddCinema($name, $address, $openning, $closing, $ticketValue ){
+      $cinema = new Cinema($name, $address, $openning, $closing, $ticketValue);
+      $list=$this->DAOCinema->GetAll();  
+      $flag = false;
+      foreach($list as $l){
+        if($l == $cinema){
+          $flag = true;
         }
       }
-      include VIEWS . "cinemaForm.php";
+
+      //$key = array_search($cinema, $this->list);
+      //print_r($key);
+      if ($cinema->getName() != "" && $flag == false ) {
+              $this->DAOCinema->Add($cinema);
+              $message = "Cinema successfully added";
+          } else {
+              $message = "Cinema already added";
+      }
+      $this->ShowAddView($message);
     }
 
-    public function validateData($name,$adress,$openTime,$closeTime){
+    public function validateData($name,$address,$openTime,$closing){
       $error = false;
       $tempName = '';
       $tempAddress = '';
       $tempOpenTime = 0;
-      $tempCloseTime = 0;
+      $tempclosing = 0;
 
       /**Quiero discutir sobre las condiciones de fallo */
       
@@ -51,27 +82,27 @@
         $tempCinema = new Cinema($tempName,$tempAddress);
         $this->createCinema($tempCinema,$message);
       }else{
-        $this->add($name,$address,$openTime,$closeTime);
+        $this->add($name,$address,$openTime,$closing);
       }
     }
-
-    public function add($name,$address,$openTime,$closeTime){
-      $newCinema = new Cinema($name,$address,$openTime,$closeTime);
+/*
+    public function add($name,$address,$openTime,$closing){
+      $newCinema = new Cinema($name,$address,$openTime,$closing);
       $this->cinemaDAO->add($newCinema);
       $this->showCienamas();
     }
-
+*/
     public function modifyCinema($cinema){
       $placeholderName = $cinema->getName();
       $placeholderAddress = $cinema->getAddress();
       $placeholderOpenTime = $cinema->getOpenTime();
-      $placeholderCloseTime = $cinema->getCloseTime();
+      $placeholderclosing = $cinema->getclosing();
       $valueId = $cinema->getId();
       
       include VIEWS . 'cinemaModifyForm.php';
     }
 
-    public function update($name,$adress,$openTime,$closeTime,$cinema){
+    public function update($name,$address,$openTime,$closing,$cinema){
       if(empty($name)){
         $name = $cinema->getName();;    
       }
@@ -84,11 +115,11 @@
         $openTime = $cinema->getOpenTime();    
       }
      
-      if(empty($closeTime)){
-        $closeTime = $cinema->getCloseTime();    
+      if(empty($closing)){
+        $closing = $cinema->getclosing();    
       }
 
-      $cinemaModified = new Cinema($name,$address,$openTime,$closeTime,$id);
+      $cinemaModified = new Cinema($name,$address,$openTime,$closing,$id);
 
       $this->cinemaDAO->update($cinemaModified);
       $this->showCinemas();

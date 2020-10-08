@@ -1,7 +1,7 @@
 <?php
     require_once('nav.php');
     require_once('header.php');
-   if  (isset($cine)) echo $cine;
+    if  (isset($cine)) echo $cine;
 ?>
 <!--Estilo de la página-->
 <style type="text/css">
@@ -12,28 +12,43 @@
             }
             </style>
 <br>
-  <hr class="my-4">
+<hr class="my-4">
+<form class="mt-5 offset-md-1 col-md-5" action="<?php echo F_R ?>Cinema/AddCinema" method="POST">
+    <div class="form-group row ">
+        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="name" placeholder="Name" required>
+        </div>
+    </div>
 
-<form class="mt-5 offset-md-1 col-md-5"  action="<?php echo FRONT_ROOT?> Cinema/Add" method="POST">
-<div class="form-group row ">
-    <label for="inputName" class="col-sm-2 col-form-label">Nombre del Cine</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputName" placeholder="Nombre">
+    <div class="form-group row">
+        <label for="inputDireccion" class="col-sm-2 col-form-label">Address</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="address" placeholder="Address" required>
+        </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputDireccion" class="col-sm-2 col-form-label">Dirección</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputDireccion" placeholder="Dirección">
+
+    <div class="form-group row">
+        <label for="inputHorario" class="col-sm-2 col-form-label">Openning</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="openning" placeholder="Openning" required>
+        </div>
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputHorario" class="col-sm-2 col-form-label">Horario</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputHorario" placeholder="Horario">
+    
+    <div class="form-group row">
+        <label for="inputHorario" class="col-sm-2 col-form-label">Closing</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="closing" placeholder="Closing" required>
+        </div>
     </div>
-  </div>
-  <button type="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>
+    
+    <div class="form-group row">
+        <label for="inputHorario" class="col-sm-2 col-form-label">Ticket value</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="ticketValue" placeholder="Ticket value">
+        </div>
+    </div>
+
+    <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>
+
 </form>
-<br>
-  <hr class="mt-5 my-4 ">

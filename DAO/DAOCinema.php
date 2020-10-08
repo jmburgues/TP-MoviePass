@@ -1,16 +1,16 @@
 <?php namespace DAO; 
-
+    require_once dirname(__FILE__)."/../Models/Cinema.php";
 use Models\Cinema as Cinema;
 
-class DaoCinema {
+class DAOCinema {
     private $cinemasList = array();
     private $fileName;
 
     public function __construct(){
-        $this->fileName = dirname(__DIR__) . "/Data/cinemas.json";
+        $this->fileName = dirname(__DIR__) . "/DAO/Data/cinemas.json";
     }
 
-    public function Add(Cinema $cinema){
+    public function Add($cinema){
         $this->RetrieveData();
         array_push($this->cinemasList, $cinema);
         $this->SaveData();
@@ -36,7 +36,7 @@ class DaoCinema {
         $arrayToEncode = array();
         foreach($this->cinemasList as $cinema){
             $valuesArray["name"] = $cinema->getName();
-            $valuesArray["adress"] = $cinema->getAdress();
+            $valuesArray["address"] = $cinema->getAddress();
             $valuesArray["opening"] = $cinema->getOpenning();
             $valuesArray["closing"] = $cinema->getClosing();
             $valuesArray["ticketValue"] = $cinema->getTicketValue();
@@ -53,7 +53,7 @@ class DaoCinema {
             $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
             foreach($arrayToDecode as $valuesArray)            {
                 $cinema = new Cinema($valuesArray["name"], 
-                                    $valuesArray["adress"], 
+                                    $valuesArray["address"], 
                                     $valuesArray["opening"], 
                                     $valuesArray["closing"], 
                                     $valuesArray["ticketValue"]
