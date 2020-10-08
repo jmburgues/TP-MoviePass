@@ -23,7 +23,7 @@ class MovieController{
         foreach ($value["genres"] as $genreData) {
           array_push($genre, new Genre($genreData["id"],$genreData["name"]));
         }
-        $newMovie = new Movie($movie["runtime"],$movie["title"],$genre,$movie["poster_path"],$movie["id"])
+        $newMovie = new Movie($movie["runtime"],$movie["title"],$genre,$movie["poster_path"],$movie["id"]);
       }
     }
   }
