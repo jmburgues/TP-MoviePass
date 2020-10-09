@@ -2,7 +2,15 @@
 
 Class Cinema
 {
-    private $id;
+
+      // $count = self::$count++;
+       // $idCinema = $count;
+       // echo ($idCinema);
+       // echo (self::$count);
+
+
+    public static $count = 0;
+    private $id; 
     private $name;
     private $address;
     private $openning;
@@ -11,6 +19,12 @@ Class Cinema
 
     function __construct($name, $address, $openning, $closing, $ticketValue)
     {
+        $count = self::$count++; 
+        $this->id=$count;
+       // echo "<br>";
+      //  echo $count;
+     //   echo "<br>";
+        //echo $this->getId();
         $this->name=$name;
         $this->address=$address;
         $this->openning=$openning;

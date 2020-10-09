@@ -14,7 +14,7 @@
             </style>
 <!--Botones con las opciones del administrador-->
 <!--LISTAR CINES-->
-
+<strong><a class="nav-link  text-dark" href="<?php echo F_R?>Genre/requestGenres">Generos</a></strong>
 <p>
     <a class="btn btn-primary bg-danger text-black mt-5 col-md-2 offset-md-1 " data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
     Listar Cines
@@ -25,10 +25,10 @@
     $dac = new DAOCinema;
         $dc = $dac->GetAll();  
         //var_dump($dc);
-        $id = 0;
+        //$id = 0;
         if (isset($dc)) {
             foreach ($dc as $cinema) {
-                $id++;
+          //      $id++;
             
                 ?>                 
                 <form action="<?php echo F_R?>Cinema/action" method="POST">
@@ -42,6 +42,7 @@
                             </div>
                         </li> 
                     <ul>
+                        <li><?php echo $cinema->getId() ?></li>
                         <li><?php echo $cinema->getName() ?></li>
                         <li><?php echo $cinema->getAddress() ?></li>
                         <li><?php echo $cinema->getOpenning() ?></li>

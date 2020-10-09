@@ -1,6 +1,6 @@
 <?php namespace DAO; 
     require_once dirname(__FILE__)."/../Models/Cinema.php";
-use Models\Cinema as Cinema;
+    use Models\Cinema as Cinema;
 
 class DAOCinema {
     private $cinemasList = array();
@@ -16,9 +16,7 @@ class DAOCinema {
         $this->SaveData();
     }
 
-    /*Función para eliminar un cine.
-    * Por el momento lo manejaremos con un borrado total del JSON, cuando comencemos con la base de datos se hará un borrado lógico
-    */
+    
     public function Remove($cinema){
         $this->RetrieveData();
         //array_search — Busca un valor determinado en un array y devuelve la primera clave correspondiente en caso de éxito
@@ -35,6 +33,7 @@ class DAOCinema {
     private function SaveData(){
         $arrayToEncode = array();
         foreach($this->cinemasList as $cinema){
+            $valuesArray["id"] = $cinema->getId();
             $valuesArray["name"] = $cinema->getName();
             $valuesArray["address"] = $cinema->getAddress();
             $valuesArray["opening"] = $cinema->getOpenning();
@@ -52,7 +51,8 @@ class DAOCinema {
             $jsonContent = file_get_contents($this->fileName);
             $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
             foreach($arrayToDecode as $valuesArray)            {
-                $cinema = new Cinema($valuesArray["name"], 
+                $cinema = new Cinema($valuesArray["id"],
+                                    $valuesArray["name"], 
                                     $valuesArray["address"], 
                                     $valuesArray["opening"], 
                                     $valuesArray["closing"], 

@@ -8,11 +8,13 @@
 
   class CinemaController
   {
-      private $DAOCinema;
+    private $DAOCinema;
 
-      public function __construct()
-      {
-          $this->DAOCinema = new DAOCinema;
+    
+    public function __construct()
+    {
+
+      $this->DAOCinema = new DAOCinema;
       }
 
       public function showCinemas()
@@ -52,14 +54,13 @@
       $cinema = new Cinema($name, $address, $openning, $closing, $ticketValue);
       $list=$this->DAOCinema->GetAll();  
       $flag = false;
+      //Control del refresh del form
       foreach($list as $l){
         if($l == $cinema){
           $flag = true;
         }
       }
-
-      //$key = array_search($cinema, $this->list);
-      //print_r($key);
+      //Control de un cine ya existente
       if ($cinema->getName() != "" && $flag == false ) {
               $this->DAOCinema->Add($cinema);
               $message = "Cinema successfully added";
