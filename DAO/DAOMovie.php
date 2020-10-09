@@ -9,7 +9,7 @@ class DAOMovie{
 
   public function add(Movie $movie){
     $this->retrieveData();
-    $exist = GetById($movie->getMovieID())
+    $exist = $this->GetById($movie->getMovieID());
     if (!isset($exist)) {
       $this->saveData();
       array_push($this->movieList, $movie);

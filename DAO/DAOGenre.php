@@ -8,7 +8,7 @@ class DAOgenre{
 
   public function add(Genre $genre){
     $this->retrieveData();
-    $exist = GetById($genre->getId())
+    $exist = $this->GetById($genre->getId());
     if (!isset($exist)) {
       array_push($this->genreList, $genre);
       $this->saveData();
