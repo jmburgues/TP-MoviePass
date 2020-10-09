@@ -10,7 +10,15 @@ use DAO\DAOGenre as DAOGenre;
 use DateTime;
 
 class MovieController{
+
+  private $daoMovie;
+  private $daoGenre;
   
+  public function __construct(){
+    $this->daoMovie = new DAOMovie();
+    $this->daoGenre = new DAOGenre();
+  }
+
   function getLatestMoviesFromApi(){  
     $data = file_get_contents("http://api.themoviedb.org/3/movie/now_playing?page=1&language=en-US&api_key=601e12bf1e7197e7532eb9c4901b0d3a");
     $array = ($data) ? json_decode($data, true) : array();
@@ -22,8 +30,10 @@ class MovieController{
         $genre = array();
         foreach ($value["genres"] as $genreData) {
           array_push($genre, new Genre($genreData["id"],$genreData["name"]));
+          $this->daoGenre->add($genre);
         }
-        $newMovie = new Movie($movie["runtime"],$movie["title"],$genre,$movie["poster_path"],$movie["id"]);
+        $newMovie = new Movie($movie["runtime"],$movie["title"],$genre,$movie["poster_path"],$movie["relase_date"],$movie["overview"],$movie["id"]);
+        $this->daoMovie->add($newMovie);
       }
     }
   }
