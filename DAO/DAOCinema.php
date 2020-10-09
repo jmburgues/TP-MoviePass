@@ -11,7 +11,7 @@ class DAOCinema
 
     public function __construct()
     {
-        $this->fileName = dirname(__DIR__) . "/DAO/Data/cinemas.json";
+        $this->fileName = ROOT."Data/cinemas.json";
     }
 
     public function Add($cinema)

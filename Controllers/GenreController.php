@@ -12,7 +12,7 @@
         public function __construct()
         {
             $this->DAOGenre = new DAOGenre;
-            $this->fileName = dirname(__DIR__) . "/DAO/Data/genres.json";
+            $this->fileName = ROOT."Data/genre.json";
         }
     
         public function requestGenres()
