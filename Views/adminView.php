@@ -1,7 +1,7 @@
 <?php
     require_once('nav.php');
     require_once('header.php');
-    
+    define("F_RR", "/TP-MoviePass/");
     require_once dirname(__FILE__)."/../DAO/DAOCinema.php";
     require_once dirname(__FILE__)."/../Controllers/GenreController.php";
     
@@ -21,7 +21,6 @@
 <!--Botones con las opciones del administrador-->
 
 <!--LISTAR CINES-->
-<strong><a class="nav-link  text-dark" href="<?php echo F_R?>Genre/requestGenres">Generos</a></strong>
 <p>
     <a class="btn btn-primary bg-danger text-black mt-5 col-md-2 offset-md-1 " data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
     Listar Cines
@@ -33,23 +32,23 @@
         if (isset($dc)) {
             foreach ($dc as $cinema) {
                 ?>                 
-                <form action="<?php echo F_R?>Cinema/action" method="POST">
+                <form action="<?php echo F_RR?>Cinema/action" method="POST">
                 <div class="collapse offset-md-1 col-md-5" id="collapseCinema">   
                     <div class="card card-body ">
                         <?php echo $cinema->getName() ?>  
-                        <li>
+                        <li style="list-style:none">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <input type="submit" class="btn btn-secondary bg-danger text-black" value="Modificar"   name="<?php echo $cinema->getName()?>" /> 
                                 <input type="submit" class="btn btn-secondary bg-danger text-black" value="Eliminar"    name="<?php echo $cinema->getName()?>" /> 
                             </div>
                         </li> 
                     <ul>
-                        <li><?php //echo $cinema->getId() ?></li>
-                        <li><?php echo $cinema->getName() ?></li>
-                        <li><?php echo $cinema->getAddress() ?></li>
-                        <li><?php echo $cinema->getOpenning() ?></li>
-                        <li><?php echo $cinema->getClosing() ?></li>
-                        <li><?php echo $cinema->getTicketValue() ?></li>
+                        <li style="list-style:none"><?php //echo $cinema->getId() ?></li>
+                        <li>Cinema Name: <?php echo $cinema->getName() ?></li>
+                        <li>Cinema Adress: <?php echo $cinema->getAddress() ?></li>
+                        <li>Cinema Opening: <?php echo $cinema->getOpenning() ?></li>
+                        <li>Cinema Closing: <?php echo $cinema->getClosing() ?></li>
+                        <li>Cinema Ticket Value: <?php echo $cinema->getTicketValue() ?></li>
                     </ul>  
                     </div>
                     </div>
