@@ -9,9 +9,10 @@ class Movie
     private $genre;
     private $poster;
     private $releaseDate;
+    private $description;
     private $movieID;
 
-    function __construct($duration, $title, $genre,$poster, $releaseDate, $movieID)
+    function __construct($duration, $title, $genre,$poster, $releaseDate, $description, $movieID)
     {
         $this->duration = $duration;
         $this->title = $title;
@@ -72,6 +73,16 @@ class Movie
     public function getReleaseDate()
     {
         return $this->releaseDate;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
     }
 
 
