@@ -28,14 +28,14 @@ class MovieController{
     }
   }
 
-  function getShowsGenres(){ // returns an array of strings with all movie show's genres.
+  function getShowsGenres(){ // returns an array of strings with all movie's genres. (1st revision)
     
     $genresList = array();
-    $daoShow = new DAOShows;
-    $showsList = $daoShow->getAll();
+    $daoMovie = new DAOMovie();
+    $moviesList = $daoMovie->getAll();
     
-    foreach($showsList as $oneShow){
-      $movieGenre = $oneShow->getMovie()->getGenre();
+    foreach($moviesList as $oneMovie){
+      $movieGenre = $oneMovie->getGenre();
       if(!in_array($genresList,$movieGenre))
         array_push($genresList,$movieGenre);
     }
@@ -43,30 +43,26 @@ class MovieController{
     return $genresList;
   }
 
-  function getShowsByDate($date){ // returns an array of movie shows to be projected on a given date 
+  function getMoviesByDate($date){ // returns an array of movies (Object) created on a given date (1st revision)
     
     if($date instanceof DateTime){
       $today = date("Y-m-d");
 
-      if($date >= $today){
+      if($date <= $today){
 
-        $daoShow = new DAOShows();
-        $showsList = $daoShow->getAll();
+        $daoMovies = new DAOMovie();
+        $moviesList = $daoMovies->getAll();
 
-        $moviesToBeProjected = array();
+        $wantedMovies = array();
 
-        foreach($showsList as $oneShow){
-/**
- * IMPORTANTE - REVISAR
- */
-          $movie = $oneShow->getMovie(); // Como obtengo esto, si un Show no tiene como atributo a Movie???
+        foreach($moviesList as $oneMovie){
 
-          if($oneShow->getDate >= $today && !in_array($moviesToBeProjected,$movie)){
-            array_push($moviesToBeProjected,$oneShow->getMovie());
+          if($oneMovie->getReleaseDate == $date && !in_array($wantedMovies,$oneMovie)){
+            array_push($wantedMovies,$oneMovie);
           }
         }
 
-        return $moviesToBeProjected;
+        return $wantedMovies;
       }
     }
     return false;

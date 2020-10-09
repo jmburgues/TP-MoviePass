@@ -8,14 +8,16 @@ class Movie
     private $title;
     private $genre;
     private $poster;
+    private $releaseDate;
     private $movieID;
 
-    function __construct($duration, $title, $genre,$poster, $movieID)
+    function __construct($duration, $title, $genre,$poster, $releaseDate, $movieID)
     {
         $this->duration = $duration;
         $this->title = $title;
         $this->genre = $genre;
         $this->poster = $poster;
+        $this->releaseDate = $releaseDate;
         $this->movieID =  $movieID; //no es incremental porque lo recibe de la API
     }
 
@@ -61,4 +63,16 @@ class Movie
     {
         $this->genre = $genre;
     }
+
+    public function setReleaseDate($date)
+    {
+        $this->releaseDate = $date;
+    }
+
+    public function getReleaseDate()
+    {
+        return $this->releaseDate;
+    }
+
+
 }
