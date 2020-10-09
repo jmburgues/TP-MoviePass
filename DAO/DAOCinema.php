@@ -1,41 +1,54 @@
-<?php namespace DAO; 
-    
+<?php namespace DAO;
+
     require_once dirname(__FILE__)."/../Models/Cinema.php";
     
     use Models\Cinema as Cinema;
 
-class DAOCinema {
+class DAOCinema
+{
     private $cinemasList = array();
     private $fileName;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->fileName = dirname(__DIR__) . "/DAO/Data/cinemas.json";
     }
 
-    public function Add($cinema){
+    public function Add($cinema)
+    {
         $this->RetrieveData();
+        $cinema->setId($this->generateID());
         array_push($this->cinemasList, $cinema);
         $this->SaveData();
     }
 
     
-    public function Remove($cinema){
+    public function Remove($cinema)
+    {
         $this->RetrieveData();
         //array_search — Busca un valor determinado en un array y devuelve la primera clave correspondiente en caso de éxito
-      //  $key = array_search($cinema, $this->cinemasList, true);
+        //  $key = array_search($cinema, $this->cinemasList, true);
         $key = array_search($cinema, $this->cinemasList);
         unset($this->cinemasList[$key]);
     }
 
-    public function GetAll(){
+    public function generateID(){
+        $this->RetrieveData();
+        return count($this->cinemasList) + 1;
+    }
+
+    public function GetAll()
+    {
         $this->RetrieveData();
         return $this->cinemasList;
     }
 
-    private function SaveData(){
+
+    private function SaveData()
+    {
         $arrayToEncode = array();
-        foreach($this->cinemasList as $cinema){
-           // $valuesArray["id"] = $cinema->getId();
+        foreach ($this->cinemasList as $cinema) {
+            $valuesArray["id"] = $cinema->getId();
             $valuesArray["name"] = $cinema->getName();
             $valuesArray["address"] = $cinema->getAddress();
             $valuesArray["opening"] = $cinema->getOpenning();
@@ -47,19 +60,20 @@ class DAOCinema {
         file_put_contents($this->fileName, $jsonContent);
     }
 
-    private function RetrieveData(){
+    private function RetrieveData()
+    {
         $this->cinemasList = array();
-        if(file_exists($this->fileName))        {
+        if (file_exists($this->fileName)) {
             $jsonContent = file_get_contents($this->fileName);
             $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
-            foreach($arrayToDecode as $valuesArray)            {
-                $cinema = new Cinema(//$valuesArray["id"],
-                                    $valuesArray["name"], 
-                                    $valuesArray["address"], 
-                                    $valuesArray["opening"], 
-                                    $valuesArray["closing"], 
-                                    $valuesArray["ticketValue"]
-                                );    
+            foreach ($arrayToDecode as $valuesArray) {
+                $cinema = new Cinema();
+                $cinema->setId($valuesArray["id"]);
+                $cinema->setName($valuesArray["name"]);
+                $cinema->setAddress($valuesArray["address"]);
+                $cinema->setOpenning($valuesArray["opening"]);
+                $cinema->setClosing($valuesArray["closing"]);
+                $cinema->setTicketValue($valuesArray["ticketValue"]);
                 array_push($this->cinemasList, $cinema);
             }
         }

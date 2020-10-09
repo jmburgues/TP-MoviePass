@@ -43,7 +43,7 @@
                             </div>
                         </li> 
                     <ul>
-                        <li style="list-style:none"><?php //echo $cinema->getId() ?></li>
+                        <li style="list-style:none"><?php echo $cinema->getId() ?></li>
                         <li>Cinema Name: <?php echo $cinema->getName() ?></li>
                         <li>Cinema Adress: <?php echo $cinema->getAddress() ?></li>
                         <li>Cinema Opening: <?php echo $cinema->getOpenning() ?></li>
@@ -66,7 +66,7 @@
 <!--Agregar cine-->
 <br>
 <hr class="my-4">
-<form class="mt-5 offset-md-1 col-md-5" action="<?php echo F_R ?>Cinema/AddCinema" method="POST">
+<form class="mt-5 offset-md-1 col-md-5" action="<?php echo F_RR ?>Cinema/AddCinema" method="POST">
     <div class="form-group row ">
         <label for="inputName" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">

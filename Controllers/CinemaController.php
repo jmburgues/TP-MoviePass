@@ -32,15 +32,22 @@
       }
       
       public function AddCinema($name, $address, $openning, $closing, $ticketValue ){
-        $cinema = new Cinema($name, $address, $openning, $closing, $ticketValue);
+        $cinema = new Cinema();
+        $cinema->setName($name);
+        $cinema->setAddress($address);
+        $cinema->setOpenning($openning);
+        $cinema->setClosing($closing);
+        $cinema->setTicketValue($ticketValue);
         $list=$this->DAOCinema->GetAll();  
         $flag = false;
+
         //Control del refresh del form
         foreach($list as $l){
-          if($l == $cinema){
+          if($l->getName() == $cinema->getName()){
             $flag = true;
           }
         }
+
         //Control de un cine ya existente
         if ($cinema->getName() != "" && $flag == false ) {
                 $this->DAOCinema->Add($cinema);
@@ -50,6 +57,6 @@
               }
               echo "<script type='text/javascript'>alert('$message');</script>";
               include F_V.'adminView.php';
-    }
+        }
   }
 ?>
