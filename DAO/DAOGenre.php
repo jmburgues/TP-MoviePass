@@ -1,6 +1,6 @@
 <?php
 namespace DAO;
-use models\Genre as Genre;
+use Models\Genre as Genre;
 
 class DAOgenre{
   private $genreList;

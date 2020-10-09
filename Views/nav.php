@@ -1,3 +1,8 @@
+<?php
+
+
+?>
+
 <!--Barra de navegación que estará presente en todo el programa-->
 <!--Prensenta un boton de vuelta al inicio, 2 buscadores de películas, login, signin y exit en caso de estar logueado-->
 
@@ -11,7 +16,7 @@
         -o-background-size: cover;"   >
 	<ul class="navbar-nav mr-auto  mt-2 mt-lg-0" >
     <li class="nav-item active" >
-		<strong><a class="nav-link text-white" href="Home">Home<span class="sr-only">(current)</span></a></strong>  
+		<strong><a class="nav-link text-white"  href="/TP-MoviePass/index.php">Home</a></strong>  
     </li>
 	</ul>
 
@@ -47,17 +52,15 @@ Soy un calendario
 </div>
 </li>
 
-<!--Boton SignIn-->
+<!--Botones Nav-->
 		<li>
-			<strong><a class="nav-link  text-white" href="<?php echo VIEWS_PATH?>login-view.php">SignIn</a></strong>  
+			<strong><a class="nav-link  text-white" href="<?php echo F_R?>User/showLogin">SignIn</a></strong>
 		</li>
-<!--Boton SignUp-->
-		<li class="nav-item">
-			<strong><a class="nav-link  text-white" href="<?php echo VIEWS_PATH?>register-view.php">SignUp</a></strong>  
+		<li>
+			<strong><a class="nav-link  text-white" href="<?php echo F_R?>User/showRegister">SignUp</a></strong>
 		</li>
-<!--Boton Exit-->
-		<li class="nav-item">
-			<strong><a class="nav-link  text-white" href="#">Exit</a></strong>  
+		<li>
+			<strong><a class="nav-link  text-white" href="/TP-MoviePass/index.php">Exit</a></strong>
 		</li>
     </ul>      
     </form>

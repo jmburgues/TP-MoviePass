@@ -1,22 +1,25 @@
 <?php namespace Models;
 
+    use DAO\DAOCinema as DAOCinema;
+
 Class Cinema
 {
-    private $id;
+    //private $DAOCinema;
+    private $id; 
     private $name;
     private $address;
     private $openning;
     private $closing;
     private $ticketValue;
-
-    function __construct($name, $address, $openning, $closing, $ticketValue)
+    
+/* function __construct($name, $address, $openning, $closing, $ticketValue)
     {
         $this->name=$name;
         $this->address=$address;
         $this->openning=$openning;
         $this->closing=$closing;
         $this->ticketValue=$ticketValue;
-    }
+    }*/
 
     public function getName()
     {

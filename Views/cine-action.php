@@ -7,6 +7,7 @@
  *      Modularizar funciones de redirección. Función static. 
  */
 if(isset($_POST)){
+    echo($_POST);
     if (isset($_POST['cine1'])) {
         echo "Cine 1";
         if ($_POST['cine1'] == "Modificar") {

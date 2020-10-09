@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "name": "Cine1",
+        "address": "Rivadavia 3050",
+        "opening": "08:30",
+        "closing": "00:00",
+        "ticketValue": "55"
+    },
+    {
+        "id": 2,
+        "name": "Cine Ambassador",
+        "address": "Rivadavia 3050",
+        "opening": "08:30",
+        "closing": "00:00",
+        "ticketValue": "555"
+    }
+]

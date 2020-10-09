@@ -1,97 +1,62 @@
 <?php
   namespace Controllers;
+  
 
-  use Models\Cinema as Cinema;
   use DAO\DAOCinema as DAOCinema;
+  use Models\Cinema as Cinema;
 
   class CinemaController{
-    private $daoCinema;
-
+    private $DAOCinema;
+    
     public function __construct(){
-      $this->daoCinema = new DAOCinema;
+      $this->DAOCinema = new DAOCinema;
     }
 
-    public function showCinemas(){
-      $CinemaList = $this->daoCinema->getAll();
-      include VIEWS . 'cinemasList.php';
-    }
-
-    public function createCinema($cinema = null, $mensaje= ''){
-      $placeholderName = 'Ingrese el nombre del cine';
-      $placeholderAddress = 'Ingresar la direccion del cine';
-      $placeholderOpenTime = 0;
-      $placeholderCloseTime = 0;
-      if(!is_null($cinema)){
-        if(!empty($cinema->getName())){
-          $placeholderName = $cinema->getName();
-        }
-        if(!empty($cinema->getAddress())){
-          $placeholderAddress = $cinema->getAddress();
-        }
-        if(!empty($cinema->getOpenTime())){
-          $placeholderOpenTime = $cinema->getOpenTime();
-        }
-        if(!empty($cinema->getCloseTime())){
-          $placeholderCloseTime = $cinema->getCloseTime();
-        }
+      public function showCinemas(){
+        $cinemasList = $this->DAOCinema->getAll();
       }
-      include VIEWS . "cinemaForm.php";
-    }
-
-    public function validateData($name,$adress,$openTime,$closeTime){
-      $error = false;
-      $tempName = '';
-      $tempAddress = '';
-      $tempOpenTime = 0;
-      $tempCloseTime = 0;
-
-      /**Quiero discutir sobre las condiciones de fallo */
+      //Por el momento compararía con el nombre.
+      //Según si es eliminar o modificar llama a sus funciones. 
+      public function action()      {
+          if (isset($_POST)) {
+            $option = current($_POST);
+            print_r($_POST);
+            if($option == "Eliminar"){
+            //$cinemasList = $this->DAOCinema->getAll();
+            echo "Elimiar";
+            
+          }else{
+              echo "Modificar";
+            }
+          }
+      }
       
-      if($flag == true){
-        $tempCinema = new Cinema($tempName,$tempAddress);
-        $this->createCinema($tempCinema,$message);
-      }else{
-        $this->add($name,$address,$openTime,$closeTime);
-      }
-    }
+      public function AddCinema($name, $address, $openning, $closing, $ticketValue ){
+        $cinema = new Cinema();
+        $cinema->setName($name);
+        $cinema->setAddress($address);
+        $cinema->setOpenning($openning);
+        $cinema->setClosing($closing);
+        $cinema->setTicketValue($ticketValue);
+        $list=$this->DAOCinema->GetAll();  
+        $flag = false;
 
-    public function add($name,$address,$openTime,$closeTime){
-      $newCinema = new Cinema($name,$address,$openTime,$closeTime);
-      $this->daoCinema->add($newCinema);
-      $this->showCienamas();
-    }
+        //Control del refresh del form
+        foreach($list as $l){
+          if($l->getName() == $cinema->getName()){
+            $flag = true;
+          }
+        }
 
-    public function modifyCinema($cinema){
-      $placeholderName = $cinema->getName();
-      $placeholderAddress = $cinema->getAddress();
-      $placeholderOpenTime = $cinema->getOpenTime();
-      $placeholderCloseTime = $cinema->getCloseTime();
-      $valueId = $cinema->getId();
-      
-      include VIEWS . 'cinemaModifyForm.php';
-    }
-
-    public function update($name,$adress,$openTime,$closeTime,$cinema){
-      if(empty($name)){
-        $name = $cinema->getName();;    
-      }
-
-      if(empty($address)){
-        $address = $cinema->getAddress();    
-      }
-
-      if(empty($openTime)){
-        $openTime = $cinema->getOpenTime();    
-      }
-     
-      if(empty($closeTime)){
-        $closeTime = $cinema->getCloseTime();    
-      }
-
-      $cinemaModified = new Cinema($name,$address,$openTime,$closeTime,$id);
-
-      $this->daoCinema->update($cinemaModified);
-      $this->showCinemas();
-    }
+        //Control de un cine ya existente
+        if ($cinema->getName() != "" && $flag == false ) {
+                $this->DAOCinema->Add($cinema);
+                $message = "Cinema successfully added";
+            } else {
+                $message = "Cinema already added";
+              }
+              echo "<script type='text/javascript'>alert('$message');</script>";
+              include F_V.'adminView.php';
+        }
   }
 ?>
