@@ -14,7 +14,6 @@ class DAOGenre
     public function GetAll()
     {
         echo "<pre>";
-        print_r($this->genresList);
         echo "</pre>";
 
     }

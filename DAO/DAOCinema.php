@@ -1,5 +1,7 @@
 <?php namespace DAO; 
+    
     require_once dirname(__FILE__)."/../Models/Cinema.php";
+    
     use Models\Cinema as Cinema;
 
 class DAOCinema {
@@ -33,7 +35,7 @@ class DAOCinema {
     private function SaveData(){
         $arrayToEncode = array();
         foreach($this->cinemasList as $cinema){
-            $valuesArray["id"] = $cinema->getId();
+           // $valuesArray["id"] = $cinema->getId();
             $valuesArray["name"] = $cinema->getName();
             $valuesArray["address"] = $cinema->getAddress();
             $valuesArray["opening"] = $cinema->getOpenning();
@@ -51,7 +53,7 @@ class DAOCinema {
             $jsonContent = file_get_contents($this->fileName);
             $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
             foreach($arrayToDecode as $valuesArray)            {
-                $cinema = new Cinema($valuesArray["id"],
+                $cinema = new Cinema(//$valuesArray["id"],
                                     $valuesArray["name"], 
                                     $valuesArray["address"], 
                                     $valuesArray["opening"], 

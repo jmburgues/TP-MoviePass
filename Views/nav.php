@@ -1,7 +1,6 @@
 <?php
 
-	define("FROaNT_ROOT", "/TP-MoviePass/");
-	define("VIEWaS_PATH", "Views/");
+
 ?>
 
 <!--Barra de navegación que estará presente en todo el programa-->
@@ -17,7 +16,7 @@
         -o-background-size: cover;"   >
 	<ul class="navbar-nav mr-auto  mt-2 mt-lg-0" >
     <li class="nav-item active" >
-		<strong><a class="nav-link text-white" href="Home">Home<span class="sr-only">(current)</span></a></strong>  
+		<strong><a class="nav-link text-white"  href="/TP-MoviePass/index.php">Home</a></strong>  
     </li>
 	</ul>
 
@@ -53,20 +52,15 @@ Soy un calendario
 </div>
 </li>
 
-<!--Boton SignIn-->
+<!--Botones Nav-->
 		<li>
-		<!--Este anda-->
-			<strong><a class="nav-link  text-white" href="<?php echo FROaNT_ROOT?>User/showLogin">SignIn</a></strong>
-		<!--Este no-->
-			<strong><a class="nav-link  text-white" href="<?php echo FRONT_ROOT?>User/showLogin">SignIn</a></strong>
+			<strong><a class="nav-link  text-white" href="<?php echo F_R?>User/showLogin">SignIn</a></strong>
 		</li>
-<!--Boton SignUp-->
-		<li class="nav-item">
-	<!--		<strong><a class="nav-link  text-white" href="<?php echo VIEWaS_PATH?>register-view.php">SignUp</a></strong>-->  
+		<li>
+			<strong><a class="nav-link  text-white" href="<?php echo F_R?>User/showRegister">SignUp</a></strong>
 		</li>
-<!--Boton Exit-->
-		<li class="nav-item">
-			<strong><a class="nav-link  text-white" href="#">Exit</a></strong>  
+		<li>
+			<strong><a class="nav-link  text-white" href="/TP-MoviePass/index.php">Exit</a></strong>
 		</li>
     </ul>      
     </form>

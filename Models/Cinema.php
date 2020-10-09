@@ -9,7 +9,7 @@ Class Cinema
        // echo (self::$count);
 
 
-    public static $count = 0;
+  //  public static $count = 0;
     private $id; 
     private $name;
     private $address;
@@ -19,8 +19,8 @@ Class Cinema
 
     function __construct($name, $address, $openning, $closing, $ticketValue)
     {
-        $count = self::$count++; 
-        $this->id=$count;
+      //  $count = self::$count++; 
+      //  $this->id=$count;
        // echo "<br>";
       //  echo $count;
      //   echo "<br>";

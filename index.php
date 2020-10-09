@@ -1,10 +1,13 @@
 
 <?php
 
+define("F_V", "Views/");
+define("F_R", "/TP-MoviePass/");
+define("V_P", "Views/");
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
 require "Config/Autoload.php";
 require "Config/Config.php";
 require_once dirname(__FILE__)."/Controllers/ApiController.php";

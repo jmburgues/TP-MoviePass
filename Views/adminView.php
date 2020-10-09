@@ -1,9 +1,13 @@
 <?php
     require_once('nav.php');
     require_once('header.php');
-    define("F_R", "/TP-MoviePass/");
+    
     require_once dirname(__FILE__)."/../DAO/DAOCinema.php";
+    require_once dirname(__FILE__)."/../Controllers/GenreController.php";
+    
     use DAO\DAOCinema as DAOCinema;
+    use Controllers\GenreController as GenreController;
+
 ?>
 <!--Estilo de la página-->
     <style type="text/css">
@@ -12,7 +16,10 @@
                 background-image: none; 
             }
             </style>
+
+
 <!--Botones con las opciones del administrador-->
+
 <!--LISTAR CINES-->
 <strong><a class="nav-link  text-dark" href="<?php echo F_R?>Genre/requestGenres">Generos</a></strong>
 <p>
@@ -20,16 +27,11 @@
     Listar Cines
     </a>
 </p>
-
 <?php
     $dac = new DAOCinema;
         $dc = $dac->GetAll();  
-        //var_dump($dc);
-        //$id = 0;
         if (isset($dc)) {
             foreach ($dc as $cinema) {
-          //      $id++;
-            
                 ?>                 
                 <form action="<?php echo F_R?>Cinema/action" method="POST">
                 <div class="collapse offset-md-1 col-md-5" id="collapseCinema">   
@@ -42,7 +44,7 @@
                             </div>
                         </li> 
                     <ul>
-                        <li><?php echo $cinema->getId() ?></li>
+                        <li><?php //echo $cinema->getId() ?></li>
                         <li><?php echo $cinema->getName() ?></li>
                         <li><?php echo $cinema->getAddress() ?></li>
                         <li><?php echo $cinema->getOpenning() ?></li>
@@ -56,17 +58,13 @@
                 ?>
                     <?php
                 }
-                ?>
-                
-                </div>
-                
-                </form>
+                ?>  
+            </div>
+            </form>
+
 
 <!---->
-<!---->
 <!--Agregar cine-->
-<!--<div class="collapse" id="collapseCinema">-->
-<li>
 <br>
 <hr class="my-4">
 <form class="mt-5 offset-md-1 col-md-5" action="<?php echo F_R ?>Cinema/AddCinema" method="POST">
@@ -76,55 +74,57 @@
             <input type="text" class="form-control" name="name" placeholder="Name" required>
         </div>
     </div>
-
     <div class="form-group row">
         <label for="inputDireccion" class="col-sm-2 col-form-label">Address</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" name="address" placeholder="Address" required>
         </div>
     </div>
-
     <div class="form-group row">
         <label for="inputHorario" class="col-sm-2 col-form-label">Openning</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" name="openning" placeholder="Openning" required>
         </div>
-    </div>
-    
+    </div>  
     <div class="form-group row">
         <label for="inputHorario" class="col-sm-2 col-form-label">Closing</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" name="closing" placeholder="Closing" required>
         </div>
     </div>
-    
     <div class="form-group row">
         <label for="inputHorario" class="col-sm-2 col-form-label">Ticket value</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" name="ticketValue" placeholder="Ticket value">
         </div>
     </div>
-
     <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>
-
 </form>
-
 <br>
 <hr class="mt-5 my-4 ">
-
-</li>
-</div>
-
-
-
-</div>
-</div>
-</div>
 </form>
+
+<!---->
+<!--LISTAR GENEROS-->
+<!--FORM TEMPORAL, ADMINISTRAR CON LAS PELICULAS-->
 <p>
+<?php
+    $dag = new GenreController;
+?>    
+    <a class="btn btn-primary bg-danger text-black col-md-2 offset-md-1 mt-2" data-toggle="collapse" href="#collapseGenres" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Listar Generos
+    </a>
+</p>
+<div class="collapse offset-md-1 col-md-5" id="collapseGenres">
+    <div class="card card-body">
+        <?php $dag->requestGenres() ?>  
+    </div>
+</div>
+
 <!---->
 <!--LISTAR PELICULAS-->
 <!---->
+<p>
     <a class="btn btn-primary bg-danger text-black col-md-2 offset-md-1 mt-2" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
         Listar Películas
     </a>
@@ -183,6 +183,8 @@
 </div>
 </div>
 </form>
+
+
 <!--LISTAR VENTAS-->
 <p>
     <a class="btn btn-primary bg-danger text-black col-md-2 offset-md-1 mt-2" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
