@@ -44,22 +44,21 @@ class DAOCinema
 
 
     /**Retorna el objeto cine para ponerlo como placeholder en el form de modificar */
-    public function modifyCinema($id){
+    public function modifyCinemaDAO($id){
         $this->RetrieveData();
         foreach($this->cinemasList as $list){
             if($list->getId() == $id){
                 $cinema = $list;
             }
         } 
-        return($list);
+        return($cinema);
     }
 
-
-    public function modify($cinema){
+    public function modify( $cinema){
         echo "<br>";
         echo "Print de modify, lo que llega";
         print_r($cinema);
-        echo $cinema["id"];
+        echo $cinema['id'];
         echo "<br>";
         $this->RetrieveData();
         foreach($this->cinemasList as $list){
@@ -70,12 +69,18 @@ class DAOCinema
                 echo "id";
                 echo  $cinema["id"];
                 echo "<br>";
-                $list = $cinema;
-                //$this->cinemaList = array_replace($this->cinemaList, array());
+                $list->setName($cinema["name"]);
+                $list->setAddress($cinema["address"]);
+                $list->setOpenning($cinema["openning"]);
+                $list->setClosing($cinema["closing"]);
+                $list->setTicketValue($cinema["ticketValue"]);
+                //$list = $cinema;
+               // $thearray = get_object_vars( $list );
+              //  $this->cinemasList = array_replace($cinema, $list);
                 $this->SaveData();
             }
         } 
-        
+       // print_r($this->RetrieveData());
     }
 
 

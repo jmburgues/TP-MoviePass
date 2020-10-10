@@ -25,8 +25,8 @@
         $option = current($_POST);
         if(isset($_POST["idCinemaM"])){
           echo"Modificaar";
-          
-          $currentCinema = $this->DAOCinema->modifyCinema($option);
+          echo $option;
+          $currentCinema = $this->DAOCinema->modifyCinemaDAO($option);
           print_r($currentCinema);
           
           include F_V.'cine-modify.php';

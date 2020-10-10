@@ -53,7 +53,7 @@
                             </div>
                         </li> 
                     <ul>
-                        <li style="list-style:none"><?php //echo $cinema->getId() ?></li>
+                        <li style="list-style:none"><?php echo $cinema->getId() ?></li>
                         <li>Cinema Name: <?php echo $cinema->getName() ?></li>
                         <li>Cinema Adress: <?php echo $cinema->getAddress() ?></li>
                         <li>Cinema Opening: <?php echo $cinema->getOpenning() ?></li>

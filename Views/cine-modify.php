@@ -3,7 +3,7 @@
     require_once('header.php');
     use DAO\DAOCinema as DAOCinema;
     $dac = new DAOCinema;
-    define("FF_RR", "/TP-MoviePass/");
+    define("FFF_RR", "/TP-MoviePass/");
     echo "Current cinema <br>";
     var_dump($currentCinema);
 ?>
@@ -19,7 +19,7 @@
 <hr class="my-4">
 
 <hr class="my-4">
-<form class="mt-5 offset-md-1 col-md-5" action="<?php echo FF_RR ?>Cinema/modifyCinema" method="POST">
+<form class="mt-5 offset-md-1 col-md-5" action="<?php echo FFF_RR ?>Cinema/modifyCinema" method="POST">
     <div class="form-group row ">
         <label for="inputName" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">

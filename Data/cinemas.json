@@ -1,34 +1,18 @@
 [
     {
         "id": 1,
-        "name": "a",
-        "address": "a",
-        "opening": "a",
-        "closing": "a",
-        "ticketValue": "a"
+        "name": "1Ambasador",
+        "address": "dorrego",
+        "opening": "1",
+        "closing": "2",
+        "ticketValue": "3"
     },
     {
         "id": 2,
-        "name": "q",
-        "address": "q",
-        "opening": "q",
-        "closing": "q",
-        "ticketValue": "q"
-    },
-    {
-        "id": 3,
-        "name": "c",
-        "address": "c",
-        "opening": "c",
-        "closing": "c",
-        "ticketValue": "c"
-    },
-    {
-        "id": 4,
-        "name": "sSSS",
-        "address": "s",
-        "opening": "s",
-        "closing": "s",
-        "ticketValue": "s"
+        "name": "2222222",
+        "address": "2",
+        "opening": "2",
+        "closing": "2",
+        "ticketValue": "2"
     }
 ]
