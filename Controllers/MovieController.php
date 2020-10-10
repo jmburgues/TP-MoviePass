@@ -45,19 +45,17 @@ class MovieController{
    // include(VIEWS_PATH."home.php");
   }
 
-  function getShowsGenres(){ // returns an array of strings with all movie's genres. (1st revision)
+  function getGenresList(){ // returns an array of strings with all movie's genres. (1st revision)
     
-    $genresList = array();
-    $daoMovie = new DAOMovie();
-    $moviesList = $daoMovie->getAll();
-    
-    foreach($moviesList as $oneMovie){
-      $movieGenre = $oneMovie->getGenre();
-      if(!in_array($genresList,$movieGenre))
-        array_push($genresList,$movieGenre);
-    }
+    $genres = array();
+    $objectsList = $this->daoGenre->getAll();
 
-    return $genresList;
+    foreach($objectsList as $oneGenre){
+      array_push($genres,$oneGenre->getName());
+    }
+    sort($genres);
+
+    include(VIEWS_PATH."genres-list.php");
   }
 
   function getMoviesByDate($date){ // returns an array of movies (Object) created on a given date (1st revision)
