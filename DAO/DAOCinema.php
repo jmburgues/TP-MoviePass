@@ -18,6 +18,7 @@ class DAOCinema
     {
         $this->RetrieveData();
         $cinema->setId($this->generateID());
+        $cinema->setActive = true;
         array_push($this->cinemasList, $cinema);
         $this->SaveData();
     }
@@ -29,16 +30,12 @@ class DAOCinema
     public function removeCinema($id)
     {
         $this->RetrieveData();
-        print_r($this->cinemasList);
-        echo ($id);
         $toDelete = null;
         foreach($this->cinemasList as $list){
             if($list->getId() == $id){
-                $toDelete = $list;
+                $list->setActive = false;
             }
         } 
-        $key = array_search($toDelete, $this->cinemasList);
-        unset($this->cinemasList[$key]);
         $this->SaveData();
     }
 
@@ -96,6 +93,16 @@ class DAOCinema
         return $this->cinemasList;
     }
 
+    public function GetActiveCinemas(){
+        $cinemasList = array();
+        $allCinemas = $this->DAOCinema->getAll();
+        foreach($allCinemas as $oneCinema){
+            if($oneCinema->getActive)
+            array_push($cinemasList,$oneCinema);
+        }
+
+        return $cinemasList;
+    }
 
     public function SaveData()
     {

@@ -14,7 +14,7 @@
 
     
     public function showCinemas(){
-      $cinemasList = $this->DAOCinema->getAll();
+      $cinemasList = $this->DAOCinema->GetActiveCinemas();
     }
 
     /**action
