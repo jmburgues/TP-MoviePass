@@ -19,6 +19,17 @@
             include_once VIEWS_PATH.'footer.php';
         }
 
+        public function adminView()
+        {
+            include VIEWS_PATH.'adminView.php';
+            include_once VIEWS_PATH.'footer.php';
+        }
+        
+        public function showLoginForm()
+        {
+            include VIEWS_PATH.'login-view.php';
+            include_once VIEWS_PATH.'footer.php';
+        }
         //ni idea como pero habría que validar
 
         public function add($userName, $password, $email, $birthDate, $dni, $admin)

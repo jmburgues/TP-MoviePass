@@ -8,10 +8,10 @@
   echo VIEWS_PATH;
   echo "<br>";
   use Controllers\MovieController as MovieController;
-use DAO\DAOMovie;
+  use DAO\DAOMovie;
 
-$mc = new MovieController;
-  $moviesList = $mc->getLatestMoviesFromApi();
+#$mc = new MovieController;
+ # $moviesList = $mc->getLatestMoviesFromApi();
   //print_r($moviesList);
   
   $daoMovies = new DAOMovie();
@@ -24,7 +24,7 @@ $mc = new MovieController;
     <br>
     <p class="lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid, hic repellendus. Harum, dolores aliquam! Tenetur sunt illo quis nulla architecto minima! Ipsam, veritatis? Quaerat explicabo error et at corrupti? Totam.</p>
     <hr class="my-4"> 
-<input value="Admin tools" type="button" onclick="location='Views/adminView.php'" />
+<input value="Admin tools" type="button" onclick="location='<?php VIEWS_PATH?>User/adminView'" />
 </div>
 <!--Últimas películas traídas desde la API-->
 <hr>

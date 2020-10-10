@@ -54,10 +54,10 @@ Soy un calendario
 
 <!--Botones Nav-->
 		<li>
-			<strong><a class="nav-link  text-white" href="<?php echo F_R?>User/showLogin">SignIn</a></strong>
+			<strong><a class="nav-link  text-white" href="<?php echo FRONT_ROOT?>User/showLoginForm">SignIn</a></strong>
 		</li>
 		<li>
-			<strong><a class="nav-link  text-white" href="<?php echo F_R?>User/showRegister">SignUp</a></strong>
+			<strong><a class="nav-link  text-white" href="<?php echo FRONT_ROOT?>User/register">SignUp</a></strong>
 		</li>
 		<li>
 			<strong><a class="nav-link  text-white" href="/TP-MoviePass/index.php">Exit</a></strong>

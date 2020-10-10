@@ -2,7 +2,7 @@
 
 define("ROOT", dirname(__DIR__) . "/"); 
 define("FRONT_ROOT", "/TP-MoviePass/");
-define("VIEWS_PATH", "Views/");
+define("VIEWS_PATH", ROOT."Views/");
 define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "css/");
 define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js/");
 

@@ -3,9 +3,8 @@
 namespace DAO;
 
 use Models\User as User;
-use DAO\IDAOUser as IDAOUser;
 
-class DAOUser implements IDAOUser
+class DAOUser
 {
     private $users;
 
