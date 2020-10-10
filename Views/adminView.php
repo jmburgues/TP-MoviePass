@@ -18,15 +18,20 @@
             </style>
 
 
-<!--Botones con las opciones del administrador-->
+                                    <!--Botones con las opciones del administrador-->
 
-<!--LISTAR CINES-->
+<!--LISTAR CINES
+    Muestra un form con una lista de todos los cines guardados en el JSON.
+    Cada cine muestra su información y tienen un botón de eliminar o modificar.
+    Estos botones envían al controlador del cine al método action. 
+-->
 <p>
     <a class="btn btn-primary bg-danger text-black mt-5 col-md-2 offset-md-1 " data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
     Listar Cines
     </a>
 </p>
 <?php
+
     $dac = new DAOCinema;
         $dc = $dac->GetAll();  
         if (isset($dc)) {
@@ -38,12 +43,17 @@
                         <?php echo $cinema->getName() ?>  
                         <li style="list-style:none">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <input type="submit" class="btn btn-secondary bg-danger text-black" value="Modificar"   name="<?php echo $cinema->getName()?>" /> 
-                                <input type="submit" class="btn btn-secondary bg-danger text-black" value="Eliminar"    name="<?php echo $cinema->getName()?>" /> 
+                            <!--    <input type="submit" class="btn btn-secondary bg-danger text-black" value="Modificar"   name="<?php //echo $cinema->getId()?>" /> 
+                                <input type="submit" class="btn btn-secondary bg-danger text-black" value="Eliminar"    name="<?php //echo $cinema->getId()?>" /> 
+                            
+                            -->
+                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaM">Modify</button> 
+                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaD">Delete</button> 
+                                
                             </div>
                         </li> 
                     <ul>
-                        <li style="list-style:none"><?php echo $cinema->getId() ?></li>
+                        <li style="list-style:none"><?php //echo $cinema->getId() ?></li>
                         <li>Cinema Name: <?php echo $cinema->getName() ?></li>
                         <li>Cinema Adress: <?php echo $cinema->getAddress() ?></li>
                         <li>Cinema Opening: <?php echo $cinema->getOpenning() ?></li>
@@ -63,7 +73,11 @@
 
 
 <!---->
-<!--Agregar cine-->
+<!--Agregar cine
+    Se muestra un formulario donde el administrador ingresará los datos requeridos: nombre, dirección, horario de apertura, horario de cierre y valor de a entrada.
+    Al enviar el formulario de agregará en el JSON en caso de que todos los datos se encuentren validados.
+    Al enviarlo dirige al controlador de cine al método AddCinema.
+-->
 <br>
 <hr class="my-4">
 <form class="mt-5 offset-md-1 col-md-5" action="<?php echo F_RR ?>Cinema/AddCinema" method="POST">
@@ -103,22 +117,6 @@
 <hr class="mt-5 my-4 ">
 </form>
 
-<!---->
-<!--LISTAR GENEROS-->
-<!--FORM TEMPORAL, ADMINISTRAR CON LAS PELICULAS-->
-<p>
-<?php
-    $dag = new GenreController;
-?>    
-    <a class="btn btn-primary bg-danger text-black col-md-2 offset-md-1 mt-2" data-toggle="collapse" href="#collapseGenres" role="button" aria-expanded="false" aria-controls="collapseExample">
-        Listar Generos
-    </a>
-</p>
-<div class="collapse offset-md-1 col-md-5" id="collapseGenres">
-    <div class="card card-body">
-        <?php $dag->requestGenres() ?>  
-    </div>
-</div>
 
 <!---->
 <!--LISTAR PELICULAS-->

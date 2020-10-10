@@ -7,6 +7,12 @@
   echo "<br>";
   echo VIEWS_PATH;
   echo "<br>";
+  use Controllers\MovieController as MovieController;
+  $mc = new MovieController;
+  //$moviesList = $mc->getLatestMoviesFromApi();
+ // print_r($moviesList);
+  
+
 ?>
 <!--Primer vista al entrar a la página-->
 <div class="jumbotron mb-5 mt-5 text-center bg-dark text-white homeTitle" style="opacity:0.9;">

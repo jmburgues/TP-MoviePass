@@ -1,36 +1,74 @@
 <?php
   namespace Controllers;
   
-
   use DAO\DAOCinema as DAOCinema;
   use Models\Cinema as Cinema;
 
   class CinemaController{
     private $DAOCinema;
+ 
     
     public function __construct(){
       $this->DAOCinema = new DAOCinema;
     }
 
-      public function showCinemas(){
-        $cinemasList = $this->DAOCinema->getAll();
-      }
-      //Por el momento compararía con el nombre.
-      //Según si es eliminar o modificar llama a sus funciones. 
-      public function action()      {
-          if (isset($_POST)) {
-            $option = current($_POST);
-            print_r($_POST);
-            if($option == "Eliminar"){
-            //$cinemasList = $this->DAOCinema->getAll();
-            echo "Elimiar";
-            
-          }else{
-              echo "Modificar";
+    
+    public function showCinemas(){
+      $cinemasList = $this->DAOCinema->getAll();
+    }
+
+    /**action
+     * Trae el valor del botón para redireccionar al método de eliminar o modificar.
+    */
+    public function action()      {
+      if (isset($_POST)) {
+        $option = current($_POST);
+        if(isset($_POST["idCinemaM"])){
+          echo"Modificaar";
+          
+          $currentCinema = $this->DAOCinema->modifyCinema($option);
+          print_r($currentCinema);
+          
+          include F_V.'cine-modify.php';
+        }else{
+            if (isset($_POST["idCinemaD"])) {
+                $this->DAOCinema->removeCinema($option);
+                include F_V.'adminView.php';
             }
-          }
+        }
       }
-      
+    }
+    
+    /**modifyCinema
+     * Método llamado desde el form de cine-modify
+     * 
+     */
+    public function modifyCinema(){
+      echo "<br>";
+      echo "Post del modifyCinema";
+      echo "<br>";
+      print_r($_POST);
+      $id = $_POST["id"];
+      $cinemasList = $this->DAOCinema->getAll();
+      foreach($cinemasList as $cinema){
+        if($cinema->getId() == $id){
+          echo "<br>";
+          echo "id igual encontrado de modifyCinema";
+          echo "<br>";
+          print_r($cinema);
+          echo "<br>";
+          $cinema = $_POST;
+          echo "<br>";
+          echo "<Print luego de la asignacion de post a cinemA>";
+          print_r($cinema);
+          $this->DAOCinema->modify($cinema);
+          include F_V.'adminView.php';
+        }
+      }
+      //$cinemasList = $this->DAOCinema->SaveData();
+
+    }
+
       public function AddCinema($name, $address, $openning, $closing, $ticketValue ){
         $cinema = new Cinema();
         $cinema->setName($name);

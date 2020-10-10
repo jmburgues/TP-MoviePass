@@ -22,15 +22,63 @@ class DAOCinema
         $this->SaveData();
     }
 
-    
-    public function Remove($cinema)
+    /**
+     * Remove
+     * Trae el arreglo del JSON, busca el cine según su id, lo elimina y vuelve a guardar el JSON
+     */
+    public function removeCinema($id)
     {
         $this->RetrieveData();
-        //array_search — Busca un valor determinado en un array y devuelve la primera clave correspondiente en caso de éxito
-        //  $key = array_search($cinema, $this->cinemasList, true);
-        $key = array_search($cinema, $this->cinemasList);
+        print_r($this->cinemasList);
+        echo ($id);
+        $toDelete;
+        foreach($this->cinemasList as $list){
+            if($list->getId() == $id){
+                $toDelete = $list;
+            }
+        } 
+        $key = array_search($toDelete, $this->cinemasList);
         unset($this->cinemasList[$key]);
+        $this->SaveData();
     }
+
+
+    /**Retorna el objeto cine para ponerlo como placeholder en el form de modificar */
+    public function modifyCinema($id){
+        $this->RetrieveData();
+        foreach($this->cinemasList as $list){
+            if($list->getId() == $id){
+                $cinema = $list;
+            }
+        } 
+        return($list);
+    }
+
+
+    public function modify($cinema){
+        echo "<br>";
+        echo "Print de modify, lo que llega";
+        print_r($cinema);
+        echo $cinema["id"];
+        echo "<br>";
+        $this->RetrieveData();
+        foreach($this->cinemasList as $list){
+            if($list->getId() == $cinema["id"]){
+                echo "<br>";
+                echo "get id";
+                echo $list->getId();
+                echo "id";
+                echo  $cinema["id"];
+                echo "<br>";
+                $list = $cinema;
+                //$this->cinemaList = array_replace($this->cinemaList, array());
+                $this->SaveData();
+            }
+        } 
+        
+    }
+
+
 
     public function generateID(){
         $this->RetrieveData();
@@ -44,7 +92,7 @@ class DAOCinema
     }
 
 
-    private function SaveData()
+    public function SaveData()
     {
         $arrayToEncode = array();
         foreach ($this->cinemasList as $cinema) {

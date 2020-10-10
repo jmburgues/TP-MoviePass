@@ -1,44 +1,34 @@
 [
     {
-        "name": "Cine Ambassador",
-        "address": "Diagonal Centro 1673",
-        "opening": "08:30",
-        "closing": "00:30",
-        "ticketValue": "50"
+        "id": 1,
+        "name": "a",
+        "address": "a",
+        "opening": "a",
+        "closing": "a",
+        "ticketValue": "a"
     },
     {
-        "name": "Cinemacenter",
-        "address": "Diagonal Pueyrred\u00f3n 3050",
-        "opening": "08:00",
-        "closing": "00:00",
-        "ticketValue": "55"
+        "id": 2,
+        "name": "q",
+        "address": "q",
+        "opening": "q",
+        "closing": "q",
+        "ticketValue": "q"
     },
     {
-        "name": "Cine del Paseo",
-        "address": "Diagonal Pueyrred\u00f3n 3058",
-        "opening": "09:00",
-        "closing": "23:00",
-        "ticketValue": "45"
+        "id": 3,
+        "name": "c",
+        "address": "c",
+        "opening": "c",
+        "closing": "c",
+        "ticketValue": "c"
     },
     {
-        "name": "Cinema II",
-        "address": "Rivadavia 3050",
-        "opening": "10:00",
-        "closing": "21:00",
-        "ticketValue": "54"
-    },
-    {
-        "name": "Cine del Paseo II",
-        "address": "Rivadavia 3055",
-        "opening": "10:00",
-        "closing": "21:30",
-        "ticketValue": "70"
-    },
-    {
-        "name": "Cine II",
-        "address": "Mitre",
-        "opening": "11:00",
-        "closing": "00:00",
-        "ticketValue": "20"
+        "id": 4,
+        "name": "sSSS",
+        "address": "s",
+        "opening": "s",
+        "closing": "s",
+        "ticketValue": "s"
     }
 ]
