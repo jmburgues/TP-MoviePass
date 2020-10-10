@@ -8,12 +8,8 @@
   echo VIEWS_PATH;
   echo "<br>";
   use Controllers\MovieController as MovieController;
-use DAO\DAOMovie;
+  use DAO\DAOMovie;
 
-$mc = new MovieController;
-  $moviesList = $mc->getLatestMoviesFromApi();
-  //print_r($moviesList);
-  
   $daoMovies = new DAOMovie();
   $movies = $daoMovies->getAll();
 
@@ -25,58 +21,40 @@ $mc = new MovieController;
     <p class="lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid, hic repellendus. Harum, dolores aliquam! Tenetur sunt illo quis nulla architecto minima! Ipsam, veritatis? Quaerat explicabo error et at corrupti? Totam.</p>
     <hr class="my-4"> 
 <input value="Admin tools" type="button" onclick="location='Views/adminView.php'" />
+<input value="Admin tools" type="button" onclick="location='Views/genres-list.php'" />
 </div>
 <!--Últimas películas traídas desde la API-->
 <hr>
-<hr class=" mt-5 mb-1 bg-danger text-dark">
+<!--<hr class=" mt-5 mb-1 bg-danger text-dark">
 <h3  class="text-white bg-dark text-center">Últimas</h3>
 <hr class=" mt-1 mb-1 bg-danger text-dark">
-<div class="card-group" style="margin:40px;">
+<div class="card-group" style="margin:1px;">
+-->
+
+<div class="container">
+<div class="row row-cols-3">
 <?php
   foreach ($movies as $movie) {
-?>
-  <div class="card" style="margin-right:4px;">
-    <img class="card-img-top" src="Views/img/Logo.bmp" alt="Card image cap">
-    <div class="card-body ">
-      <h5 class="card-title"><?= $movie->getTitle();?> </h5>
-      
- 
-      <input value="Buy" class="btn btn-secondary bg-danger text-dark mb-2 col-md-4" type="button" onclick="location='Views/purchase-view.php'" />
-     
-      <p class="card-text"><?= $movie->getDescription();?></p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-<?php
+    ?>
+      <div class="col"><div class="card" style="margin-top:10px;">
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $movie->getPoster()?>">
+        <div class="card-body">
+          <h5 class="card-title"><?php echo $movie->getTitle()?></h5>
+          <input value="Buy" class="btn btn-secondary bg-danger text-dark mb-4 col-md-4" type="button" onclick="location='Views/purchase-view.php'" />
+          <p class="card-text"><?php echo $movie->getDescription()?></p>
+        </div>
+      </div></div>
+  <?php
   }
 ?>
-</div>
+  </div>
+  </div>
 
 <!--Pŕoximas películas traídas desde la API-->
-<br>
-<hr class=" mt-4 mb-1 bg-danger text-dark">
-<h3  class="text-white bg-dark text-center">Próximamente</h3>
-<hr class=" mt-1 mb-1 bg-danger text-dark">
 
-<div class="card-group" style="margin:40px;">
-<?php
-  for ($i = 1; $i <= 5; $i++) {
-?>
-  <div class="card" style="margin-right:4px;">
-    <img class="card-img-top" src="Views/img/Logo.bmp" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <input value="Buy" class="btn btn-secondary bg-danger text-dark mb-2 col-md-4" type="button" onclick="location='Views/purchase-view.php'" />
-     
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-<?php
-  }
-?>
-</div>
-<hr class=" mt-1 mb-1 bg-danger text-dark">
+<hr class=" mt-4 mb-1 bg-danger text-dark">
+
+
 <?php
     require_once('footer.php');
 ?>
