@@ -1,7 +1,7 @@
 <?php
 namespace DAO;
-use models\Movie as Movie;
-use models\Genre as Genre;
+use Models\Movie as Movie;
+use Models\Genre as Genre;
 
 class DAOMovie{
   private $movieList;
@@ -11,8 +11,9 @@ class DAOMovie{
     $this->retrieveData();
     $exist = $this->GetById($movie->getMovieID());
     if (!isset($exist)) {
-      $this->saveData();
       array_push($this->movieList, $movie);
+      $this->saveData();
+      
     }
   }
 
@@ -64,13 +65,13 @@ class DAOMovie{
       array_push($arrayToEncode, $valueArray);
     }
     $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-    file_put_contents($this->fileName , $jsonContent);
+    $return = file_put_contents($this->fileName , $jsonContent);
   }
 
   public function GetById($id){
     $this->RetrieveData();
     foreach ($this->movieList as $movie){
-      if ($movie->getId() == $id) {
+      if ($movie->getMovieID() == $id) {
         return $movie;
       }
     }

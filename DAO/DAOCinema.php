@@ -31,7 +31,7 @@ class DAOCinema
         $this->RetrieveData();
         print_r($this->cinemasList);
         echo ($id);
-        $toDelete;
+        $toDelete = null;
         foreach($this->cinemasList as $list){
             if($list->getId() == $id){
                 $toDelete = $list;

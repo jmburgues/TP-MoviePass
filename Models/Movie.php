@@ -19,16 +19,13 @@ class Movie
         $this->genre = $genre;
         $this->poster = $poster;
         $this->releaseDate = $releaseDate;
+        $this->description = $description;
         $this->movieID =  $movieID; //no es incremental porque lo recibe de la API
     }
 
     public function getDuration()
     {
         return $this->duration;
-    }
-
-    public function getTitle(){
-        return $this->title;
     }
 
     public function getGenre(){
@@ -59,6 +56,11 @@ class Movie
     {
         $this->title = $title;
     }
+
+    public function getTitle(){
+        return $this->title;
+    }
+
 
     public function setGenre($genre)
     {

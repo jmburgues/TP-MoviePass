@@ -28,12 +28,13 @@ class MovieController{
         $movieData = file_get_contents("https://api.themoviedb.org/3/movie/".$value["id"]."?language=en-US&api_key=601e12bf1e7197e7532eb9c4901b0d3a");
         $movie = ($movieData) ? json_decode($movieData, true) : array();
         $genre = array();
-        foreach ($value["genres"] as $genreData) {
+
+        foreach ($movie["genres"] as $genreData) {
           $aux = new Genre($genreData["id"],$genreData["name"]);
           array_push($genre, $aux);
           $this->daoGenre->add($aux);
         }
-        $newMovie = new Movie($movie["runtime"],$movie["title"],$genre,$movie["poster_path"],$movie["relase_date"],$movie["overview"],$movie["id"]);
+        $newMovie = new Movie($movie["runtime"],$movie["title"],$genre,$movie["poster_path"],$movie["release_date"],$movie["overview"],$movie["id"]);
         $this->daoMovie->add($newMovie);
       }
     }
