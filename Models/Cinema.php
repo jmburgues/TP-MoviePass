@@ -11,6 +11,7 @@ Class Cinema
     private $openning;
     private $closing;
     private $ticketValue;
+    private $active;
     
 /* function __construct($name, $address, $openning, $closing, $ticketValue)
     {
@@ -83,6 +84,18 @@ Class Cinema
     public function setClosing($closing)
     {
         $this->closing = $closing;
+
+        return $this;
+    }
+
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    public function setActive($active)
+    {
+        $this->active = $active;
 
         return $this;
     }
