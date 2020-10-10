@@ -39,6 +39,11 @@ class MovieController{
       }
     }
   }
+  
+  function listMovies(){
+    $movies = $this->daoMovie->getAll();
+   // include(VIEWS_PATH."home.php");
+  }
 
   function getShowsGenres(){ // returns an array of strings with all movie's genres. (1st revision)
     
