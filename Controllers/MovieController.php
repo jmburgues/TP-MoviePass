@@ -58,28 +58,26 @@ class MovieController{
     include(VIEWS_PATH."genres-list.php");
   }
 
-  function getMoviesByDate($date){ // returns an array of movies (Object) created on a given date (1st revision)
+  function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
     
-    if($date instanceof DateTime){
-      $today = date("Y-m-d");
+    if($year > 1900 && $year <= 2020){
 
-      if($date <= $today){
-
-        $daoMovies = new DAOMovie();
-        $moviesList = $daoMovies->getAll();
+        $moviesList = $this->daoMovie->getAll();
 
         $wantedMovies = array();
 
         foreach($moviesList as $oneMovie){
+          
+          $releaseDate = $oneMovie->getReleaseDate();
+          $releaseYear = $releaseDate->format('Y');
 
-          if($oneMovie->getReleaseDate == $date && !in_array($wantedMovies,$oneMovie)){
+          if($releaseYear == $year && !in_array($wantedMovies,$oneMovie)){
             array_push($wantedMovies,$oneMovie);
           }
         }
 
         return $wantedMovies;
       }
-    }
     return false;
   }
 }
