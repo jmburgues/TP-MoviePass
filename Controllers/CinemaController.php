@@ -6,7 +6,6 @@
 
   class CinemaController{
     private $DAOCinema;
- 
     
     public function __construct(){
       $this->DAOCinema = new DAOCinema;
@@ -24,14 +23,12 @@
       if (isset($_POST)) {
         $option = current($_POST);
         if(isset($_POST["idCinemaM"])){
-          echo"Modificaar";
-          echo $option;
           $currentCinema = $this->DAOCinema->modifyCinemaDAO($option);
           print_r($currentCinema);
-          
           include F_V.'cine-modify.php';
         }else{
             if (isset($_POST["idCinemaD"])) {
+              
                 $this->DAOCinema->removeCinema($option);
                 include F_V.'adminView.php';
             }
@@ -44,29 +41,16 @@
      * 
      */
     public function modifyCinema(){
-      echo "<br>";
-      echo "Post del modifyCinema";
-      echo "<br>";
-      print_r($_POST);
       $id = $_POST["id"];
       $cinemasList = $this->DAOCinema->getAll();
       foreach($cinemasList as $cinema){
         if($cinema->getId() == $id){
-          echo "<br>";
-          echo "id igual encontrado de modifyCinema";
-          echo "<br>";
-          print_r($cinema);
-          echo "<br>";
           $cinema = $_POST;
-          echo "<br>";
-          echo "<Print luego de la asignacion de post a cinemA>";
           print_r($cinema);
           $this->DAOCinema->modify($cinema);
           include F_V.'adminView.php';
         }
       }
-      //$cinemasList = $this->DAOCinema->SaveData();
-
     }
 
       public function AddCinema($name, $address, $openning, $closing, $ticketValue ){

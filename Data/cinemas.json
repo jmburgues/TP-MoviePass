@@ -1,18 +1,74 @@
 [
     {
         "id": 1,
-        "name": "1Ambasador",
-        "address": "dorrego",
-        "opening": "1",
-        "closing": "2",
-        "ticketValue": "3"
+        "name": "aq",
+        "address": "q",
+        "opening": "q",
+        "closing": "q",
+        "ticketValue": "q",
+        "active": false
     },
     {
         "id": 2,
-        "name": "2222222",
-        "address": "2",
-        "opening": "2",
-        "closing": "2",
-        "ticketValue": "2"
+        "name": "d",
+        "address": "d",
+        "opening": "d",
+        "closing": "d",
+        "ticketValue": "d",
+        "active": false
+    },
+    {
+        "id": 3,
+        "name": "f",
+        "address": "f",
+        "opening": "f",
+        "closing": "f",
+        "ticketValue": "f",
+        "active": false
+    },
+    {
+        "id": 4,
+        "name": "z",
+        "address": "z",
+        "opening": "z",
+        "closing": "z",
+        "ticketValue": "z",
+        "active": false
+    },
+    {
+        "id": 5,
+        "name": "SSS",
+        "address": "asAS",
+        "opening": "SasAS",
+        "closing": "SS",
+        "ticketValue": "SS",
+        "active": true
+    },
+    {
+        "id": 6,
+        "name": "dqwadqweqweqCine",
+        "address": "da",
+        "opening": "a",
+        "closing": "a",
+        "ticketValue": "a",
+        "active": true
+    },
+    {
+        "id": 7,
+        "name": "jose antonio",
+        "address": "jose antonio",
+        "opening": "1",
+        "closing": "1",
+        "ticketValue": "3456",
+        "active": true
+    },
+    {
+        "id": 8,
+        "name": "Cine Ambassador",
+        "address": "Rivadavia 3050",
+        "opening": "10:25",
+        "closing": "22:26",
+        "ticketValue": "111",
+        "active": true
     }
 ]

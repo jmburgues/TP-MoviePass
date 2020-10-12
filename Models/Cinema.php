@@ -4,7 +4,6 @@
 
 Class Cinema
 {
-    //private $DAOCinema;
     private $id; 
     private $name;
     private $address;
@@ -13,15 +12,6 @@ Class Cinema
     private $ticketValue;
     private $active;
     
-/* function __construct($name, $address, $openning, $closing, $ticketValue)
-    {
-        $this->name=$name;
-        $this->address=$address;
-        $this->openning=$openning;
-        $this->closing=$closing;
-        $this->ticketValue=$ticketValue;
-    }*/
-
     public function getName()
     {
         return $this->name;

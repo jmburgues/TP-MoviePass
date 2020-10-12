@@ -33,7 +33,7 @@
 <?php
 
     $dac = new DAOCinema;
-        $dc = $dac->GetAll();  
+        $dc = $dac->getActiveCinemas();  
         if (isset($dc)) {
             foreach ($dc as $cinema) {
                 ?>                 
@@ -43,17 +43,11 @@
                         <?php echo $cinema->getName() ?>  
                         <li style="list-style:none">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                            <!--    <input type="submit" class="btn btn-secondary bg-danger text-black" value="Modificar"   name="<?php //echo $cinema->getId()?>" /> 
-                                <input type="submit" class="btn btn-secondary bg-danger text-black" value="Eliminar"    name="<?php //echo $cinema->getId()?>" /> 
-                            
-                            -->
-                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaM">Modify</button> 
-                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaD">Delete</button> 
-                                
+                                <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaM">Modify</button> 
+                                <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaD">Delete</button> 
                             </div>
                         </li> 
                     <ul>
-                        <li style="list-style:none"><?php echo $cinema->getId() ?></li>
                         <li>Cinema Name: <?php echo $cinema->getName() ?></li>
                         <li>Cinema Adress: <?php echo $cinema->getAddress() ?></li>
                         <li>Cinema Opening: <?php echo $cinema->getOpenning() ?></li>
@@ -96,27 +90,31 @@
     <div class="form-group row">
         <label for="inputHorario" class="col-sm-2 col-form-label">Openning</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="openning" placeholder="Openning" required>
+        <input type="time"   min="00:00" max="23:59" class="form-control" name="openning" placeholder="Openning" required>
+
         </div>
     </div>  
     <div class="form-group row">
         <label for="inputHorario" class="col-sm-2 col-form-label">Closing</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="closing" placeholder="Closing" required>
+        <input type="time"   min="00:00" max="23:59" class="form-control" name="closing" placeholder="Closing" required>
+        
         </div>
     </div>
     <div class="form-group row">
         <label for="inputHorario" class="col-sm-2 col-form-label">Ticket value</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="ticketValue" placeholder="Ticket value">
+            <input type="number" class="form-control" min="0" name="ticketValue" placeholder="Ticket value">
         </div>
     </div>
     <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>
 </form>
 <br>
+
 <hr class="mt-5 my-4 ">
 </form>
 
+<p>W.I.P</p>
 
 <!---->
 <!--LISTAR PELICULAS-->
@@ -232,8 +230,6 @@
 </div>
 </div>
 </div>
-
-
 
 <?php
    // require_once('footer.php');

@@ -1,6 +1,6 @@
 <?php
 
-
+use Controllers\GenresController as GenresController;
 ?>
 
 <!--Barra de navegación que estará presente en todo el programa-->
@@ -27,17 +27,17 @@
 	<li class="nav-item">
 
 	<div class="dropdown">
-  <button class="btn btn-secondary btn-light dropdown-toggle" style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Buscar por genero
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Accion</a>
-    <a class="dropdown-item" href="#">Drama</a>
-    <a class="dropdown-item" href="#">Comedia</a>
-  </div>
-</div>
-</li>
-<li class="nav-item">
+	<button class="btn btn-secondary btn-light dropdown-toggle" action=Genre/show style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Buscar por genero
+	</button>
+	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		<a class="dropdown-item" href="#">Accion</a>
+		<a class="dropdown-item" href="#">Drama</a>
+		<a class="dropdown-item" href="#">Comedia</a>
+	</div>
+	</div>
+	</li>
+	<li class="nav-item">
 
 <!--Dropdown calendario, buscar por fecha-->
 <div class="dropdown">
