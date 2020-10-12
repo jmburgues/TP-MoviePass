@@ -4,7 +4,7 @@ use Models\Genre as Genre;
 
 class DAOgenre{
   private $genreList;
-  private $fileName = ROOT."Data/genre.json";
+  private $fileName = ROOT."Data/genres.json";
 
   public function add(Genre $genre){
     $this->retrieveData();
