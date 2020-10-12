@@ -21,15 +21,14 @@ use Controllers\GenreController as GenreController;
 	</ul>
 
 <!--Dropdown buscar por género-->
-	<form class="form-inline my-2 my-lg-0 ">
 	<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 	
-	<form action="<?phpFRONT_ROOT?>Movie/listByGenre" method=POST?>
 
 		<li class="nav-item">
 
 		<div class="dropdown">
-		<button class="btn btn-secondary btn-light dropdown-toggle" action=Genre/show style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	<form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>Movie/listByGenre" method=POST?>
+		<button class="btn btn-secondary btn-light dropdown-toggle" style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			Buscar por genero
 		</button>
 		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -41,14 +40,15 @@ use Controllers\GenreController as GenreController;
 			$genreController = new GenreController();
 			$genres = $genreController->getGenresList();
 			foreach ($genres as $genre){?>
-				<a class="dropdown-item" onclick="location='<?php FRONT_ROOT?>Movie/listByGenre'" name="genreId" value="<?= $genre->getId(); ?>"><?=$genre->getName();?></a>
+				<button type ="submit" class="dropdown-item" name="genreId" value="<?php echo $genre->getId(); ?>"><?php echo $genre->getName();?></button>
 			<?php } ?>
 
 		</div>
+			</form>
 		</div>
 		</li>
+				<form class="form-inline my-2 my-lg-0 ">
 		<li class="nav-item">
-			</form>
 
 <!--Dropdown calendario, buscar por fecha-->
 <div class="dropdown">
