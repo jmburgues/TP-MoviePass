@@ -18,7 +18,7 @@ class DAOCinema
     {
         $this->RetrieveData();
         $cinema->setId($this->generateID());
-        $cinema->setActive = true;
+        $cinema->setActive(true);
         array_push($this->cinemasList, $cinema);
         $this->SaveData();
     }
@@ -33,7 +33,7 @@ class DAOCinema
         $toDelete = null;
         foreach($this->cinemasList as $list){
             if($list->getId() == $id){
-                $list->setActive = false;
+                $list->setActive(false);
             }
         } 
         $this->SaveData();
@@ -52,34 +52,18 @@ class DAOCinema
     }
 
     public function modify( $cinema){
-        echo "<br>";
-        echo "Print de modify, lo que llega";
-        print_r($cinema);
-        echo $cinema['id'];
-        echo "<br>";
         $this->RetrieveData();
         foreach($this->cinemasList as $list){
             if($list->getId() == $cinema["id"]){
-                echo "<br>";
-                echo "get id";
-                echo $list->getId();
-                echo "id";
-                echo  $cinema["id"];
-                echo "<br>";
                 $list->setName($cinema["name"]);
                 $list->setAddress($cinema["address"]);
                 $list->setOpenning($cinema["openning"]);
                 $list->setClosing($cinema["closing"]);
                 $list->setTicketValue($cinema["ticketValue"]);
-                //$list = $cinema;
-               // $thearray = get_object_vars( $list );
-              //  $this->cinemasList = array_replace($cinema, $list);
                 $this->SaveData();
             }
         } 
-       // print_r($this->RetrieveData());
     }
-
 
 
     public function generateID(){
@@ -87,17 +71,17 @@ class DAOCinema
         return count($this->cinemasList) + 1;
     }
 
-    public function GetAll()
+    public function getAll()
     {
         $this->RetrieveData();
         return $this->cinemasList;
     }
 
-    public function GetActiveCinemas(){
+    public function getActiveCinemas(){
         $cinemasList = array();
-        $allCinemas = $this->DAOCinema->getAll();
+        $allCinemas = $this->getAll();
         foreach($allCinemas as $oneCinema){
-            if($oneCinema->getActive)
+            if($oneCinema->getActive())
             array_push($cinemasList,$oneCinema);
         }
 
@@ -114,6 +98,7 @@ class DAOCinema
             $valuesArray["opening"] = $cinema->getOpenning();
             $valuesArray["closing"] = $cinema->getClosing();
             $valuesArray["ticketValue"] = $cinema->getTicketValue();
+            $valuesArray["active"] = $cinema->getActive();
             array_push($arrayToEncode, $valuesArray);
         }
         $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
@@ -134,6 +119,7 @@ class DAOCinema
                 $cinema->setOpenning($valuesArray["opening"]);
                 $cinema->setClosing($valuesArray["closing"]);
                 $cinema->setTicketValue($valuesArray["ticketValue"]);
+                $cinema->setActive($valuesArray["active"]);
                 array_push($this->cinemasList, $cinema);
             }
         }

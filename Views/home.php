@@ -1,12 +1,5 @@
 <?php
     require_once('nav.php');
-    echo "<br>";
-    echo ROOT;
-  echo "<br>";
-  echo FRONT_ROOT;
-  echo "<br>";
-  echo VIEWS_PATH;
-  echo "<br>";
   use Controllers\MovieController as MovieController;
   use DAO\DAOMovie as DAOMovie;
 
@@ -20,16 +13,10 @@
     <br>
     <p class="lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid, hic repellendus. Harum, dolores aliquam! Tenetur sunt illo quis nulla architecto minima! Ipsam, veritatis? Quaerat explicabo error et at corrupti? Totam.</p>
     <hr class="my-4"> 
-<input value="Admin tools" type="button" onclick="location='Views/adminView.php'" />
-<input value="Admin tools" type="button" onclick="location='Views/genres-list.php'" />
+    <input value="Admin tools" type="button" onclick="location='<?php VIEWS_PATH?>User/adminView'" />
 </div>
-<!--Últimas películas traídas desde la API-->
 <hr>
-<!--<hr class=" mt-5 mb-1 bg-danger text-dark">
-<h3  class="text-white bg-dark text-center">Últimas</h3>
-<hr class=" mt-1 mb-1 bg-danger text-dark">
-<div class="card-group" style="margin:1px;">
--->
+
 
 <div class="container">
 <div class="row row-cols-3">
@@ -50,11 +37,10 @@
   </div>
   </div>
 
-<!--Pŕoximas películas traídas desde la API-->
 
 <hr class=" mt-4 mb-1 bg-danger text-dark">
 
 
 <?php
-    require_once('footer.php');
+ //   require_once('footer.php');
 ?>
