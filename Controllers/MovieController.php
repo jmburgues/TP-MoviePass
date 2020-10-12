@@ -2,12 +2,10 @@
 
 namespace Controllers;
 
-use DAO\DAOShows as DAOShows;
 use Models\Movie as Movie;
 use Models\Genre as Genre;
 use DAO\DAOMovie as DAOMovie;
 use DAO\DAOGenre as DAOGenre;
-use DateTime;
 
 class MovieController{
 
@@ -44,20 +42,7 @@ class MovieController{
     $movies = $this->daoMovie->getAll();
    // include(VIEWS_PATH."home.php");
   }
-
-  function getGenresList(){ // returns an array of strings with all movie's genres. (1st revision)
-    
-    $genres = array();
-    $objectsList = $this->daoGenre->getAll();
-
-    foreach($objectsList as $oneGenre){
-      array_push($genres,$oneGenre->getName());
-    }
-    sort($genres);
-
-    include(VIEWS_PATH."genres-list.php");
-  }
-
+  
   function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
     
     if($year > 1900 && $year <= 2020){
@@ -79,6 +64,25 @@ class MovieController{
         return $wantedMovies;
       }
     return false;
+  }
+
+  function listByGenre($genreId){
+      
+    $moviesList = $this->daoMovie->getAll();
+    $movies = array();
+
+    foreach($moviesList as $oneMovie){
+      
+      $movieGenres = $oneMovie->getGenre();
+
+      foreach($movieGenres as $oneGenre){
+        
+        if($oneGenre->getId() == $genreId){
+          array_push($movies,$oneMovie);       
+        }   
+      }
+    }
+    include(VIEWS_PATH.'genres-list.php');
   }
 }
 ?>

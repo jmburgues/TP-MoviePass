@@ -1,6 +1,6 @@
 <?php
 
-use Controllers\GenresController as GenresController;
+use Controllers\GenreController as GenreController;
 ?>
 
 <!--Barra de navegación que estará presente en todo el programa-->
@@ -23,21 +23,32 @@ use Controllers\GenresController as GenresController;
 <!--Dropdown buscar por género-->
 	<form class="form-inline my-2 my-lg-0 ">
 	<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-		
-	<li class="nav-item">
+	
+	<form action="<?phpFRONT_ROOT?>Movie/listByGenre" method=POST?>
 
-	<div class="dropdown">
-	<button class="btn btn-secondary btn-light dropdown-toggle" action=Genre/show style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		Buscar por genero
-	</button>
-	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		<a class="dropdown-item" href="#">Accion</a>
-		<a class="dropdown-item" href="#">Drama</a>
-		<a class="dropdown-item" href="#">Comedia</a>
-	</div>
-	</div>
-	</li>
-	<li class="nav-item">
+		<li class="nav-item">
+
+		<div class="dropdown">
+		<button class="btn btn-secondary btn-light dropdown-toggle" action=Genre/show style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Buscar por genero
+		</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		
+		<!-- PREGUNTAR !!! -->
+		<!-- LA VISTA DEBERIA LLAMAR AL CONTROLADOR DE GENEROS ?? -->
+		
+			<?php 
+			$genreController = new GenreController();
+			$genres = $genreController->getGenresList();
+			foreach ($genres as $genre){?>
+				<a class="dropdown-item" onclick="location='<?php FRONT_ROOT?>Movie/listByGenre'" name="genreId" value="<?= $genre->getId(); ?>"><?=$genre->getName();?></a>
+			<?php } ?>
+
+		</div>
+		</div>
+		</li>
+		<li class="nav-item">
+			</form>
 
 <!--Dropdown calendario, buscar por fecha-->
 <div class="dropdown">
