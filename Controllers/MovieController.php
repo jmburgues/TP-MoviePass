@@ -67,7 +67,8 @@ class MovieController{
   }
 
   function listByGenre($genreId){
-      
+    
+    $genreName = $this->daoGenre->GetById($genreId)->getName();
     $moviesList = $this->daoMovie->getAll();
     $movies = array();
 
@@ -82,6 +83,7 @@ class MovieController{
         }   
       }
     }
+    
     include(VIEWS_PATH.'genres-list.php');
   }
 }
