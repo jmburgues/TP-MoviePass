@@ -24,16 +24,8 @@
     </a>
 </p>
 <?php
-<<<<<<< Updated upstream
-
-    $dac = new DAOCinema;
-        $dc = $dac->getActiveCinemas();  
-        if (isset($dc)) {
-            foreach ($dc as $cinema) {
-=======
         if (isset($cinemas)) {
             foreach ($cinemas as $cinema) {
->>>>>>> Stashed changes
                 ?>                 
                 <form action="<?php echo FRONT_ROOT?>Cinema/action" method="POST">
                 <div class="collapse offset-md-1 col-md-5" id="collapseCinema">   
