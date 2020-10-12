@@ -1,11 +1,21 @@
 <?php
     require_once('nav.php');
+<<<<<<< Updated upstream
   use Controllers\MovieController as MovieController;
   use DAO\DAOMovie as DAOMovie;
 
   $daoMovies = new DAOMovie();
   $movies = $daoMovies->getAll();
 
+=======
+    echo "<br>";
+    echo ROOT;
+  echo "<br>";
+  echo FRONT_ROOT;
+  echo "<br>";
+  echo VIEWS_PATH;
+  echo "<br>";
+>>>>>>> Stashed changes
   ?>
 <!--Primer vista al entrar a la página-->
 <div class="jumbotron mb-5 mt-5 text-center bg-dark text-white homeTitle" style="opacity:0.9;">
@@ -13,7 +23,11 @@
     <br>
     <p class="lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid, hic repellendus. Harum, dolores aliquam! Tenetur sunt illo quis nulla architecto minima! Ipsam, veritatis? Quaerat explicabo error et at corrupti? Totam.</p>
     <hr class="my-4"> 
+<<<<<<< Updated upstream
     <input value="Admin tools" type="button" onclick="location='<?php VIEWS_PATH?>User/adminView'" />
+=======
+<input value="Admin tools" type="button" onclick="location='<?php VIEWS_PATH?>User/adminView'"/>
+>>>>>>> Stashed changes
 </div>
 <hr>
 

@@ -1,16 +1,21 @@
 <?php
     namespace Controllers;
 
-    use Models\User as User;
     use DAO\DAOUser as DAOUser;
+    use Models\User as User;
+    use DAO\DAOCinema as DAOCinema;
+    use Models\Cinema as Cinema;
+
 
     class UserController
     {
         private $DAOUser;
+        private $DAOCinema;
 
         public function __construct()
         {
             $this->DAOUser = new DAOUser();
+            $this->DAOCinema = new DAOCinema();
         }
 
         public function register()
@@ -21,6 +26,7 @@
 
         public function adminView()
         {
+            $cinemas = $this->DAOCinema->GetAll();  
             include VIEWS_PATH.'adminView.php';
             include_once VIEWS_PATH.'footer.php';
         }

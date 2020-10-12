@@ -1,13 +1,6 @@
 <?php
     require_once('nav.php');
     require_once('header.php');
-    define("F_RR", "/TP-MoviePass/");
-    require_once dirname(__FILE__)."/../DAO/DAOCinema.php";
-    require_once dirname(__FILE__)."/../Controllers/GenreController.php";
-    
-    use DAO\DAOCinema as DAOCinema;
-    use Controllers\GenreController as GenreController;
-
 ?>
 <!--Estilo de la página-->
     <style type="text/css">
@@ -31,13 +24,18 @@
     </a>
 </p>
 <?php
+<<<<<<< Updated upstream
 
     $dac = new DAOCinema;
         $dc = $dac->getActiveCinemas();  
         if (isset($dc)) {
             foreach ($dc as $cinema) {
+=======
+        if (isset($cinemas)) {
+            foreach ($cinemas as $cinema) {
+>>>>>>> Stashed changes
                 ?>                 
-                <form action="<?php echo F_RR?>Cinema/action" method="POST">
+                <form action="<?php echo FRONT_ROOT?>Cinema/action" method="POST">
                 <div class="collapse offset-md-1 col-md-5" id="collapseCinema">   
                     <div class="card card-body ">
                         <?php echo $cinema->getName() ?>  
@@ -74,7 +72,7 @@
 -->
 <br>
 <hr class="my-4">
-<form class="mt-5 offset-md-1 col-md-5" action="<?php echo F_RR ?>Cinema/AddCinema" method="POST">
+<form class="mt-5 offset-md-1 col-md-5" action="<?php echo FRONT_ROOT ?>Cinema/AddCinema" method="POST">
     <div class="form-group row ">
         <label for="inputName" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
