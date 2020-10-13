@@ -1,5 +1,4 @@
 <?php
-
 use Controllers\GenreController as GenreController;
 ?>
 

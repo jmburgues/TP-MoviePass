@@ -26,7 +26,7 @@
 
         public function adminView()
         {
-            $cinemas = $this->DAOCinema->GetAll();  
+            $cinemas = $this->DAOCinema->getActiveCinemas();  
             include VIEWS_PATH.'adminView.php';
             include_once VIEWS_PATH.'footer.php';
         }
@@ -34,6 +34,12 @@
         public function showLoginForm()
         {
             include VIEWS_PATH.'login-view.php';
+            include_once VIEWS_PATH.'footer.php';
+        }
+
+        public function showPurchase()
+        {
+            include VIEWS_PATH.'purchase-view.php';
             include_once VIEWS_PATH.'footer.php';
         }
         //ni idea como pero habría que validar

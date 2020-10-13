@@ -42,7 +42,7 @@
         "opening": "SasAS",
         "closing": "SS",
         "ticketValue": "SS",
-        "active": true
+        "active": false
     },
     {
         "id": 6,
@@ -51,7 +51,7 @@
         "opening": "a",
         "closing": "a",
         "ticketValue": "a",
-        "active": true
+        "active": false
     },
     {
         "id": 7,
@@ -69,6 +69,15 @@
         "opening": "10:25",
         "closing": "22:26",
         "ticketValue": "111",
+        "active": true
+    },
+    {
+        "id": 9,
+        "name": "Lautybasador",
+        "address": "lacasadelauty",
+        "opening": "00:00",
+        "closing": "18:00",
+        "ticketValue": "100",
         "active": true
     }
 ]

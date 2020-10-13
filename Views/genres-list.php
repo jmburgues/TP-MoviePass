@@ -19,7 +19,7 @@
                         <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $movie->getPoster()?>">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $movie->getTitle()?></h5>
-                            <input value="Buy" class="btn btn-secondary bg-danger text-dark mb-4 col-md-4" type="button" onclick="location='Views/purchase-view.php'" />
+                            <input value="Buy" class="btn btn-secondary bg-danger text-dark mb-4 col-md-4" type="button" onclick="location='<?= FRONT_ROOT?>User/showPurchase'" />
                             <p class="card-text"><?php echo $movie->getDescription()?></p>
                         </div>
                     </div>
