@@ -19,19 +19,21 @@
     /**action
      * Trae el valor del botón para redireccionar al método de eliminar o modificar.
     */
-    public function action($idM="",$idD=""){
-
-      if(is_null($idM)){
-        $currentCinema = $this->DAOCinema->modifyCinemaDAO($idM);
-        print_r($currentCinema);
-        include F_V.'cine-modify.php';
-      }else{
-          if (is_null($idD)) {
-            $this->DAOCinema->removeCinema($idD);
-            $cinemas = $this->DAOCinema->getActiveCinemas(); 
-            include F_V.'adminView.php';
-            
-          }
+    public function action()      {
+      if (isset($_POST)) {
+        $option = current($_POST);
+        if(isset($_POST["idCinemaM"])){
+          $currentCinema = $this->DAOCinema->modifyCinemaDAO($option);
+          print_r($currentCinema);
+          $cinemas = $this->DAOCinema->getActiveCinemas();  
+          include F_V.'cine-modify.php';
+        }else{
+            if (isset($_POST["idCinemaD"])) {
+              $this->DAOCinema->removeCinema($option);
+              $cinemas = $this->DAOCinema->getActiveCinemas();  
+              include F_V.'adminView.php';
+            }
+        }
       }
     }
     
@@ -47,7 +49,7 @@
           $cinema = $_POST;
           print_r($cinema);
           $this->DAOCinema->modify($cinema);
-          $cinemas = $this->DAOCinema->getActiveCinemas();
+          $cinemas = $this->DAOCinema->getActiveCinemas();  
           include F_V.'adminView.php';
         }
       }
