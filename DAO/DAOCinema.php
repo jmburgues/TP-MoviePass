@@ -57,6 +57,7 @@ class DAOCinema
             if($list->getId() == $cinema["id"]){
                 $list->setName($cinema["name"]);
                 $list->setAddress($cinema["address"]);
+                $list->setNumber($cinema["number"]);
                 $list->setOpenning($cinema["openning"]);
                 $list->setClosing($cinema["closing"]);
                 $list->setTicketValue($cinema["ticketValue"]);
@@ -95,6 +96,7 @@ class DAOCinema
             $valuesArray["id"] = $cinema->getId();
             $valuesArray["name"] = $cinema->getName();
             $valuesArray["address"] = $cinema->getAddress();
+            $valuesArray["number"] = $cinema->getNumber();
             $valuesArray["opening"] = $cinema->getOpenning();
             $valuesArray["closing"] = $cinema->getClosing();
             $valuesArray["ticketValue"] = $cinema->getTicketValue();
@@ -116,6 +118,7 @@ class DAOCinema
                 $cinema->setId($valuesArray["id"]);
                 $cinema->setName($valuesArray["name"]);
                 $cinema->setAddress($valuesArray["address"]);
+                $cinema->setNumber($valuesArray["number"]);
                 $cinema->setOpenning($valuesArray["opening"]);
                 $cinema->setClosing($valuesArray["closing"]);
                 $cinema->setTicketValue($valuesArray["ticketValue"]);

@@ -1,83 +1,42 @@
 [
     {
         "id": 1,
-        "name": "aq",
-        "address": "q",
-        "opening": "q",
-        "closing": "q",
-        "ticketValue": "q",
+        "name": "cineeeeeeeeeeeeeeeee",
+        "address": "qqq",
+        "number": "11111111111111",
+        "opening": "22:22",
+        "closing": "02:22",
+        "ticketValue": "2",
         "active": false
     },
     {
         "id": 2,
-        "name": "d",
-        "address": "d",
-        "opening": "d",
-        "closing": "d",
-        "ticketValue": "d",
+        "name": "cinecito",
+        "address": "jota",
+        "number": "111",
+        "opening": "11:11",
+        "closing": "11:23",
+        "ticketValue": "344",
         "active": false
     },
     {
         "id": 3,
-        "name": "f",
-        "address": "f",
-        "opening": "f",
-        "closing": "f",
-        "ticketValue": "f",
-        "active": false
+        "name": "Cinesoto",
+        "address": "23sasd",
+        "number": "23424",
+        "opening": "11:11",
+        "closing": "11:33",
+        "ticketValue": "333",
+        "active": true
     },
     {
         "id": 4,
-        "name": "z",
-        "address": "z",
-        "opening": "z",
-        "closing": "z",
-        "ticketValue": "z",
-        "active": false
-    },
-    {
-        "id": 5,
-        "name": "SSS",
-        "address": "asAS",
-        "opening": "SasAS",
-        "closing": "SS",
-        "ticketValue": "SS",
-        "active": false
-    },
-    {
-        "id": 6,
-        "name": "dqwadqweqweqCine",
-        "address": "da",
-        "opening": "a",
-        "closing": "a",
-        "ticketValue": "a",
-        "active": false
-    },
-    {
-        "id": 7,
-        "name": "jose antonio",
-        "address": "jose antonio",
-        "opening": "1",
-        "closing": "1",
-        "ticketValue": "3456",
-        "active": true
-    },
-    {
-        "id": 8,
-        "name": "Cine Ambassador",
-        "address": "Rivadavia 3050",
-        "opening": "10:25",
-        "closing": "22:26",
-        "ticketValue": "111",
-        "active": true
-    },
-    {
-        "id": 9,
-        "name": "Lautybasador",
-        "address": "lacasadelauty",
-        "opening": "00:00",
-        "closing": "18:00",
-        "ticketValue": "100",
+        "name": "qqqqqqqqqq",
+        "address": "q",
+        "number": "2",
+        "opening": "22:22",
+        "closing": "22:22",
+        "ticketValue": "22",
         "active": true
     }
 ]

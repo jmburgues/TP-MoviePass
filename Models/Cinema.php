@@ -7,20 +7,26 @@ Class Cinema
     private $id; 
     private $name;
     private $address;
+    private $number;
     private $openning;
     private $closing;
     private $ticketValue;
     private $active;
+
     
     public function getName()
     {
         return $this->name;
     }
-
+    
     public function getAddress()
     {
         return $this->address;
     }
+    
+        public function getNumber(){
+            return $this->number;
+        }
 
     public function getTicketValue()
     {
@@ -35,6 +41,11 @@ Class Cinema
     public function setAddress($address)
     {
         $this->address=$address;
+    }
+
+    public function setNumber($number)
+    {
+        $this->number=$number;
     }
 
     public function setTicketValue($ticketValue)

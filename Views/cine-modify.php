@@ -33,6 +33,12 @@
         </div>
     </div>
     <div class="form-group row">
+        <label for="inputNumber" class="col-sm-2 col-form-label">Number</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="number" value=<?php echo $currentCinema->getNumber() ?>  required>
+        </div>
+    </div>
+    <div class="form-group row">
         <label for="inputHorario" class="col-sm-2 col-form-label">Openning</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" name="openning" value=<?php echo $currentCinema->getOpenning() ?> required>

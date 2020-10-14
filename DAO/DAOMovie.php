@@ -7,6 +7,7 @@ class DAOMovie{
   private $movieList;
   private $fileName = ROOT."Data/movies.json";
 
+  
   public function add(Movie $movie){
     $this->retrieveData();
     $exist = $this->GetById($movie->getMovieID());

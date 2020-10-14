@@ -40,6 +40,7 @@
                     <ul>
                         <li>Cinema Name: <?php echo $cinema->getName() ?></li>
                         <li>Cinema Adress: <?php echo $cinema->getAddress() ?></li>
+                        <li>Cinema Number: <?php echo $cinema->getNumber() ?></li>
                         <li>Cinema Opening: <?php echo $cinema->getOpenning() ?></li>
                         <li>Cinema Closing: <?php echo $cinema->getClosing() ?></li>
                         <li>Cinema Ticket Value: <?php echo $cinema->getTicketValue() ?></li>
@@ -78,6 +79,12 @@
         </div>
     </div>
     <div class="form-group row">
+        <label for="inputNumber" class="col-sm-2 col-form-label">Number</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="number" placeholder="Number" required>
+        </div>
+    </div>
+    <div class="form-group row">
         <label for="inputHorario" class="col-sm-2 col-form-label">Openning</label>
         <div class="col-sm-10">
         <input type="time"   min="00:00" max="23:59" class="form-control" name="openning" placeholder="Openning" required>
@@ -94,7 +101,7 @@
     <div class="form-group row">
         <label for="inputHorario" class="col-sm-2 col-form-label">Ticket value</label>
         <div class="col-sm-10">
-            <input type="number" class="form-control" min="0" name="ticketValue" placeholder="Ticket value">
+            <input type="number" class="form-control" min="0" max="9999" name="ticketValue" placeholder="Ticket value">
         </div>
     </div>
     <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>

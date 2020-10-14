@@ -5,7 +5,6 @@ use Controllers\GenreController as GenreController;
 <!--Barra de navegación que estará presente en todo el programa-->
 <!--Prensenta un boton de vuelta al inicio, 2 buscadores de películas, login, signin y exit en caso de estar logueado-->
 
-<!--ESTO DEBERÍA ESTAR EN UN .CSS-->
 <!--Boton HOME-->
 <nav class="navbar navbar-expand-lg p-2" style="background-image: url(https://us.123rf.com/450wm/kebox/kebox1705/kebox170500033/77319728-fondo-degradado-rayas-colores-rojo-y-negro.jpg?ver=6); 
 		background-repeat: no-repeat;     
