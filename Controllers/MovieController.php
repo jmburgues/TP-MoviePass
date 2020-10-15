@@ -56,6 +56,21 @@ class MovieController{
     $movies = $this->daoMovie->getAll();
   }
   
+  function getArrayOfYears(){// returns an array of years where different movies where created
+    $moviesList = $this->daoMovie->getAll();
+
+    $years = array();
+
+    foreach($moviesList as $oneMovie){
+      
+      $releaseDate = $oneMovie->getReleaseDate();
+      $releaseYear = $releaseDate->format('Y');
+      
+      if(!in_array($years,$releaseYear)){
+        array_push($years,$releaseYear);
+      }
+    }
+
   function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
     
     if($year > 1900 && $year <= 2020){
