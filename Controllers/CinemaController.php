@@ -24,7 +24,6 @@
         $option = current($_POST);
         if(isset($_POST["idCinemaM"])){
           $currentCinema = $this->DAOCinema->placeholderCinemaDAO($option);
-         // print_r($currentCinema);
           $cinemas = $this->DAOCinema->getActiveCinemas();  
           include VIEWS_PATH.'cine-modify.php';
         }else{
@@ -79,12 +78,15 @@
                 if ($l->getName() == $name) {
                     $cinemaExist = true;
                     if (!$l->getActive()) { // verifico borrado logico
-                      echo $l->getId();
                       $cinema->setActive(true);
                       $cinema->setId($l->getId()); 
                       $this->DAOCinema->modify($cinema);
                       $message = "The cinema is now active again.";
                     }
+                  }
+                      if($cinemaExist == false){
+                        $message = "The cinema is already exist.";
+                  
                 }
             }
             if ($cinemaExist == false) { // si no hay cines con mismo nombre, agrego.

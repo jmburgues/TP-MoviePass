@@ -1,12 +1,12 @@
 [
     {
         "id": "1",
-        "name": "Cinecinecinecineqqq",
+        "name": "Cinecito",
         "address": "q",
-        "number": "2",
-        "opening": "22:22",
-        "closing": "22:22",
-        "ticketValue": "22",
+        "number": "3",
+        "opening": "03:33",
+        "closing": "03:33",
+        "ticketValue": "3333",
         "active": true
     },
     {
