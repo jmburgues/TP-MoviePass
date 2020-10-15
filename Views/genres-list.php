@@ -4,7 +4,7 @@
 ?>
 <hr class="mt-5 my-4 ">
 <div class="jumbotron mb-5 mt-5 text-center bg-dark text-white homeTitle" style="opacity:0.9;">
-    <h1 class="display-4">Filtrado por genero: <?= $genreName?></h1>
+    <h1 class="display-4">Filter by genre: <?= $genreName?></h1>
     <br>
     <hr class="my-4">
 </div>

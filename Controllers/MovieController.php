@@ -6,7 +6,8 @@ use Models\Movie as Movie;
 use Models\Genre as Genre;
 use DAO\DAOMovie as DAOMovie;
 use DAO\DAOGenre as DAOGenre;
-
+use \DateInterval as DateInterval;
+use \DateTime as DateTime;
 class MovieController{
 
   private $daoMovie;
@@ -57,41 +58,40 @@ class MovieController{
   }
   
   function getArrayOfYears(){// returns an array of years where different movies where created
-    $moviesList = $this->daoMovie->getAll();
+      $moviesList = $this->daoMovie->getAll();
 
-    $years = array();
+      $years = array();
 
-    foreach($moviesList as $oneMovie){
-      
-      $releaseDate = $oneMovie->getReleaseDate();
-      $releaseYear = $releaseDate->format('Y');
-      
-      if(!in_array($years,$releaseYear)){
-        array_push($years,$releaseYear);
-      }
-    }
+      foreach ($moviesList as $oneMovie) {
+          $releaseDate = $oneMovie->getReleaseDate();
+          
+          $releaseYear = DateTime::createFromFormat('Y-m-d', $releaseDate)->format('Y'); 
+          
+          if (!in_array($releaseYear, $years)) {
+            array_push($years, $releaseYear);
+          }
+        }
+        return $years;
+       // var_dump($years);
+  }
 
   function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
     
-    if($year > 1900 && $year <= 2020){
-
+    if ($year > 1900 && $year <= 2020) {
         $moviesList = $this->daoMovie->getAll();
 
-        $wantedMovies = array();
+        $movies = array();
 
-        foreach($moviesList as $oneMovie){
-          
-          $releaseDate = $oneMovie->getReleaseDate();
-          $releaseYear = $releaseDate->format('Y');
+        foreach ($moviesList as $oneMovie) {
+            $releaseDate = $oneMovie->getReleaseDate();
+            $releaseYear = DateTime::createFromFormat('Y-m-d', $releaseDate)->format('Y');
 
-          if($releaseYear == $year && !in_array($wantedMovies,$oneMovie)){
-            array_push($wantedMovies,$oneMovie);
-          }
+            if ($releaseYear == $year && !in_array( $oneMovie, $movies)) {
+                array_push($movies, $oneMovie);
+            }
         }
-
-        return $wantedMovies;
-      }
-    return false;
+    }
+        include (VIEWS_PATH.'year-list.php'); 
   }
 
   function listByGenre($genreId){

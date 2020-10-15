@@ -1,5 +1,6 @@
 <?php
 use Controllers\GenreController as GenreController;
+use Controllers\MovieController as MovieController;
 ?>
 
 <!--Barra de navegación que estará presente en todo el programa-->
@@ -45,20 +46,27 @@ use Controllers\GenreController as GenreController;
 			</form>
 		</div>
 		</li>
-				<form class="form-inline my-2 my-lg-0 ">
-		<li class="nav-item">
-
+<li>
 <!--Dropdown calendario, buscar por fecha-->
-<div class="dropdown">
-<button class="btn btn-secondary btn-light dropdown-toggle" style="margin-right:10px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-Soy un calendario
-</button>
-<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-<a class="dropdown-item" href="#">14/14</a>
-<a class="dropdown-item" href="#">15/15</a>
-<a class="dropdown-item" href="#">16/16</a>
-</div>
-</div>
+	<div class="dropdown">
+		<form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>Movie/getMoviesByDate" method=POST?>
+			<button class="btn btn-secondary btn-light dropdown-toggle" style="margin-right:10px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Años
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<?php
+					$movieController = new MovieController();
+					$years = $movieController->getArrayOfYears();
+					//var_dump($years);
+					foreach($years as $year){
+				?>
+					<button type ="submit" class="dropdown-item" name="year" value="<?php echo $year;?>"><?php echo $year;?></button>
+					
+				<?php	}
+				?>
+			</div>
+		</form>
+	</div>
 </li>
 
 <!--Botones Nav-->
