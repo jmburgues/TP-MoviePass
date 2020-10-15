@@ -20,6 +20,11 @@
 
 <hr class="my-4">
 <form class="mt-5 offset-md-1 col-md-5" action="<?php echo FRONT_ROOT ?>Cinema/modifyCinema" method="POST">
+    <div class="form-group row"> 
+        <div class="col-sm-10">
+            <input type="hidden" class="form-control" name="id" value=<?php echo $currentCinema->getId() ?> >
+        </div>
+    </div>
     <div class="form-group row ">
         <label for="inputName" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
@@ -35,7 +40,7 @@
     <div class="form-group row">
         <label for="inputNumber" class="col-sm-2 col-form-label">Number</label>
         <div class="col-sm-10">
-            <input type="number" class="form-control" name="number" value=<?php echo $currentCinema->getNumber() ?>  required>
+            <input type="number" class="form-control" name="number" value=<?php echo $currentCinema->getNumber() ?> required>
         </div>
     </div>
     <div class="form-group row">
@@ -56,12 +61,7 @@
             <input type="text" class="form-control" name="ticketValue" value=<?php echo $currentCinema->getTicketValue() ?> >
         </div>
     </div>
-    <div class="form-group row">
-       
-        <div class="col-sm-10">
-            <input type="hidden" class="form-control" name="id" value=<?php echo $currentCinema->getId() ?> >
-        </div>
-    </div>
+
    <!--<button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button> -->
     <button type="submit" name="idCinema" class="btn btn-secondary bg-danger text-black col-2  float-right" value="<?php echo $currentCinema->getId()?>" >Send</button>
 </form>

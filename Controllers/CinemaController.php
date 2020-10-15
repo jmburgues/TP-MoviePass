@@ -23,8 +23,8 @@
       if (isset($_POST)) {
         $option = current($_POST);
         if(isset($_POST["idCinemaM"])){
-          $currentCinema = $this->DAOCinema->modifyCinemaDAO($option);
-          print_r($currentCinema);
+          $currentCinema = $this->DAOCinema->placeholderCinemaDAO($option);
+         // print_r($currentCinema);
           $cinemas = $this->DAOCinema->getActiveCinemas();  
           include VIEWS_PATH.'cine-modify.php';
         }else{
@@ -45,8 +45,17 @@
       $cinemasList = $this->DAOCinema->getAll();
       foreach($cinemasList as $cinema){
         if($cinema->getId() == $id){
-          $cinema = $_POST;
-          $this->DAOCinema->modify($cinema);
+          //$cinema = $_POST;
+          $newCinema = new Cinema();
+          $newCinema->setId($_POST["id"]);
+          $newCinema->setName($_POST["name"]);
+          $newCinema->setAddress($_POST["address"]);
+          $newCinema->setNumber($_POST["number"]);
+          $newCinema->setOpenning($_POST["openning"]);
+          $newCinema->setClosing($_POST["closing"]);
+          $newCinema->setTicketValue($_POST["ticketValue"]);
+          $newCinema->setActive(true);          
+          $this->DAOCinema->modify($newCinema);
           $cinemas = $this->DAOCinema->getActiveCinemas();  
           include VIEWS_PATH.'adminView.php';
         }
@@ -54,33 +63,39 @@
     }
 
     public function AddCinema($name, $address, $number, $openning, $closing, $ticketValue ){
-      $cinema = new Cinema();
-      $cinema->setName($name);
-      $cinema->setAddress($address);
-      $cinema->setNumber($number);
-      $cinema->setOpenning($openning);
-      $cinema->setClosing($closing);
-      $cinema->setTicketValue($ticketValue);
-      $list=$this->DAOCinema->GetAll();  
-      
-      //Control del refresh del form
-      if($name != ""){ // validaciones de nombre
-        foreach($list as $l){   
-          if($l->getName() == $name){
-            if(!$l->getActive()){ // verifico borrado logico
-              $this->DAOCinema->modify($cinema);
-              $message = "The cinema is now active again.";
+        if ($name != "") { // validaciones de nombre
+            $cinema = new Cinema();
+            $cinema->setName($name);
+            $cinema->setAddress($address);
+            $cinema->setNumber($number);
+            $cinema->setOpenning($openning);
+            $cinema->setClosing($closing);
+            $cinema->setTicketValue($ticketValue);
+            $list=$this->DAOCinema->GetAll();
+            $cinemaExist = false;
+        
+            //Control del refresh del form
+            foreach ($list as $l) {
+                if ($l->getName() == $name) {
+                    $cinemaExist = true;
+                    if (!$l->getActive()) { // verifico borrado logico
+                      echo $l->getId();
+                      $cinema->setActive(true);
+                      $cinema->setId($l->getId()); 
+                      $this->DAOCinema->modify($cinema);
+                      $message = "The cinema is now active again.";
+                    }
+                }
             }
-          }
-          else{ // si no hay cines con mismo nombre, agrego.
-            $this->DAOCinema->Add($cinema);
-            $message = "Cinema successfully added";
-          }
+            if ($cinemaExist == false) { // si no hay cines con mismo nombre, agrego.
+                $this->DAOCinema->Add($cinema);
+                $message = "Cinema successfully added";
+            }
         }
-      }
-      echo "<script type='text/javascript'>alert('$message');</script>";
-      $cinemas = $this->DAOCinema->getActiveCinemas(); 
-      include VIEWS_PATH.'adminView.php';
+        echo "<script type='text/javascript'>alert('$message');</script>";
+        $cinemas = $this->DAOCinema->getActiveCinemas();
+        include VIEWS_PATH.'adminView.php';
     }
+
   }
 ?>

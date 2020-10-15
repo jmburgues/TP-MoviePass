@@ -1,42 +1,22 @@
 [
     {
-        "id": 1,
-        "name": "cineeeeeeeeeeeeeeeee",
-        "address": "qqq",
-        "number": "11111111111111",
-        "opening": "22:22",
-        "closing": "02:22",
-        "ticketValue": "2",
-        "active": false
-    },
-    {
-        "id": 2,
-        "name": "cinecito",
-        "address": "jota",
-        "number": "111",
-        "opening": "11:11",
-        "closing": "11:23",
-        "ticketValue": "344",
-        "active": false
-    },
-    {
-        "id": 3,
-        "name": "Cinesoto",
-        "address": "23sasd",
-        "number": "23424",
-        "opening": "11:11",
-        "closing": "11:33",
-        "ticketValue": "333",
-        "active": true
-    },
-    {
-        "id": 4,
-        "name": "qqqqqqqqqq",
+        "id": "1",
+        "name": "Cinecinecinecineqqq",
         "address": "q",
         "number": "2",
         "opening": "22:22",
         "closing": "22:22",
         "ticketValue": "22",
+        "active": true
+    },
+    {
+        "id": 2,
+        "name": "Cine Ambassador",
+        "address": "aaaaaaaaaaaaaaaaaaaaaaa",
+        "number": "11",
+        "opening": "11:01",
+        "closing": "11:01",
+        "ticketValue": "1111",
         "active": true
     }
 ]
