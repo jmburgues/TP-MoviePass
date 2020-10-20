@@ -101,7 +101,7 @@
     <div class="form-group row">
         <label for="inputHorario" class="col-sm-2 col-form-label">Ticket value</label>
         <div class="col-sm-10">
-            <input type="number" class="form-control" min="0" max="9999" name="ticketValue" placeholder="Ticket value">
+            <input type="number" class="form-control" min="0" max="9999" name="ticketValue" placeholder="Ticket value" required>
         </div>
     </div>
     <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>
