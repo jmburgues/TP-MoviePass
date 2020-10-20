@@ -82,12 +82,23 @@
         }
 
         public function logout()
-        {
-            if(session_status() !== PHP_SESSION_ACTIVE)
-                session_start();
+        {  
+            if(!$this->is_session_started())
+	            session_start();
+            session_destroy();
+            header('Location:'.FRONT_ROOT.'/index.php');          
+        }
 
-            if(isset($_SESSION['loggedUser']))
-                unset($_SESSION['loggedUser']);
+        private function is_session_started() // verifica estado de sesion dependiendo version PHP
+        {
+            if ( php_sapi_name() !== 'cli' ) {
+                if ( version_compare(phpversion(), '5.4.0', '>=') ) {
+                    return session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
+                } else {
+                    return session_id() === '' ? FALSE : TRUE;
+                }
+            }
+            return FALSE;
         }
     }
 ?>

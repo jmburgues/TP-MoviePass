@@ -1,19 +1,13 @@
-<?php session_start(); 
+<?php session_start();
 require_once('nav.php');?>
 
 <!--Primer vista al entrar a la página-->
 <div class="jumbotron mb-5 mt-5 text-center bg-dark text-white homeTitle" style="opacity:0.9;">
     <h1 class="display-4">Movie Pass</h1>
-    <br>
     <h2 class="lead">Where movies come true!</h2>
     <hr class="my-4"> 
 </div>
 <hr>
-
-<?php if(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == true) { 
-  echo "itWorks";
-  echo "<input value=\"Admin tools\" type=\"button\ onclick=\"location='Views/adminView.php'\" />";}
-?>
 
 <div class="container">
 <div class="row row-cols-3">

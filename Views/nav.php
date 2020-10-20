@@ -1,4 +1,6 @@
 <?php
+if(session_status() != 2)
+	session_start();
 use Controllers\GenreController as GenreController;
 use Controllers\MovieController as MovieController;
 ?>
@@ -74,15 +76,33 @@ use Controllers\MovieController as MovieController;
 </li>
 
 <!--Botones Nav-->
-		<li>
-			<strong><a class="nav-link  text-white" href="<?php echo FRONT_ROOT?>User/showLoginForm">SignIn</a></strong>
-		</li>
-		<li>
-			<strong><a class="nav-link  text-white" href="<?php echo FRONT_ROOT?>User/register">SignUp</a></strong>
-		</li>
-		<li>
-			<strong><a class="nav-link  text-white" href="/TP-MoviePass/index.php">Exit</a></strong>
-		</li>
+<?php 
+if(!isset($_SESSION['loggedUser'])){ ?>
+
+			<li>
+				<strong><a class="nav-link  text-white" href="<?php echo FRONT_ROOT?>User/showLoginForm">SignIn</a></strong>
+			</li>
+			<li>
+				<strong><a class="nav-link  text-white" href="<?php echo FRONT_ROOT?>User/register">SignUp</a></strong>
+			</li>
+
+<?php } else 
+	{ ?>
+			<li>
+				<strong><p class="nav-link  text-white" >Hola <?=$_SESSION['loggedUser']?>!</p></strong>
+			</li>
+
+			<?php if($_SESSION['isAdmin']) { ?>
+				<li>
+					<strong><a class="nav-link  text-white" href="<?php echo FRONT_ROOT?>User/adminView">Admin Tools</a></strong>
+				</li>	
+			<?php }	?>
+
+			<li>
+				<strong><a class="nav-link  text-white" href="<?php echo FRONT_ROOT?>User/logout">Logout</a></strong>
+			</li>
+	<?php }	?>
+
     </ul>      
     </form>
 

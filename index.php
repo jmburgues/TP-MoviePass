@@ -18,6 +18,6 @@ use Config\Request 	as Request;
 Autoload::start();
 Router::Route(new Request());
 require_once(VIEWS_PATH."header.php");
-
-
+if(session_status() != 2)
+    session_start();
 ?>
