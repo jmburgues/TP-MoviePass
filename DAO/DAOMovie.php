@@ -27,6 +27,7 @@ class DAOMovie{
     $this->movieList = array();
     if(file_exists($this->fileName)){
       $jsonContent = file_get_contents($this->fileName);
+      
       $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
       foreach ($arrayToDecode as $valueArray) {
         $genreList = array();

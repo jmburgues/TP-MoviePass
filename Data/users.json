@@ -1,0 +1,18 @@
+[
+    {
+        "userName": "admin",
+        "password": "1234",
+        "email": "admin@admin.com",
+        "birthDate": "21-12-1988",
+        "DNI": 34217275,
+        "admin": true
+    },
+    {
+        "userName": "user",
+        "password": "1234",
+        "email": "user@user.com",
+        "birthDate": "22-11-1970",
+        "DNI": 33644879,
+        "admin": false
+    }
+]

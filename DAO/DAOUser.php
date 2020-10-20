@@ -7,6 +7,7 @@ use Models\User as User;
 class DAOUser
 {
     private $users;
+    private $fileName = ROOT."Data/users.json";
 
     public function add($user)
     {
@@ -24,8 +25,10 @@ class DAOUser
     public function getByUserName($userName)
     {
         $this->retrieveData();
+
         foreach ($this->users as $user) {
             if ($user->getUserName() == $userName) {
+
                 return $user;
             }
         }
@@ -45,36 +48,27 @@ class DAOUser
             
             array_push($arrayToEncode, $valueArray);
         }
-        $jsonPath = $this->getJsonFilePath();
         $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-        file_put_contents($jsonPath, $jsonContent);
+        file_put_contents($this->fileName, $jsonContent);
     }
 
     private function retrieveData()
     {
         $this->users = array();
 
-        $jsonPath = $this->getJsonFilePath();
+        if(file_exists($this->fileName)){
+            $jsonContent = file_get_contents($this->fileName);
 
-        $jsonContent = file_get_contents($jsonPath);
+            $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
 
-        $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+            foreach ($arrayToDecode as $valueArray) {
+                $user = new User($valueArray['userName'], $valueArray['password'],
+                $valueArray['email'], $valueArray['birthDate'], $valueArray['DNI'],
+                $valueArray['admin']);
 
-        foreach ($arrayToDecode as $valueArray) {
-            $user = new User($valueArray['userName'], $valueArray['password'],
-            $valueArray['email'], $valueArray['birthDate'], $valueArray['DNI'],
-            $valueArray['admin']);
-
-            array_push($this->users, $user);
+                array_push($this->users, $user);
+            }
         }
-    }
-
-    private function getJsonFilePath()
-    {
-        $jsonFilePath = ROOT."Data/User.json";
-        if (!file_exists($jsonFilePath))
-            file_put_contents($jsonFilePath, "");
-        return $jsonFilePath;
     }
 }
 

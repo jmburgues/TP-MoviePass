@@ -14,9 +14,9 @@ require_once('header.php');
  
 <div class="container border p-4 col-md-4 form" style="background-color:#FFFFFF; margin-top:6%;">
   <div class="abs-center">
-    <form action="#" class="">
+    <form action="<?php echo FRONT_ROOT;?>User/frontLogin" method=POST>
       <div class="form-group">
-        <label for="userName">Email</label>
+        <label for="userName">User</label>
         <input type="text" name="userName" id="userName" class="form-control">
       </div>
       <div class="form-group">

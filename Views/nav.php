@@ -26,7 +26,7 @@ use Controllers\MovieController as MovieController;
 		<li class="nav-item">
 
 		<div class="dropdown">
-	<form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>Movie/listByGenre" method=POST?>
+	<form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>Movie/listByGenre" method=POST>
 		<button class="btn btn-secondary btn-light dropdown-toggle" style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			Buscar por genero
 		</button>
@@ -34,8 +34,12 @@ use Controllers\MovieController as MovieController;
 		
 		<!-- PREGUNTAR !!! -->
 		<!-- LA VISTA DEBERIA LLAMAR AL CONTROLADOR DE GENEROS ?? -->
-		
+
 			<?php 
+		/**
+		 *	invocar el metodo cuando hacemos el requiere de la vista nav.php
+		 *	de modo de tener un arreglo "genres" ya cargado.
+		 */
 			$genreController = new GenreController();
 			$genres = $genreController->getGenresList();
 			foreach ($genres as $genre){?>

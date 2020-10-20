@@ -26,7 +26,6 @@
 
         public function adminView()
         {
-            $cinemas = $this->DAOCinema->getActiveCinemas();  
             include VIEWS_PATH.'adminView.php';
             include_once VIEWS_PATH.'footer.php';
         }
@@ -35,6 +34,26 @@
         {
             include VIEWS_PATH.'login-view.php';
             include_once VIEWS_PATH.'footer.php';
+        }
+        public function frontLogin()
+        {
+            if($_POST){
+                $user = $_POST['userName'];
+                $pass = $_POST['password'];
+
+                $loggedUser = $this->login($user,$pass);
+
+                if($loggedUser){
+
+                    if(session_status() !== PHP_SESSION_ACTIVE)
+                        session_start();
+                    
+                    $_SESSION['loggedUser'] = $user;                 
+                    $_SESSION['isAdmin'] =  ($loggedUser->isAdmin()) ? true : false;
+
+                    header('Location:'.FRONT_ROOT.'index.php');
+                }
+            }
         }
 
         public function showPurchase()
@@ -53,14 +72,12 @@
 
         public function login($userName, $password)
         {
-            if(session_status() !== PHP_SESSION_ACTIVE)
-                session_start();
             $user = $this->DAOUser->getByUserName($userName);
 
             if($user != null && ($password == $user->getPassword())){
-                $_SESSION['loggedUser'] = $user;
-
-                include VIEWS_PATH."index.php";
+                return $user;
+            } else {
+                return false;
             }
         }
 

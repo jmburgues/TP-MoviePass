@@ -30,7 +30,7 @@
             if (isset($_POST["idCinemaD"])) {
               $this->DAOCinema->removeCinema($option);
               $cinemas = $this->DAOCinema->getActiveCinemas();  
-              include VIEWS_PATH.'adminView.php';
+              include VIEWS_PATH.'adminView.php'; // CAMBIAR LOS INCLUDE POR INCLUDE_ONCE/REQUIERE_ONCE
             }
         }
       }
