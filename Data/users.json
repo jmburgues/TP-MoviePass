@@ -4,7 +4,7 @@
         "password": "1234",
         "email": "admin@admin.com",
         "birthDate": "21-12-1988",
-        "DNI": 34217275,
+        "DNI": 654656,
         "admin": true
     },
     {
@@ -13,6 +13,22 @@
         "email": "user@user.com",
         "birthDate": "22-11-1970",
         "DNI": 33644879,
+        "admin": false
+    },
+    {
+        "userName": "juan",
+        "password": "juan",
+        "email": "juan@juan.com",
+        "birthDate": "1111-02-11",
+        "DNI": "12312",
+        "admin": false
+    },
+    {
+        "userName": "jose",
+        "password": "jose",
+        "email": "jose@jose.com",
+        "birthDate": "121212-12-12",
+        "DNI": "12122112",
         "admin": false
     }
 ]

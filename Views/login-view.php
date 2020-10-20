@@ -23,6 +23,9 @@ require_once('header.php');
         <label for="password">Password</label>
         <input type="password" name="password" id="password" class="form-control">
       </div>
+      <div>
+        <?php if(isset($error)) echo $error;?>
+      </div>
       <button type="submit" class="btn btn-primary bg-danger text-dark mt-3 col-md-3">Login</button>
     </form>
   </div>

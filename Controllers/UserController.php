@@ -50,8 +50,39 @@
                     
                     $_SESSION['loggedUser'] = $user;                 
                     $_SESSION['isAdmin'] =  ($loggedUser->isAdmin()) ? true : false;
+                    header('Location:'.FRONT_ROOT.'index.php');
+                }
+                else{
+                    $error = "Invalid user/password!";
+                    include_once VIEWS_PATH . 'login-view.php';
+                }
+            }
+        }
+
+        public function frontRegister() // COMPLETAR
+        {
+            if($_POST){
+                $userName = $_POST['userName'];
+                $password = $_POST['password'];
+                $email = $_POST['email'];
+                $birthDate = $_POST['birthDate'];
+                $dni = $_POST['dni'];
+
+                $newUser = $this->add($userName,$password,$email,$birthDate,$dni,false);
+                
+                if($newUser){
+
+                    if(!$this->is_session_started())
+                        session_start();
+                    
+                    $_SESSION['loggedUser'] = $newUser->getUserName();                 
+                    $_SESSION['isAdmin'] =  $newUser->isAdmin();
 
                     header('Location:'.FRONT_ROOT.'index.php');
+                }
+                else{
+                    $error = "Username or Email already exists!";
+                    include VIEWS_PATH.'register-view.php';
                 }
             }
         }
@@ -65,9 +96,26 @@
 
         public function add($userName, $password, $email, $birthDate, $dni, $admin)
         {
-            $user = new User($userName, $password, $email, $birthDate, $dni, $admin);
-            $this->DAOUser->add($user);
-            include VIEWS_PATH.'login-view.php';
+            $existentUser = false;
+            $existentEmail = false;
+
+            $userList = $this->DAOUser->getAll();
+
+            foreach($userList as $oneUser){
+                if($oneUser->getUserName() == $userName)
+                    $existentUser = true;
+                if($oneUser->getEmail() == $email)
+                    $existentEmail = true;
+            }
+            if(!$existentUser && !$existentEmail){
+                $user = new User($userName, $password, $email, $birthDate, $dni, $admin);
+                $this->DAOUser->add($user);
+               
+                return $user;
+            }
+            else{
+                return false;
+            }
         }
 
         public function login($userName, $password)
