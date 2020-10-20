@@ -46,19 +46,19 @@
     <div class="form-group row">
         <label for="inputHorario" class="col-sm-2 col-form-label">Openning</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="openning" value=<?php echo $currentCinema->getOpenning() ?> required>
+            <input type="time" min="00:00" max="23:59" class="form-control" name="openning" value=<?php echo $currentCinema->getOpenning() ?> required>
         </div>
     </div>  
     <div class="form-group row">
         <label for="inputHorario" class="col-sm-2 col-form-label">Closing</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="closing" value=<?php echo $currentCinema->getClosing() ?>  required>
+            <input type="time" min="00:00" max="23:59" class="form-control" name="closing" value=<?php echo $currentCinema->getClosing() ?>  required>
         </div>
     </div>
     <div class="form-group row">
         <label for="inputHorario" class="col-sm-2 col-form-label">Ticket value</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="ticketValue" value=<?php echo $currentCinema->getTicketValue() ?> >
+            <input type="number" min="0" max="9999" class="form-control" name="ticketValue" value=<?php echo $currentCinema->getTicketValue() ?> required>
         </div>
     </div>
 

@@ -1,5 +1,6 @@
 [
     {
+<<<<<<< HEAD
         "id": 1,
         "name": "Cine Ambassador",
         "address": "Diagonal Centro",
@@ -7,6 +8,15 @@
         "opening": "08:30",
         "closing": "00:30",
         "ticketValue": "54",
+=======
+        "id": "1",
+        "name": "Cinecito",
+        "address": "q",
+        "number": "4444",
+        "opening": "03:33",
+        "closing": "03:33",
+        "ticketValue": "",
+>>>>>>> pagination
         "active": true
     },
     {
@@ -37,6 +47,36 @@
         "opening": "09:00",
         "closing": "22:30",
         "ticketValue": "60",
+        "active": true
+    },
+    {
+        "id": "3",
+        "name": "o",
+        "address": "2",
+        "number": "3",
+        "opening": "03:33",
+        "closing": "03:33",
+        "ticketValue": "3",
+        "active": true
+    },
+    {
+        "id": 4,
+        "name": "f",
+        "address": "f",
+        "number": "3",
+        "opening": "03:33",
+        "closing": "03:33",
+        "ticketValue": "",
+        "active": true
+    },
+    {
+        "id": 5,
+        "name": "q",
+        "address": "3",
+        "number": "4",
+        "opening": "04:44",
+        "closing": "04:44",
+        "ticketValue": "4",
         "active": true
     }
 ]
