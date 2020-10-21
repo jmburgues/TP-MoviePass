@@ -3,17 +3,11 @@ require_once('nav.php');?>
 
 
 <!--Primer vista al entrar a la página-->
-<div class="jumbotron mb-5 mt-5 text-center bg-dark text-white homeTitle" style="opacity:0.9;">
-    <h1 class="display-4">Movie Pass</h1>
-    <h2 class="lead">Where movies come true!</h2>
-    <hr class="my-4"> 
+<!--Jumbotron-->
+<div class="jumbotron mb-5 mt-5 text-center bg-dark text-white homeTitle" style="opacity:0.9; background-image: url(https://i.imgur.com/FK6VxlJ.jpg); height:230px;">
+  <h1 class="display-4">Movie Pass</h1>
+  <h2 class="lead">Where movies come true!</h2>
 </div>
-<hr>
-
-
-
-
-
 
 <div class="container" style="max-width:1600px">
   <div class="row row-cols-5">
@@ -28,10 +22,6 @@ require_once('nav.php');?>
             <input value="Buy" class="btn btn-secondary bg-danger text-white mb-2 col-md-4 " type="button" onclick="location='<?= FRONT_ROOT?>User/showPurchase'" />
             <p class="card-text" style="margin-bottom:0px;">
               <?php 
-                //$paragraph = explode(".", $movie->getDescription());
-                //echo "<pre>";
-                //print_r($paragraph);
-                //echo "</pre>";
                 if ($movie->getDescription()) {
                     if (strlen($movie->getDescription()) < 155) {
                         echo $movie->getDescription();
@@ -43,7 +33,6 @@ require_once('nav.php');?>
                 }
               ?>
             </p>
-          
           </div>
           <?php if($movie->getDescription() && strlen($movie->getDescription()) >= 155){?>
             <div class="dropdown show"  >
@@ -62,7 +51,6 @@ require_once('nav.php');?>
           <?php
         }
         ?>
-            
         </div>
       </div>
     <?php
@@ -71,21 +59,15 @@ require_once('nav.php');?>
   </div>
 
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-end mt-3">
-    <li class="page-item"><a class="page-link  text-dark" href="#" tabindex="-1">Previous</a></li>
-    <li class="page-item"><a class="page-link  text-dark" href="#">1</a></li>
-    <li class="page-item"><a class="page-link  text-dark" href="#">2</a></li>
-    <li class="page-item"><a class="page-link  text-dark" href="#">3</a></li>
-    <li class="page-item"><a class="page-link  text-dark" href="#">Next</a> </li>
-  </ul>
-</nav>
-
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end mt-3">
+      <li class="page-item"><a class="page-link  text-dark" href="#" tabindex="-1">Previous</a></li>
+      <li class="page-item"><a class="page-link  text-dark" href="#">1</a></li>
+      <li class="page-item"><a class="page-link  text-dark" href="#">2</a></li>
+      <li class="page-item"><a class="page-link  text-dark" href="#">3</a></li>
+      <li class="page-item"><a class="page-link  text-dark" href="#">Next</a> </li>
+    </ul>
+  </nav>
 </div>
 
 <hr class=" mt-4 mb-1 bg-danger text-dark">
-
-
-<?php
- //   require_once('footer.php');
-?>

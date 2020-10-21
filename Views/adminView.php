@@ -1,6 +1,7 @@
 <?php
     require_once('nav.php');
     require_once('header.php');
+    
 ?>
 <!--Estilo de la página-->
     <style type="text/css">
@@ -20,7 +21,7 @@
 -->
 <p>
     <a class="btn btn-primary bg-danger text-black mt-5 col-md-2 offset-md-1 " data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
-    Listar Cines
+        Cinemas List
     </a>
 </p>
 <?php
@@ -111,70 +112,45 @@
 <hr class="mt-5 my-4 ">
 </form>
 
-<p>W.I.P</p>
 
 <!---->
 <!--LISTAR PELICULAS-->
 <!---->
+
 <p>
-    <a class="btn btn-primary bg-danger text-black col-md-2 offset-md-1 mt-2" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-        Listar Películas
+    <a class="btn btn-primary bg-danger text-black mt-5 col-md-2 offset-md-1 " data-toggle="collapse" href="#collapseMovies" role="button" aria-expanded="false" aria-controls="collapseExample"> 
+        Movie Showtimes 
     </a>
 </p>
-<form action="cine-action.php" method="POST">
-<div class="collapse offset-md-1 col-md-5" id="collapseExample2">
-    <div class="card card-body">
-	Pelicula 1    
-    <ul>
-<li>
-<div class="btn-group" role="group" aria-label="Basic example">
-<input type="submit" class="btn btn-secondary bg-danger text-black" value="Modificar"   name="pelicula1" /> 
-        <input type="submit" class="btn btn-secondary bg-danger text-black" value="Eliminar"    name="pelicula1"/> 
-</div>
-</li>
-    <li>Nombre del primer Película:</li>
-    <li>Dirección del primer Película:</li>
-    <li>Horario del primer Película:</li>
-</ul>  
-</div>
-
-
-<div class="collapse" id="collapseExample2">
-    <div class="card card-body">
-    Pelicula 2
-<li>
-<div class="btn-group" role="group" aria-label="Basic example">
-<input type="submit" class="btn btn-secondary bg-danger text-black" value="Modificar"   name="pelicula2" /> 
-        <input type="submit" class="btn btn-secondary bg-danger text-black" value="Eliminar"    name="pelicula2"/> 
-</div>
-</li>
-<ul>
-    <li>Nombre del segundo Película:</li>
-    <li>Dirección del segundo Película:</li>
-    <li>Horario del segundo Película:</li>
-</ul>  
-</div>
-
-
-<div class="collapse" id="collapseExample2">
-    <div class="card card-body">
-    Pelicula 3
-<ul>
-<li>
-<div class="btn-group" role="group" aria-label="Basic example">
-<input type="submit" class="btn btn-secondary bg-danger text-black" value="Modificar"   name="pelicula3" /> 
-        <input type="submit" class="btn btn-secondary bg-danger text-black" value="Eliminar"    name="pelicula3"/> 
-</div>
-</li>
-    <li>Nombre del tercer Película:</li>
-    <li>Dirección del tercer Película:</li>
-    <li>Horario del tercerPelícula:</li>
-</ul>  
-</div>
-</div>
-</div>
-</div>
-</form>
+<?php
+    var_dump($movies);
+        if (isset($movies)) {
+            foreach ($movies as $movie) {
+                ?>                 
+                <form action="<?php echo FRONT_ROOT?>Movie/selectMovie" method="POST">
+                    <div class="collapse offset-md-1 col-md-5" id="collapseMovies">   
+                        <div class="card card-body ">
+                            <?php echo $movie->getTitle() ?>  
+                            <li style="list-style:none">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                </div>
+                            </li> 
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
+                <?php
+                }else{
+                    ?>
+                    <div class="collapse offset-md-1 col-md-5" id="collapseMovies">   
+                        <div class="card card-body ">
+                            <?php echo "Sin datos" ?>  
+                        </div>
+                    <?php }
+                    ?>  
+                    </div>
+                </form>
 
 
 <!--LISTAR VENTAS-->

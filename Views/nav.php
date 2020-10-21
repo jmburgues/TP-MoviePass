@@ -9,24 +9,21 @@ use Controllers\MovieController as MovieController;
 <!--Prensenta un boton de vuelta al inicio, 2 buscadores de películas, login, signin y exit en caso de estar logueado-->
 
 <!--Boton HOME-->
-<nav class="navbar navbar-expand-lg p-2" style="background-image: url(https://us.123rf.com/450wm/kebox/kebox1705/kebox170500033/77319728-fondo-degradado-rayas-colores-rojo-y-negro.jpg?ver=6); 
+<nav class="navbar navbar-expand-lg p-0" style="background-image: url(https://us.123rf.com/450wm/kebox/kebox1705/kebox170500033/77319728-fondo-degradado-rayas-colores-rojo-y-negro.jpg?ver=6); 
 		background-repeat: no-repeat;     
 		background-size: cover;
         -moz-background-size: cover;
         -webkit-background-size: cover;
         -o-background-size: cover;"   >
-	<ul class="navbar-nav mr-auto  mt-2 mt-lg-0" >
+	<ul class="navbar-nav mr-auto  mt-1 mt-lg-0" >
     <li class="nav-item active" >
 		<strong><a class="nav-link text-white"  href="/TP-MoviePass/index.php">Home</a></strong>  
     </li>
 	</ul>
 
 <!--Dropdown buscar por género-->
-	<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-	
-
-		<li class="nav-item">
-
+	<ul class="navbar-nav mr-auto " style="margin-left:65%; " >
+		<li class="nav-item" >
 		<div class="dropdown">
 	<form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>Movie/listByGenre" method=POST>
 		<button class="btn btn-secondary btn-light dropdown-toggle" style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,26 +77,26 @@ use Controllers\MovieController as MovieController;
 if(!isset($_SESSION['loggedUser'])){ ?>
 
 			<li>
-				<strong><a class="nav-link  text-white" href="<?php echo FRONT_ROOT?>User/showLoginForm">SignIn</a></strong>
+				<strong><a class="nav-link text-white pt-3"  href="<?php echo FRONT_ROOT?>User/showLoginForm">SignIn</a></strong>
 			</li>
 			<li>
-				<strong><a class="nav-link  text-white" href="<?php echo FRONT_ROOT?>User/register">SignUp</a></strong>
+				<strong><a class="nav-link  text-white pt-3" href="<?php echo FRONT_ROOT?>User/register">SignUp</a></strong>
 			</li>
 
 <?php } else 
 	{ ?>
 			<li>
-				<strong><p class="nav-link  text-white" >Hola <?=$_SESSION['loggedUser']?>!</p></strong>
+				<strong><p class="nav-link  text-white pt-3" >Hola <?=$_SESSION['loggedUser']?>!</p></strong>
 			</li>
 
 			<?php if($_SESSION['isAdmin']) { ?>
 				<li>
-					<strong><a class="nav-link  text-white" href="<?php echo FRONT_ROOT?>User/adminView">Admin Tools</a></strong>
+					<strong><a class="nav-link  text-white pt-3" href="<?php echo FRONT_ROOT?>User/adminView">Admin Tools</a></strong>
 				</li>	
 			<?php }	?>
 
 			<li>
-				<strong><a class="nav-link  text-white" href="<?php echo FRONT_ROOT?>User/logout">Logout</a></strong>
+				<strong><a class="nav-link  text-white pt-3" href="<?php echo FRONT_ROOT?>User/logout">Logout</a></strong>
 			</li>
 	<?php }	?>
 
