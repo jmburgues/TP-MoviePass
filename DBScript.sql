@@ -26,7 +26,12 @@ CREATE TABLE IF NOT EXISTS CINEMAS_X_DISCOUNT_POLICIES(
 idCXDP int auto_increment,
 idCinema int not null,
 idPolicy int not null,
-applies Date, # COMO HACEMOS QUE APLIQUE EL DESCUENTO? (Referencia a SHOWS, dia de la funcion)
+applies Date, 
+
+###################
+# COMO HACEMOS QUE APLIQUE EL DESCUENTO? (Referencia a SHOWS, dia de la funcion)
+##################
+
 CONSTRAINT pk_idCXDP primary key (idCXDP),
 CONSTRAINT fk_idCinemaCXDP foreign key (idCinema) references CINEMAS(idCinema),
 CONSTRAINT fk_idPolicy foreign key (idPolicy) references DISCOUNT_POLICIES(idPolicy)
@@ -79,7 +84,12 @@ CONSTRAINT fk_idMovie foreign key (idMovie) references MOVIES(idMovie)
 
 CREATE TABLE IF NOT EXISTS USERS(
 username varchar(50), # poner restriccion en backend para limite de caracteres??
-pass varchar(50), #ver hashing
+pass varchar(50), 
+
+#########
+# ver hashing
+#########
+
 email varchar(50) unique,
 birthdate Date,
 dni int,
@@ -91,6 +101,7 @@ CREATE TABLE IF NOT EXISTS TRANSACTIONS(
 idTransaction int auto_increment,
 username varchar(50),
 idDiscountPolicy int default null,
+transacctionDate DateTime,
 CONSTRAINT pk_idTransaction primary key (idTransaction),
 CONSTRAINT fk_username foreign key (username) references USERS(username),
 CONSTRAINT fk_idDiscountPolicy foreign key (idDiscountPolicy) references DISCOUNT_POLICIES(idPolicy)
