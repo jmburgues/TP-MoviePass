@@ -1,12 +1,22 @@
 [
     {
-        "id": 1,
+        "id": "1",
+        "name": "Cine",
+        "address": "Rivadavia",
+        "number": "3452",
+        "opening": "12:34",
+        "closing": "23:53",
+        "ticketValue": "22",
+        "active": true
+    },
+    {
+        "id": 3,
         "name": "Cine Ambassador",
         "address": "Rivadavia ",
         "number": "3050",
-        "opening": "09:30",
-        "closing": "00:00",
-        "ticketValue": "55",
+        "opening": "11:11",
+        "closing": "11:11",
+        "ticketValue": "22",
         "active": true
     }
 ]

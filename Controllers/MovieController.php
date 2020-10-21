@@ -5,17 +5,24 @@ namespace Controllers;
 use Models\Movie as Movie;
 use Models\Genre as Genre;
 use DAO\DAOMovie as DAOMovie;
+use DAO\DAOCinema as DAOCinema;
+use Models\Cinema as Cinema;
 use DAO\DAOGenre as DAOGenre;
 use \DateInterval as DateInterval;
 use \DateTime as DateTime;
+
 class MovieController{
 
   private $daoMovie;
   private $daoGenre;
-  
+  private $daoCinema;
+
+
   public function __construct(){
     $this->daoMovie = new DAOMovie();
     $this->daoGenre = new DAOGenre();
+    $this->daoCinema = new DAOCinema();
+
   }
 
   /*Función que trae de la API e invoca funciones del DAO para guardar en archivo JSON */
@@ -116,10 +123,45 @@ class MovieController{
   }
 
 
-  public function selectMovie(){
-
-    echo "Select movie";
-
+  public function selectMovie($selectedId){
+    $cinemas = $this->daoCinema->getActiveCinemas();  
+    $movies=$this->daoMovie->getAll();
+    //print_r($selectedId);
+    $listAdminMovies = array();
+    /*    
+    echo "ID de las Peliculas seleccionadas";
+    echo "<br>";
+    foreach($selectedId as $ar){
+      print_r($ar);
+      echo "<br>";
+    }
+    
+    echo "<br>";
+    print_r($selectedId);
+    echo "<br>";
+    
+    foreach($selectedId as $ar){
+      foreach($movies as $movie){
+        if($ar == $movie->getMovieID()){
+          echo $movie->getTitle();
+          array_push($listAdminMovies, $movie);
+        }
+      }
+      echo "<br>";
+    }*/
+    
+    foreach($movies as $movie){
+      if($movie->getMovieId() == $selectedId){
+        array_push($listAdminMovies, $movie); 
+      }
+    } 
+    include(VIEWS_PATH.'listMoviesAdmin.php');
+    echo "<pre>";
+    //print_r($listAdminMovies);
+    echo "</pre>";
   }
+  
+  
+
 }
 ?>

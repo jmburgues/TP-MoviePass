@@ -29,6 +29,7 @@
 
         public function adminView()
         {
+            $cinemas=$this->DAOCinema->getActiveCinemas();
             $movies=$this->DAOMovie->GetAll();
             include VIEWS_PATH.'adminView.php';
             include_once VIEWS_PATH.'footer.php';
@@ -114,7 +115,7 @@
             if(!$existentUser && !$existentEmail){
                 $user = new User($userName, $password, $email, $birthDate, $dni, $admin);
                 $this->DAOUser->add($user);
-               
+
                 return $user;
             }
             else{

@@ -123,35 +123,43 @@
     </a>
 </p>
 <?php
-    var_dump($movies);
-        if (isset($movies)) {
-            foreach ($movies as $movie) {
-                ?>                 
-                <form action="<?php echo FRONT_ROOT?>Movie/selectMovie" method="POST">
-                    <div class="collapse offset-md-1 col-md-5" id="collapseMovies">   
-                        <div class="card card-body ">
-                            <?php echo $movie->getTitle() ?>  
-                            <li style="list-style:none">
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                </div>
-                            </li> 
-                        </div>
+    if (isset($movies)) {
+        foreach ($movies as $movie) {
+            ?>                 
+            <form action="<?php echo FRONT_ROOT?>Movie/selectMovie" method="POST">
+                <div class="collapse offset-md-1 col-md-5" id="collapseMovies">   
+                    <div class="card card-body ">
+                    
+                        <button type="submit"  value="<?php echo $movie->getMovieId()?>" name="titleMovie" style=" text-align:left; border: none; background: none;"><?php echo $movie->getTitle()?></button>     
                     </div>
-                <?php
-                }
-                ?>
-                <?php
-                }else{
-                    ?>
-                    <div class="collapse offset-md-1 col-md-5" id="collapseMovies">   
-                        <div class="card card-body ">
-                            <?php echo "Sin datos" ?>  
-                        </div>
-                    <?php }
-                    ?>  
-                    </div>
-                </form>
+                </div>
+                
+            <?php
+            }
+            ?>
+                
+            </form>
+            <?php
+            }
+            ?>
 
+
+
+
+<?php
+    if(isset($selectedId)){
+?>
+    
+        <div class="container">
+            <p class="lead"><?php print_r($selectedId) ?></p>
+            <?php //print_r($listAdminMovies);
+            ?>
+        </div>
+
+
+
+<?php  }
+?>
 
 <!--LISTAR VENTAS-->
 <p>
