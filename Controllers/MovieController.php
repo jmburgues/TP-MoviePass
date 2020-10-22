@@ -16,6 +16,7 @@ class MovieController{
   private $daoMovie;
   private $daoGenre;
   private $daoCinema;
+  private $currentMovie;
 
 
   public function __construct(){
@@ -126,41 +127,26 @@ class MovieController{
   public function selectMovie($selectedId){
     $cinemas = $this->daoCinema->getActiveCinemas();  
     $movies=$this->daoMovie->getAll();
-    //print_r($selectedId);
-    $listAdminMovies = array();
-    /*    
-    echo "ID de las Peliculas seleccionadas";
-    echo "<br>";
-    foreach($selectedId as $ar){
-      print_r($ar);
-      echo "<br>";
-    }
-    
-    echo "<br>";
-    print_r($selectedId);
-    echo "<br>";
-    
-    foreach($selectedId as $ar){
-      foreach($movies as $movie){
-        if($ar == $movie->getMovieID()){
-          echo $movie->getTitle();
-          array_push($listAdminMovies, $movie);
-        }
-      }
-      echo "<br>";
-    }*/
-    
+    $listAdminMovies ;
     foreach($movies as $movie){
       if($movie->getMovieId() == $selectedId){
-        array_push($listAdminMovies, $movie); 
+        $listAdminMovies = $movie;
       }
     } 
     include(VIEWS_PATH.'listMoviesAdmin.php');
-    echo "<pre>";
-    //print_r($listAdminMovies);
-    echo "</pre>";
   }
   
+  public function selectRoom($selectedCinemaId){
+    $cinemas = $this->daoCinema->getActiveCinemas();  
+    $movies=$this->daoMovie->getAll();
+    $currentCinema;
+    foreach($cinemas as $cinema){
+      if($cinema->getId() == $selectedCinemaId){
+        $currentCinema = $cinema;
+      }
+    }
+    include(VIEWS_PATH.'listRoomsAdmin.php');
+  }
   
 
 }

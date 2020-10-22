@@ -1,22 +1,32 @@
 [
     {
-        "id": "1",
-        "name": "Cine",
-        "address": "Rivadavia",
-        "number": "3452",
-        "opening": "12:34",
-        "closing": "23:53",
-        "ticketValue": "22",
+        "id": 1,
+        "name": "Cine Ambassador",
+        "address": "aa",
+        "number": "222",
+        "opening": "03:33",
+        "closing": "03:03",
+        "ticketValue": "33",
         "active": true
     },
     {
-        "id": 3,
-        "name": "Cine Ambassador",
-        "address": "Rivadavia ",
-        "number": "3050",
-        "opening": "11:11",
-        "closing": "11:11",
-        "ticketValue": "22",
+        "id": 2,
+        "name": "Cine1",
+        "address": "Diagonal Centro ",
+        "number": "1234",
+        "opening": "00:00",
+        "closing": "00:00",
+        "ticketValue": "11",
+        "active": false
+    },
+    {
+        "id": "3",
+        "name": "Cinecito1",
+        "address": "DOS",
+        "number": "3",
+        "opening": "04:55",
+        "closing": "06:59",
+        "ticketValue": "88",
         "active": true
     }
 ]

@@ -28,16 +28,9 @@
         if (isset($cinemas)) {
             foreach ($cinemas as $cinema) {
                 ?>                 
-                <form action="<?php echo FRONT_ROOT?>Cinema/action" method="POST">
                 <div class="collapse offset-md-1 col-md-5" id="collapseCinema">   
                     <div class="card card-body ">
                         <?php echo $cinema->getName() ?>  
-                        <li style="list-style:none">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaM">Modify</button> 
-                                <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaD">Delete</button> 
-                            </div>
-                        </li> 
                     <ul>
                         <li>Cinema Name: <?php echo $cinema->getName() ?></li>
                         <li>Cinema Adress: <?php echo $cinema->getAddress() ?></li>
@@ -45,6 +38,22 @@
                         <li>Cinema Opening: <?php echo $cinema->getOpenning() ?></li>
                         <li>Cinema Closing: <?php echo $cinema->getClosing() ?></li>
                         <li>Cinema Ticket Value: <?php echo $cinema->getTicketValue() ?></li>
+
+
+                        <li style="list-style:none">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                            
+                            <form action="<?php echo FRONT_ROOT?>Cinema/modifyCinemaView" method="POST">
+                                <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaM">Modify</button> 
+                            </form>
+                                
+                            <form action="<?php echo FRONT_ROOT?>Cinema/deleteCinema" method="POST">
+                                <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaD">Delete</button> 
+                            </form>
+                        </div>
+                    </li> 
+
+
                     </ul>  
                     </div>
                     </div>
@@ -53,9 +62,18 @@
                 ?>
                     <?php
                 }
+                if(!$cinemas){
+                    ?>
+                    <div class="collapse offset-md-1 col-md-5" id="collapseCinema">   
+                    <div class="card card-body ">
+                        <?php echo "No cinemas loaded yet"?>  
+                    </div>
+                    </div>
+                <?php
+                }
                 ?>  
             </div>
-            </form>
+           
 
 
 <!---->
@@ -136,8 +154,17 @@
                 
             <?php
             }
-            ?>
-                
+            ?><?php
+                if(!$movies){
+                    ?>
+                    <div class="collapse offset-md-1 col-md-5" id="collapseCinema">   
+                    <div class="card card-body ">
+                        <?php echo "No movies loaded yet"?>  
+                    </div>
+                    </div>
+                <?php
+                }
+                ?>  
             </form>
             <?php
             }

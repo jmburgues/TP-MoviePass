@@ -11,16 +11,14 @@
             }
             </style>
 
-<form>
+<form action="<?php echo FRONT_ROOT?>Movie/selectRoom" method="POST">
     <div class="container">
         <?php   
-            foreach($listAdminMovies as $movie){
-                ?> <p class="lead text-center mt-5 mb-5"> <?php echo "SELECTED: " .$movie->getTitle();?></p> <?php
-        };
+                ?> <p class="lead text-center mt-5 mb-5"> <?php echo "MOVIE SELECTED: " .$listAdminMovies->getTitle();?></p> <?php
         foreach ($cinemas as $cinema) {
             ?>
             <div class="card card-body "> 
-            <button type="submit"   value="<?php echo $cinema->getName()?>" name="nameCinema" style=" text-align:left; border: none; background: none;"><?php  echo $cinema->getName()?></button>     
+            <button type="submit"   value="<?php echo $cinema->getId()?>" name="nameCinema" style=" text-align:left; border: none; background: none;"><?php  echo $cinema->getName()?></button>     
             </div> 
         <?php
     } ?>
