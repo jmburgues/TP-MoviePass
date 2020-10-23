@@ -1,4 +1,5 @@
 <?php namespace Config;
+/* PATH CONSTANTS */
 
 define("ROOT", dirname(__DIR__) . "/"); 
 define("FRONT_ROOT", "/TP-MoviePass/");
@@ -29,11 +30,12 @@ define('POSTER_WIDTH_500', "w500/");
 define('POSTER_WIDTH_780', "w780/");
 define('POSTER_WIDTH_ORIGINAL', "original/");
 
-/*
+/* DATABASE CONSTANTS */
+
 define("DB_HOST", "localhost");
-define("DB_NAME", "moviepass_database");
+define("DB_NAME", "MOVIEPASSDB");
 define("DB_USER", "root");
 define("DB_PASS", "");
-*/
+
 ?>
 
