@@ -50,6 +50,10 @@
                             <form action="<?php echo FRONT_ROOT?>Cinema/deleteCinema" method="POST">
                                 <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaD">Delete</button> 
                             </form>
+
+                            <form action="<?php echo FRONT_ROOT?>Cinema/" method="POST">
+                                <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaD">Ver Salas</button> 
+                            </form>
                         </div>
                     </li> 
 

@@ -15,7 +15,7 @@
     <div class="container">
         <?php   
           //  foreach($movies as $movie){
-                ?> <p class="lead text-center mt-5 mb-5"> <?php echo "MOVIE SELECTED: " . $listAdminMovies->getTitle();?></p> <?php
+                ?> <p class="lead text-center mt-5 mb-5"> <?php echo "MOVIE SELECTED: " . $currentMovie->getTitle();?></p> <?php
                 ?> <p class="lead text-center mt-5 mb-5"> <?php echo "CINEMA SELECTED: " .$currentCinema->getName();?></p> <?php
        // };
   //      foreach ($cinemas as $cinema) {

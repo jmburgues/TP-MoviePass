@@ -136,13 +136,19 @@ class MovieController{
     include(VIEWS_PATH.'listMoviesAdmin.php');
   }
   
-  public function selectRoom($selectedCinemaId){
+  public function selectRoom($selectedCinemaId, $selectedMovieId){
     $cinemas = $this->daoCinema->getActiveCinemas();  
     $movies=$this->daoMovie->getAll();
     $currentCinema;
+    $currentMovie;
     foreach($cinemas as $cinema){
       if($cinema->getId() == $selectedCinemaId){
         $currentCinema = $cinema;
+      }
+    }
+    foreach($movies as $movie){
+      if($movie->getMovieID() == $selectedMovieId){
+        $currentMovie = $movie;
       }
     }
     include(VIEWS_PATH.'listRoomsAdmin.php');

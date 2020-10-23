@@ -2,11 +2,11 @@
     {
         "id": 1,
         "name": "Cine Ambassador",
-        "address": "aa",
-        "number": "222",
-        "opening": "03:33",
-        "closing": "03:03",
-        "ticketValue": "33",
+        "address": "Rivadavia 3050",
+        "number": "22",
+        "opening": "22:22",
+        "closing": "22:22",
+        "ticketValue": "22",
         "active": true
     },
     {

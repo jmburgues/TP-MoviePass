@@ -4,6 +4,7 @@ namespace Models;
 
 class Show
 {
+    private $idRoom;
     private $hour;
     private $spectators;
 
@@ -11,6 +12,11 @@ class Show
     {
         $this->hour = $hour;
         $this->spectators = $spectators;
+    }
+
+    public function getIdRoom()
+    {
+        return $this->idRoom;
     }
 
     public function getHour()
@@ -21,6 +27,11 @@ class Show
     public function getSpectators()
     {
         return $this->spectators;
+    }
+    
+    public function setIdRoom($idRoom)
+    {
+        $this->idRoom = $idRoom;
     }
 
     public function setHour($hour)

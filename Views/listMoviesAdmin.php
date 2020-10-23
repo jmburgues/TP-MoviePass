@@ -18,9 +18,10 @@
         foreach ($cinemas as $cinema) {
             ?>
             <div class="card card-body "> 
-            <button type="submit"   value="<?php echo $cinema->getId()?>" name="nameCinema" style=" text-align:left; border: none; background: none;"><?php  echo $cinema->getName()?></button>     
+            <button type="submit"  value="<?php echo $cinema->getId()?>" name="nameCinema" style=" text-align:left; border: none; background: none;"><?php  echo $cinema->getName()?></button>     
             </div> 
         <?php
     } ?>
+    <input type="hidden"  name="id" value="<?php echo $listAdminMovies->getMovieID()?>" ></input>
     </div>
 </form>
