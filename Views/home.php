@@ -20,6 +20,7 @@ require_once('nav.php');
     
     <?php
     $total = count($movies);
+    
     $articulosXPagina = 5;
     $paginas = ($total / $articulosXPagina );
     $paginas = ceil($paginas);
@@ -32,43 +33,46 @@ require_once('nav.php');
   <div class="container" style="max-width:1600px">
   
   <div class="row row-cols-5">
-  <?php for($i = $iniciar; $i<$iniciar+5; $i++ ){?>
-      <div class="col">
-    <div class="card" style="margin-top:30px; height:720px">
-    <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $movies[$i]->getPoster()?>">
-    <div class="card-body  ">
-      <h4 class="card-title mb-2"><?php echo $movies[$i]->getTitle()?></h4>   
-      <input value="Buy Tickets" class="btn btn-secondary bg-danger text-white mb-2 col-md-5 " type="button" onclick="location='<?= FRONT_ROOT?>User/showPurchase'" />
-      <p class="card-text" style="margin-bottom:0px;">
-        <?php 
-          if ($movies[$i]->getDescription()) {
-              if (strlen($movies[$i]->getDescription()) < 150) {
-                  echo $movies[$i]->getDescription();
-              } else {
-                  echo substr($movies[$i]->getDescription(), 0, 150);
-              }
-          }else{
-            echo $movies[$i]->getTitle();
-          }
+  <?php for($i = $iniciar; $i<$iniciar+5; $i++ ){
+    if ($movies[$i] != NULL) {
         ?>
-      </p>
-      </div> 
-      <?php if($movies[$i]->getDescription() && strlen($movies[$i]->getDescription()) >= 155){?>
-            <div class="dropdown show"  >
-              <a class="btn dropdown-toggle card-text"  style="margin-left:65%; margin-bottom:0; " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <small class="text-muted" >Leer más</small>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right p-2" 
-                  style="width:500px; border-radius: 15px 15px 15px 15px;
-                        -moz-border-radius: 15px 15px 15px 15px;
-                        -webkit-border-radius: 15px 15px 15px 15px;
-                        border: 1px solid #000000; " 
-                  aria-labelledby="dropdownMenuLink">
-                <?php echo $movies[$i]->getDescription(); ?>
-              </div>
-            </div>
+        <div class="col">
+      <div class="card" style="margin-top:30px; height:720px">
+      <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $movies[$i]->getPoster()?>">
+      <div class="card-body  ">
+        <h4 class="card-title mb-2"><?php echo $movies[$i]->getTitle()?></h4>   
+        <input value="Buy Tickets" class="btn btn-secondary bg-danger text-white mb-2 col-md-5 " type="button" onclick="location='<?= FRONT_ROOT?>User/showPurchase'" />
+        <p class="card-text" style="margin-bottom:0px;">
           <?php
-        }
+            if ($movies[$i]->getDescription()) {
+                if (strlen($movies[$i]->getDescription()) < 150) {
+                    echo $movies[$i]->getDescription();
+                } else {
+                    echo substr($movies[$i]->getDescription(), 0, 150);
+                }
+            } else {
+                echo $movies[$i]->getTitle();
+            } ?>
+        </p>
+        </div> 
+        <?php if ($movies[$i]->getDescription() && strlen($movies[$i]->getDescription()) >= 155) {?>
+              <div class="dropdown show"  >
+                <a class="btn dropdown-toggle card-text"  style="margin-left:65%; margin-bottom:0; " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <small class="text-muted" >Leer más</small>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right p-2" 
+                    style="width:500px; border-radius: 15px 15px 15px 15px;
+                          -moz-border-radius: 15px 15px 15px 15px;
+                          -webkit-border-radius: 15px 15px 15px 15px;
+                          border: 1px solid #000000; " 
+                    aria-labelledby="dropdownMenuLink">
+                  <?php echo $movies[$i]->getDescription(); ?>
+                </div>
+              </div>
+            <?php
+          }
+        
+  }
         ?>
 
 
