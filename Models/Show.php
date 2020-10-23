@@ -7,6 +7,7 @@ class Show
     private $idRoom;
     private $hour;
     private $spectators;
+￼
 
     function __construct($hour, $spectators)
     {
