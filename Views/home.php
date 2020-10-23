@@ -38,7 +38,7 @@ require_once('nav.php');
     <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $movies[$i]->getPoster()?>">
     <div class="card-body  ">
       <h4 class="card-title mb-2"><?php echo $movies[$i]->getTitle()?></h4>   
-      <input value="Buy " class="btn btn-secondary bg-danger text-white mb-2 col-md-4 " type="button" onclick="location='<?= FRONT_ROOT?>User/showPurchase'" />
+      <input value="Buy Tickets" class="btn btn-secondary bg-danger text-white mb-2 col-md-5 " type="button" onclick="location='<?= FRONT_ROOT?>User/showPurchase'" />
       <p class="card-text" style="margin-bottom:0px;">
         <?php 
           if ($movies[$i]->getDescription()) {
