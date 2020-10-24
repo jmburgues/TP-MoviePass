@@ -422,5 +422,197 @@
         "releaseDate": "2020-07-22",
         "description": "Scott has been a case of arrested development ever since his firefighter father died when he was seven. He\u2019s now reached his mid-20s having achieved little, chasing a dream of becoming a tattoo artist that seems far out of reach. As his ambitious younger sister heads off to college, Scott is still living with his exhausted ER nurse mother and spends his days smoking weed, hanging with the guys \u2014 Oscar, Igor and Richie \u2014 and secretly hooking up with his childhood friend Kelsey. But when his mother starts dating a loudmouth firefighter named Ray, it sets off a chain of events that will force Scott to grapple with his grief and take his first tentative steps toward moving forward in life.",
         "movieID": 579583
+    },
+    {
+        "duration": 106,
+        "title": "Rogue",
+        "genre": [
+            {
+                "id": 28,
+                "name": "Action"
+            }
+        ],
+        "poster": "\/uOw5JD8IlD546feZ6oxbIjvN66P.jpg",
+        "releaseDate": "2020-08-20",
+        "description": "Battle-hardened O\u2019Hara leads a lively mercenary team of soldiers on a daring mission: rescue hostages from their captors in remote Africa. But as the mission goes awry and the team is stranded, O\u2019Hara\u2019s squad must face a bloody, brutal encounter with a gang of rebels.",
+        "movieID": 718444
+    },
+    {
+        "duration": 117,
+        "title": "Demon Slayer: Kimetsu no Yaiba - The Movie: Mugen Train",
+        "genre": [
+            {
+                "id": 16,
+                "name": "Animation"
+            },
+            {
+                "id": 28,
+                "name": "Action"
+            },
+            {
+                "id": 36,
+                "name": "History"
+            },
+            {
+                "id": 12,
+                "name": "Adventure"
+            },
+            {
+                "id": 14,
+                "name": "Fantasy"
+            },
+            {
+                "id": 18,
+                "name": "Drama"
+            }
+        ],
+        "poster": "\/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg",
+        "releaseDate": "2020-10-16",
+        "description": "Tanjir\u014d Kamado, joined with Inosuke Hashibira, a boy raised by boars who wears a boar's head, and Zenitsu Agatsuma, a scared boy who reveals his true power when he sleeps, boards the Infinity Train on a new mission with the Fire Hashira, Ky\u014djur\u014d Rengoku, to defeat a demon who has been tormenting the people and killing the demon slayers who oppose it!",
+        "movieID": 635302
+    },
+    {
+        "duration": 118,
+        "title": "Love and Monsters",
+        "genre": [
+            {
+                "id": 12,
+                "name": "Adventure"
+            },
+            {
+                "id": 878,
+                "name": "Science Fiction"
+            },
+            {
+                "id": 10749,
+                "name": "Romance"
+            },
+            {
+                "id": 35,
+                "name": "Comedy"
+            }
+        ],
+        "poster": "\/r4Lm1XKP0VsTgHX4LG4syAwYA2I.jpg",
+        "releaseDate": "2020-10-16",
+        "description": "Seven years after the Monsterpocalypse, Joel Dawson, along with the rest of humanity, has been living underground ever since giant creatures took control of the land. After reconnecting over radio with his high school girlfriend Aimee, who is now 80 miles away at a coastal colony, Joel begins to fall for her again. As Joel realizes that there\u2019s nothing left for him underground, he decides against all logic to venture out to Aimee, despite all the dangerous monsters that stand in his way.",
+        "movieID": 590223
+    },
+    {
+        "duration": 94,
+        "title": "The War with Grandpa",
+        "genre": [
+            {
+                "id": 35,
+                "name": "Comedy"
+            },
+            {
+                "id": 10751,
+                "name": "Family"
+            },
+            {
+                "id": 18,
+                "name": "Drama"
+            }
+        ],
+        "poster": "\/ltyARDw2EFXZ2H2ERnlEctXPioP.jpg",
+        "releaseDate": "2020-08-27",
+        "description": "Sixth-grader Peter is pretty much your average kid\u2014he likes gaming, hanging with his friends and his beloved pair of Air Jordans. But when his recently widowed grandfather Ed  moves in with Peter\u2019s family, the boy is forced to give up his most prized possession of all, his bedroom. Unwilling to let such an injustice stand, Peter devises a series of increasingly elaborate pranks to drive out the interloper, but Grandpa Ed won\u2019t go without a fight.",
+        "movieID": 425001
+    },
+    {
+        "duration": 86,
+        "title": "12 Hour Shift",
+        "genre": [
+            {
+                "id": 53,
+                "name": "Thriller"
+            },
+            {
+                "id": 27,
+                "name": "Horror"
+            },
+            {
+                "id": 35,
+                "name": "Comedy"
+            },
+            {
+                "id": 80,
+                "name": "Crime"
+            }
+        ],
+        "poster": "\/c3SbZPZPOfGMHq7DB7FnTIMQKuY.jpg",
+        "releaseDate": "2020-10-02",
+        "description": "It's 1998 and over the course of one 12-hour shift at an Arkansas hospital, a junkie nurse, her scheming cousin and a group of black market organ-trading criminals start a heist that could lead to their collective demise.",
+        "movieID": 667141
+    },
+    {
+        "duration": 97,
+        "title": "Spontaneous",
+        "genre": [
+            {
+                "id": 27,
+                "name": "Horror"
+            },
+            {
+                "id": 35,
+                "name": "Comedy"
+            },
+            {
+                "id": 10749,
+                "name": "Romance"
+            },
+            {
+                "id": 878,
+                "name": "Science Fiction"
+            }
+        ],
+        "poster": "\/22jwKxZf4rcrmh2NS07SZAQYYNY.jpg",
+        "releaseDate": "2020-10-02",
+        "description": "When students in their high school begin inexplicably exploding (literally...), seniors Mara and Dylan struggle to survive in a world where each moment may be their last.",
+        "movieID": 604578
+    },
+    {
+        "duration": 103,
+        "title": "Zombi Child",
+        "genre": [
+            {
+                "id": 14,
+                "name": "Fantasy"
+            },
+            {
+                "id": 27,
+                "name": "Horror"
+            },
+            {
+                "id": 18,
+                "name": "Drama"
+            }
+        ],
+        "poster": "\/tiuUUPnd3NGrBaF9aGYXXvXameL.jpg",
+        "releaseDate": "2019-06-12",
+        "description": "Haiti, 1962: A man is brought back from the dead only to be sent to the living hell of the sugarcane fields. In Paris, 55 years later, at the prestigious L\u00e9gion d\u2019honneur boarding school, a Haitian girl confesses an old family secret to a group of new friends - never imagining that this strange tale will convince a heartbroken classmate to do the unthinkable.",
+        "movieID": 554311
+    },
+    {
+        "duration": 75,
+        "title": "Away",
+        "genre": [
+            {
+                "id": 16,
+                "name": "Animation"
+            },
+            {
+                "id": 12,
+                "name": "Adventure"
+            },
+            {
+                "id": 14,
+                "name": "Fantasy"
+            }
+        ],
+        "poster": "\/c59eplVELdwrUfGBUAZVin3HfaL.jpg",
+        "releaseDate": "2019-11-15",
+        "description": "After suffering a plane crash on a mysterious island, a young man embarks on an epic journey through forests, deserts and mountains trying to escape the shadow of a huge dark spirit.",
+        "movieID": 597398
     }
 ]

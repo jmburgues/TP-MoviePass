@@ -72,7 +72,7 @@
             $cinema->setTicketValue($ticketValue);
             $list=$this->DAOCinema->GetAll();
             $cinemaExist = false;
-        
+            $message ="";
             //Control del refresh del form
             foreach ($list as $l) {
                 if ($l->getName() == $name) {
@@ -94,7 +94,9 @@
                 $message = "Cinema successfully added";
             }
         }
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        if($message){
+            echo "<script type='text/javascript'>alert('$message');</script>";
+        }
         $cinemas = $this->DAOCinema->getActiveCinemas();
         include VIEWS_PATH.'adminView.php';
     }

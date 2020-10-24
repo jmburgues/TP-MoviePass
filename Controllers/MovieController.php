@@ -114,5 +114,12 @@ class MovieController{
 
     include(VIEWS_PATH.'genres-list.php');
   }
+
+
+  public function selectMovie(){
+
+    echo "Select movie";
+
+  }
 }
 ?>

@@ -5,17 +5,20 @@
     use Models\User as User;
     use DAO\DAOCinema as DAOCinema;
     use Models\Cinema as Cinema;
-
+    use Models\Movie as Movie;
+    use DAO\DAOMovie as DAOMovie;
 
     class UserController
     {
         private $DAOUser;
         private $DAOCinema;
+        private $DAOMovie;
 
         public function __construct()
         {
             $this->DAOUser = new DAOUser();
             $this->DAOCinema = new DAOCinema();
+            $this->DAOMovie = new DAOMovie();
         }
 
         public function register()
@@ -26,6 +29,7 @@
 
         public function adminView()
         {
+            $movies=$this->DAOMovie->GetAll();
             include VIEWS_PATH.'adminView.php';
             include_once VIEWS_PATH.'footer.php';
         }
