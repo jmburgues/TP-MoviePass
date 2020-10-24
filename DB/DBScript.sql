@@ -41,9 +41,19 @@ CREATE TABLE IF NOT EXISTS ROOMS(
 idRoom int auto_increment,
 capacity int not null,
 idCinema int not null,
+roomType varchar(10) default '2d',
 CONSTRAINT pk_idRoom primary key (idRoom),
 CONSTRAINT fk_idCinema foreign key (idCinema) references CINEMAS(idCinema),
-CONSTRAINT chq_capacity CHECK (capacity > 0 AND capacity < 500)
+CONSTRAINT fk_roomType foreign key (roomType) references ROOM_TYPE(roomType),
+CONSTRAINT chq_capacity CHECK (capacity > 0 AND capacity < 500),
+CONSTRAINT chq_roomType CHECK (roomType = '2d' OR roomType = '3d' OR roomType ='Atmos')
+);
+
+CREATE TABLE IF NOT EXISTS ROOM_TYPE(
+roomType varchar(20) not null,
+typeDescription varchar(200),
+CONSTRAINT pk_roomTypeName primary key (roomType)
+CONSTRAINT chq_roomType2 CHECK (roomType = '2d' OR roomType = '3d' OR roomType ='Atmos')
 );
 
 CREATE TABLE IF NOT EXISTS SHOWS(
