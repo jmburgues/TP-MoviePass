@@ -44,7 +44,7 @@
                 $loggedUser = $this->login($userName,$pass);
 
                 if($loggedUser){
-
+                    
                     $this->setSession($loggedUser);
 
                     header('Location:'.FRONT_ROOT.'index.php');
@@ -57,8 +57,8 @@
 
         public function frontRegister($userName,$password,$email,$birthDate,$dni)
         {
-            $isAdmin = false;
-            $newUser = $this->add($userName,$password,$email,$birthDate,$dni,$isAdmin);
+            $role = "user";
+            $newUser = $this->add($userName,$password,$email,$birthDate,$dni,$role);
             
             if($newUser){
                 
@@ -119,7 +119,8 @@
                 session_start();
 
             $_SESSION['loggedUser'] = $user->getUserName();                
-            $_SESSION['isAdmin'] =  ($user->isAdmin()) ? true : false;
+            $_SESSION['role'] =  $user->getRole();
+            var_dump($user);
         }
 
         public function logout() // Terminates a user's session

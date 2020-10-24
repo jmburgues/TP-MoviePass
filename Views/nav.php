@@ -108,13 +108,13 @@
 
 							<button type ="button" disabled class="dropdown-item" value="OwnerTools" onclick="window.location.href='<?php echo FRONT_ROOT?>User/ownerView'">Owner Tools</button>
 							
-					<?php } ?>
+						<?php } ?>
 						 
 					<button type ="button" class="dropdown-item" value="Logout" onclick="window.location.href='<?php echo FRONT_ROOT?>User/logout'">Logout</button>
 				
 					</div>
 
-					<?php }	?>
+					<?php }?>
 
 				</form>
 			</div>

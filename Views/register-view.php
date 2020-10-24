@@ -38,9 +38,6 @@ require_once('header.php');
         <label for="dni">DNI</label>
         <input type="number" name="dni" id="dni" class="form-control">
       </div>
-      <div>
-        <input type="hidden" name="isAdmin" id="isAdmin" value="false">
-      </div>
       <button type="submit" class="btn btn-primary bg-danger text-dark mt-3 col-md-3">Register</button>
     </form>
   </div>

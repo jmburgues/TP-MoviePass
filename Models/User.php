@@ -18,16 +18,7 @@ class User
         $this->email = $email;
         $this->birthDate = $birthDate;
         $this->dni = $dni;
-
-        if(strcasecmp($role,'owner') == 0){
-            $this->role = 'owner';
-        }
-        else if(strcasecmp($role,'admin')==0){
-            $this->role = 'admin';
-        }
-        else {
-            $this->role = 'user';
-        }
+        $this->role = $role;
     }
 
     public function getUserName()
@@ -52,11 +43,6 @@ class User
     {
         return $this->dni;
     }
-
-    public function getRole()
-    {
-        return $this->role;
-    }
     
     public function setUserName($userName){
         $this->userName = $userName; 
@@ -79,6 +65,11 @@ class User
     }
 
     public function setRole($role){
-        $this->admin = $role;
+        $this->role = $role;
+    }
+    
+    public function getRole()
+    {
+        return $this->role;
     }
 }
