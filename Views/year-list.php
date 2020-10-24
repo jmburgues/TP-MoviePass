@@ -3,11 +3,23 @@
     require_once('header.php');
 ?>
 <hr>
-<div class="jumbotron mb-5 mt-5 text-center bg-dark text-white homeTitle" style="opacity:0.9;">
-    <h1 class="display-4">Year: <?= $year?></h1>
-    <br>
-    <hr class="my-4">
+
+<div class="jumbotron mb-5 mt-5 text-center bg-dark text-white homeTitle" style="opacity:0.9; background-image: url(https://i.imgur.com/FK6VxlJ.jpg); height:230px;">
+  <h1 class="display-4">Movie Pass</h1>
+  <h2 class="lead">Where movies come true!</h2>
+
 </div>
+
+<div>
+  <hr class=" mt-2 mb-4 bg-danger text-dark">
+  <h1 class="text-muted text-center" >FILTER BY YEAR: <?= $year?><h1>
+  <hr class=" mt-4 mb-1 bg-danger text-dark">
+</div>
+    
+
+
+
+
 <div class="container">
 <div class="row row-cols-3">
     <?php
