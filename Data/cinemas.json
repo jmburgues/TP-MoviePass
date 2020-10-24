@@ -1,13 +1,13 @@
 [
     {
-        "id": 1,
-        "name": "Cine Ambassador",
-        "address": "Rivadavia 3050",
+        "id": "1",
+        "name": "Cine",
+        "address": "Rivadavia",
         "number": "22",
         "opening": "22:22",
         "closing": "22:22",
         "ticketValue": "22",
-        "active": true
+        "active": false
     },
     {
         "id": 2,
@@ -27,6 +27,36 @@
         "opening": "04:55",
         "closing": "06:59",
         "ticketValue": "88",
+        "active": true
+    },
+    {
+        "id": 4,
+        "name": "Cinecine",
+        "address": "cine",
+        "number": "1",
+        "opening": "11:11",
+        "closing": "11:01",
+        "ticketValue": "11",
+        "active": true
+    },
+    {
+        "id": 5,
+        "name": "aqq",
+        "address": "q",
+        "number": "2",
+        "opening": "22:02",
+        "closing": "22:22",
+        "ticketValue": "2",
+        "active": true
+    },
+    {
+        "id": 6,
+        "name": "a",
+        "address": "a",
+        "number": "2",
+        "opening": "02:22",
+        "closing": "02:02",
+        "ticketValue": "2",
         "active": true
     }
 ]
