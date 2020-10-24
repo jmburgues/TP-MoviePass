@@ -141,7 +141,7 @@
             header('Location:'.FRONT_ROOT.'/index.php');          
         }
 
-        private function is_session_started() // verifica estado de sesion dependiendo version PHP
+        public static function is_session_started() // verifica estado de sesion dependiendo version PHP
         {
             if ( php_sapi_name() !== 'cli' ) {
                 if ( version_compare(phpversion(), '5.4.0', '>=') ) {
