@@ -1,8 +1,8 @@
 <?php
-  namespace dao\pdo;
+  namespace DAO\PDO;
 
   use \Exception as Exception;
-  use models\User as User;
+  use Models\User as User;
   use DAO\PDO\Connection as Connection;
 
   class PDOUser{
@@ -14,12 +14,12 @@
         $query = "INSERT INTO ".$this->tableName." (username,pass,email,birthdate,dni,isAdmin)
         values(:userName, :password, :email,:birthDate, :dni, :admin);";
 
-        $parameters['userName'] = $newUser->getUserName();
-        $parameters['password'] = $newUser->getPassword();
-        $parameters['email'] = $newUser->getEmail();
-        $parameters['birthDate'] = $newUser->getBirthDate();
-        $parameters['dni'] = $newUser->getDNI();
-        $parameters['admin'] = $newUser->isAdmin();
+        $parameters['userName'] = $user->getUserName();
+        $parameters['password'] = $user->getPassword();
+        $parameters['email'] = $user->getEmail();
+        $parameters['birthDate'] = $user->getBirthDate();
+        $parameters['dni'] = $user->getDNI();
+        $parameters['admin'] = $user->isAdmin();
 
         $this->connection = Connection::GetInstance();
 
@@ -62,5 +62,20 @@
       }
       
     }
+
+    protected function parseToObject($value) {
+			$value = is_array($value) ? $value : [];
+			$resp = array_map(function($p){
+        #LAUTY ACORDATE DE MODIFICAR ESTO PINCHE PUTO
+				return new User ($p['username'],$p['pass'],$p['email'],$p['birthdate'],$p['dni'],$p['isAdmin']);
+        }, $value);
+        
+      if(empty($resp)){
+        return $resp;
+      }
+      else {
+        return count($resp) > 1 ? $resp : $resp['0'];
+      }
+		}
   }
 ?>
