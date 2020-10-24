@@ -130,11 +130,7 @@
             header('Location:'.FRONT_ROOT.'/index.php');          
         }
 
-<<<<<<< HEAD
-        public static function is_session_started() // verifica estado de sesion dependiendo version PHP
-=======
         private function is_session_started() // Check session status (for all PHP versions)
->>>>>>> origin/PDOMovies
         {
             if ( php_sapi_name() !== 'cli' ) {
                 if ( version_compare(phpversion(), '5.4.0', '>=') ) {
