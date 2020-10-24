@@ -10,6 +10,10 @@ error_reporting(E_ALL);
 require "Config/Autoload.php";
 require "Config/Config.php";
 
+require_once(VIEWS_PATH."header.php");
+if(!$_GET){
+    header('Location:index.php?pagina=1');
+}
 
 use Config\Autoload as Autoload;
 use Config\Router 	as Router;
@@ -17,7 +21,6 @@ use Config\Request 	as Request;
 
 Autoload::start();
 Router::Route(new Request());
-require_once(VIEWS_PATH."header.php");
 if(session_status() != 2)
     session_start();
 ?>

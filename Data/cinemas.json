@@ -2,11 +2,31 @@
     {
         "id": 1,
         "name": "Cine Ambassador",
-        "address": "Rivadavia ",
-        "number": "3050",
-        "opening": "09:30",
+        "address": "Rivadavia 3050",
+        "number": "22",
+        "opening": "22:22",
+        "closing": "22:22",
+        "ticketValue": "22",
+        "active": true
+    },
+    {
+        "id": 2,
+        "name": "Cine1",
+        "address": "Diagonal Centro ",
+        "number": "1234",
+        "opening": "00:00",
         "closing": "00:00",
-        "ticketValue": "55",
+        "ticketValue": "11",
+        "active": false
+    },
+    {
+        "id": "3",
+        "name": "Cinecito1",
+        "address": "DOS",
+        "number": "3",
+        "opening": "04:55",
+        "closing": "06:59",
+        "ticketValue": "88",
         "active": true
     }
 ]

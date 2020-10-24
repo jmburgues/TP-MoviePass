@@ -3,12 +3,15 @@
   
   use DAO\DAOCinema as DAOCinema;
   use Models\Cinema as Cinema;
+  use Models\Movie as Movie;
+  use DAO\DAOMovie as DAOMovie;
 
   class CinemaController{
     private $DAOCinema;
-    
+    private $DAOMovie;
     public function __construct(){
       $this->DAOCinema = new DAOCinema;
+      $this->DAOMovie = new DAOMovie;
     }
 
     
@@ -19,46 +22,44 @@
     /**action
     * Trae el valor del botón para redireccionar al método de eliminar o modificar.
     */
-    public function action()      {
-      if (isset($_POST)) {
-        $option = current($_POST);
-        if(isset($_POST["idCinemaM"])){
-          $currentCinema = $this->DAOCinema->placeholderCinemaDAO($option);
+    //CAMBIAR EL POST A PARAMETRO
+    //HACER 2 FUNCIONES, 2 FORMS DELETE Y MODIFY
+    public function modifyCinemaView($idCinema)      {
+          $currentCinema = $this->DAOCinema->placeholderCinemaDAO($idCinema);
           $cinemas = $this->DAOCinema->getActiveCinemas();  
+          $movies=$this->DAOMovie->GetAll();
           include VIEWS_PATH.'cine-modify.php';
-        }else{
-            if (isset($_POST["idCinemaD"])) {
-              $this->DAOCinema->removeCinema($option);
-              $cinemas = $this->DAOCinema->getActiveCinemas();  
-              include VIEWS_PATH.'adminView.php'; // CAMBIAR LOS INCLUDE POR INCLUDE_ONCE/REQUIERE_ONCE
-            }
-        }
       }
+        
+
+    public function deleteCinema($idCinema){
+      $this->DAOCinema->removeCinema($idCinema);
+      $cinemas = $this->DAOCinema->getActiveCinemas();  
+      $movies=$this->DAOMovie->GetAll();
+      include VIEWS_PATH.'adminView.php'; // CAMBIAR LOS INCLUDE POR INCLUDE_ONCE/REQUIERE_ONCE
     }
+
     
-    /**modifyCinema
-     * Método llamado desde el form de cine-modify
-     */
-    public function modifyCinema(){
-      $id = $_POST["id"];
+    public function modifyCinema($id, $name, $address, $number, $openning, $closing, $ticketValue){
+      echo $id, $name, $address, $number, $openning, $closing, $ticketValue;
       $cinemasList = $this->DAOCinema->getAll();
-      foreach($cinemasList as $cinema){
-        if($cinema->getId() == $id){
-          //$cinema = $_POST;
-          $newCinema = new Cinema();
-          $newCinema->setId($_POST["id"]);
-          $newCinema->setName($_POST["name"]);
-          $newCinema->setAddress($_POST["address"]);
-          $newCinema->setNumber($_POST["number"]);
-          $newCinema->setOpenning($_POST["openning"]);
-          $newCinema->setClosing($_POST["closing"]);
-          $newCinema->setTicketValue($_POST["ticketValue"]);
-          $newCinema->setActive(true);          
-          $this->DAOCinema->modify($newCinema);
-          $cinemas = $this->DAOCinema->getActiveCinemas();  
-          include VIEWS_PATH.'adminView.php';
-        }
+      foreach($cinemasList as $cinemas){
+        if ($cinemas->getId() == $id) {
+            $newCinema = new Cinema();
+            $newCinema->setId($id);
+            $newCinema->setName($name);
+            $newCinema->setAddress($address);
+            $newCinema->setNumber($number);
+            $newCinema->setOpenning($openning);
+            $newCinema->setClosing($closing);
+            $newCinema->setTicketValue($ticketValue);
+            $newCinema->setActive(true);
+            $this->DAOCinema->modify($newCinema);
+            $cinemas = $this->DAOCinema->getActiveCinemas();
+            $movies=$this->DAOMovie->GetAll();
+        }  
       }
+      include VIEWS_PATH.'adminView.php';
     }
 
     public function AddCinema($name, $address, $number, $openning, $closing, $ticketValue ){
@@ -95,9 +96,10 @@
             }
         }
         if($message){
-            echo "<script type='text/javascript'>alert('$message');</script>";
+            echo "<script type='text/javascript'>alert('$message');</script>";  //Sacar del controlador
         }
         $cinemas = $this->DAOCinema->getActiveCinemas();
+        $movies=$this->DAOMovie->GetAll();
         include VIEWS_PATH.'adminView.php';
     }
 

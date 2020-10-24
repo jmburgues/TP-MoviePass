@@ -4,15 +4,20 @@ namespace Models;
 
 class Room
 {
+    private $id;
+    private $idCinema;
     private $name;
-    private $number;
+    private $price;
     private $seats;
 
-    function __construct($name, $number, $seats)
+    public function getId()
     {
-        $this->name = $name;
-        $this->number = $number;
-        $this->seats = $seats;
+        return $this->id;
+    }
+
+    public function getIdCinema()
+    {
+        return $this->idCinema;
     }
 
     public function getName()
@@ -20,17 +25,32 @@ class Room
         return $this->name;
     }
 
-    public function getNumber(){
-        return $this->number;
+    public function getPrice(){
+        return $this->price;
     }
 
     public function getSeats(){
         return $this->seats;
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function setIdCinema($idCinema)
+    {
+        $this->idCinema = $idCinema;
+    }
+
     public function setName($name)
     {
         $this->name = $name;
+    }
+    
+    public function setPrice($price)
+    {
+        $this->price = $price;
     }
 
     public function setSeats($seats)
