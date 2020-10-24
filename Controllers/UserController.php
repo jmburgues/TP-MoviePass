@@ -39,55 +39,36 @@
             include VIEWS_PATH.'login-view.php';
             include_once VIEWS_PATH.'footer.php';
         }
-        public function frontLogin()
+        public function frontLogin($userName, $pass)
         {
-            if($_POST){
-                $user = $_POST['userName'];
-                $pass = $_POST['password'];
-
-                $loggedUser = $this->login($user,$pass);
+                $loggedUser = $this->login($userName,$pass);
 
                 if($loggedUser){
 
-                    if(session_status() !== PHP_SESSION_ACTIVE)
-                        session_start();
-                    
-                    $_SESSION['loggedUser'] = $user;                 
-                    $_SESSION['isAdmin'] =  ($loggedUser->isAdmin()) ? true : false;
+                    $this->setSession($loggedUser);
+
                     header('Location:'.FRONT_ROOT.'index.php');
                 }
                 else{
                     $error = "Invalid user/password!";
                     include_once VIEWS_PATH . 'login-view.php';
                 }
-            }
         }
 
-        public function frontRegister() // COMPLETAR
+        public function frontRegister($userName,$password,$email,$birthDate,$dni)
         {
-            if($_POST){
-                $userName = $_POST['userName'];
-                $password = $_POST['password'];
-                $email = $_POST['email'];
-                $birthDate = $_POST['birthDate'];
-                $dni = $_POST['dni'];
-
-                $newUser = $this->add($userName,$password,$email,$birthDate,$dni,false);
+            $isAdmin = false;
+            $newUser = $this->add($userName,$password,$email,$birthDate,$dni,$isAdmin);
+            
+            if($newUser){
                 
-                if($newUser){
+                $this->setSession($newUser);
 
-                    if(!$this->is_session_started())
-                        session_start();
-                    
-                    $_SESSION['loggedUser'] = $newUser->getUserName();                 
-                    $_SESSION['isAdmin'] =  $newUser->isAdmin();
-
-                    header('Location:'.FRONT_ROOT.'index.php');
-                }
-                else{
-                    $error = "Username or Email already exists!";
-                    include VIEWS_PATH.'register-view.php';
-                }
+                header('Location:'.FRONT_ROOT.'index.php');
+            }
+            else{
+                $error = "Username or Email already exists!";
+                include VIEWS_PATH.'register-view.php';
             }
         }
 
@@ -96,8 +77,7 @@
             include VIEWS_PATH.'purchase-view.php';
             include_once VIEWS_PATH.'footer.php';
         }
-        //ni idea como pero habría que validar
-
+        
         public function add($userName, $password, $email, $birthDate, $dni, $admin)
         {
             $existentUser = false;
@@ -133,7 +113,16 @@
             }
         }
 
-        public function logout()
+        public function setSession($user){ // Starts a session for a certain user
+
+            if(!$this->is_session_started())
+                session_start();
+
+            $_SESSION['loggedUser'] = $user->getUserName();                
+            $_SESSION['isAdmin'] =  ($user->isAdmin()) ? true : false;
+        }
+
+        public function logout() // Terminates a user's session
         {  
             if(!$this->is_session_started())
 	            session_start();
@@ -141,7 +130,11 @@
             header('Location:'.FRONT_ROOT.'/index.php');          
         }
 
+<<<<<<< HEAD
         public static function is_session_started() // verifica estado de sesion dependiendo version PHP
+=======
+        private function is_session_started() // Check session status (for all PHP versions)
+>>>>>>> origin/PDOMovies
         {
             if ( php_sapi_name() !== 'cli' ) {
                 if ( version_compare(phpversion(), '5.4.0', '>=') ) {
