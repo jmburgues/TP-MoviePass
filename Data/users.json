@@ -5,7 +5,7 @@
         "email": "admin@admin.com",
         "birthDate": "21-12-1988",
         "DNI": 654656,
-        "admin": true
+        "role": "admin"
     },
     {
         "userName": "user",
@@ -13,15 +13,15 @@
         "email": "user@user.com",
         "birthDate": "22-11-1970",
         "DNI": 33644879,
-        "admin": false
+        "role": "user"
     },
     {
-        "userName": "juan",
-        "password": "juan",
+        "userName": "owner",
+        "password": "1234",
         "email": "juan@juan.com",
         "birthDate": "1111-02-11",
         "DNI": "12312",
-        "admin": false
+        "role": "owner"
     },
     {
         "userName": "jose",
@@ -29,6 +29,6 @@
         "email": "jose@jose.com",
         "birthDate": "121212-12-12",
         "DNI": "12122112",
-        "admin": false
+        "role": "user"
     }
 ]

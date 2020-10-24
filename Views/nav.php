@@ -69,8 +69,7 @@
 						?>
 							<button type ="submit" class="dropdown-item" name="year" value="<?php echo $year;?>"><?php echo $year;?></button>
 							
-						<?php	}
-						?>
+						<?php } ?>
 					</div>
 				</form>
 			</div>
@@ -101,13 +100,17 @@
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 							<button type ="button" disabled class="dropdown-item" value="MyAccount" onclick="URL">My Account</button>				
 
-					<?php if($_SESSION['isAdmin']) { ?> <!-- IS ADMIN -->
+					<?php if($_SESSION['role'] == 'admin') { ?> <!-- IS ADMIN -->
 							
 							<button type ="button" class="dropdown-item" value="AdminTools" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView'">Admin Tools</button>
 
-						 <?php } ?>
+					<?php } else if($_SESSION['role'] == 'owner'){?>
 
-						 <button type ="button" class="dropdown-item" value="Logout" onclick="window.location.href='<?php echo FRONT_ROOT?>User/logout'">Logout</button>
+							<button type ="button" disabled class="dropdown-item" value="OwnerTools" onclick="window.location.href='<?php echo FRONT_ROOT?>User/ownerView'">Owner Tools</button>
+							
+					<?php } ?>
+						 
+					<button type ="button" class="dropdown-item" value="Logout" onclick="window.location.href='<?php echo FRONT_ROOT?>User/logout'">Logout</button>
 				
 					</div>
 

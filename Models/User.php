@@ -9,16 +9,25 @@ class User
     private $email;
     private $birthDate;
     private $dni;
-    private $admin;
+    private $role;
 
-    function __construct($userName, $password, $email, $birthDate, $dni, $admin)
+    function __construct($userName, $password, $email, $birthDate, $dni, $role)
     {
         $this->userName = $userName;       
         $this->password = $password;
         $this->email = $email;
         $this->birthDate = $birthDate;
         $this->dni = $dni;
-        $this->admin = $admin;  
+
+        if(strcasecmp($role,'owner') == 0){
+            $this->role = 'owner';
+        }
+        else if(strcasecmp($role,'admin')==0){
+            $this->role = 'admin';
+        }
+        else {
+            $this->role = 'user';
+        }
     }
 
     public function getUserName()
@@ -44,9 +53,9 @@ class User
         return $this->dni;
     }
 
-    public function isAdmin()
+    public function getRole()
     {
-        return $this->admin;
+        return $this->role;
     }
     
     public function setUserName($userName){
@@ -69,7 +78,7 @@ class User
         $this->dni = $dni;
     }
 
-    public function setAdmin($admin){
-        $this->admin = $admin;
+    public function setRole($role){
+        $this->admin = $role;
     }
 }
