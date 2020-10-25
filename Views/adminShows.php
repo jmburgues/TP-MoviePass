@@ -11,16 +11,27 @@
             }
             </style>
 
+<?php
+    foreach ($shows as $show) {
+                ?>                
+<!--container--><div class="container  mt-5">   
+                    
+    <!--card-->     <div class="card card-body ">
+                        <ul>
+                            <li>show dia: <?php echo $show->getDate() ?></li>
+                            <li>show horario: <?php echo $show->getHour() ?></li>
+                            <li>show spectators: <?php echo $show->getSpectators()?></li>
+                            <li>show Sala: <?php //echo $selectedRoom->getName()?></li>
+                            
+                        </ul>  
 
-<div class="container mt-5" id="collapseExample3">
-    <div class="card card-body mt-5"> Funcion1    
-    </div>
-    <div class="card card-body mt-5"> Funcion2    
-    </div>
-    <div class="card card-body mt-5"> Funcion3    
-    </div>
-</div>
-<p>
+
+    <!--card-->     </div>
+    
+<!--container--></div>
+                    <?php
+                }
+                ?>
 <form action="<?php echo FRONT_ROOT?>Show/addShowView" method="POST">
         <input type ="submit" class="btn btn-primary bg-danger text-black mt-5 col-md-2 offset-md-5 " value="Agregar Función" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
         </input>

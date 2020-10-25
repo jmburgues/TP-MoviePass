@@ -18,7 +18,7 @@
 
 <!--CSS para el fondo, PASAR A .CSS-->
      <!-- background-image: url("https://www.muycomputer.com/wp-content/uploads/2016/12/taquilleras_de_2016.jpg");-->
-    <!-- <style type="text/css">
+     <!-- <style type="text/css">
           body {
                background-image: url("https://cdnvos.lavoz.com.ar/sites/default/files/styles/width_1072/public/nota_periodistica/promos.jpg");
                background-attachment: fixed;

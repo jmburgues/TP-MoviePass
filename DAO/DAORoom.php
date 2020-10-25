@@ -9,12 +9,18 @@ class DAORoom{
   
     public function add(Room $room){
         $this->retrieveData();
-        $exist = $this->GetById($room->getRoomID());
-        if (!isset($exist)) {
+        $room->setRoomId($this->generateID());
+       // $exist = $this->GetById($room->getRoomID());
+       // if (!isset($exist)) {
         array_push($this->roomList, $room);
         $this->saveData();
-        }
+       // }
     }
+
+    public function generateID(){
+      $this->RetrieveData();
+      return count($this->roomList) + 1;
+  }
 
     public function getAll(){
         $this->retrieveData();
@@ -29,19 +35,35 @@ class DAORoom{
             foreach ($arrayToDecode as $valuesArray) {
                 $room = new Room();
                 $room->setRoomID($valuesArray["ID"]);
+                $room->setName($valuesArray["name"]);
                 $room->setCapacity($valuesArray["capacity"]);
                 $room->setIDCinema($valuesArray["IDCinema"]);
+                $room->setPrice($valuesArray["price"]);
                 array_push($this->roomList, $room);
             }
         }
+    }
+
+    public function removeRoom($idRoom)
+    {
+        $this->RetrieveData();
+        $toDelete = null;
+        foreach($this->roomList as $list){
+            if($list->getRoomID() == $idRoom){
+                unset($this->roomList, $list);
+            }
+        } 
+        $this->SaveData();
     }
 
     public function SaveData(){
         $arrayToEncode = array();
         foreach ($this->roomList as $room) {
             $valuesArray["ID"] = $room->getRoomID();
+            $valuesArray["name"] = $room->getName();
             $valuesArray["capacity"] = $room->getCapacity();
             $valuesArray["IDCinema"] = $room->getIDCinema();
+            $valuesArray["price"] = $room->getPrice();
             array_push($arrayToEncode, $valuesArray);
         }
         $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);

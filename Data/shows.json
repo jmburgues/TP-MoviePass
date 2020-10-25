@@ -1,0 +1,16 @@
+[
+    {
+        "idShow": 1,
+        "date": "2020-10-25",
+        "hour": "18:32",
+        "idRoom": "2",
+        "spectators": "45"
+    },
+    {
+        "idShow": 2,
+        "date": "2020-10-31",
+        "hour": "20:36",
+        "idRoom": "1",
+        "spectators": "12"
+    }
+]

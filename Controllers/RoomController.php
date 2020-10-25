@@ -21,18 +21,45 @@
     }
 
     public function addRoom($idCinema, $name, $capacity, $price){
-        $rooms = $this->DAORoom->getAll();
-        echo $idCinema, $name, $capacity, $price;
-            $rooms = $this->DAORoom->getAll();
+        if ($name != "") {
+            //echo $idCinema, $name, $capacity, $price;
             $room = new Room();
             $room->setIDCinema($idCinema);
             $room->setName($name);
             $room->setCapacity($capacity);
             $room->setprice($price);
-            $this->DAORoom->add($room);
-            
-            include VIEWS_PATH.'addRoomView.php';
+            $listRoom = $this->DAORoom->getAll();
+            $roomExist = false;
+            $message ="";
+            foreach ($listRoom as $list) {
+                if ($list->getName() == $name) {
+                    $roomExist = true;
+                }
+                if($roomExist == false){
+                    $message = "The room is already exist.";
+                    
+                }
+            }
+            if ($roomExist == false) { 
+                $this->DAORoom->add($room);
+                $message = "Room successfully added";
+            }
         }
+        if($message){
+            echo "<script type='text/javascript'>alert('$message');</script>";  
+        }  
+        
+        $rooms = $this->DAORoom->getAll();
+        include VIEWS_PATH.'addRoomView.php';
+    }
+
+    public function deleteRoom($idRoom){
+        $rooms = $this->DAORoom->getAll();
+        $this->DAORoom->removeRoom($idRoom);
+        include VIEWS_PATH.'adminCinemas.php';// CAMBIAR LOS INCLUDE POR INCLUDE_ONCE/REQUIERE_ONCE
+    }
+
+
 }
 
     ?>

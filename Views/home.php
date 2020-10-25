@@ -6,10 +6,8 @@ require_once('nav.php');
 
 <!--Primer vista al entrar a la página-->
 <!--Jumbotron-->
-<!--<div class="jumbotron mb-5 mt-5 text-center bg-dark text-white homeTitle" style="opacity:0.9; background-image: url(https://i.imgur.com/FK6VxlJ.jpg); height:230px;">-->
 <div class="jumbotron mb-5 mt-5 text-center bg-white homeTitle" style="opacity:0.9; height:400px;">
   <div style=" background-image: url(Views/img/Logo.bmp); background-repeat: no-repeat; height:400px; margin-top: -64px; margin-left:37%">
-
   </div>
 </div>
 
@@ -86,7 +84,7 @@ require_once('nav.php');
 </div>
 
   <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-end mt-3">
+    <ul class="pagination justify-content-end mt-3 mr-5">
     <li class="page-item <?php echo $_GET['pagina']<= 1 ? "disabled" : "" ?>"><a class="page-link  " href="<?php FRONT_ROOT?>index.php?pagina=<?php echo $_GET['pagina']-1 ?>">Previous</a></li>
       <?php for($i=0; $i<$paginas; $i++) {?>
       <li class="page-item <?php echo $_GET['pagina']==$i+1 ? "active" : ""?>"><a class="page-link"  href="<?php FRONT_ROOT?>index.php?pagina=<?php echo $i+1?>"> <?php echo $i+1?></a></li>

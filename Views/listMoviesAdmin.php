@@ -17,8 +17,10 @@
     <form action="<?php echo FRONT_ROOT?>Show/selectMovie" method="POST" class= " mt-5">
         <div class= "container">            
             <div class="card card-body ">
-                <input type="hidden"  value="<?php echo $movie->getMovieId()?>" name="titleMovie" style=" text-align:left; border: none; background: none;"></input>     
-                <button type="submit"  value="<?php echo $movie->getMovieId()?>" name="titleMovie" style=" text-align:left; border: none; background: none;"><?php echo $movie->getTitle()?></button>     
+                <input type="hidden"  value="<?php echo $date?>" name="date" ></input>     
+                <input type="hidden"  value="<?php echo $time?>" name="time" ></input>     
+                <input type="hidden"  value="<?php echo $spectators?>" name="spectators" ></input>     
+                <button type="submit" value="<?php echo $movie->getMovieId()?>" name="titleMovie" style=" text-align:left; border: none; background: none;"><?php echo $movie->getTitle()?></button>     
             </div>
         </div>
         <?php

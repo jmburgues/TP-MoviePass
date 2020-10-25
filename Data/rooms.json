@@ -1,7 +1,23 @@
 [
     {
-        "ID": null,
-        "capacity": "3",
-        "IDCinema": "3"
+        "ID": 1,
+        "name": "Sala 1",
+        "capacity": "12",
+        "IDCinema": "3",
+        "price": "34"
+    },
+    {
+        "ID": 2,
+        "name": "Sala 2",
+        "capacity": "43",
+        "IDCinema": "3",
+        "price": "12"
+    },
+    {
+        "ID": 3,
+        "name": "Sala 3",
+        "capacity": "12",
+        "IDCinema": "3",
+        "price": "43"
     }
 ]
