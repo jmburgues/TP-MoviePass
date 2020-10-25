@@ -4,57 +4,52 @@ namespace Models;
 
 class Room
 {
-    private $id;
-    private $idCinema;
+    private $ID;
     private $name;
+    private $capacity;
+    private $IDCinema;
     private $price;
-    private $seats;
 
-    public function getId()
+    public function getRoomID()
     {
-        return $this->id;
+        return $this->ID;
     }
 
-    public function getIdCinema()
-    {
-        return $this->idCinema;
+    public function getCapacity(){
+        return $this->capacity;
     }
 
-    public function getName()
-    {
-        return $this->name;
+    public function getIDCinema(){
+        return $this->IDCinema;
     }
-
     public function getPrice(){
-        return $this->price;
+        return $this->price ;
     }
 
-    public function getSeats(){
-        return $this->seats;
+    public function getName(){
+        return $this->name ;
     }
 
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    public function setIdCinema($idCinema)
-    {
-        $this->idCinema = $idCinema;
-    }
-
-    public function setName($name)
-    {
+    public function setName($name){
         $this->name = $name;
     }
-    
-    public function setPrice($price)
-    {
+
+    public function setPrice($price){
         $this->price = $price;
     }
-
-    public function setSeats($seats)
-    {
-        $this->seats = $seats;
+    
+    public function setRoomID($ID){
+        $this->ID = $ID;
     }
+
+    public function setCapacity($capacity){
+        $this->capacity = $capacity;
+    }
+
+    public function setIDCinema($IDCinema){
+        $this->IDCinema = $IDCinema;
+    }
+
+
+
 }

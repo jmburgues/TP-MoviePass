@@ -35,7 +35,7 @@
 </p>
 
 <p>
-<form action="<?php echo FRONT_ROOT?>Sale/showSales" method="POST">
+    <form action="<?php echo FRONT_ROOT?>Sale/showSales" method="POST">
         <input type ="submit" class="btn btn-primary bg-danger text-black mt-5 col-md-2 offset-md-1 " value="Ventas" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
         </input>
     </form>

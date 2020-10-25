@@ -21,7 +21,7 @@
     </div>
 </div>
 <p>
-<form action="<?php echo FRONT_ROOT?>Show/addShow" method="POST">
+<form action="<?php echo FRONT_ROOT?>Show/addShowView" method="POST">
         <input type ="submit" class="btn btn-primary bg-danger text-black mt-5 col-md-2 offset-md-5 " value="Agregar Función" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
         </input>
     </form>

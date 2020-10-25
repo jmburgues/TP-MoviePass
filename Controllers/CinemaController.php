@@ -9,6 +9,7 @@
   class CinemaController{
     private $DAOCinema;
     private $DAOMovie;
+    
     public function __construct(){
       $this->DAOCinema = new DAOCinema;
       $this->DAOMovie = new DAOMovie;

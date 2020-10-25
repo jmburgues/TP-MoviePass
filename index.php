@@ -11,6 +11,7 @@ require "Config/Autoload.php";
 require "Config/Config.php";
 
 require_once(VIEWS_PATH."header.php");
+date_default_timezone_set('America/Argentina/Buenos_Aires');
 if(!$_GET){
     header('Location:index.php?pagina=1');
 }

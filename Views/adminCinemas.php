@@ -79,13 +79,16 @@
                                     <form action="<?php echo FRONT_ROOT?>Cinema/deleteCinema" method="POST">
                                         <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaD">Delete</button> 
                                     </form>
-                                    <form action="<?php echo FRONT_ROOT?>Cinema/" method="POST">
-                                        <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaD">Ver Salas</button> 
+                                    <form action="<?php echo FRONT_ROOT?>Room/addRoomView" method="POST">
+                                        <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaD">Administrar Salas</button> 
                                     </form>
                                 </div>
                             </li> 
                         </ul>  
+
+
     <!--card-->     </div>
+    
 <!--container--></div>
                     <?php
                 }
