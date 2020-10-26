@@ -39,8 +39,10 @@ CONSTRAINT fk_idPolicy foreign key (idPolicy) references DISCOUNT_POLICIES(idPol
 
 CREATE TABLE IF NOT EXISTS ROOMS(
 idRoom int auto_increment,
+roomName varchar(50),
 capacity int not null,
 idCinema int not null,
+price int not null,
 roomType varchar(10) default '2d',
 CONSTRAINT pk_idRoom primary key (idRoom),
 CONSTRAINT fk_idCinema foreign key (idCinema) references CINEMAS(idCinema),
@@ -58,6 +60,7 @@ CONSTRAINT chq_roomType2 CHECK (roomType = '2d' OR roomType = '3d' OR roomType =
 
 CREATE TABLE IF NOT EXISTS SHOWS(
 idShow int auto_increment,
+dateSelected DateTime not null,
 startsAt DateTime not null,
 spectators int default 0,
 idRoom int not null,

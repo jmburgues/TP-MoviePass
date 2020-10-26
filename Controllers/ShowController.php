@@ -35,34 +35,44 @@
         include VIEWS_PATH.'listMoviesAdmin.php';
     }
 
-    public function addCurrentShow( $date, $time, $spectators, $selectedMovie, $roomId ){
+    public function addCurrentShow( $date, $time, $spectators, $selectedMovieId, $roomId ){
         $show = new Show();
         $show->setDate($date);
         $show->setHour($time);
         $show->setIdRoom($roomId);
         $show->setSpectators($spectators);
+        $show->setRoomId($roomId);
+        
         $rooms = $this->DAORoom->getAll(); 
+        $movies=$this->DAOMovie->GetAll();
+        
         foreach($rooms as $room){
             if($room->getRoomID() == $roomId){
                 $selectedRoom = $room;
             }
         } 
 
+        foreach($movies as $movie){
+            if($movie->getMovieId() == $selectedMovieId){
+                $selectedMovie = $movie;
+            }
+        } 
+
         $shows=$this->DAOShow->getAll();
         //COMPROBACION DE LOS 15 MINUTOS ETC ETC
         $this->DAOShow->add($show);
-        $movies=$this->DAOMovie->GetAll();
         //$movies->setIdShow();
 
 
         include VIEWS_PATH.'adminShows.php';
     }
 
-    public function selectMovie($date, $time, $spectators, $selectedId){
+    public function selectMovie($date, $time, $spectators, $movieId){
+        echo $movieId;
         $movies=$this->DAOMovie->GetAll();
         foreach($movies as $movie){
-            if($movie->getMovieId() == $selectedId){
-                $selectedMovie = $movie;
+            if($movie->getMovieId() == $movieId){
+                $selectedMovieId = $movie->getMovieId();
             }
         } 
         $rooms = $this->DAORoom->getAll(); 
