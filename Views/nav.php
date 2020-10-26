@@ -1,12 +1,7 @@
 <?php
-	if(session_status() != 2)
-		session_start();
 	use Controllers\GenreController as GenreController;
 	use Controllers\MovieController as MovieController;
 ?>
-
-<!--Barra de navegación que estará presente en todo el programa-->
-<!--Prensenta un boton de vuelta al inicio, 2 buscadores de películas, login, signin y exit en caso de estar logueado-->
 
 <!--Boton HOME-->
 <nav class="navbar navbar-expand-lg p-0" style="background-image: url(https://us.123rf.com/450wm/kebox/kebox1705/kebox170500033/77319728-fondo-degradado-rayas-colores-rojo-y-negro.jpg?ver=6); 
@@ -33,14 +28,14 @@
 					
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 		
-						<!-- PREGUNTAR !!! -->
-						<!-- LA VISTA DEBERIA LLAMAR AL CONTROLADOR DE GENEROS ?? -->
+						<!-- 
+						ESTO FUE CORREGIDO: No se debe instanciar una controladora desde una vista.
+						Necesitamos utilizar AJAX o JQuery para llamar al controlador MovieController
+						y colocar todos los diferentes generos en el dropdown (atributo onchange="")
+						Por falta de tiempo no se implemento. 
+						-->
 
 							<?php 
-						/**
-						 *	invocar el metodo cuando hacemos el requiere de la vista nav.php
-						*	de modo de tener un arreglo "genres" ya cargado.
-						*/
 							$genreController = new GenreController();
 							$genres = $genreController->getGenresList();
 							foreach ($genres as $genre){?>
@@ -63,13 +58,11 @@
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<?php
 							$movieController = new MovieController();
-							$years = $movieController->getArrayOfYears(); // href de <a> llamar al controller/method/año
-							//var_dump($years);
+							$years = $movieController->getArrayOfYears();
+							
 							foreach($years as $year){
 						?>
 							<button type ="submit" class="dropdown-item" name="year" value="<?php echo $year;?>"><?php echo $year;?></button>
-							<!-- <a href="Movie/getMoviesBy/year/$year"> -->
-							<?php // echo $year; ?>
 						<?php } ?>
 					</div>
 				</form>

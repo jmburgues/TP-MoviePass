@@ -70,7 +70,7 @@
 </div>
 
 <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-end mt-3">
+  <ul class="pagination justify-content-center mt-3">
     <li class="page-item <?php echo $page <= 1 ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Home/Index/<?php echo $page-1 ?>">Previous</a></li>
     
     <?php for($i=0; $i<$pages; $i++) {?>
