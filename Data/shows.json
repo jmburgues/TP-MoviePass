@@ -12,5 +12,26 @@
         "hour": "20:36",
         "idRoom": "1",
         "spectators": "12"
+    },
+    {
+        "idShow": 3,
+        "date": "2020-10-26",
+        "hour": "11:17",
+        "idRoom": "1",
+        "spectators": "4"
+    },
+    {
+        "idShow": 4,
+        "date": "2020-10-26",
+        "hour": "11:17",
+        "idRoom": "1",
+        "spectators": "4"
+    },
+    {
+        "idShow": 5,
+        "date": "2020-10-29",
+        "hour": "23:27",
+        "idRoom": "1",
+        "spectators": "12"
     }
 ]

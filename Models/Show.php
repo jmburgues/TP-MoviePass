@@ -7,6 +7,7 @@ class Show
     private $date;
     private $hour;
     private $idRoom;
+    private $idMovie;
     private $spectators;
     
     public function getIdRoom()
@@ -34,6 +35,16 @@ class Show
         return $this->date;
     }
     
+    public function getIdMovie()
+    {
+        return $this->movie;
+    }
+    
+    public function setIdMovie($movie)
+    {
+        $this->movie = $movie;
+    }
+
     public function setDate($date)
     {
         $this->date = $date;
