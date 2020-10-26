@@ -1,10 +1,9 @@
 <?php
   $total = count($movies);
-      
-  $articulosXPagina = 5;
-  $paginas = ($total / $articulosXPagina );
-  $paginas = ceil($paginas);
-  $iniciar = ($message-1)*$articulosXPagina;
+  $articlePerPage = 5;
+  $pages = ($total / $articlePerPage );
+  $pages = ceil($pages);
+  $init = ($page-1)*$articlePerPage;
 ?>
 
 <!--Primer vista al entrar a la página-->
@@ -16,7 +15,7 @@
 
 <div>
   <hr class=" mt-2 mb-4 bg-danger text-dark">
-  <h1 class="text-muted text-center" >LATEST<h1>
+  <h1 class="text-muted text-center" ><?php echo $title;?><h1>
   <hr class=" mt-4 mb-1 bg-danger text-dark">
 </div>
   
@@ -24,7 +23,7 @@
   
   <div class="row row-cols-5">
   
-      <?php for($i = $iniciar; $i < $iniciar+5; $i++ ){
+      <?php for($i = $init; $i < $init+5; $i++ ){
           if (isset($movies[$i])) { ?>
   
   <div class="col">
@@ -72,13 +71,13 @@
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-end mt-3">
-    <li class="page-item <?php echo $message <= 1 ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Home/Index/<?php echo $message-1 ?>">Previous</a></li>
+    <li class="page-item <?php echo $page <= 1 ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Home/Index/<?php echo $page-1 ?>">Previous</a></li>
     
-    <?php for($i=0; $i<$paginas; $i++) {?>
-      <li class="page-item <?php echo $message == $i+1 ? "active" : ""?>"><a class="page-link"  href="<?php echo  FRONT_ROOT?>Home/Index/<?php echo $i+1?>"> <?php echo $i+1?></a></li>
+    <?php for($i=0; $i<$pages; $i++) {?>
+      <li class="page-item <?php echo $page == $i+1 ? "active" : ""?>"><a class="page-link"  href="<?php echo  FRONT_ROOT?>Home/Index/<?php echo $i+1?>"> <?php echo $i+1?></a></li>
     <?php }?>
 
-    <li class="page-item <?php echo $message >= $paginas ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Home/Index/<?php echo $message+1 ?>">Next</a></li>
+    <li class="page-item <?php echo $page >= $pages ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Home/Index/<?php echo $page+1 ?>">Next</a></li>
   </ul>
 </nav>
 

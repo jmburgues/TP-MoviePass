@@ -65,23 +65,24 @@ class MovieController{
     $movies = $this->daoMovie->getAll();
   }
   
-  function getMovieBy($key,$value){
-    // evaluar metodo
-    switch($key){
-      case "all":
-        $movies = $this->daoMovie->getAll();
-      break;
-      case "year":
-       $movies = $this->getArrayOfYears($value);
-        break;
-      case "genre":
-        $movies = $this->getArrayOfGenres($value);
-        break;
-    }
-    // incluir vista
-    include_once(VIEWS_PATH.'home.php');
-  }
+  // function getMovieBy($key,$value){
+  //   // evaluar metodo
+  //   switch($key){
+  //     case "all":
+  //       $movies = $this->daoMovie->getAll();
+  //     break;
+  //     case "year":
+  //      $movies = $this->getArrayOfYears($value);
+  //       break;
+  //     case "genre":
+  //       $movies = $this->getArrayOfGenres($value);
+  //       break;
+  //   }
+  //   // incluir vista
+  //   include_once(VIEWS_PATH.'home.php');
+  // }
 
+  
 
   function getArrayOfYears(){// returns an array of years where different movies where created
       $moviesList = $this->daoMovie->getAll();
@@ -121,11 +122,32 @@ class MovieController{
     include(VIEWS_PATH.'genres-list.php');
   }
 
+  function listByGenre($genreId){
+    
+    $genreName = $this->daoGenre->GetById($genreId)->getName();
+    $moviesList = $this->daoMovie->getAll();
+    $movies = array();
+
+    foreach($moviesList as $oneMovie){
+      
+      $movieGenres = $oneMovie->getGenre();
+
+      foreach($movieGenres as $oneGenre){
+        
+        if($oneGenre->getId() == $genreId){
+          array_push($movies,$oneMovie);       
+        }   
+      }
+    }
+
+    ViewController::homeView($movies,1,"Genre: ".$oneGenre->getName());
+  }
+
 
   public function selectMovie($selectedId){
     $cinemas = $this->daoCinema->getActiveCinemas();  
     $movies=$this->daoMovie->getAll();
-    $listAdminMovies ;
+    $listAdminMovies;
     foreach($movies as $movie){
       if($movie->getMovieId() == $selectedId){
         $listAdminMovies = $movie;

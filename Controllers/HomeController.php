@@ -14,10 +14,10 @@
         public function Index($message = 1)
         {
             $movies = $this->daoMovie->getAll();
-
-            $pagina = $message;
+            $page = $message;
+            $title = "LATEST MOVIES";
             
-            require_once(VIEWS_PATH."home.php");
+            ViewController::homeView($movies,$page,$title);
         }        
     }
 ?>
