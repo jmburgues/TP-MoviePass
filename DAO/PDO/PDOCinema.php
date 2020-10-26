@@ -75,6 +75,52 @@
       }
     }
 
-    
+    public function getAll(){
+      try{
+        $query = "SELECT * FROM ".$this->tableName;
+        $this->connection = Connection::GetInstance();
+        $resultSet = $this->connection->Execute($query);
+        
+        return $this->parseToObject($resultSet);
+      }
+
+      catch(Exception $ex){
+        throw $ex;
+      }
+
+    }
+
+    public getActiveCinemas(){
+      try{
+        $query = "SELECT * FROM ".$this->tableName. " WHERE isActive = :active";
+        $parameters['active'] = true;
+        
+        $this->connection = Connection::GetInstance();
+        
+        $resultSet = $this->connection->Execute($query,$parameters);
+        $activeCinemas = $this->parseToObject($resultSet);
+         
+        return $activeCinemas;
+      }
+      catch(Exception $ex){
+        throw $ex;
+      }
+    }
+
+
+    protected function parseToObject($value) {
+			$value = is_array($value) ? $value : [];
+			$resp = array_map(function($p){
+      
+				return new Cinema ($p['cinemaName'],$p['adress'],$p['adressNumber'],$p['openning'],$p['closing'],$p['isActive'],$p['idCinema']);
+        }, $value);
+        
+      if(empty($resp)){
+        return $resp;
+      }
+      else {
+        return count($resp) > 1 ? $resp : $resp['0'];
+      }
+		}
   }
 ?>
