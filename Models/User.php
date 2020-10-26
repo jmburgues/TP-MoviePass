@@ -10,8 +10,9 @@ class User
     private $birthDate;
     private $dni;
     private $role;
+    private $id;
 
-    function __construct($userName, $password, $email, $birthDate, $dni, $role)
+    function __construct($userName ='', $password='', $email='', $birthDate='', $dni='', $role='user',$id='')
     {
         $this->userName = $userName;       
         $this->password = $password;
@@ -19,6 +20,7 @@ class User
         $this->birthDate = $birthDate;
         $this->dni = $dni;
         $this->role = $role;
+        $this->id = $id;
     }
 
     public function getUserName()
@@ -46,6 +48,16 @@ class User
     
     public function setUserName($userName){
         $this->userName = $userName; 
+    }
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
     
     public function setPassword($password){
