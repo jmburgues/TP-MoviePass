@@ -9,6 +9,7 @@
   class CinemaController{
     private $DAOCinema;
     private $DAOMovie;
+    
     public function __construct(){
       $this->DAOCinema = new DAOCinema;
       $this->DAOMovie = new DAOMovie;
@@ -16,7 +17,8 @@
 
     
     public function showCinemas(){
-      $cinemasList = $this->DAOCinema->getActiveCinemas();
+      $cinemas = $this->DAOCinema->getActiveCinemas();
+      include VIEWS_PATH.'adminCinemas.php';
     }
 
     /**action
@@ -36,12 +38,12 @@
       $this->DAOCinema->removeCinema($idCinema);
       $cinemas = $this->DAOCinema->getActiveCinemas();  
       $movies=$this->DAOMovie->GetAll();
-      include VIEWS_PATH.'adminView.php'; // CAMBIAR LOS INCLUDE POR INCLUDE_ONCE/REQUIERE_ONCE
+      include VIEWS_PATH.'adminCinemas.php';// CAMBIAR LOS INCLUDE POR INCLUDE_ONCE/REQUIERE_ONCE
     }
 
     
     public function modifyCinema($id, $name, $address, $number, $openning, $closing, $ticketValue){
-      echo $id, $name, $address, $number, $openning, $closing, $ticketValue;
+     // echo $id, $name, $address, $number, $openning, $closing, $ticketValue;
       $cinemasList = $this->DAOCinema->getAll();
       foreach($cinemasList as $cinemas){
         if ($cinemas->getId() == $id) {
@@ -55,11 +57,11 @@
             $newCinema->setTicketValue($ticketValue);
             $newCinema->setActive(true);
             $this->DAOCinema->modify($newCinema);
-            $cinemas = $this->DAOCinema->getActiveCinemas();
-            $movies=$this->DAOMovie->GetAll();
-        }  
-      }
-      include VIEWS_PATH.'adminView.php';
+          }  
+        }
+        $cinemas = $this->DAOCinema->getActiveCinemas();
+        $movies=$this->DAOMovie->GetAll();
+      include VIEWS_PATH.'adminCinemas.php';
     }
 
     public function AddCinema($name, $address, $number, $openning, $closing, $ticketValue ){
@@ -100,7 +102,7 @@
         }
         $cinemas = $this->DAOCinema->getActiveCinemas();
         $movies=$this->DAOMovie->GetAll();
-        include VIEWS_PATH.'adminView.php';
+        include VIEWS_PATH.'adminCinemas.php';
     }
 
   }

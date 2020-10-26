@@ -19,7 +19,7 @@
 <hr class="my-4">
 
 <hr class="my-4">
-<form class="mt-5 offset-md-1 col-md-5" action="<?php echo FRONT_ROOT ?>Cinema/modifyCinema" method="POST">
+<form class="mt-5 offset-md-3 col-md-5" action="<?php echo FRONT_ROOT ?>Cinema/modifyCinema" method="POST">
     <div class="form-group row"> 
         <div class="col-sm-10">
             <input type="hidden" class="form-control" name="id" value=<?php echo $currentCinema->getId() ?> >

@@ -24,7 +24,7 @@
         public function register()
         {
             include VIEWS_PATH.'register-view.php';
-            include_once VIEWS_PATH.'footer.php';
+            //include_once VIEWS_PATH.'footer.php';
         }
 
         public function adminView()
@@ -32,13 +32,13 @@
             $cinemas=$this->DAOCinema->getActiveCinemas();
             $movies=$this->DAOMovie->GetAll();
             include VIEWS_PATH.'adminView.php';
-            include_once VIEWS_PATH.'footer.php';
+            //include_once VIEWS_PATH.'footer.php';
         }
         
         public function showLoginForm()
         {
             include VIEWS_PATH.'login-view.php';
-            include_once VIEWS_PATH.'footer.php';
+            //include_once VIEWS_PATH.'footer.php';
         }
         public function frontLogin($userName, $pass)
         {
@@ -76,7 +76,7 @@
         public function showPurchase()
         {
             include VIEWS_PATH.'purchase-view.php';
-            include_once VIEWS_PATH.'footer.php';
+            //include_once VIEWS_PATH.'footer.php';
         }
         
         public function add($userName, $password, $email, $birthDate, $dni, $admin)

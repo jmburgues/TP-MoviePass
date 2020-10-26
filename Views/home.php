@@ -8,9 +8,9 @@
 
 <!--Primer vista al entrar a la página-->
 <!--Jumbotron-->
-<div class="jumbotron mb-5 mt-5 text-center bg-dark text-white homeTitle" style="opacity:0.9; background-image: url(https://i.imgur.com/FK6VxlJ.jpg); height:230px;">
-  <h1 class="display-4">Movie Pass</h1>
-  <h2 class="lead">Where movies come true!</h2>
+<div class="jumbotron mb-5 mt-5 text-center bg-white homeTitle" style="opacity:0.9; height:400px;">
+  <div style=" background-image: url(Views/img/Logo.bmp); background-repeat: no-repeat; height:400px; margin-top: -64px; margin-left:37%">
+  </div>
 </div>
 
 <div>

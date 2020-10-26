@@ -10,18 +10,32 @@
                 background-image: none; 
             }
             </style>
-
-<form action="<?php echo FRONT_ROOT?>Movie/selectRoom" method="POST">
-    <div class="container">
-        <?php   
-                ?> <p class="lead text-center mt-5 mb-5"> <?php echo "MOVIE SELECTED: " .$listAdminMovies->getTitle();?></p> <?php
-        foreach ($cinemas as $cinema) {
-            ?>
-            <div class="card card-body "> 
-            <button type="submit"  value="<?php echo $cinema->getId()?>" name="nameCinema" style=" text-align:left; border: none; background: none;"><?php  echo $cinema->getName()?></button>     
-            </div> 
+<?php 
+    if (isset($movies)) {
+        foreach ($movies as $movie) {
+?>             
+    <form action="<?php echo FRONT_ROOT?>Show/selectMovie" method="POST" class= " mt-5">
+        <div class= "container">            
+            <div class="card card-body ">
+                <input type="hidden"  value="<?php echo $date?>" name="date" ></input>     
+                <input type="hidden"  value="<?php echo $time?>" name="time" ></input>     
+                <input type="hidden"  value="<?php echo $spectators?>" name="spectators" ></input>     
+                <button type="submit" value="<?php echo $movie->getMovieId()?>" name="titleMovie" style=" text-align:left; border: none; background: none;"><?php echo $movie->getTitle()?></button>     
+            </div>
+        </div>
         <?php
-    } ?>
-    <input type="hidden"  name="id" value="<?php echo $listAdminMovies->getMovieID()?>" ></input>
-    </div>
-</form>
+        }
+        ?>
+        <?php
+        if(!$movies){
+            ?>
+            <div class="card card-body ">
+                <?php echo "No movies loaded yet"?>  
+            </div>
+        <?php
+        }
+        ?>  
+    </form>
+    <?php
+    }
+    ?>
