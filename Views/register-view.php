@@ -9,9 +9,9 @@ require_once('header.php');
                     
             }
             </style>
+t
 
-
- 
+ gi
 <div class="container border p-4 col-md-4 form" style="background-color:#FFFFFF; margin-top:6%;">
   <div class="abs-center">
     <form action="<?php echo FRONT_ROOT;?>User/frontRegister" method=POST>

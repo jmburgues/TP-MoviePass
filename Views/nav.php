@@ -68,7 +68,8 @@
 							foreach($years as $year){
 						?>
 							<button type ="submit" class="dropdown-item" name="year" value="<?php echo $year;?>"><?php echo $year;?></button>
-							<a href="Movie/getMoviesBy/year/$year"><?php echo $year; ?> 
+							<!-- <a href="Movie/getMoviesBy/year/$year"> -->
+							<?php // echo $year; ?>
 						<?php } ?>
 					</div>
 				</form>

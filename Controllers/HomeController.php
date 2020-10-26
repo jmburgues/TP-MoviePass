@@ -15,14 +15,8 @@
         {
             $movies = $this->daoMovie->getAll();
 
-            $total = count($movies);
-    
-            $articulosXPagina = 5;
-            $paginas = ($total / $articulosXPagina );
-            $paginas = ceil($paginas);
             $pagina = $message;
-            $iniciar = ($message-1)*$articulosXPagina;
-
+            
             require_once(VIEWS_PATH."home.php");
         }        
     }
