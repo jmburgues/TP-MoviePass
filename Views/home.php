@@ -1,9 +1,3 @@
-<?php session_start();
-require_once('nav.php');
-
-?>
-
-
 <!--Primer vista al entrar a la página-->
 <!--Jumbotron-->
 <div class="jumbotron mb-5 mt-5 text-center bg-dark text-white homeTitle" style="opacity:0.9; background-image: url(https://i.imgur.com/FK6VxlJ.jpg); height:230px;">
@@ -17,19 +11,7 @@ require_once('nav.php');
   <h1 class="text-muted text-center" >LATEST<h1>
   <hr class=" mt-4 mb-1 bg-danger text-dark">
 </div>
-    
-    <?php
-    $total = count($movies);
-    
-    $articulosXPagina = 5;
-    $paginas = ($total / $articulosXPagina );
-    $paginas = ceil($paginas);
-    echo $paginas;
-?>
-
-  <?php 
-    $iniciar = ($_GET["pagina"]-1)*$articulosXPagina;
-  ?>
+  
   <div class="container" style="max-width:1600px">
   
   <div class="row row-cols-5">
@@ -86,13 +68,13 @@ require_once('nav.php');
 
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end mt-3">
-    <li class="page-item <?php echo $_GET['pagina']<= 1 ? "disabled" : "" ?>"><a class="page-link  " href="<?php FRONT_ROOT?>index.php?pagina=<?php echo $_GET['pagina']-1 ?>">Previous</a></li>
+    <li class="page-item <?php echo $pagina<= 1 ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Home/Index/<?php echo $pagina-1 ?>">Previous</a></li>
       <?php for($i=0; $i<$paginas; $i++) {?>
-      <li class="page-item <?php echo $_GET['pagina']==$i+1 ? "active" : ""?>"><a class="page-link"  href="<?php FRONT_ROOT?>index.php?pagina=<?php echo $i+1?>"> <?php echo $i+1?></a></li>
+      <li class="page-item <?php echo $pagina==$i+1 ? "active" : ""?>"><a class="page-link"  href="<?php echo  FRONT_ROOT?>Home/Index/<?php echo $i+1?>"> <?php echo $i+1?></a></li>
 
   <?php }?>
 
-  <li class="page-item <?php echo $_GET['pagina']>= $paginas ? "disabled" : "" ?>"><a class="page-link  " href="<?php FRONT_ROOT?>index.php?pagina=<?php echo $_GET['pagina']+1 ?>">Next</a></li>
+  <li class="page-item <?php echo $pagina>= $paginas ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Home/Index/<?php echo $pagina+1 ?>">Next</a></li>
     </ul>
   </nav>
   
