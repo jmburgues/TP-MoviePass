@@ -1,7 +1,7 @@
 <?php
     namespace Controllers;
 
-    use DAO\DAOUser as DAOUser;
+    use DAO\PDO\PDOUser as DAOUser;
     use Models\User as User;
     use DAO\DAOCinema as DAOCinema;
     use Models\Cinema as Cinema;

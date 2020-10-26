@@ -7,19 +7,19 @@
 
   class PDOUser{
     private $connection;
-    private $tableName ='users';
+    private $tableName ='USERS';
 
     public function add($user){
       try{
-        $query = "INSERT INTO ".$this->tableName." (username,pass,email,birthdate,dni,isAdmin)
-        values(:userName, :password, :email,:birthDate, :dni, :admin);";
+        $query = "INSERT INTO ".$this->tableName." (username,pass,email,birthdate,dni,role)
+        values(:userName, :password, :email,:birthDate, :dni, :role);";
 
         $parameters['userName'] = $user->getUserName();
         $parameters['password'] = $user->getPassword();
         $parameters['email'] = $user->getEmail();
         $parameters['birthDate'] = $user->getBirthDate();
         $parameters['dni'] = $user->getDNI();
-        $parameters['admin'] = $user->isAdmin();
+        $parameters['role'] = $user->getRole();
 
         $this->connection = Connection::GetInstance();
 
@@ -67,7 +67,7 @@
 			$value = is_array($value) ? $value : [];
 			$resp = array_map(function($p){
       
-				return new User ($p['username'],$p['pass'],$p['email'],$p['birthdate'],$p['dni'],$p['isAdmin']);
+				return new User ($p['username'],$p['pass'],$p['email'],$p['birthdate'],$p['dni'],$p['role']);
         }, $value);
         
       if(empty($resp)){
