@@ -82,6 +82,7 @@ class MovieController{
     include_once(VIEWS_PATH.'home.php');
   }
 
+
   function getArrayOfYears(){// returns an array of years where different movies where created
       $moviesList = $this->daoMovie->getAll();
 

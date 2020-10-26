@@ -1,3 +1,15 @@
+
+<?php
+
+$total = count($movies);
+    
+$articulosXPagina = 5;
+$paginas = ($total / $articulosXPagina );
+$paginas = ceil($paginas);
+$iniciar = ($message-1)*$articulosXPagina;
+
+?>
+
 <!--Primer vista al entrar a la página-->
 <!--Jumbotron-->
 <div class="jumbotron mb-5 mt-5 text-center bg-dark text-white homeTitle" style="opacity:0.9; background-image: url(https://i.imgur.com/FK6VxlJ.jpg); height:230px;">
