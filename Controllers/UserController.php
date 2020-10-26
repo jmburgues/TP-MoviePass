@@ -84,7 +84,7 @@
             $existentUser = false;
             $existentEmail = false;
 
-            $userList = $this->DAOUser->getAll();
+            $userList = $this->DAOUser->getAll(); // buscar ese usuario en particular o email en particular
 
             foreach($userList as $oneUser){
                 if($oneUser->getUserName() == $userName)

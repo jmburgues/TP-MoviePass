@@ -63,12 +63,12 @@
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<?php
 							$movieController = new MovieController();
-							$years = $movieController->getArrayOfYears();
+							$years = $movieController->getArrayOfYears(); // href de <a> llamar al controller/method/año
 							//var_dump($years);
 							foreach($years as $year){
 						?>
 							<button type ="submit" class="dropdown-item" name="year" value="<?php echo $year;?>"><?php echo $year;?></button>
-							
+							<a href="Movie/getMoviesBy/year/$year"><?php echo $year; ?> 
 						<?php } ?>
 					</div>
 				</form>

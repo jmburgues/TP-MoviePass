@@ -65,6 +65,23 @@ class MovieController{
     $movies = $this->daoMovie->getAll();
   }
   
+  function getMovieBy($key,$value){
+    // evaluar metodo
+    switch($key){
+      case "all":
+        $movies = $this->daoMovie->getAll();
+      break;
+      case "year":
+       $movies = $this->getArrayOfYears($value);
+        break;
+      case "genre":
+        $movies = $this->getArrayOfGenres($value);
+        break;
+    }
+    // incluir vista
+    include_once(VIEWS_PATH.'home.php');
+  }
+
   function getArrayOfYears(){// returns an array of years where different movies where created
       $moviesList = $this->daoMovie->getAll();
 
@@ -79,30 +96,10 @@ class MovieController{
             array_push($years, $releaseYear);
           }
         }
-        return $years;
-       // var_dump($years);
+        return $years; // incluir vista en lugar de retornar año
   }
 
-  function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
-    
-    if ($year > 1900 && $year <= 2020) {
-        $moviesList = $this->daoMovie->getAll();
-
-        $movies = array();
-
-        foreach ($moviesList as $oneMovie) {
-            $releaseDate = $oneMovie->getReleaseDate();
-            $releaseYear = DateTime::createFromFormat('Y-m-d', $releaseDate)->format('Y');
-
-            if ($releaseYear == $year && !in_array( $oneMovie, $movies)) {
-                array_push($movies, $oneMovie);
-            }
-        }
-    }
-        include (VIEWS_PATH.'year-list.php'); 
-  }
-
-  function listByGenre($genreId){
+  function getArrayOfGenres($genreId){
     
     $genreName = $this->daoGenre->GetById($genreId)->getName();
     $moviesList = $this->daoMovie->getAll();
