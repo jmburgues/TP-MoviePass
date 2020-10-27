@@ -5,13 +5,12 @@ USE MOVIEPASSDB;
 
 CREATE TABLE IF NOT EXISTS CINEMAS(
 idCinema int auto_increment,
-cinemaName varchar(30) not null,
+cinemaName varchar(30) not null unique,
 adress varchar(50) not null,
 adressNumber int not null,
 openning Time,
 closing Time,
-ticketValue float default 0,
-isActive boolean,
+isActive boolean default true,
 CONSTRAINT pk_idCinema primary key (idCinema)
 ); 
 
@@ -34,14 +33,13 @@ CONSTRAINT fk_idPolicy foreign key (idPolicy) references DISCOUNT_POLICIES(idPol
 
 CREATE TABLE IF NOT EXISTS ROOMS(
 idRoom int auto_increment,
+roomName varchar(50) not null unique,
 capacity int not null,
 idCinema int not null,
-roomType varchar(10) default '2d',
+price int not null,
 CONSTRAINT pk_idRoom primary key (idRoom),
 CONSTRAINT fk_idCinema foreign key (idCinema) references CINEMAS(idCinema),
-CONSTRAINT fk_roomType foreign key (roomType) references ROOM_TYPE(roomType),
-CONSTRAINT chq_capacity CHECK (capacity > 0 AND capacity < 500),
-CONSTRAINT chq_roomType CHECK (roomType = '2d' OR roomType = '3d' OR roomType ='Atmos')
+CONSTRAINT chq_capacity CHECK (capacity > 0 AND capacity < 500)
 );
 
 CREATE TABLE IF NOT EXISTS ROOM_TYPE(
@@ -53,7 +51,9 @@ CONSTRAINT chq_roomType2 CHECK (roomType = '2d' OR roomType = '3d' OR roomType =
 
 CREATE TABLE IF NOT EXISTS SHOWS(
 idShow int auto_increment,
+dateSelected DateTime not null,
 startsAt DateTime not null,
+endsAt DateTime not null,
 spectators int default 0,
 idRoom int not null,
 idMovie int not null,
@@ -69,7 +69,7 @@ CONSTRAINT pk_idGenre primary key (idGenre)
 );
 
 CREATE TABLE IF NOT EXISTS MOVIES(
-idMovie int not null,
+idMovie int not null unique,
 duration int not null,
 title varchar(50) not null,
 poster varchar(100) not null, #esto es una URL ??
@@ -116,3 +116,21 @@ CONSTRAINT pk_idTicket primary key (idTicket),
 CONSTRAINT fk_idShowTicket foreign key (idShow) references SHOWS(idShow),
 CONSTRAINT fk_idTransaction foreign key (idTransaction) references TRANSACTIONS(idTransaction)
 );
+
+
+INSERT INTO CINEMAS (cinemaName, adress, adressNumber, openning,  closing ) VALUES ("Ambasador", "Rivadavia", 4831, 08-00, 00-30);
+INSERT INTO CINEMAS (cinemaName, adress, adressNumber, openning,  closing ) VALUES ("General", "Dorrego", 8741, 08-00, 22-30);
+INSERT INTO CINEMAS (cinemaName, adress, adressNumber, openning,  closing ) VALUES ("Grande", "Dorrego", 8741, 08-00, 22-30);
+UPDATE CINEMAS SET isActive=false WHERE idCinema=3;
+
+INSERT INTO ROOMS (roomName, capacity, idCinema, price) VALUES ("SALA 1", "70", 1, 54);
+INSERT INTO ROOMS (roomName, capacity, idCinema, price) VALUES ("SALA 2", "80", 2, 70);
+INSERT INTO ROOMS (roomName, capacity, idCinema, price) VALUES ("SALA 3", "90", 1, 40);
+
+INSERT INTO MOVIES (idMovie, duration, title, poster, releaseDate, movieDescription) VALUES (1234, 50-10, "Mulan", "poster mulan", 12/20/70, "Pelicula de Disney");
+INSERT INTO MOVIES (idMovie, duration, title, poster, releaseDate, movieDescription) VALUES (4567, 40-10, "Dalmatas", "poster dalmatas", 11/10/20, "Pelicula de Disney");
+
+INSERT INTO SHOWS (dateSelected, startsAt, endsAt, spectators, idRoom, idMovie) VALUES (12-10-2020, 10-30, 18-00, 50, 1, 1234);
+
+
+
