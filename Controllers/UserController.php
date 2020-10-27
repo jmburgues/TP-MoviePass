@@ -127,9 +127,15 @@
         public function logout() // Terminates a user's session
         {  
             if(!$this->is_session_started())
-	            session_start();
+                session_start();
+                
             session_destroy();
-            header('Location:'.FRONT_ROOT.'/index.php');          
+            
+            $movies = $this->daoMovie->getAll();
+            $page = 1;
+            $title = "LATEST MOVIES";
+            
+            ViewController::homeView($movies,$page,$title);
         }
 
         private function is_session_started() // Check session status (for all PHP versions)
