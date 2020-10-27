@@ -34,6 +34,12 @@
             include VIEWS_PATH.'adminView.php';
             //include_once VIEWS_PATH.'footer.php';
         }
+
+        public function ownerView()
+        {
+            $users=$this->DAOUser->getAll();
+            ViewController::ownerView($users);
+        }
         
         public function showLoginForm()
         {
