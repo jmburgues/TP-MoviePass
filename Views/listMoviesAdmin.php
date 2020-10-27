@@ -20,7 +20,7 @@
                 <input type="hidden"  value="<?php echo $date?>" name="date" ></input>     
                 <input type="hidden"  value="<?php echo $time?>" name="time" ></input>     
                 <input type="hidden"  value="<?php echo $spectators?>" name="spectators" ></input>     
-                <button type="submit" value="<?php echo $movie->getMovieId()?>" name="titleMovie" style=" text-align:left; border: none; background: none;"><?php echo $movie->getTitle()?></button>     
+                <button type="submit" value="<?php  echo $movie->getMovieId()?>" name="movieId" style=" text-align:left; border: none; background: none;"><?php echo $movie->getTitle()?></button>     
             </div>
         </div>
         <?php

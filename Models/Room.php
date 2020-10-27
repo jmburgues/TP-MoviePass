@@ -9,6 +9,7 @@ class Room
     private $capacity;
     private $IDCinema;
     private $price;
+    private $roomType;
 
     public function getRoomID()
     {
@@ -28,6 +29,14 @@ class Room
 
     public function getName(){
         return $this->name ;
+    }
+
+    public function getRoomType(){
+        return $this->roomType ;
+    }
+
+    public function setRoomType($roomType){
+        $this->roomType = $roomType;
     }
 
     public function setName($name){

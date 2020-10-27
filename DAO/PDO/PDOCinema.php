@@ -12,16 +12,15 @@
     public function add($cinema){
       try{
         $query = "INSERT INTO ".$this->tableName." 
-        (cinemaName,adress,adressNumber,openning,closing,ticketValue,isActive)
+        (cinemaName,adress,adressNumber,openning,closing,isActive)
         values
-        (:name, :address, :number,:openning, :closing, :ticketValue, :active);";
+        (:name, :address, :number,:openning, :closing, :active);";
 
         $parameters['name'] = $cinema->getName();
         $parameters['address'] = $cinema->getAddress();
         $parameters['number'] = $cinema->getNumber();
         $parameters['openning'] = $cinema->getOpenning();
         $parameters['closing'] = $cinema->getClosing();
-        $parameters['ticketValue'] = $cinema->getTicketValue();
         $parameters['active'] = $cinema->getActive();
 
         $this->connection = Connection::GetInstance();
@@ -54,18 +53,17 @@
 
     public function modify(Cinema $cinema){
       try{
-        $query = "UPDATE ".$this->tableName. " SET cinemaName = :name, adress = :address, adressNumber = :number , openning = :openning , closing = :closing , ticketValue = :ticketValue 
+        $query = "UPDATE ".$this->tableName. " SET cinemaName = :name, adress = :address, adressNumber = :number ,
+        openning = :openning , closing = :closing, isActive = :active 
         WHERE idCinema = :id;";
         
         $parameters['id'] = $cinema->getId();
-        
         $parameters['name'] = $cinema->getName();
         $parameters['address'] = $cinema->getAddress();
         $parameters['number'] = $cinema->getNumber();
         $parameters['openning'] = $cinema->getOpenning();
         $parameters['closing'] = $cinema->getClosing();
-        $parameters['ticketValue'] = $cinema->getTicketValue();
-
+        $parameters['active'] = $cinema->getActive();
         $this->connection = Connection::GetInstance(); 
         return $this->connection->ExecuteNonQuery($query, $parameters);
       }
@@ -90,16 +88,30 @@
 
     }
 
-    public getActiveCinemas(){
+
+    public function placeholderCinemaDAO($id){
+        try{
+          
+          $query = "SELECT * FROM ".$this->tableName. " WHERE idCinema = :id";
+          $parameters['id'] = $id;
+          $this->connection = Connection::GetInstance();
+          $resultSet = $this->connection->Execute($query,$parameters);
+          $placeCinema = $this->parseToObject($resultSet);
+          return $placeCinema;
+        }
+        catch(Exception $ex){
+          throw $ex;
+        }
+    }
+
+
+    public function getActiveCinemas(){
       try{
         $query = "SELECT * FROM ".$this->tableName. " WHERE isActive = :active";
         $parameters['active'] = true;
-        
         $this->connection = Connection::GetInstance();
-        
         $resultSet = $this->connection->Execute($query,$parameters);
         $activeCinemas = $this->parseToObject($resultSet);
-         
         return $activeCinemas;
       }
       catch(Exception $ex){

@@ -19,5 +19,19 @@
         "capacity": "12",
         "IDCinema": "3",
         "price": "43"
+    },
+    {
+        "ID": 4,
+        "name": "a",
+        "capacity": "3",
+        "IDCinema": "3",
+        "price": "4"
+    },
+    {
+        "ID": 5,
+        "name": "q",
+        "capacity": "3",
+        "IDCinema": "3",
+        "price": "3"
     }
 ]

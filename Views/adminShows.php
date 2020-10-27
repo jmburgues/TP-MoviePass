@@ -21,7 +21,8 @@
                             <li>show dia: <?php echo $show->getDate() ?></li>
                             <li>show horario: <?php echo $show->getHour() ?></li>
                             <li>show spectators: <?php echo $show->getSpectators()?></li>
-                            <li>show Sala: <?php //echo $selectedRoom->getName()?></li>
+                            <li>show Sala: <?php echo $show->getIdRoom()?></li>
+                            <li>show Movie: <?php echo $show->getRoomId()?></li>
                             
                         </ul>  
 

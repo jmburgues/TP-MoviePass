@@ -44,7 +44,7 @@
                         <input type="hidden"  value="<?php echo $date?>" name="date" ></input>     
                         <input type="hidden"  value="<?php echo $time?>" name="time" ></input>     
                         <input type="hidden"  value="<?php echo $spectators?>" name="spectators" ></input>     
-                        <input type="hidden"  value="<?php echo $selectedMovie->getMovieId() ?>" name="selectedMovie" ></input>     
+                        <input type="hidden"  value="<?php echo $selectedMovieId ?>" name="selectedMovieId" ></input>     
                         <button class="font-weight-bold text-center text-uppercase mb-2"  type="submit" value="<?php echo $room->getRoomId()?>" name="roomId" style=" text-align:left; border: none; background: none;"><?php echo $room->getName()?></button>
                         <hr style="margin-top: 2px">
                     <ul>
