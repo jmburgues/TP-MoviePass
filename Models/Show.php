@@ -5,19 +5,33 @@ class Show
 {
     private $idShow;
     private $date;
-    private $hour;
+    private $start;
+    private $end;
     private $idRoom;
     private $idMovie;
     private $spectators;
+    private $active;
     
+    function __construct($date='', $start='', $end='' ,$idRoom='', $idMovie='', $spectators='',$active=TRUE, $idShow='')
+    {
+        $this->date = $date;
+        $this->start = $start;
+        $this->end = $end;
+        $this->idRoom = $idRoom;
+        $this->idMovie = $idMovie;
+        $this->spectators = $spectators;
+        $this->active = $active;
+        $this->idShow =  $idShow; //no es incremental porque lo recibe de la API
+    }
+
     public function getIdRoom()
     {
         return $this->idRoom;
     }
 
-    public function getHour()
+    public function getStart()
     {
-        return $this->hour;
+        return $this->start;
     }
 
     public function getSpectators()
@@ -39,7 +53,26 @@ class Show
     {
         return $this->movie;
     }
+
+    public function getActive()
+    {
+        return $this->active;
+    }
     
+    public function getEnd()
+    {
+        return $this->end;
+    }
+    
+    public function setEnd($end)
+    {
+        $this->end = $end;
+    }
+
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
     public function setIdMovie($movie)
     {
         $this->movie = $movie;
@@ -60,9 +93,9 @@ class Show
         $this->idRoom = $idRoom;
     }
 
-    public function setHour($hour)
+    public function setStart($start)
     {
-        $this->hour = $hour;
+        $this->start = $start;
     }
 
     public function setSpectators($spectators)

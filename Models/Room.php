@@ -10,6 +10,17 @@ class Room
     private $IDCinema;
     private $price;
     private $roomType;
+    private $active;
+
+    function __construct($name='',$capacity='',$IDCinema='',$price='',$roomTyperoom='',$active=true,$ID=''){
+        $this->name = $name;
+        $this->capacity = $capacity;
+        $this->IDCinema = $IDCinema;
+        $this->price = $price;
+        $this->roomType = $roomType;
+        $this->active = $active;
+        $this->ID = $ID;
+    }
 
     public function getRoomID()
     {
@@ -33,6 +44,15 @@ class Room
 
     public function getRoomType(){
         return $this->roomType ;
+    }
+    public function getActive()
+    {
+        return $this->active;
+    }
+    
+    public function setActive($active)
+    {
+        $this->active = $active;
     }
 
     public function setRoomType($roomType){

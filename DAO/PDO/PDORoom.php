@@ -3,24 +3,23 @@
 
   use \Exception as Exception;
   use Models\Room as Room;
-  use Models\Cinema as Cinema;
+  #use Models\Cinema as Cinema;
   use DAO\PDO\Connection as Connection;
 
 
   class PDOShow{
     private $connection;
     private $tableNameRooms ='ROOMS';
-    private $tableNameCinemas ='CINEMAS';
-    private $tableNameRoomType ='ROOM_TYPE';
+    #private $tableNameCinemas ='CINEMAS';
+    #private $tableNameRoomType ='ROOM_TYPE';
 
     public function add($room){
         try{
             $query = "INSERT INTO ".$this->tableNameRooms."
-            (idRoom, roomName, capacity, idCinema, price, roomType)
+            (roomName, capacity, idCinema, price, roomType)
             values
-            (:ID, :name, :capacity, :IDCinema, :price, :roomType);";
+            (:name, :capacity, :IDCinema, :price, :roomType);";
 
-            $parameters['ID'] = $room->getRoomID();
             $parameters['name'] = $room->getName();
             $parameters['capacity'] = $room->getCapacity();
             $parameters['IDCinema'] = $room->getIDCinema();
@@ -63,7 +62,7 @@
 
         public function getByCinema($cinemaId){
             try{
-                $query= "SELECT * FROM ".$this->tableNameRooms." WHERE idRoom = :ID;";
+                $query= "SELECT * FROM ".$this->tableNameRooms." WHERE idCinema = :ID;";
                 $parameters['ID'] = $id;
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query,$parameters);
@@ -74,23 +73,24 @@
                 }
             }
                 
-        public function getByType($id){
-            try{
-                $query= "SELECT * FROM ".$this->tableNameRooms." WHERE idRoom = :ID;";
-                $parameters['ID'] = $id;
-                $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query,$parameters);
-                return $this->parseToObject($resultSet);
-                }
-                catch(Exception $ex){
-                    throw $ex;
-                }
+
+        protected function parseToObject($value) {
+            $value = is_array($value) ? $value : [];
+            $resp = array_map(function($p){
+        
+                return new Room ($p['roomName'],$p['capacity'],$p['idCinema'],$p['price'],$p['roomType'],$p['isActive']);
+            }, $value);
+            
+            if(empty($resp)){
+            return $resp;
             }
-
-
-        private function parseToObject($value){
-	
-		}
+            else {
+            return count($resp) > 1 ? $resp : $resp['0'];
+            }
+        }
+        
+        
+      }
 
 
 

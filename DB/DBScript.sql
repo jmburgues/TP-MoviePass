@@ -38,16 +38,10 @@ capacity int not null,
 idCinema int not null,
 price int not null,
 roomType varchar(10) default '2d',
+isActive boolean default true,
 CONSTRAINT pk_idRoom primary key (idRoom),
 CONSTRAINT fk_idCinema foreign key (idCinema) references CINEMAS(idCinema),
 CONSTRAINT chq_capacity CHECK (capacity > 0 AND capacity < 500)
-);
-
-CREATE TABLE IF NOT EXISTS ROOM_TYPE(
-roomType varchar(20) not null,
-typeDescription varchar(200),
-CONSTRAINT pk_roomTypeName primary key (roomType)
-CONSTRAINT chq_roomType2 CHECK (roomType = '2d' OR roomType = '3d' OR roomType ='Atmos')
 );
 
 CREATE TABLE IF NOT EXISTS SHOWS(
@@ -58,6 +52,7 @@ endsAt DateTime not null,
 spectators int default 0,
 idRoom int not null,
 idMovie int not null,
+isActive boolean default true,
 CONSTRAINT pk_idShow primary key (idShow),
 CONSTRAINT fk_idRoom foreign key (idRoom) references ROOMS(idRoom),
 CONSTRAINT fk_idMovie foreign key (idMovie) references MOVIES(idMovie)
