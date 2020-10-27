@@ -14,7 +14,7 @@ class DAOCinema
         $this->fileName = ROOT."Data/cinemas.json";
     }
 
-    public function Add($cinema)
+    public function add($cinema)
     {
         $this->RetrieveData();
         $cinema->setId($this->generateID());

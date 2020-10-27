@@ -90,16 +90,44 @@
 
     }
 
-    public getActiveCinemas(){
+
+    public function placeholderCinemaDAO($id){
+      try{
+      
+      $list = array();
+      $query = "SELECT * FROM ".$this->tableName. " WHERE idCinema = :id";
+      $parameters['id'] = $id;
+      $this->connection = Connection::GetInstance();
+      $resultSet = $this->connection->Execute($query,$parameters);
+
+      foreach ($resultSet as $row) 
+      {
+          $cinema = new Cinema();
+          $cinema->setId($row["id_cinema"]);
+          $cinema->setName($row["id_cine"]);
+          $cinema->setAddress($row["nombre"]);
+          $cinema->setNumber($row["precio"]);
+          $cinema->setOpenning($row["capacidad"]);
+          $cinema->setClosing($row["capacidad"]);
+          $cinema->setActive($row[true]);
+          array_push($list, $cinema);
+        }
+        var_dump($list);
+      return $$list;
+    }
+    catch(Exception $ex){
+      throw $ex;
+    }
+    }
+
+
+    public function getActiveCinemas(){
       try{
         $query = "SELECT * FROM ".$this->tableName. " WHERE isActive = :active";
         $parameters['active'] = true;
-        
         $this->connection = Connection::GetInstance();
-        
         $resultSet = $this->connection->Execute($query,$parameters);
         $activeCinemas = $this->parseToObject($resultSet);
-         
         return $activeCinemas;
       }
       catch(Exception $ex){

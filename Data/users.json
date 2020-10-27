@@ -30,5 +30,13 @@
         "birthDate": "121212-12-12",
         "DNI": "12122112",
         "role": "user"
+    },
+    {
+        "userName": "a",
+        "password": "a",
+        "email": "a@a.com",
+        "birthDate": "0011-11-11",
+        "DNI": "123",
+        "role": "user"
     }
 ]

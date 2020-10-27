@@ -3,7 +3,7 @@
   
   use \PDO as PDO;
   use \Exception as Exception;
-  use DAO\QueryType as QueryType;
+  use DAO\PDO\QueryType as QueryType;
 
   class Connection{
     private $pdo = null;

@@ -47,8 +47,8 @@
                 if($loggedUser){
                     
                     $this->setSession($loggedUser);
-
-                    header('Location:'.FRONT_ROOT.'index.php');
+                  
+                   // header('Location:'.FRONT_ROOT.'index.php');
                 }
                 else{
                     $error = "Invalid user/password!";

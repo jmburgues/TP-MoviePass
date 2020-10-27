@@ -1,7 +1,7 @@
 <?php
   namespace Controllers;
   
-  use DAO\DAOCinema as DAOCinema;
+  use DAO\PDO\PDOCinema as DAOCinema;
   use Models\Cinema as Cinema;
   use Models\Movie as Movie;
   use DAO\DAOMovie as DAOMovie;
@@ -15,17 +15,14 @@
       $this->DAOMovie = new DAOMovie;
     }
 
-    
+    //Primer método luego del borón Cines
     public function showCinemas(){
       $cinemas = $this->DAOCinema->getActiveCinemas();
+      //adminCinemas muestra el form para agregar un cine y el listado de cines activos
       include VIEWS_PATH.'adminCinemas.php';
     }
 
-    /**action
-    * Trae el valor del botón para redireccionar al método de eliminar o modificar.
-    */
-    //CAMBIAR EL POST A PARAMETRO
-    //HACER 2 FUNCIONES, 2 FORMS DELETE Y MODIFY
+    //
     public function modifyCinemaView($idCinema)      {
           $currentCinema = $this->DAOCinema->placeholderCinemaDAO($idCinema);
           $cinemas = $this->DAOCinema->getActiveCinemas();  
