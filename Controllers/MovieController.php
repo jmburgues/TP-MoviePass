@@ -106,20 +106,20 @@ class MovieController{
     $genreName = $this->daoGenre->GetById($genreId)->getName();
     $moviesList = $this->daoMovie->getAll();
     $movies = array();
-
+    
     foreach($moviesList as $oneMovie){
-      
-      $movieGenres = $oneMovie->getGenre();
 
-      foreach($movieGenres as $oneGenre){
-        
+      $movieGenres = $oneMovie->getGenre();
+      
+      foreach($movieGenres as $oneGenre){ // En Movies, el ID y el NAME estan al reves
         if($oneGenre->getId() == $genreId){
-          array_push($movies,$oneMovie);       
+            array_push($movies,$oneMovie);
         }   
       }
     }
+    
 
-    ViewController::homeView($movies,1,"Genre: ".$oneGenre->getName());
+    ViewController::homeView($movies,1,"Genre: ".$genreName);
   }
 
   function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
