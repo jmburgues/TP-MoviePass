@@ -47,10 +47,10 @@
 
     }
 
-    public function getByEmail($email){
+    public function getByUserName($name){
       try{
-        $query = "SELECT * FROM ".$this->tableName." where email = :email";
-        $parameters['email'] = $email;
+        $query = "SELECT * FROM ".$this->tableName." where username = :name";
+        $parameters['name'] = $name;
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query,$parameters);
         
