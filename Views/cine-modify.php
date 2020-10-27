@@ -55,14 +55,7 @@
             <input type="time" min="00:00" max="23:59" class="form-control" name="closing" value=<?php echo $currentCinema->getClosing() ?>  required>
         </div>
     </div>
-    <div class="form-group row">
-        <label for="inputHorario" class="col-sm-2 col-form-label">Ticket value</label>
-        <div class="col-sm-10">
-            <input type="number" min="0" max="9999" class="form-control" name="ticketValue" value=<?php echo $currentCinema->getTicketValue() ?> required>
-        </div>
-    </div>
-
-   <!--<button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button> -->
+    <!--<button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button> -->
     <button type="submit" name="idCinema" class="btn btn-secondary bg-danger text-black col-2  float-right" value="<?php echo $currentCinema->getId()?>" >Send</button>
 </form>
 <br>

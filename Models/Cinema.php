@@ -13,14 +13,13 @@ Class Cinema
     private $ticketValue;
     private $active;
 
-    function __construct($name ='', $address='', $number='', $openning='', $closing='', $ticketValue='',$active= false,$id='')
+    function __construct($name ='', $address='', $number='', $openning='', $closing='',$active= false,$id='')
     {
         $this->name = $name;       
         $this->address = $address;
         $this->number = $number;
         $this->openning = $openning;
         $this->closing = $closing;
-        $this->ticketValue = $ticketValue;
         $this->active = $active;
         $this->id = $id;
     }
