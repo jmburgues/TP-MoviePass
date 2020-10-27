@@ -54,12 +54,11 @@
                     
                     $this->setSession($loggedUser);
 
-                    header('Location: '.FRONT_ROOT);
-                        // $movies = $this->DAOMovie->getAll();
-                        // $page = 1;
-                        // $title = "LATEST MOVIES";
-
-                        // ViewController::homeView($movies,$page,$title);
+                    $movies = $this->DAOMovie->getAll();
+                    $page = 1;
+                    $title = "LATEST MOVIES";
+                    
+                    ViewController::homeView($movies,$page,$title);
                 }
                 else{
                     $error = "Invalid user/password!";
