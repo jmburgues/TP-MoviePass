@@ -54,7 +54,12 @@
                     
                     $this->setSession($loggedUser);
 
-                    header('Location:'.FRONT_ROOT.'index.php');
+                    header('Location: '.FRONT_ROOT);
+                        // $movies = $this->DAOMovie->getAll();
+                        // $page = 1;
+                        // $title = "LATEST MOVIES";
+
+                        // ViewController::homeView($movies,$page,$title);
                 }
                 else{
                     $error = "Invalid user/password!";
@@ -71,7 +76,11 @@
                 
                 $this->setSession($newUser);
 
-                header('Location:'.FRONT_ROOT.'index.php');
+                $movies = $this->DAOMovie->getAll();
+                $page = 1;
+                $title = "LATEST MOVIES";
+                
+                ViewController::homeView($movies,$page,$title);
             }
             else{
                 $error = "Username or Email already exists!";
@@ -127,7 +136,7 @@
 
             $_SESSION['loggedUser'] = $user->getUserName();                
             $_SESSION['role'] =  $user->getRole();
-            var_dump($user);
+ 
         }
 
         public function logout() // Terminates a user's session
@@ -137,7 +146,7 @@
                 
             session_destroy();
             
-            $movies = $this->daoMovie->getAll();
+            $movies = $this->DAOMovie->getAll();
             $page = 1;
             $title = "LATEST MOVIES";
             

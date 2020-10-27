@@ -5,7 +5,8 @@
 
         public static function homeView($movies,$page,$title){
             
-            include(VIEWS_PATH.'home.php');
+            require_once(VIEWS_PATH.'nav.php');
+            require_once(VIEWS_PATH.'home.php');
         }
 
         public static function ownerView($usersList){
