@@ -1,8 +1,3 @@
-<?php
-	use Controllers\GenreController as GenreController;
-	use Controllers\MovieController as MovieController;
-?>
-
 <!--Boton HOME-->
 <nav class="navbar navbar-expand-lg p-0" style="background-image: url(https://us.123rf.com/450wm/kebox/kebox1705/kebox170500033/77319728-fondo-degradado-rayas-colores-rojo-y-negro.jpg?ver=6); 
 		background-repeat: no-repeat;     
@@ -25,7 +20,7 @@
 					<button class="btn btn-secondary btn-dark dropdown-toggle" style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Genre
 					</button>
-					
+					<?php var_dump($genresList); ?>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 		
 						<!-- 
@@ -35,9 +30,10 @@
 						Por falta de tiempo no se implemento. 
 						-->
 
-							<?php if(!empty($genresList)){  foreach ($genresList as $genre){?>
+						<?php							
+								foreach ($genresList as $genre){?>
 								<button type ="submit" class="dropdown-item" name="genreId" value="<?php echo $genre->getId(); ?>"><?php echo $genre->getName();?></button>
-							<?php } } ?>
+							<?php } ?>
 
 					</div>
 				</form>
