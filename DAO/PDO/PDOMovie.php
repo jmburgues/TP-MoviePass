@@ -27,9 +27,10 @@
         $parameters['releaseDate'] = $movie->getReleaseDate();
         $parameters['description'] = $movie->getDescription();
         
-
         $this->connection = Connection::GetInstance();
         $response = $this->connection->ExecuteNonQuery($query, $parameters);
+        
+        //AGREGAR CARGA DE GENEROS.
         
         $parameters = array();
         $genreList = $movie->getGenre();
@@ -104,7 +105,7 @@
           array_push($genres, $genre);
         }
           
-          return new Movie($p['duration'],$p['title'],$genres,$p['poster'],$p['releaseDate'], $p['description']);
+          return new Movie($p['duration'],$p['title'],$genres,$p['poster'],$p['releaseDate'], $p['movieDescription'], $p['idMovie']);
         }, $value);
            
         if(empty($resp)){

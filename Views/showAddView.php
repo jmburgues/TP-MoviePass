@@ -16,7 +16,7 @@
             <div class="col mt-2"><input type="time" name="start" min="00:00" max="23:59" required/></div>
             <div class="w-100"></div>
 
-            <div class="col mt-2">Inicio de la función</div>
+            <div class="col mt-2">Fin de la función</div>
             <div class="col mt-2"><input type="time" name="end" min="00:00" max="23:59" required/></div>
             <div class="w-100"></div>
             
