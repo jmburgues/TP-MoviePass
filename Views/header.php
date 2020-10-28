@@ -31,7 +31,8 @@
      -->
      <style type="text/css">
           body {
-               background-color: black;
+               background-color: #D2DAFF; 
+                background-image: none; 
                
           }
      </style>

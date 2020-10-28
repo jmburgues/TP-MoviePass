@@ -7,15 +7,6 @@
     #echo "Current cinema <br>";
     #var_dump($currentCinema);
 ?>
-<!--Estilo de la página-->
-<style type="text/css">
-            body {
-                background-color: white; 
-                background-image: none; 
-                    
-            }
-            </style>
-<br>
 <hr class="my-4">
 
 <hr class="my-4">

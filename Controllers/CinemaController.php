@@ -15,18 +15,25 @@
       $this->DAOMovie = new DAOMovie;
     }
 
+
     //Primer método luego del borón Cines
     public function showCinemas(){
-      $cinemas = $this->DAOCinema->getActiveCinemas();
+      $cinemas = array();
+      $aux = $this->DAOCinema->getActiveCinemas();
+      if (is_array($aux)){
+        $cinemas = $aux;
+      } else{
+        $cinemas[0] = $aux;
+      }
       //adminCinemas muestra el form para agregar un cine y el listado de cines activos
       include VIEWS_PATH.'adminCinemas.php';
     }
 
     //Dirige a la vista cine-modify mostrando el cine con los datos anteriores
     public function modifyCinemaView($idCinema)      {
-        echo "id". $idCinema;
+        //echo "id". $idCinema;
           $currentCinema = $this->DAOCinema->placeholderCinemaDAO($idCinema);
-          print_r ($currentCinema);
+          //print_r ($currentCinema);
           $cinemas = $this->DAOCinema->getActiveCinemas();  
           $movies=$this->DAOMovie->GetAll();
           include VIEWS_PATH.'cine-modify.php';
@@ -43,7 +50,7 @@
 
     //Modifica los valores de los
     public function modifyCinema($id, $name, $address, $number, $openning, $closing){
-     // echo $id, $name, $address, $number, $openning, $closing, $ticketValue;
+      echo $id, $name, $address, $number, $openning, $closing;
       $cinemasList = $this->DAOCinema->getActiveCinemas();
       foreach($cinemasList as $cinemas){
         if ($cinemas->getId() == $id) {
@@ -58,9 +65,7 @@
             $this->DAOCinema->modify($newCinema);
           }  
         }
-        $cinemas = $this->DAOCinema->getActiveCinemas();
-        $movies=$this->DAOMovie->GetAll();
-      include VIEWS_PATH.'adminCinemas.php';
+      $this->showCinemas();
     }
 
     //Agrega un nuevo cinema
@@ -104,7 +109,8 @@
         }
         $cinemas = $this->DAOCinema->getActiveCinemas();
         $movies=$this->DAOMovie->GetAll();
-        include VIEWS_PATH.'adminCinemas.php';
+        $this->showCinemas();
+        //include VIEWS_PATH.'adminCinemas.php';
     }
 
   }

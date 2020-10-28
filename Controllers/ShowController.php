@@ -3,6 +3,7 @@
 
     use DAO\DAOMovie as DAOMovie;
     use DAO\PDO\PDORoom as DAORoom;
+    use DAO\PDO\PDOMovie as PDOMovie;
     use DAO\PDO\PDOShow as DAOShow;
     use Models\Show as Show;
 
@@ -10,12 +11,14 @@
         private $DAOMovie;
         private $DAORoom;
         private $DAOShow;
+        private $PDOMovie;
 
 
         public function __construct(){
             $this->DAOMovie = new DAOMovie();   
             $this->DAORoom = new DAORoom(); 
-            $this->DAOShow = new DAOShow();        
+            $this->DAOShow = new DAOShow();    
+            $this->PDOMovie = new PDOMovie();        
         }
         
     public function showShows(){
@@ -26,7 +29,8 @@
         }else{
             $shows[0] = $aux;
         }
-        include VIEWS_PATH.'showAddView.php';
+
+      //  include VIEWS_PATH.'showAddView.php';
         include VIEWS_PATH.'adminShows.php';
     }
     
@@ -39,6 +43,8 @@
     public function addShow($date, $start, $end, $spectators){
         $shows=$this->DAOShow->getAll();
         $movies=$this->DAOMovie->GetAll();
+        $moviesDB = $this->PDOMovie->getAll();
+        print_r($moviesDB);
         include VIEWS_PATH.'listMoviesAdmin.php';
     }
 

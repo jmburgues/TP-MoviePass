@@ -1,17 +1,7 @@
 <?php
     require_once('nav.php');
     require_once('header.php');
-    
 ?>
-<!--Estilo de la página-->
-    <style type="text/css">
-            body {
-                background-color: white; 
-                background-image: none; 
-            }
-            </style>
-
-
 <!--container--><div class="container mt-5" >   
 <form  action="<?php echo FRONT_ROOT ?>Cinema/AddCinema" method="POST">
         <div class="form-group row ">
@@ -51,12 +41,11 @@
 <!--container--></div>
 <br>
 <?php
-        if (isset($cinemas)) {
+        if (isset($cinemas)) {    
             foreach ($cinemas as $cinema) {
                 ?>                
-<!--container--><div class="container  mt-5">   
-                    
-    <!--card-->     <div class="card card-body ">
+                <div class="container  mt-5 mb-5">       
+                    <div class="card card-body ">
                         <?php echo $cinema->getName() ?>  
                         <ul>
                             <li>Cinema Name: <?php echo $cinema->getName() ?></li>
@@ -64,7 +53,8 @@
                             <li>Cinema Number: <?php echo $cinema->getNumber() ?></li>
                             <li>Cinema Opening: <?php echo $cinema->getOpenning() ?></li>
                             <li>Cinema Closing: <?php echo $cinema->getClosing() ?></li>
-                            <li style="list-style:none">
+                            
+                            <li style="list-style:none; padding-left:70%">
                                 <div class="btn-group" role="group" aria-label="Basic example">    
                                     <form action="<?php echo FRONT_ROOT?>Cinema/modifyCinemaView" method="POST">
                                         <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaM">Modify</button> 
@@ -90,17 +80,13 @@
                 }
                 if(!$cinemas){
                     ?>
-                    <div class="container">   
-                    <div class="card card-body ">
-                        <?php echo "No cinemas loaded yet"?>  
-                    </div>
+                    <div class="container mt-5 mb-5">   
+                        <div class="card card-body ">
+                            <?php echo "No cinemas loaded yet"?>  
+                        </div>
                     </div>
                 <?php
                 }   ?>
-
-<br>
-<br>
-<br>
 
 
 

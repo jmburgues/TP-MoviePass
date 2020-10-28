@@ -11,8 +11,8 @@
             }
             </style>
 <?php 
-    if (isset($movies)) {
-        foreach ($movies as $movie) {
+    if (isset($moviesDB)) {
+        foreach ($moviesDB as $movie) {
 ?>             
     <form action="<?php echo FRONT_ROOT?>Show/selectMovie" method="POST" class= " mt-5">
         <div class= "container">            
