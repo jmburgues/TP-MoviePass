@@ -7,7 +7,7 @@ use Models\Genre as Genre;
 use DAO\DAOMovie as DAOMovie;
 use DAO\DAOCinema as DAOCinema;
 use Models\Cinema as Cinema;
-use DAO\DAOGenre as DAOGenre;
+use DAO\PDO\PDOGenre as DAOGenre;
 use \DateInterval as DateInterval;
 use \DateTime as DateTime;
 
@@ -65,7 +65,7 @@ class MovieController{
 
   function listByGenre($genreId){
     
-    $genreName = $this->daoGenre->GetById($genreId)->getName();
+    $genreName = $this->DAOGenre->getById($genreId)->getName();
     
     /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
     $genreList = $this->DAOGenre->getGenresList(); 
@@ -121,7 +121,7 @@ class MovieController{
   public function selectMovie($selectedId){
     $cinemas = $this->daoCinema->getActiveCinemas();  
     $movies=$this->daoMovie->getAll();
-    $listAdminMovies;
+    $listAdminMovies = null;
     foreach($movies as $movie){
       if($movie->getMovieId() == $selectedId){
         $listAdminMovies = $movie;
@@ -133,8 +133,8 @@ class MovieController{
   public function selectRoom($selectedCinemaId, $selectedMovieId){
     $cinemas = $this->daoCinema->getActiveCinemas();  
     $movies=$this->daoMovie->getAll();
-    $currentCinema;
-    $currentMovie;
+    $currentCinema = null;
+    $currentMovie = null;
     foreach($cinemas as $cinema){
       if($cinema->getId() == $selectedCinemaId){
         $currentCinema = $cinema;

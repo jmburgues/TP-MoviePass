@@ -156,7 +156,7 @@
 
             $genreList = $this->DAOGenre->getGenresList();
             $moviesYearList = $this->DAOMovie->getArrayOfYears();
-
+            
             ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
 
             ViewController::navView($genreList,$moviesYearList,null);

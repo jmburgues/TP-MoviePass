@@ -31,13 +31,13 @@
 
 
         // PASADO AL DAO
-        
+
         // function getGenresList(){ // returns an array of strings with all movie's genres. (1st revision)
     
         //     $genres = array();
 
         //     $objectsList = $this->DAOGenre->getAll();
-        
+      
         //     foreach($objectsList as $oneGenre){
         //       array_push($genres,$oneGenre);
         //     }
