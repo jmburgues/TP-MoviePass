@@ -8,9 +8,8 @@
 
 <!--Primer vista al entrar a la página-->
 <!--Jumbotron-->
-<div class="jumbotron mb-5 mt-5 text-center bg-white homeTitle" style="opacity:0.9; height:400px;">
-  <div style=" background-image: url(Views/img/Logo.bmp); background-repeat: no-repeat; height:400px; margin-top: -64px; margin-left:37%">
-  </div>
+<div style="background-color:black; opacity:0.9; height:300px;">
+  <img style="width:400px; height:300px; margin-left: auto; margin-right: auto; display:block;" src="https://i.ibb.co/bgKDH6C/Logo-Black.png">
 </div>
 
 <div>

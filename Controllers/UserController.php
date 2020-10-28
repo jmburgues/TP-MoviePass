@@ -144,11 +144,12 @@
                 session_start();
                 
             session_destroy();
-            
+            session_start();
             $movies = $this->DAOMovie->getAll();
             $page = 1;
             $title = "LATEST MOVIES";
             
+
             ViewController::homeView($movies,$page,$title);
         }
 
