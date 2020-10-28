@@ -12,7 +12,7 @@ class Room
     private $roomType;
     private $active;
 
-    function __construct($name='',$capacity='',$IDCinema='',$price='',$roomTyperoom='',$active=true,$ID=''){
+    function __construct($name='',$capacity='',$IDCinema='',$price='',$roomType='',$active=true,$ID=''){
         $this->name = $name;
         $this->capacity = $capacity;
         $this->IDCinema = $IDCinema;

@@ -49,7 +49,7 @@
 
     public function getActiveShows(){
         try{
-            $query = "SELECT * FROM ".$this->tableNameShows " WHERE isActive = :active";
+            $query = "SELECT * FROM ".$this->tableNameShows. " WHERE isActive = :active";
             $parameters['active'] = true;
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);

@@ -12,6 +12,7 @@
             </style>
 
 <?php
+
     foreach ($shows as $show) {
                 ?>                
 <!--container--><div class="container  mt-5">   
@@ -19,10 +20,11 @@
     <!--card-->     <div class="card card-body ">
                         <ul>
                             <li>show dia: <?php echo $show->getDate() ?></li>
-                            <li>show horario: <?php echo $show->getHour() ?></li>
+                            <li>show horario start: <?php echo $show->getStart() ?></li>
+                            <li>show horario end: <?php echo $show->getEnd() ?></li>
                             <li>show spectators: <?php echo $show->getSpectators()?></li>
                             <li>show Sala: <?php echo $show->getIdRoom()?></li>
-                            <li>show Movie: <?php echo $show->getRoomId()?></li>
+                            <li>show Movie: <?php echo $show->getIdMovie()?></li>
                             
                         </ul>  
 

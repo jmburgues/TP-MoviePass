@@ -2,8 +2,8 @@
     namespace Controllers;
 
     use DAO\DAOMovie as DAOMovie;
-    use DAO\DAORoom as DAORoom;
-    use DAO\DAOShow as DAOShow;
+    use DAO\PDO\PDORoom as DAORoom;
+    use DAO\PDO\PDOShow as DAOShow;
     use Models\Show as Show;
 
     class ShowController{
@@ -19,7 +19,14 @@
         }
         
     public function showShows(){
-        $shows=$this->DAOShow->getAll();
+        $shows = array();
+        $aux =$this->DAOShow->getAll();
+        if (is_array($aux)){
+            $shows = $aux;
+        }else{
+            $shows[0] = $aux;
+        }
+        include VIEWS_PATH.'showAddView.php';
         include VIEWS_PATH.'adminShows.php';
     }
     
@@ -29,19 +36,20 @@
         include VIEWS_PATH.'showAddView.php';
     }
 
-    public function addShow($date, $time, $spectators){
+    public function addShow($date, $start, $end, $spectators){
         $shows=$this->DAOShow->getAll();
         $movies=$this->DAOMovie->GetAll();
         include VIEWS_PATH.'listMoviesAdmin.php';
     }
 
-    public function addCurrentShow( $date, $time, $spectators, $selectedMovieId, $roomId ){
+    public function addCurrentShow( $date, $start, $end, $spectators, $selectedMovieId, $roomId ){
         $show = new Show();
         $show->setDate($date);
-        $show->setHour($time);
-        $show->setIdRoom($roomId);
+        $show->setStart($start);
+        $show->setEnd($end);
         $show->setSpectators($spectators);
-        $show->setRoomId($roomId);
+        $show->setIdMovie($selectedMovieId);
+        $show->setIdRoom($roomId);
         
         $rooms = $this->DAORoom->getAll(); 
         $movies=$this->DAOMovie->GetAll();
@@ -67,15 +75,17 @@
         include VIEWS_PATH.'adminShows.php';
     }
 
-    public function selectMovie($date, $time, $spectators, $movieId){
-        echo $movieId;
+    public function selectMovie($date, $start, $end, $spectators, $movieId){
+     //   echo $movieId;
         $movies=$this->DAOMovie->GetAll();
         foreach($movies as $movie){
             if($movie->getMovieId() == $movieId){
-                $selectedMovieId = $movie->getMovieId();
+                $selectedMovie = $movie;
             }
         } 
         $rooms = $this->DAORoom->getAll(); 
+      //  print_r($rooms);
+
         include VIEWS_PATH.'listCinemasAdmin.php';
     }
 }

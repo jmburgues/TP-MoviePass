@@ -7,7 +7,7 @@
 <!--Estilo de la página-->
     <style type="text/css">
             body {
-                background-color: white; 
+                background-color: #000417; 
                 background-image: none; 
             }
             </style>

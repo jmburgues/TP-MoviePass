@@ -1,6 +1,7 @@
 <?php
     namespace Controllers;
-    use DAO\DAORoom as DAORoom;
+
+    use DAO\PDO\PDORoom as DAORoom;
     use Models\Room as Room;
 
     class RoomController{
@@ -12,11 +13,23 @@
 
     public function showRooms(){
         $rooms = $this->DAORoom->getAll();
+        /*$shows = array();
+        $aux =$this->DAOShow->getAll();
+        if (is_array($aux)){
+            $shows = $aux;
+        }else{
+            $shows[0] = $aux;
+        }
+        include VIEWS_PATH.'showAddView.php';
+        include VIEWS_PATH.'adminShows.php';*/
+
         include VIEWS_PATH.'addRoomView.php';
     }
 
     public function addRoomView($idCinema){
-        $rooms = $this->DAORoom->getAll();
+        $rooms = array();
+        $rooms = $this->DAORoom->getByCinema($idCinema);
+        
         include VIEWS_PATH.'addRoomView.php';
     }
 
