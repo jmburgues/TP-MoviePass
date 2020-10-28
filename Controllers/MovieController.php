@@ -37,11 +37,14 @@ class MovieController{
 
     public function selectIdMovie($idMovie){
       $movies = $this->daoMovie->getAll();
+      echo "ENTRA";
       $movieToAdd;
+      echo $idMovie;
       foreach($movies as $movie){
         if($movie->getMovieID() == $idMovie){
           $movieToAdd = $movie;
         }
+        print_r($movie);
       }
  /*     echo $movieToAdd->getMovieID();
       echo "<br>";

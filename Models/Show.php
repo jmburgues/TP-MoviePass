@@ -73,9 +73,9 @@ class Show
     {
         $this->active = $active;
     }
-    public function setIdMovie($movie)
+    public function setIdMovie($idMovie)
     {
-        $this->movie = $movie;
+        $this->idMovie = $idMovie;
     }
 
     public function setDate($date)

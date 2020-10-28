@@ -56,6 +56,21 @@
         $show->setSpectators($spectators);
         $show->setIdMovie($selectedMovieId);
         $show->setIdRoom($roomId);
+
+    echo $date;
+      echo "<br>";
+      echo $start;
+      echo "<br>";
+      echo $end;
+      echo "<br>";
+      echo $spectators;
+      echo "<br>";
+      echo $selectedMovieId;
+      echo "<br>";
+      echo $roomId;
+      echo "<br>";
+
+
         echo "<pre>";
         print_r($show);
         echo $show->getIdMovie();
@@ -63,7 +78,9 @@
 
         $rooms = $this->DAORoom->getAll(); 
         $movies=$this->DAOMovie->GetAll();
-        
+        echo "<pre>";
+        //var_dump($movies);
+        echo "</pre>";
         foreach($rooms as $room){
             if($room->getRoomID() == $roomId){
                 $selectedRoom = $room;
