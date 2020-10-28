@@ -29,10 +29,13 @@
 
         public function adminView()
         {
-            $cinemas=$this->DAOCinema->getActiveCinemas();
-            $movies=$this->DAOMovie->GetAll();
-            include VIEWS_PATH.'adminView.php';
-            //include_once VIEWS_PATH.'footer.php';
+            $genreList = $this->DAOGenre->getGenresList();
+            $moviesYearList = $this->DAOMovie->getArrayOfYears();
+
+            ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
+            
+            ViewController::adminView();
+
         }
 
         public function ownerView()
@@ -53,6 +56,11 @@
                 if($loggedUser){
                     
                     $this->setSession($loggedUser);
+
+                    $genreList = $this->DAOGenre->getGenresList();
+                    $moviesYearList = $this->DAOMovie->getArrayOfYears();
+        
+                    ViewController::navView($genreList,$moviesYearList,null);
 
                     $movies = $this->DAOMovie->getAll();
                     $page = 1;
@@ -146,11 +154,12 @@
             session_destroy();
             session_start();
 
-            /*
-            agregar varabiels para NAV
-            */
+            $genreList = $this->DAOGenre->getGenresList();
+            $moviesYearList = $this->DAOMovie->getArrayOfYears();
 
-            ViewController::navView($genresList,$moviesYearList,null);
+            ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
+
+            ViewController::navView($genreList,$moviesYearList,null);
 
             $movies = $this->DAOMovie->getAll();
             $page = 1;

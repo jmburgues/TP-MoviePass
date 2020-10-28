@@ -13,6 +13,11 @@
             require_once(VIEWS_PATH.'nav.php');
         }
 
+        public static function adminView(){
+                
+            require_once(VIEWS_PATH.'adminView.php');
+        }
+
         public static function ownerView($usersList){
                 
             require_once(VIEWS_PATH.'ownerView.php');
