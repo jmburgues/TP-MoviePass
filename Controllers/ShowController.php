@@ -3,6 +3,7 @@
 
     use DAO\DAOMovie as DAOMovie;
     use DAO\PDO\PDORoom as DAORoom;
+    use DAO\PDO\PDOMovie as PDOMovie;
     use DAO\PDO\PDOShow as DAOShow;
     use Models\Show as Show;
 
@@ -10,12 +11,14 @@
         private $DAOMovie;
         private $DAORoom;
         private $DAOShow;
+        private $PDOMovie;
 
 
         public function __construct(){
             $this->DAOMovie = new DAOMovie();   
             $this->DAORoom = new DAORoom(); 
-            $this->DAOShow = new DAOShow();        
+            $this->DAOShow = new DAOShow();    
+            $this->PDOMovie = new PDOMovie();        
         }
         
     public function showShows(){
@@ -26,7 +29,8 @@
         }else{
             $shows[0] = $aux;
         }
-        include VIEWS_PATH.'showAddView.php';
+
+      //  include VIEWS_PATH.'showAddView.php';
         include VIEWS_PATH.'adminShows.php';
     }
     
@@ -39,6 +43,8 @@
     public function addShow($date, $start, $end, $spectators){
         $shows=$this->DAOShow->getAll();
         $movies=$this->DAOMovie->GetAll();
+        $moviesDB = $this->PDOMovie->getAll();
+       // print_r($moviesDB);
         include VIEWS_PATH.'listMoviesAdmin.php';
     }
 
@@ -50,10 +56,31 @@
         $show->setSpectators($spectators);
         $show->setIdMovie($selectedMovieId);
         $show->setIdRoom($roomId);
-        
+
+    echo $date;
+      echo "<br>";
+      echo $start;
+      echo "<br>";
+      echo $end;
+      echo "<br>";
+      echo $spectators;
+      echo "<br>";
+      echo $selectedMovieId;
+      echo "<br>";
+      echo $roomId;
+      echo "<br>";
+
+
+        echo "<pre>";
+        print_r($show);
+        echo $show->getIdMovie();
+        echo "</pre>";
+
         $rooms = $this->DAORoom->getAll(); 
         $movies=$this->DAOMovie->GetAll();
-        
+        echo "<pre>";
+        //var_dump($movies);
+        echo "</pre>";
         foreach($rooms as $room){
             if($room->getRoomID() == $roomId){
                 $selectedRoom = $room;
@@ -68,6 +95,7 @@
 
         $shows=$this->DAOShow->getAll();
         //COMPROBACION DE LOS 15 MINUTOS ETC ETC
+
         $this->DAOShow->add($show);
         //$movies->setIdShow();
 
@@ -76,7 +104,7 @@
     }
 
     public function selectMovie($date, $start, $end, $spectators, $movieId){
-     //   echo $movieId;
+       // echo $movieId;
         $movies=$this->DAOMovie->GetAll();
         foreach($movies as $movie){
             if($movie->getMovieId() == $movieId){

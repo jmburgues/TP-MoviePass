@@ -3,16 +3,6 @@
     require_once('header.php');
     
 ?>
-<!--Estilo de la página-->
-    <style type="text/css">
-            body {
-                background-color: white; 
-                background-image: none; 
-            }
-            </style>
-
-
-
 
     <?php 
         if(is_array($rooms)){
@@ -66,7 +56,15 @@
                 </div>
                 </div>
        <?php }
-        ?>
+        ?> <?php if(!$rooms){
+            ?>
+            <div class="container mt-5">   
+                <div class="card card-body ">
+                    <?php echo "No cinemas loaded yet"?>  
+                </div>
+            </div>
+        <?php
+        }   ?>
         <div class="container mt-5" >   
 
 <form  action="<?php echo FRONT_ROOT ?>Room/addRoom" method="POST">

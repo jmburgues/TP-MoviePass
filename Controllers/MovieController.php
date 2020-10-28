@@ -5,6 +5,7 @@ namespace Controllers;
 use Models\Movie as Movie;
 use Models\Genre as Genre;
 use DAO\DAOMovie as DAOMovie;
+use DAO\PDO\PDOMovie as PDOMovie;
 use DAO\DAOCinema as DAOCinema;
 use Models\Cinema as Cinema;
 use DAO\DAOGenre as DAOGenre;
@@ -14,6 +15,7 @@ use \DateTime as DateTime;
 class MovieController{
 
   private $daoMovie;
+  private $pdoMovie;
   private $daoGenre;
   private $daoCinema;
   private $currentMovie;
@@ -23,8 +25,43 @@ class MovieController{
     $this->daoMovie = new DAOMovie();
     $this->daoGenre = new DAOGenre();
     $this->daoCinema = new DAOCinema();
+    $this->pdoMovie = new PDOMovie();
 
   }
+
+    public function selectMoviesView(){
+      $movies = $this->daoMovie->getAll();
+      
+      include(VIEWS_PATH.'selectMoviesView.php');
+    }
+
+    public function selectIdMovie($idMovie){
+      $movies = $this->daoMovie->getAll();
+      $movieToAdd;
+      foreach ($movies as $movie) {
+          if ($movie->getMovieID() == $idMovie) {
+              $movieToAdd = $movie;
+          }
+      }
+        
+      $moviesBDD = $this->pdoMovie->getAll();
+      foreach($moviesBDD as $movie){
+        echo $movie->getTitle();
+        echo "<br>";
+      }
+
+      if(!($this->pdoMovie->getById($idMovie))){
+        $this->pdoMovie->add($movieToAdd);
+
+      }else{
+        $message = "Movie already on database";
+        echo "<script type='text/javascript'>alert('$message');</script>"; 
+      }
+      
+      $moviesBDD = $this->pdoMovie->getAll();
+      include(VIEWS_PATH.'listMoviesBDD.php');
+    }
+
 
   /*Función que trae de la API e invoca funciones del DAO para guardar en archivo JSON */
   function getLatestMoviesFromApi(){  

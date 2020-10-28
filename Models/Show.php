@@ -12,7 +12,7 @@ class Show
     private $spectators;
     private $active;
     
-    function __construct($date='', $start='', $end='' ,$idRoom='', $idMovie='', $spectators='',$active=TRUE, $idShow='')
+    function __construct($date='', $start='', $end='' ,$idRoom='', $idMovie='', $spectators='', $idShow='')
     {
         $this->date = $date;
         $this->start = $start;
@@ -20,7 +20,7 @@ class Show
         $this->idRoom = $idRoom;
         $this->idMovie = $idMovie;
         $this->spectators = $spectators;
-        $this->active = $active;
+       // $this->active = $active;
         $this->idShow =  $idShow; //no es incremental porque lo recibe de la API
     }
 
@@ -73,9 +73,9 @@ class Show
     {
         $this->active = $active;
     }
-    public function setIdMovie($movie)
+    public function setIdMovie($idMovie)
     {
-        $this->movie = $movie;
+        $this->idMovie = $idMovie;
     }
 
     public function setDate($date)

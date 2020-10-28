@@ -3,18 +3,11 @@
     require_once('header.php');
     
 ?>
-<!--Estilo de la página-->
-    <style type="text/css">
-            body {
-                background-color: white; 
-                background-image: none; 
-            }
-            </style>
 <?php 
-    if (isset($movies)) {
-        foreach ($movies as $movie) {
+    if (isset($moviesDB)) {
+        foreach ($moviesDB as $movie) {
 ?>             
-    <form action="<?php echo FRONT_ROOT?>Show/selectMovie" method="POST" class= " mt-5">
+    <form action="<?php echo FRONT_ROOT?>Show/selectMovie" method="POST" class= " mt-5 mb-5">
         <div class= "container">            
             <div class="card card-body ">
                 <input type="hidden"  value="<?php echo $date?>" name="date" ></input>     
