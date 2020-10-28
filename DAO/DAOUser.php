@@ -44,7 +44,7 @@ class DAOUser
             $valueArray['email'] = $user->getEmail();
             $valueArray['birthDate'] = $user->getBirthDate();
             $valueArray['DNI'] = $user->getDNI();
-            $valueArray['role'] = $user->getRole();
+            $valueArray['userRole'] = $user->getRole();
             
             array_push($arrayToEncode, $valueArray);
         }
@@ -64,7 +64,7 @@ class DAOUser
             foreach ($arrayToDecode as $valueArray) {
                 $user = new User($valueArray['userName'], $valueArray['password'],
                 $valueArray['email'], $valueArray['birthDate'], $valueArray['DNI'],
-                $valueArray['role']);
+                $valueArray['userRole']);
 
                 array_push($this->users, $user);
             }

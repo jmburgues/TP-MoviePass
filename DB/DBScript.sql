@@ -3,6 +3,17 @@ USE MOVIEPASSDB;
 
 #drop database MOVIEPASSDB
 
+CREATE TABLE IF NOT EXISTS MOVIES(
+idMovie int not null unique,
+duration int not null,
+title varchar(50) not null,
+poster varchar(100) not null, #esto es una URL ??
+releaseDate Date,
+movieDescription varchar(400),
+CONSTRAINT pk_idMovie primary key (idMovie)
+);
+
+
 CREATE TABLE IF NOT EXISTS CINEMAS(
 idCinema int auto_increment,
 cinemaName varchar(30) not null unique,
@@ -64,23 +75,14 @@ genreName varchar(50),
 CONSTRAINT pk_idGenre primary key (idGenre)
 );
 
-CREATE TABLE IF NOT EXISTS MOVIES(
-idMovie int not null unique,
-duration int not null,
-title varchar(50) not null,
-poster varchar(100) not null, #esto es una URL ??
-releaseDate Date,
-movieDescription varchar(400),
-CONSTRAINT pk_idMovie primary key (idMovie)
-);
 
 CREATE TABLE IF NOT EXISTS GENRES_X_MOVIES(
 idGenre int not null,
 idMovie int not null,
 genreName varchar(50),
 CONSTRAINT pk_idGenre_idMovie primary key (idGenre, idMovie),
-CONSTRAINT fk_idGenre foreign key (idGenre) references GENRES(idGenre),
-CONSTRAINT fk_idMovie foreign key (idMovie) references MOVIES(idMovie)
+CONSTRAINT fk_idGenre2 foreign key (idGenre) references GENRES(idGenre),
+CONSTRAINT fk_idMovie2 foreign key (idMovie) references MOVIES(idMovie)
 );
 
 CREATE TABLE IF NOT EXISTS USERS(
@@ -89,7 +91,7 @@ pass varchar(50),
 email varchar(50) unique,
 birthdate Date,
 dni int,
-isAdmin boolean default false,
+userRole varchar(10) default 'user',
 CONSTRAINT pk_username primary key (username)
 );
 
@@ -119,14 +121,10 @@ INSERT INTO CINEMAS (cinemaName, adress, adressNumber, openning,  closing ) VALU
 INSERT INTO CINEMAS (cinemaName, adress, adressNumber, openning,  closing ) VALUES ("Grande", "Dorrego", 8741, 08-00, 22-30);
 UPDATE CINEMAS SET isActive=false WHERE idCinema=3;
 
+insert into USERS (username,pass,email,birthdate,dni,userRole) values ('user',1234,'u@u.com','1111-11-11',11111,'user');
+insert into USERS (username,pass,email,birthdate,dni,userRole) values ('admin',1234,'a@a.com','1111-11-11',11111,'admin');
+insert into USERS (username,pass,email,birthdate,dni,userRole) values ('owner',1234,'o@o.com','1111-11-11',11111,'owner');
+
 INSERT INTO ROOMS (roomName, capacity, idCinema, price) VALUES ("SALA 1", "70", 1, 54);
 INSERT INTO ROOMS (roomName, capacity, idCinema, price) VALUES ("SALA 2", "80", 2, 70);
 INSERT INTO ROOMS (roomName, capacity, idCinema, price) VALUES ("SALA 3", "90", 1, 40);
-
-INSERT INTO MOVIES (idMovie, duration, title, poster, releaseDate, movieDescription) VALUES (1234, 50-10, "Mulan", "poster mulan", 12/20/70, "Pelicula de Disney");
-INSERT INTO MOVIES (idMovie, duration, title, poster, releaseDate, movieDescription) VALUES (4567, 40-10, "Dalmatas", "poster dalmatas", 11/10/20, "Pelicula de Disney");
-
-INSERT INTO SHOWS (dateSelected, startsAt, endsAt, spectators, idRoom, idMovie) VALUES (12-10-2020, 10-30, 18-00, 50, 1, 1234);
-
-
-

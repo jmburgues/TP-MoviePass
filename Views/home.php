@@ -11,8 +11,6 @@
   $pages = ($total / $articlePerPage );
   $pages = ceil($pages);
   $init = ($page-1)*$articlePerPage;
-  echo "HOLA";
-  //require_once(VIEWS_PATH.'nav.php');
 ?>
 
 <!--Primer vista al entrar a la página-->

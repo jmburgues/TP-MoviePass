@@ -11,15 +11,15 @@
 
     public function add($user){
       try{
-        $query = "INSERT INTO ".$this->tableName." (username,pass,email,birthdate,dni,role)
-        values(:userName, :password, :email,:birthDate, :dni, :role);";
+        $query = "INSERT INTO ".$this->tableName." (username,pass,email,birthdate,dni,userRole)
+        values(:userName, :password, :email,:birthDate, :dni, :userRole);";
 
         $parameters['userName'] = $user->getUserName();
         $parameters['password'] = $user->getPassword();
         $parameters['email'] = $user->getEmail();
         $parameters['birthDate'] = $user->getBirthDate();
         $parameters['dni'] = $user->getDNI();
-        $parameters['role'] = $user->getRole();
+        $parameters['userRole'] = $user->getRole();
 
         $this->connection = Connection::GetInstance();
 
@@ -67,7 +67,7 @@
 			$value = is_array($value) ? $value : [];
 			$resp = array_map(function($p){
       
-				return new User ($p['username'],$p['pass'],$p['email'],$p['birthdate'],$p['dni'],$p['role']);
+				return new User ($p['username'],$p['pass'],$p['email'],$p['birthdate'],$p['dni'],$p['userRole']);
         }, $value);
         
       if(empty($resp)){
