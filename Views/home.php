@@ -9,7 +9,7 @@
 <!--Primer vista al entrar a la página-->
 <!--Jumbotron-->
 <div style="background-color:black; opacity:0.9; height:300px;">
-  <img style="width:400px; height:300px; margin-left: auto; margin-right: auto; display:block;" src="https://i.ibb.co/bgKDH6C/Logo-Black.png">
+  <img style="width:400px; height:300px; margin-left: auto; margin-right: auto; display:block;" src="https://i.ibb.co/84W4VgT/Logo-Black.png">
 </div>
 
 <div>
