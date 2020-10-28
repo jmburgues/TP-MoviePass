@@ -35,9 +35,9 @@
 						Por falta de tiempo no se implemento. 
 						-->
 
-							<?php foreach ($genresList as $genre){?>
+							<?php if(!empty($genresList)){  foreach ($genresList as $genre){?>
 								<button type ="submit" class="dropdown-item" name="genreId" value="<?php echo $genre->getId(); ?>"><?php echo $genre->getName();?></button>
-							<?php } ?>
+							<?php } } ?>
 
 					</div>
 				</form>
@@ -53,9 +53,9 @@
 					</button>
 					
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<?php foreach($moviesYearList as $year){ ?>
+						<?php if(!empty($moviesYearList)){ foreach($moviesYearList as $year){ ?>
 							<button type ="submit" class="dropdown-item" name="year" value="<?php echo $year;?>"><?php echo $year;?></button>
-						<?php } ?>
+						<?php } } ?>
 					</div>
 				</form>
 			</div>

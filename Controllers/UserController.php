@@ -1,23 +1,21 @@
 <?php
     namespace Controllers;
 
-    use DAO\PDO\PDOUser as DAOUser;
     use Models\User as User;
-    use DAO\DAOCinema as DAOCinema;
-    use Models\Cinema as Cinema;
-    use Models\Movie as Movie;
-    use DAO\DAOMovie as DAOMovie;
+    use DAO\PDO\PDOUser as DAOUser;
+    use DAO\PDO\PDOGenre as DAOGenre;
+    use DAO\PDO\PDOMovie as DAOMovie;
 
     class UserController
     {
         private $DAOUser;
-        private $DAOCinema;
+        private $DAOGenre;
         private $DAOMovie;
 
         public function __construct()
         {
             $this->DAOUser = new DAOUser();
-            $this->DAOCinema = new DAOCinema();
+            $this->DAOCinema = new DAOGenre();
             $this->DAOMovie = new DAOMovie();
         }
 

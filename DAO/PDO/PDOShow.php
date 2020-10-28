@@ -3,7 +3,6 @@
 
   use \Exception as Exception;
   use Models\Show as Show;
-  use Models\Movie as Movie;
   use DAO\PDO\Connection as Connection;
 
 

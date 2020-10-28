@@ -3,15 +3,12 @@
 
   use \Exception as Exception;
   use Models\Room as Room;
-  #use Models\Cinema as Cinema;
   use DAO\PDO\Connection as Connection;
 
 
   class PDORoom{
     private $connection;
     private $tableNameRooms ='ROOMS';
-    #private $tableNameCinemas ='CINEMAS';
-    #private $tableNameRoomType ='ROOM_TYPE';
 
     public function add($room){
         try{

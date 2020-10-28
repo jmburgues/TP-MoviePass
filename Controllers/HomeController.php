@@ -1,7 +1,7 @@
 <?php
     namespace Controllers;
-    use DAO\DAOMovie as DAOMovie;
-    use DAO\DAOGenre as DAOGenre;
+    use DAO\PDO\PDOMovie as DAOMovie;
+    use DAO\PDO\PDOGenre as DAOGenre;
     
     class HomeController
     {

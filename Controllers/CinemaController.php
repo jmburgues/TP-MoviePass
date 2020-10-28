@@ -2,9 +2,8 @@
   namespace Controllers;
   
   use DAO\PDO\PDOCinema as DAOCinema;
+  use DAO\PDO\PDOMovie as DAOMovie;
   use Models\Cinema as Cinema;
-  use Models\Movie as Movie;
-  use DAO\DAOMovie as DAOMovie;
 
   class CinemaController{
     private $DAOCinema;

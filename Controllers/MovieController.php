@@ -2,15 +2,13 @@
 
 namespace Controllers;
 
+use \DateTime as DateTime;
 use Models\Movie as Movie;
 use Models\Genre as Genre;
-use DAO\DAOMovie as DAOMovie;
+use DAO\PDO\PDOMovie as DAOMovie;
 use DAO\PDO\PDOMovie as PDOMovie;
-use DAO\DAOCinema as DAOCinema;
-use Models\Cinema as Cinema;
+use DAO\PDO\PDOCinema as DAOCinema;
 use DAO\PDO\PDOGenre as DAOGenre;
-use \DateInterval as DateInterval;
-use \DateTime as DateTime;
 
 class MovieController{
 
@@ -37,7 +35,7 @@ class MovieController{
 
     public function selectIdMovie($idMovie){
       $movies = $this->daoMovie->getAll();
-      $movieToAdd;
+      $movieToAdd = null;
       foreach ($movies as $movie) {
           if ($movie->getMovieID() == $idMovie) {
               $movieToAdd = $movie;

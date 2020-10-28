@@ -64,7 +64,7 @@
       try {
         $query = "SELECT name FROM ".$this->tableName;
         $this->connection = Connection::GetInstance();
-        $resultSet = $this->connection->Execute($query);
+        return $resultSet = $this->connection->Execute($query);
       } 
       catch (Exception $ex) {
         throw $ex;

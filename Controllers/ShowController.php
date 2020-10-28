@@ -1,9 +1,8 @@
 <?php
     namespace Controllers;
 
-    use DAO\DAOMovie as DAOMovie;
+    use DAO\PDO\PDOMovie as DAOMovie;
     use DAO\PDO\PDORoom as DAORoom;
-    use DAO\PDO\PDOMovie as PDOMovie;
     use DAO\PDO\PDOShow as DAOShow;
     use Models\Show as Show;
 
@@ -18,7 +17,7 @@
             $this->DAOMovie = new DAOMovie();   
             $this->DAORoom = new DAORoom(); 
             $this->DAOShow = new DAOShow();    
-            $this->PDOMovie = new PDOMovie();        
+            $this->PDOMovie = new DAOMovie();        
         }
         
     public function showShows(){
