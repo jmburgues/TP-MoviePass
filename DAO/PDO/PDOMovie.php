@@ -6,6 +6,7 @@
   use Models\Genre as Genre;
   use DAO\PDO\Connection as Connection;
   use DAO\PDO\PDOGenre as PDOGenre;
+  use \DateTime as DateTime;
 
   class PDOMovie{
     private $connection;
@@ -86,6 +87,24 @@
           throw $ex;
       }
     }
+
+    public function getArrayOfYears(){
+      $moviesList = $this->getAll();
+
+      $years = array();
+
+      foreach ($moviesList as $oneMovie) {
+        $releaseDate = $oneMovie->getReleaseDate();
+        
+        $releaseYear = DateTime::createFromFormat('Y-m-d', $releaseDate)->format('Y'); 
+        
+        if (!in_array($releaseYear, $years)) {
+          array_push($years, $releaseYear);
+        }
+      }
+      return $years; 
+    }
+
     #Seguir trabajando en este
     private function parseToObject($value){
 			$value = is_array($value) ? $value : [];
