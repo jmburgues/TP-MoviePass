@@ -51,7 +51,7 @@ class Show
     
     public function getIdMovie()
     {
-        return $this->movie;
+        return $this->idMovie;
     }
 
     public function getActive()

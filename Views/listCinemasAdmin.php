@@ -20,16 +20,16 @@
     print_r($rooms);
     echo "</pre>";
 */?>             
-    
     <?php 
-    
 ?>             
 <hr class="my-4">
     <div class="container  mt-3">   
         <div class="card card-body ">
             <ul>
                 <li>Dia elegido: <?php echo $date ?></li>
-                <li>Hora elegido: <?php echo $time ?></li>
+                <li>Hora elegido: <?php echo $start ?></li>
+                <li>Hora elegido: <?php echo $end ?></li>
+                <li>Hora elegido: <?php echo $spectators ?></li>
                 <li>Película elegido: <?php echo $selectedMovie->getTitle() ?></li>
             </ul>
         </div>
@@ -42,7 +42,8 @@
             <div class="container  mt-5">           
                 <div class="card card-body ">
                         <input type="hidden"  value="<?php echo $date?>" name="date" ></input>     
-                        <input type="hidden"  value="<?php echo $time?>" name="time" ></input>     
+                        <input type="hidden"  value="<?php echo $start?>" name="start" ></input>
+                        <input type="hidden"  value="<?php echo $end?>" name="end" ></input>     
                         <input type="hidden"  value="<?php echo $spectators?>" name="spectators" ></input>     
                         <input type="hidden"  value="<?php echo $selectedMovieId ?>" name="selectedMovieId" ></input>     
                         <button class="font-weight-bold text-center text-uppercase mb-2"  type="submit" value="<?php echo $room->getRoomId()?>" name="roomId" style=" text-align:left; border: none; background: none;"><?php echo $room->getName()?></button>
@@ -51,6 +52,8 @@
                         <li style="list-style:none">room Name: <?php echo $room->getName() ?></li>
                         <li style="list-style:none">room Capacity: <?php echo $room->getCapacity() ?></li>
                         <li style="list-style:none">room Price: <?php echo $room->getPrice() ?></li>
+                        <li style="list-style:none">room id cinema: <?php echo $room->getIDCinema() //var($this->DAORoom->getByCinema($room->getIDCinema())[0]->getName())  ?></li>
+
                     </ul>  
                 </div>
             </div>

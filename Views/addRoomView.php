@@ -14,29 +14,59 @@
 
 
 
-    <?php foreach($rooms as $room){
+    <?php 
+        if(is_array($rooms)){
+        foreach ($rooms as $room) {
+            ?>
+            <div class="container mt-5">   
+                <div class="card card-body ">
+                <ul>
+                    <li>Room Name: <?php echo $room->getName() ?></li>
+                    <li>Room capacity: <?php echo $room->getCapacity() ?></li>
+                    <li>Room price: <?php echo $room->getPrice() ?></li>
+                    <li>Room id cinema: <?php echo $room->getIDCinema() ?></li>
+                    <li style="list-style:none">
+            <!--     <div class="btn-group" role="group" aria-label="Basic example">     
+                        <form action="<?php echo FRONT_ROOT?>Room/modifyRoomView" method="POST">
+                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getRoomID()?>"   name="idRoomM">Modify</button> 
+                        </form>
+                        <form action="<?php echo FRONT_ROOT?>Room/deleteRoom" method="POST">
+                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getRoomID()?>"   name="idRoomD">Delete</button> 
+                        </form>
+                        </div>
+                -->
+                    </li>         
+                </ul>
+                </div>
+                </div>
+                <?php
+        }
+        }else{
+            $room = $rooms;
+            ?>
+            <div class="container mt-5">   
+                <div class="card card-body ">
+                <ul>
+                    <li>Room Name: <?php echo $room->getName() ?></li>
+                    <li>Room capacity: <?php echo $room->getCapacity() ?></li>
+                    <li>Room price: <?php echo $room->getPrice() ?></li>
+                    <li>Room id cinema: <?php echo $room->getIDCinema() ?></li>
+                    <li style="list-style:none">
+            <!--     <div class="btn-group" role="group" aria-label="Basic example">     
+                        <form action="<?php echo FRONT_ROOT?>Room/modifyRoomView" method="POST">
+                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getRoomID()?>"   name="idRoomM">Modify</button> 
+                        </form>
+                        <form action="<?php echo FRONT_ROOT?>Room/deleteRoom" method="POST">
+                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getRoomID()?>"   name="idRoomD">Delete</button> 
+                        </form>
+                        </div>
+                -->
+                    </li>         
+                </ul>
+                </div>
+                </div>
+       <?php }
         ?>
-        <div class="container mt-5">   
-            <div class="card card-body ">
-            <ul>
-                <li>Room Name: <?php echo $room->getName() ?></li>
-                <li>Room capacity: <?php echo $room->getCapacity() ?></li>
-                <li>Room price: <?php echo $room->getPrice() ?></li>
-                <li style="list-style:none">
-                <div class="btn-group" role="group" aria-label="Basic example">     
-                    <form action="<?php echo FRONT_ROOT?>Room/modifyRoomView" method="POST">
-                        <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getRoomID()?>"   name="idRoomM">Modify</button> 
-                    </form>
-                    <form action="<?php echo FRONT_ROOT?>Room/deleteRoom" method="POST">
-                        <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getRoomID()?>"   name="idRoomD">Delete</button> 
-                    </form>
-                    </div>
-                </li>         
-            </ul>
-            </div>
-            </div>
-            <?php
-        }?>
         <div class="container mt-5" >   
 
 <form  action="<?php echo FRONT_ROOT ?>Room/addRoom" method="POST">

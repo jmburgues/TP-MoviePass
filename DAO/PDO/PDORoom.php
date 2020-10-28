@@ -7,7 +7,7 @@
   use DAO\PDO\Connection as Connection;
 
 
-  class PDOShow{
+  class PDORoom{
     private $connection;
     private $tableNameRooms ='ROOMS';
     #private $tableNameCinemas ='CINEMAS';
@@ -24,7 +24,7 @@
             $parameters['capacity'] = $room->getCapacity();
             $parameters['IDCinema'] = $room->getIDCinema();
             $parameters['price'] = $room->getPrice();
-            $parameters['roomType'] = $room->getPoster();
+            $parameters['roomType'] = $room->getRoomType();
             
             $this->connection = Connection::GetInstance();
             $response = $this->connection->ExecuteNonQuery($query, $parameters);
@@ -45,7 +45,8 @@
             catch(Exception $ex){
             throw $ex;
             }
-        }
+        }    
+
         
         public function getById($id){
             try{
@@ -63,7 +64,7 @@
         public function getByCinema($cinemaId){
             try{
                 $query= "SELECT * FROM ".$this->tableNameRooms." WHERE idCinema = :ID;";
-                $parameters['ID'] = $id;
+                $parameters['ID'] = $cinemaId;
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query,$parameters);
                 return $this->parseToObject($resultSet);
@@ -78,7 +79,7 @@
             $value = is_array($value) ? $value : [];
             $resp = array_map(function($p){
         
-                return new Room ($p['roomName'],$p['capacity'],$p['idCinema'],$p['price'],$p['roomType'],$p['isActive']);
+                return new Room ($p['roomName'],$p['capacity'],$p['idCinema'],$p['price'],$p['roomType'],$p['isActive'], $p['idRoom']);
             }, $value);
             
             if(empty($resp)){
@@ -90,7 +91,7 @@
         }
         
         
-      }
+      
 
 
 
