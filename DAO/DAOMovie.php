@@ -2,6 +2,7 @@
 namespace DAO;
 use Models\Movie as Movie;
 use Models\Genre as Genre;
+use \DateTime as DateTime;
 
 class DAOMovie{
   private $movieList;
@@ -69,6 +70,23 @@ class DAOMovie{
     $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
     $return = file_put_contents($this->fileName , $jsonContent);
   }
+
+  public function getArrayOfYears(){// returns an array of years where different movies where created
+    $moviesList = $this->getAll();
+
+    $years = array();
+
+    foreach ($moviesList as $oneMovie) {
+        $releaseDate = $oneMovie->getReleaseDate();
+        
+        $releaseYear = DateTime::createFromFormat('Y-m-d', $releaseDate)->format('Y'); 
+        
+        if (!in_array($releaseYear, $years)) {
+          array_push($years, $releaseYear);
+        }
+      }
+      return $years; 
+}
 
   public function GetById($id){
     $this->RetrieveData();

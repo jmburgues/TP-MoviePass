@@ -20,6 +20,19 @@ class DAOgenre{
     return $this->genreList;
   }
 
+  public function getGenresList(){ // returns an array of strings with all movie's genres. (1st revision)
+    
+    $genres = array();
+
+    $objectsList = $this->getAll();
+
+    foreach($objectsList as $oneGenre){
+      array_push($genres,$oneGenre);
+    }
+    
+    return $genres;
+  }
+
   private function retrieveData(){
     $this->genreList = array();
     if(file_exists($this->fileName)){

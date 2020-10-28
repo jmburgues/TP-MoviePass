@@ -29,19 +29,22 @@
         //     echo "</pre>";
         // }
 
-        function getGenresList(){ // returns an array of strings with all movie's genres. (1st revision)
-    
-            $genres = array();
 
-            $objectsList = $this->DAOGenre->getAll();
+        // PASADO AL DAO
         
-            foreach($objectsList as $oneGenre){
-              array_push($genres,$oneGenre);
-            }
+        // function getGenresList(){ // returns an array of strings with all movie's genres. (1st revision)
+    
+        //     $genres = array();
+
+        //     $objectsList = $this->DAOGenre->getAll();
+        
+        //     foreach($objectsList as $oneGenre){
+        //       array_push($genres,$oneGenre);
+        //     }
             
-            return $genres;
-            // include(VIEWS_PATH."genres-list.php");
-          }
+        //     return $genres;
+        //     // include(VIEWS_PATH."genres-list.php");
+        //   }
         
         
     }

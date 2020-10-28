@@ -56,54 +56,22 @@ class MovieController{
         $newMovie = new Movie($movie["runtime"],$movie["title"],$genre,$movie["poster_path"],$movie["release_date"],$movie["overview"],$movie["id"]);
         $this->daoMovie->add($newMovie);
       }
-  
-    }
-  
+    }  
   }
   
   function listMovies(){
     $movies = $this->daoMovie->getAll();
   }
-  
-  // function getMovieBy($key,$value){
-  //   // evaluar metodo
-  //   switch($key){
-  //     case "all":
-  //       $movies = $this->daoMovie->getAll();
-  //     break;
-  //     case "year":
-  //      $movies = $this->getArrayOfYears($value);
-  //       break;
-  //     case "genre":
-  //       $movies = $this->getArrayOfGenres($value);
-  //       break;
-  //   }
-  //   // incluir vista
-  //   include_once(VIEWS_PATH.'home.php');
-  // }
-
-  
-
-  function getArrayOfYears(){// returns an array of years where different movies where created
-      $moviesList = $this->daoMovie->getAll();
-
-      $years = array();
-
-      foreach ($moviesList as $oneMovie) {
-          $releaseDate = $oneMovie->getReleaseDate();
-          
-          $releaseYear = DateTime::createFromFormat('Y-m-d', $releaseDate)->format('Y'); 
-          
-          if (!in_array($releaseYear, $years)) {
-            array_push($years, $releaseYear);
-          }
-        }
-        return $years; // incluir vista en lugar de retornar año
-  }
 
   function listByGenre($genreId){
     
     $genreName = $this->daoGenre->GetById($genreId)->getName();
+    
+    /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
+    $genreList = $this->DAOGenre->getGenresList(); 
+    /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
+
+    $moviesYearList = $this->DAOMovie->getArrayOfYears();
     $moviesList = $this->daoMovie->getAll();
     $movies = array();
     
@@ -111,19 +79,25 @@ class MovieController{
 
       $movieGenres = $oneMovie->getGenre();
       
-      foreach($movieGenres as $oneGenre){ // En Movies, el ID y el NAME estan al reves
+      foreach($movieGenres as $oneGenre){
         if($oneGenre->getId() == $genreId){
             array_push($movies,$oneMovie);
         }   
       }
     }
-    
 
+    ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
     ViewController::homeView($movies,1,"Genre: ".$genreName);
   }
 
   function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
     
+    /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
+    $genreList = $this->DAOGenre->getGenresList();
+    /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
+
+    $moviesYearList = $this->DAOMovie->getArrayOfYears();
+
     if ($year > 1900 && $year <= 2020) {
         $moviesList = $this->daoMovie->getAll();
 
@@ -138,6 +112,8 @@ class MovieController{
             }
         }
     }
+
+    ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
     ViewController::homeView($movies,1,"Year: ".$year);
   }
 

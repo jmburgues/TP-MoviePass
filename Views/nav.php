@@ -35,10 +35,7 @@
 						Por falta de tiempo no se implemento. 
 						-->
 
-							<?php 
-							$genreController = new GenreController();
-							$genres = $genreController->getGenresList();
-							foreach ($genres as $genre){?>
+							<?php foreach ($genresList as $genre){?>
 								<button type ="submit" class="dropdown-item" name="genreId" value="<?php echo $genre->getId(); ?>"><?php echo $genre->getName();?></button>
 							<?php } ?>
 
@@ -56,12 +53,7 @@
 					</button>
 					
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<?php
-							$movieController = new MovieController();
-							$years = $movieController->getArrayOfYears();
-							
-							foreach($years as $year){
-						?>
+						<?php foreach($moviesYearList as $year){ ?>
 							<button type ="submit" class="dropdown-item" name="year" value="<?php echo $year;?>"><?php echo $year;?></button>
 						<?php } ?>
 					</div>

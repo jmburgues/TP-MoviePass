@@ -142,14 +142,20 @@
         {  
             if(!$this->is_session_started())
                 session_start();
-                
+
             session_destroy();
             session_start();
+
+            /*
+            agregar varabiels para NAV
+            */
+
+            ViewController::navView($genresList,$moviesYearList,null);
+
             $movies = $this->DAOMovie->getAll();
             $page = 1;
             $title = "LATEST MOVIES";
             
-
             ViewController::homeView($movies,$page,$title);
         }
 
