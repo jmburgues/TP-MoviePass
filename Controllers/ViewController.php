@@ -5,13 +5,22 @@
 
         public static function homeView($movies,$page,$title){
             
-            require_once(VIEWS_PATH.'nav.php');
             require_once(VIEWS_PATH.'home.php');
+        }
+
+        public static function navView($genresList, $moviesYearList, $sessionUser){
+
+            require_once(VIEWS_PATH.'nav.php');
+        }
+
+        public static function adminView(){
+                
+            require_once(VIEWS_PATH.'adminView.php');
         }
 
         public static function ownerView($usersList){
                 
-            include(VIEWS_PATH.'ownerView.php');
+            require_once(VIEWS_PATH.'ownerView.php');
         }
 
     }

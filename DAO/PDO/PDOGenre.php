@@ -44,7 +44,7 @@
 
     }
 
-    public function getByid($id){
+    public function getById($id){
       try{
         $query = "SELECT * FROM ".$this->tableName." where idGenre = :id";
         $parameters['id'] = $id;
@@ -58,6 +58,18 @@
         throw $ex;
       }
       
+    }
+
+    public function getGenresList(){
+      try {
+        $query = "SELECT name FROM ".$this->tableName;
+        $this->connection = Connection::GetInstance();
+        $resultSet = $this->connection->Execute($query);
+      } 
+      catch (Exception $ex) {
+        throw $ex;
+      }
+
     }
 
     protected function parseToObject($value) {

@@ -1,19 +1,26 @@
 <?php
     namespace Controllers;
     use DAO\DAOMovie as DAOMovie;
-    use Modes\Cinema as Cinema;
+    use DAO\DAOGenre as DAOGenre;
     
     class HomeController
     {
         private $daoMovie;
         
         public function __construct(){
-            $this->daoMovie = new DAOMovie();
+            $this->DAOMovie = new DAOMovie();
+            $this->DAOGenre = new DAOGenre();
         }
     
         public function Index($message = 1)
         {
-            $movies = $this->daoMovie->getAll();
+
+            $genreList = $this->DAOGenre->getGenresList();
+            $moviesYearList = $this->DAOMovie->getArrayOfYears();
+
+            ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
+
+            $movies = $this->DAOMovie->getAll();
             $page = $message;
             $title = "LATEST MOVIES";
             
