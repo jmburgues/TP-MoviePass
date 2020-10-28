@@ -102,7 +102,8 @@
             if ($cinemaExist == false) { // si no hay cines con mismo nombre, agrego.
                 $this->DAOCinema->add($cinema);
                 $message = "Cinema successfully added";
-            }
+            
+              }
         }
         if($message){
             echo "<script type='text/javascript'>alert('$message');</script>";  //Sacar del controlador

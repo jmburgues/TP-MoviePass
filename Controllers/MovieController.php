@@ -37,37 +37,27 @@ class MovieController{
 
     public function selectIdMovie($idMovie){
       $movies = $this->daoMovie->getAll();
-      echo "ENTRA";
       $movieToAdd;
-      echo $idMovie;
-      foreach($movies as $movie){
-        if($movie->getMovieID() == $idMovie){
-          $movieToAdd = $movie;
-        }
-        print_r($movie);
+      foreach ($movies as $movie) {
+          if ($movie->getMovieID() == $idMovie) {
+              $movieToAdd = $movie;
+          }
       }
- /*     echo $movieToAdd->getMovieID();
-      echo "<br>";
-      echo $movieToAdd->getDuration();
-      echo "<br>";
-      echo $movieToAdd->getTitle();
-      echo "<br>";
-      echo $movieToAdd->getPoster();
-      echo "<br>";
-      echo $movieToAdd->getReleaseDate();
-      echo "<br>";
-      echo $movieToAdd->getDescription();
-      echo "<br>";
-      print_r($movieToAdd->getGenre());
-      echo "<br>";
-      */
+        
       $moviesBDD = $this->pdoMovie->getAll();
       foreach($moviesBDD as $movie){
         echo $movie->getTitle();
         echo "<br>";
       }
 
-      $this->pdoMovie->add($movieToAdd);
+      if(!($this->pdoMovie->getById($idMovie))){
+        $this->pdoMovie->add($movieToAdd);
+
+      }else{
+        $message = "Movie already on database";
+        echo "<script type='text/javascript'>alert('$message');</script>"; 
+      }
+      
       $moviesBDD = $this->pdoMovie->getAll();
       include(VIEWS_PATH.'listMoviesBDD.php');
     }
