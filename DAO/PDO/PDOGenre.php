@@ -60,6 +60,18 @@
       
     }
 
+    public function getGenresList(){
+      try {
+        $query = "SELECT name FROM ".$this->tableName;
+        $this->connection = Connection::GetInstance();
+        $resultSet = $this->connection->Execute($query,$parameters);
+      } 
+      catch (Exception $ex) {
+        throw $ex;
+      }
+
+    }
+
     protected function parseToObject($value) {
 			$value = is_array($value) ? $value : [];
 			$resp = array_map(function($p){
