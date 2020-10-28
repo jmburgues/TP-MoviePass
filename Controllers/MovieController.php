@@ -5,108 +5,111 @@ namespace Controllers;
 use \DateTime as DateTime;
 use Models\Movie as Movie;
 use Models\Genre as Genre;
-use DAO\PDO\PDOMovie as DAOMovie;
+use DAO\DAOMovie as DAOMovie;
+use DAO\DAOGenre as DAOGenre;
 use DAO\PDO\PDOMovie as PDOMovie;
 use DAO\PDO\PDOCinema as DAOCinema;
-use DAO\PDO\PDOGenre as DAOGenre;
+use DAO\PDO\PDOGenre as PDOGenre;
 
-class MovieController{
+class MovieController
+{
+    private $daoMovie;
+    private $daoGenre;
+    private $pdoMovie;
+    private $pdoGenre;
+    private $daoCinema;
+    private $currentMovie;
 
-  private $daoMovie;
-  private $pdoMovie;
-  private $daoGenre;
-  private $daoCinema;
-  private $currentMovie;
 
-
-  public function __construct(){
-    $this->daoMovie = new DAOMovie();
-    $this->daoGenre = new DAOGenre();
-    $this->daoCinema = new DAOCinema();
-    $this->pdoMovie = new PDOMovie();
-
-  }
-
-    public function selectMoviesView(){
-      $movies = $this->daoMovie->getAll();
-      
-      include(VIEWS_PATH.'selectMoviesView.php');
+    public function __construct()
+    {
+        $this->daoMovie = new DAOMovie();
+        $this->daoGenre = new DAOGenre();
+        $this->pdoGenre = new PDOGenre();
+        $this->daoCinema = new DAOCinema();
+        $this->pdoMovie = new PDOMovie();
     }
 
-    public function selectIdMovie($idMovie){
-      $movies = $this->daoMovie->getAll();
-      $movieToAdd = null;
-      foreach ($movies as $movie) {
-          if ($movie->getMovieID() == $idMovie) {
-              $movieToAdd = $movie;
-          }
-      }
-        
-      $moviesBDD = $this->pdoMovie->getAll();
-      foreach($moviesBDD as $movie){
-        echo $movie->getTitle();
-        echo "<br>";
-      }
-
-      if(!($this->pdoMovie->getById($idMovie))){
-        $this->pdoMovie->add($movieToAdd);
-
-      }else{
-        $message = "Movie already on database";
-        echo "<script type='text/javascript'>alert('$message');</script>"; 
-      }
+    public function selectMoviesView()
+    {
+        $movies = $this->daoMovie->getAll();
       
-      $moviesBDD = $this->pdoMovie->getAll();
-      include(VIEWS_PATH.'listMoviesBDD.php');
+        include(VIEWS_PATH.'selectMoviesView.php');
     }
 
-
-  /*Función que trae de la API e invoca funciones del DAO para guardar en archivo JSON */
-  function getLatestMoviesFromApi(){  
-    //Llamada a la API
-    $data = file_get_contents("http://api.themoviedb.org/3/movie/now_playing?page=1&language=en-US&api_key=601e12bf1e7197e7532eb9c4901b0d3a");
-  
-    //Convierte el JSON a un arreglo
-    $array = ($data) ? json_decode($data, true) : array();
-
-    //Accede a la clave 'results'
-    $result = $array["results"];
-    
-    //Recorre el arreglo con los resultados
-    foreach ($result as $value){
-      if(is_array($value)){
-        
-        //Trae toda la información de cada película
-        $movieData = file_get_contents("https://api.themoviedb.org/3/movie/".$value["id"]."?language=en-US&api_key=601e12bf1e7197e7532eb9c4901b0d3a");
-        $movie = ($movieData) ? json_decode($movieData, true) : array();
-        $genre = array();
-
-        //De cada película se obtienen los generos y se crea un objeto de éste
-        foreach ($movie["genres"] as $genreData) {
-          $aux = new Genre($genreData["id"], $genreData["name"]);
-          array_push($genre, $aux);
-          $this->daoGenre->add($aux);
+    public function selectIdMovie($idMovie)
+    {
+        $movies = $this->daoMovie->getAll();
+        $movieToAdd = null;
+        foreach ($movies as $movie) {
+            if ($movie->getMovieID() == $idMovie) {
+                $movieToAdd = $movie;
+            }
         }
-        //Se crea el objeto Movie y se agrega al arrelgo
-        $newMovie = new Movie($movie["runtime"],$movie["title"],$genre,$movie["poster_path"],$movie["release_date"],$movie["overview"],$movie["id"]);
-        $this->daoMovie->add($newMovie);
-      }
-    }  
-  }
-  
+        
+        $moviesBDD = $this->pdoMovie->getAll();
+ 
+
+        if (!($this->pdoMovie->getById($idMovie))) {
+            $this->pdoMovie->add($movieToAdd);
+        } else {
+            $message = "Movie already on database";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+        }
+      
+        $moviesBDD = $this->pdoMovie->getAll();
+        include(VIEWS_PATH.'listMoviesBDD.php');
+    }
+
+
+    /*Función que trae de la API e invoca funciones del DAO para guardar en archivo JSON */
+    public function getLatestMoviesFromApi()
+    {
+        //Llamada a la API
+       // for ($i=1; $i<75 ; $i+1) {
+            $data = file_get_contents("http://api.themoviedb.org/3/movie/now_playing?page=1&language=en-US&api_key=601e12bf1e7197e7532eb9c4901b0d3a&page=5");
+    
+            //Convierte el JSON a un arreglo
+            $array = ($data) ? json_decode($data, true) : array();
+
+            //Accede a la clave 'results'
+            $result = $array["results"];
+      
+            //Recorre el arreglo con los resultados
+            foreach ($result as $value) {
+                if (is_array($value)) {
+          
+          //Trae toda la información de cada película
+                    $movieData = file_get_contents("https://api.themoviedb.org/3/movie/".$value["id"]."?language=en-US&api_key=601e12bf1e7197e7532eb9c4901b0d3a");
+                    $movie = ($movieData) ? json_decode($movieData, true) : array();
+                    $genre = array();
+
+                    //De cada película se obtienen los generos y se crea un objeto de éste
+                    foreach ($movie["genres"] as $genreData) {
+                        $aux = new Genre($genreData["id"], $genreData["name"]);
+                        array_push($genre, $aux);
+                        $this->daoGenre->add($aux);
+                    }
+                    //Se crea el objeto Movie y se agrega al arrelgo
+                    $newMovie = new Movie($movie["runtime"], $movie["title"], $genre, $movie["poster_path"], $movie["release_date"], $movie["overview"], $movie["id"]);
+                    $this->daoMovie->add($newMovie);
+                }
+            }
+        //}
+    }
   function listMovies(){
     $movies = $this->daoMovie->getAll();
   }
 
   function listByGenre($genreId){
     
-    $genreName = $this->DAOGenre->getById($genreId)->getName();
+    $genreName = $this->daoGenre->getById($genreId)->getName();
     
     /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
-    $genreList = $this->DAOGenre->getGenresList(); 
+    $genreList = $this->daoGenre->getAll(); 
     /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
 
-    $moviesYearList = $this->DAOMovie->getArrayOfYears();
+    $moviesYearList = $this->daoMovie->getArrayOfYears();
     $moviesList = $this->daoMovie->getAll();
     $movies = array();
     
@@ -128,10 +131,10 @@ class MovieController{
   function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
     
     /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
-    $genreList = $this->DAOGenre->getGenresList();
+    $genreList = $this->daoGenre->getAll();
     /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
 
-    $moviesYearList = $this->DAOMovie->getArrayOfYears();
+    $moviesYearList = $this->daoMovie->getArrayOfYears();
 
     if ($year > 1900 && $year <= 2020) {
         $moviesList = $this->daoMovie->getAll();

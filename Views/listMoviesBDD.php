@@ -16,7 +16,7 @@
 ?>             
     <form action="<?php echo FRONT_ROOT?>Movie/selectIdMovie" method="POST" class= " mt-5 mb-5">
         <div class= "container">            
-            <div class="card card-body ">
+            <div class="card card-body mt-1">
 
                     <ul>
                         <li style="list-style:none">Cinema Name: <?php echo $movie->getTitle(); ?></li>

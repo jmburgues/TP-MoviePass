@@ -62,5 +62,29 @@
     {
         "id": 10770,
         "name": "TV Movie"
+    },
+    {
+        "id": 9648,
+        "name": "Mystery"
+    },
+    {
+        "id": "Thriller",
+        "name": 53
+    },
+    {
+        "id": 37,
+        "name": "Western"
+    },
+    {
+        "id": "Comedy",
+        "name": 35
+    },
+    {
+        "id": 99,
+        "name": "Documentary"
+    },
+    {
+        "id": "Drama",
+        "name": 18
     }
 ]

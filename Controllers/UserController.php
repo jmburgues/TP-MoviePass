@@ -15,7 +15,7 @@
         public function __construct()
         {
             $this->DAOUser = new DAOUser();
-            $this->DAOCinema = new DAOGenre();
+            $this->DAOGenre = new DAOGenre();
             $this->DAOMovie = new DAOMovie();
         }
 
@@ -26,8 +26,9 @@
         }
 
         public function adminView()
-        {
-            $genreList = $this->DAOGenre->getGenresList();
+        {   
+            $genreList = $this->DAOGenre->getAll();
+
             $moviesYearList = $this->DAOMovie->getArrayOfYears();
 
             ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION

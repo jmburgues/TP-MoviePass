@@ -14,8 +14,11 @@ require "Config/Config.php";
 use Config\Autoload as Autoload;
 use Config\Router 	as Router;
 use Config\Request 	as Request;
+use Controllers\MovieController as MovieController; 
 
 Autoload::start();
+//$muvi = new MovieController();
+//$muvi->getLatestMoviesFromApi();
 
 session_start();
 

@@ -20,7 +20,6 @@
 					<button class="btn btn-secondary btn-dark dropdown-toggle" style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Genre
 					</button>
-					<?php var_dump($genresList); ?>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 		
 						<!-- 
@@ -31,7 +30,8 @@
 						-->
 
 						<?php							
-								foreach ($genresList as $genre){?>
+								foreach ($genresList as $genre){
+								?>
 								<button type ="submit" class="dropdown-item" name="genreId" value="<?php echo $genre->getId(); ?>"><?php echo $genre->getName();?></button>
 							<?php } ?>
 
@@ -49,9 +49,11 @@
 					</button>
 					
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<?php if(!empty($moviesYearList)){ foreach($moviesYearList as $year){ ?>
+						<?php if(!empty($moviesYearList)){ 
+							foreach($moviesYearList as $year){ ?>
 							<button type ="submit" class="dropdown-item" name="year" value="<?php echo $year;?>"><?php echo $year;?></button>
-						<?php } } ?>
+						<?php }
+					} ?>
 					</div>
 				</form>
 			</div>

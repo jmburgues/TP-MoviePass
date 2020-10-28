@@ -61,6 +61,7 @@
     }
 
     public function getGenresList(){
+ 
       try {
         $query = "SELECT genreName FROM ".$this->tableName;
         $this->connection = Connection::GetInstance();

@@ -11,7 +11,9 @@
   $pages = ($total / $articlePerPage );
   $pages = ceil($pages);
   $init = ($page-1)*$articlePerPage;
-?>
+
+  ?>
+
 
 <!--Primer vista al entrar a la página-->
 <!--Jumbotron-->
