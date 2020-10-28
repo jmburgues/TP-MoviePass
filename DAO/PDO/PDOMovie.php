@@ -26,16 +26,21 @@
         $parameters['poster'] = $movie->getPoster();
         $parameters['releaseDate'] = $movie->getReleaseDate();
         $parameters['description'] = $movie->getDescription();
-        
+
         $this->connection = Connection::GetInstance();
         $response = $this->connection->ExecuteNonQuery($query, $parameters);
-        
-        //AGREGAR CARGA DE GENEROS.
-        
+
         $parameters = array();
         $genreList = $movie->getGenre();
 
         foreach ($genreList as $genre) {
+
+          $pdoGenre = new PDOGenre();
+
+          if(!($pdoGenre->getByid($genre->getId()))){
+            $pdoGenre->add($genre);
+          }
+
           $query =  "INSERT INTO " . $this->tableNameMoviesGenres . " (idMovie, idGenre) VALUES (:movieID, :genreID);";
           $parameters['movieID'] = $movie->getMovieID();
           $parameters['genreID'] = $genre->getId();
@@ -51,7 +56,6 @@
       }
 
     }
-
     public function getAll(){
       try{
         $query = "SELECT * FROM ".$this->tableNameMovies;
@@ -100,7 +104,7 @@
         
         foreach ($genresIdList as $genreId) {
            
-          $genre = $pdoGenre->getById($genreId['id']);
+          $genre = $pdoGenre->getById($genreId['idGenre']);
           
           array_push($genres, $genre);
         }

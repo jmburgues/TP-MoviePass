@@ -14,7 +14,7 @@
     if (isset($moviesBDD)) {
         foreach ($moviesBDD as $movie) {
 ?>             
-    <form action="<?php echo FRONT_ROOT?>Movie/selectIdMovie" method="POST" class= " mt-5">
+    <form action="<?php echo FRONT_ROOT?>Movie/selectIdMovie" method="POST" class= " mt-5 mb-5">
         <div class= "container">            
             <div class="card card-body ">
 

@@ -17,7 +17,7 @@
             $query = "INSERT INTO ".$this->tableNameShows."
             (dateSelected, startsAt, endsAt, spectators, idRoom, idMovie)
             values
-            (:date, :start, :end,:spectators, :idRoom, :idMovie);";
+            (:date, :start, :end,:spectators, :idRoom, :idMovie );";
             
             $parameters['date'] = $show->getDate();
             $parameters['start'] = $show->getStart();
@@ -88,7 +88,7 @@
         $value = is_array($value) ? $value : [];
         $resp = array_map(function($p){
 
-            return new Show ($p['dateSelected'],$p['startsAt'],$p['endsAt'],$p['idRoom'],$p['idMovie'],$p['spectators'],$p['isActive'],$p['idShow']);
+            return new Show ($p['dateSelected'],$p['startsAt'],$p['endsAt'],$p['idRoom'],$p['idMovie'],$p['spectators'],$p['idShow']);
             }, $value);
 
         if(empty($resp)){

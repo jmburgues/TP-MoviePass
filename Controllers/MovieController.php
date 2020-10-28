@@ -43,7 +43,7 @@ class MovieController{
           $movieToAdd = $movie;
         }
       }
-      echo $movieToAdd->getMovieID();
+ /*     echo $movieToAdd->getMovieID();
       echo "<br>";
       echo $movieToAdd->getDuration();
       echo "<br>";
@@ -57,7 +57,7 @@ class MovieController{
       echo "<br>";
       print_r($movieToAdd->getGenre());
       echo "<br>";
-      
+      */
       $moviesBDD = $this->pdoMovie->getAll();
       foreach($moviesBDD as $movie){
         echo $movie->getTitle();
@@ -65,6 +65,7 @@ class MovieController{
       }
 
       $this->pdoMovie->add($movieToAdd);
+      $moviesBDD = $this->pdoMovie->getAll();
       include(VIEWS_PATH.'listMoviesBDD.php');
     }
 

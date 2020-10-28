@@ -44,7 +44,7 @@
         $shows=$this->DAOShow->getAll();
         $movies=$this->DAOMovie->GetAll();
         $moviesDB = $this->PDOMovie->getAll();
-        print_r($moviesDB);
+       // print_r($moviesDB);
         include VIEWS_PATH.'listMoviesAdmin.php';
     }
 
@@ -56,7 +56,11 @@
         $show->setSpectators($spectators);
         $show->setIdMovie($selectedMovieId);
         $show->setIdRoom($roomId);
-        
+        echo "<pre>";
+        print_r($show);
+        echo $show->getIdMovie();
+        echo "</pre>";
+
         $rooms = $this->DAORoom->getAll(); 
         $movies=$this->DAOMovie->GetAll();
         
@@ -74,6 +78,7 @@
 
         $shows=$this->DAOShow->getAll();
         //COMPROBACION DE LOS 15 MINUTOS ETC ETC
+
         $this->DAOShow->add($show);
         //$movies->setIdShow();
 
@@ -82,7 +87,7 @@
     }
 
     public function selectMovie($date, $start, $end, $spectators, $movieId){
-     //   echo $movieId;
+       // echo $movieId;
         $movies=$this->DAOMovie->GetAll();
         foreach($movies as $movie){
             if($movie->getMovieId() == $movieId){
