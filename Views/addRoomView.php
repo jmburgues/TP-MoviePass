@@ -8,7 +8,7 @@
                     <li>Room Name: <?php echo $room->getName() ?></li>
                     <li>Room capacity: <?php echo $room->getCapacity() ?></li>
                     <li>Room price: <?php echo $room->getPrice() ?></li>
-                    <li>Nombre cinema: <?php echo $cinema->getName(); ?></li>
+                    <li>Room cinema: <?php echo $cinema->getName(); ?></li>
                     <li style="list-style:none">
             <!--     <div class="btn-group" role="group" aria-label="Basic example">     
                         <form action="<?php echo FRONT_ROOT?>Room/modifyRoomView" method="POST">

@@ -6,12 +6,12 @@
                     
     <!--card-->     <div class="card card-body ">
                         <ul>
-                            <li>show dia: <?php echo $show->getDate() ?></li>
-                            <li>show horario start: <?php echo $show->getStart() ?></li>
-                            <li>show horario end: <?php echo $show->getEnd() ?></li>
-                            <li>show spectators: <?php echo $show->getSpectators()?></li>
-                            <li>show Sala: <?php echo $show->getIdRoom()?></li>
-                            <li>show Movie: <?php echo $show->getIdMovie()?></li>
+                            <li>Show date: <?php echo $show->getDate() ?></li>
+                            <li>Show start: <?php echo $show->getStart() ?></li>
+                            <li>Show end: <?php echo $show->getEnd() ?></li>
+                            <li>Show spectators: <?php echo $show->getSpectators()?></li>
+                            <li>Show room: <?php echo $show->getIdRoom()?></li>
+                            <li>Show Movie: <?php echo $show->getIdMovie()?></li>
                             
                         </ul>  
 
