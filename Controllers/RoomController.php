@@ -34,7 +34,7 @@
     public function addRoomView($idCinema){
         $rooms = array();
         $rooms = $this->DAORoom->getByCinema($idCinema);
-       // $cinema = $this->DAOCinema->getById($idCinema);
+        $cinema = $this->DAOCinema->getById($idCinema);
        ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'addRoomView.php';
     }
@@ -68,7 +68,9 @@
             echo "<script type='text/javascript'>alert('$message');</script>";  
         }  
         
-        $rooms = $this->DAORoom->getAll();
+        //$rooms = $this->DAORoom->getAll();
+        $rooms = $this->DAORoom->getByCinema($idCinema);
+        $cinema = $this->DAOCinema->getById($idCinema);
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'addRoomView.php';
     }

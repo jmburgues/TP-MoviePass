@@ -120,6 +120,21 @@
       }
     }
 
+    public function getById($id){
+      try{
+        $query= "SELECT * FROM ".$this->tableName." WHERE idCinema = :id;";
+        $parameters['id'] = $id;
+
+        $this->connection = Connection::GetInstance();
+
+        $resultSet = $this->connection->Execute($query,$parameters);
+
+        return $this->parseToObject($resultSet);
+      }
+      catch(Exception $ex){
+          throw $ex;
+      }
+    }
 
     protected function parseToObject($value) {
 			$value = is_array($value) ? $value : [];

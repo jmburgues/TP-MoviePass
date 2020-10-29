@@ -6,16 +6,15 @@
                     
     <!--card-->     <div class="card card-body ">
                         <ul>
-                            <li>show Day: <?php echo $show->getDate() ?></li>
-                            <li>show Openning hour: <?php echo $show->getStart() ?></li>
-                            <li>show Closing hour: <?php echo $show->getEnd() ?></li>
-                            <li>show Spectators: <?php echo $show->getSpectators()?></li>
-                            <li>show Room: <?php echo $show->getIdRoom()?></li>
-                            <li>show Movie: <?php echo $show->getIdMovie()?></li>
-                            
+                            <li>Show date: <?php echo $show->getDate() ?></li>
+                            <li>Show start: <?php echo $show->getStart() ?></li>
+                            <li>Show end: <?php echo $show->getEnd() ?></li>
+                            <li>Show spectators: <?php echo $show->getSpectators()?></li>
+                            <li>Show Room: <?php echo $auxRoom->getById($show->getIdRoom())->getName();?></li>
+                            <li>Show Movie: <?php echo $auxMovie->getById($show->getIdMovie())->getTitle();?></li>
+                            <li>Show Cinema: <?php echo $auxCinema->getById($auxRoom->getById($show->getIdRoom())->getRoomID())->getName();?></li>
+
                         </ul>  
-
-
     <!--card-->     </div>
     
 <!--container--></div>

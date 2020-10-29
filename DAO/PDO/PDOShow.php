@@ -1,6 +1,7 @@
 <?php
   namespace DAO\PDO;
 
+  use \DateTime as DateTime;
   use \Exception as Exception;
   use Models\Show as Show;
   use DAO\PDO\Connection as Connection;
@@ -36,10 +37,16 @@
 
     public function getAll(){
         try{
+
+            /*
+            $query = "UPDATE ".$this->tableNameShows."
+            SET dateSelected = :date, startsAt = :start, endsAt = :end, spectators = :spectators, idRoom = :idRoom, idMovie = :idMovie 
+            WHERE idShow = :idShow;";
+            */
             $query = "SELECT * FROM ".$this->tableNameShows;
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
-            return $this->parseToObject($resultSet);
+            return $this->parseToObjectTime($resultSet);
             }
             catch(Exception $ex){
             throw $ex;
@@ -97,5 +104,28 @@
         return count($resp) > 1 ? $resp : $resp['0'];
         }
     }
+
+    protected function parseToObjectTime($value) {
+        $value = is_array($value) ? $value : [];
+        $resp = array_map(function($p){
+            $aux = new DateTime($p['dateSelected']);
+            $p['dateSelected'] = $aux->format('Y-m-d');
+
+            $aux1 = new DateTime($p['startsAt']);
+            $p['startsAt'] = $aux1->format('H:i:s');
+
+            $aux2 = new DateTime($p['endsAt']);
+            $p['endsAt'] = $aux2->format('H:i:s');
+            return new Show ($p['dateSelected'],$p['startsAt'],$p['endsAt'],$p['idRoom'],$p['idMovie'],$p['spectators'],$p['idShow']);
+            }, $value);
+
+        if(empty($resp)){
+            return $resp;
+        }
+        else {
+        return count($resp) > 1 ? $resp : $resp['0'];
+        }
+    }
+
 }
 ?>

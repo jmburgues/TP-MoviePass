@@ -14,9 +14,9 @@
             <div class="card card-body mt-1">
 
                     <ul>
-                        <li style="list-style:none">Cinema Name: <?php echo $movie->getTitle(); ?></li>
-                        <li style="list-style:none">Cinema duration: <?php echo  $movie->getDuration(); ?></li>
-                        <li style="list-style:none">Cinema Description: <?php echo $movie->getDescription();?></li>
+                        <li style="list-style:none">Movie Title: <?php echo $movie->getTitle(); ?></li>
+                        <li style="list-style:none">Movie Duration: <?php echo  $movie->getDuration(); ?></li>
+                        <li style="list-style:none">Movie Description: <?php echo $movie->getDescription();?></li>
 
                     </ul>  
 
