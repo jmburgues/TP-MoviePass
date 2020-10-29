@@ -1,7 +1,3 @@
-<?php
-    require_once('nav.php');
-    require_once('header.php');
-?>
 <!--container--><div class="container mt-5" >   
 <form  action="<?php echo FRONT_ROOT ?>Cinema/AddCinema" method="POST">
         <div class="form-group row ">

@@ -1,9 +1,3 @@
-<?php
-    require_once('nav.php');
-    require_once('header.php');
-    
-?>
-
     <?php 
         if(is_array($rooms)){
         foreach ($rooms as $room) {

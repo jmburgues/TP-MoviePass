@@ -27,6 +27,7 @@
         include VIEWS_PATH.'showAddView.php';
         include VIEWS_PATH.'adminShows.php';*/
 
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'addRoomView.php';
     }
 
@@ -34,6 +35,7 @@
         $rooms = array();
         $rooms = $this->DAORoom->getByCinema($idCinema);
        // $cinema = $this->DAOCinema->getById($idCinema);
+       ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'addRoomView.php';
     }
 
@@ -67,6 +69,7 @@
         }  
         
         $rooms = $this->DAORoom->getAll();
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'addRoomView.php';
     }
 

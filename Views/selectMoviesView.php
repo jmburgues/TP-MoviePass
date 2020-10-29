@@ -1,8 +1,3 @@
-<?php
-    require_once('nav.php');
-    require_once('header.php');
-    
-?>
 <?php 
 //PELÍCULAS TRAIDAS DE LA API PARA HABILITARLAS
     if (isset($movies)) {

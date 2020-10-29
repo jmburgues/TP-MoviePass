@@ -34,6 +34,7 @@ class MovieController
     {
         $movies = $this->pdoMovie->getAll();
       
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
         include(VIEWS_PATH.'selectMoviesView.php');
     }
 
@@ -58,6 +59,7 @@ class MovieController
         }
       
         $moviesBDD = $this->pdoMovie->getAll();
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
         include(VIEWS_PATH.'listMoviesBDD.php');
     }
 
@@ -105,9 +107,7 @@ class MovieController
     
     $genreName = $this->pdoGenre->getById($genreId)->getName();
     
-    /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
     $genreList = $this->pdoGenre->getAll(); 
-    /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
 
     $moviesYearList = $this->pdoMovie->getArrayOfYears();
     $moviesList = $this->pdoMovie->getAll();
@@ -130,9 +130,7 @@ class MovieController
 
   function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
     
-    /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
     $genreList = $this->pdoGenre->getAll();
-    /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
 
     $moviesYearList = $this->pdoMovie->getArrayOfYears();
 
@@ -165,6 +163,7 @@ class MovieController
         $listAdminMovies = $movie;
       }
     } 
+    ViewController::navView($genreList=null,$moviesYearList=null,null);
     include(VIEWS_PATH.'listMoviesAdmin.php');
   }
   
@@ -183,6 +182,7 @@ class MovieController
         $currentMovie = $movie;
       }
     }
+    ViewController::navView($genreList=null,$moviesYearList=null,null);
     include(VIEWS_PATH.'listRoomsAdmin.php');
   }
   
