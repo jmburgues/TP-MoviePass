@@ -5,6 +5,7 @@
     use DAO\PDO\PDOUser as DAOUser;
     use DAO\PDO\PDOGenre as DAOGenre;
     use DAO\PDO\PDOMovie as DAOMovie;
+    use DAO\PDO\PDOShow as PDOShow;
 
     class UserController
     {
@@ -62,9 +63,9 @@
         
                     ViewController::navView($genreList,$moviesYearList,null);
 
-                    $movies = $this->DAOMovie->getAll();
+                    $movies = $this->corn();
                     $page = 1;
-                    $title = "LATEST MOVIES";
+                    $title = "LATEST MOVIES IN PROYECTION";
                     
                     ViewController::homeView($movies,$page,$title);
                 }
@@ -85,9 +86,9 @@
 
                 ViewController::navView($genreList = null, $moviesYearList = null, null);
 
-                $movies = $this->DAOMovie->getAll();
+                $movies = $this->corn();
                 $page = 1;
-                $title = "LATEST MOVIES";
+                $title = "LATEST MOVIES IN PROYECTION";
                 
                 ViewController::homeView($movies,$page,$title);
             }
@@ -179,9 +180,9 @@
 
             ViewController::navView($genreList,$moviesYearList,null);
 
-            $movies = $this->DAOMovie->getAll();
+            $movies = $this->corn();
             $page = 1;
-            $title = "LATEST MOVIES";
+            $title = "LATEST MOVIES IN PROYECTION";
             
             ViewController::homeView($movies,$page,$title);
         }
@@ -197,5 +198,33 @@
             }
             return FALSE;
         }
+    
+    
+    
+    function corn(){
+        $auxShow = new PDOShow();
+        $shows = array();
+        $aux = $auxShow->getAll();
+        if (is_array($aux)){
+            $shows = $aux;
+        }else{
+            $shows[0] = $aux;
+        }
+        
+        $movies = array();
+        #pasar luego a una QUERY del pdo
+        $aux = array();
+        foreach ($shows as $show) {
+            if(!(in_array($show->getIdMovie(),$aux))){
+                array_push($aux,$show->getIdMovie());
+                array_push($movies, $this->DAOMovie->getById($show->getIdMovie()));
+            }
+        }
+        return $movies; 
+    }  
+    
+    
+    
+    
     }
 ?>
