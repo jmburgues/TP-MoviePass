@@ -66,11 +66,11 @@
         include VIEWS_PATH.'addRoomView.php';
     }
 
-    public function deleteRoom($idRoom){
-        $rooms = $this->DAORoom->getAll();
-        $this->DAORoom->removeRoom($idRoom);
-        include VIEWS_PATH.'adminCinemas.php';// CAMBIAR LOS INCLUDE POR INCLUDE_ONCE/REQUIERE_ONCE
-    }
+    // public function deleteRoom($idRoom){
+    //     $rooms = $this->DAORoom->getAll();
+    //     $this->DAORoom->removeRoom($idRoom);
+    //     include VIEWS_PATH.'adminCinemas.php';// CAMBIAR LOS INCLUDE POR INCLUDE_ONCE/REQUIERE_ONCE
+    // }
 
 
 }

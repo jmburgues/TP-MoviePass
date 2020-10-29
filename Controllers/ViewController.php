@@ -18,7 +18,7 @@
             require_once(VIEWS_PATH.'adminView.php');
         }
 
-        public static function ownerView($usersList){
+        public static function ownerView($users){
                 
             require_once(VIEWS_PATH.'ownerView.php');
         }

@@ -29,13 +29,11 @@
         <?php foreach ($users as $user){
             if($user->getRole() != 'owner'){ ?>
 
-            <li class="list-group-item"><strong><?php echo $user->getUserName();?></strong>(1480m) 
+            <li class="list-group-item"><strong><?php echo $user->getUserName();?></strong>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <?php if($user->getRole() == 'user'){ ?>
-                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="exampleModal">Make Admin</button>
-                    <?php } else { ?>
-                        <button type="button" class="btn btn-secondary">Remove Admin</button>
-                    <?php } ?>
+                        <form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>User/changeRole/<?php echo $user->getUserName(); ?>" method=GET>
+                            <button type="submit" value="<?php echo $user->getUserName();?> class="btn btn-secondary" data-toggle="modal" data-target="exampleModal"><?php if($user->getRole() == 'user') echo "Make Admin"; else echo "Remove Admin";?> </button>
+                        </form>
                 </div> 
                 
                 
