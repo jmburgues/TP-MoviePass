@@ -22,14 +22,12 @@
         public function register()
         {
             include VIEWS_PATH.'register-view.php';
-            //include_once VIEWS_PATH.'footer.php';
         }
 
         public function adminView()
         {   
-            $genreList = $this->DAOGenre->getAll();
-
-            $moviesYearList = $this->DAOMovie->getArrayOfYears();
+            $genreList = null;
+            $moviesYearList = null; // el adminView no espera contenido para filtrar
 
             ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
             
@@ -39,14 +37,17 @@
 
         public function ownerView()
         {
+
+            ViewController::navView($genreList = null, $moviesYearList = null, null);
+
             $users=$this->DAOUser->getAll();
             ViewController::ownerView($users);
         }
         
         public function showLoginForm()
         {
+            ViewController::navView($genreList = null,$moviesYearList = null, null);
             include VIEWS_PATH.'login-view.php';
-            //include_once VIEWS_PATH.'footer.php';
         }
         public function frontLogin($userName, $pass)
         {
@@ -56,7 +57,7 @@
                     
                     $this->setSession($loggedUser);
 
-                    $genreList = $this->DAOGenre->getGenresList();
+                    $genreList = $this->DAOGenre->getAll();
                     $moviesYearList = $this->DAOMovie->getArrayOfYears();
         
                     ViewController::navView($genreList,$moviesYearList,null);
@@ -81,6 +82,8 @@
             if($newUser){
                 
                 $this->setSession($newUser);
+
+                ViewController::navView($genreList = null, $moviesYearList = null, null);
 
                 $movies = $this->DAOMovie->getAll();
                 $page = 1;
@@ -135,6 +138,22 @@
             }
         }
 
+        public function changeRole($userName){
+            $oneUserObj = $this->DAOUser->getByUserName($userName);
+            
+            if($oneUserObj->getRole() == 'admin'){
+                $this->DAOUser->changeRole($userName,'user');
+            }
+            elseif($oneUserObj->getRole() == 'user'){
+                $this->DAOUser->changeRole($userName,'admin');   
+            }
+
+            ViewController::navView($genreList = null, $moviesYearList = null,null);
+            
+            $users = $this->DAOUser->getAll();
+            ViewController::ownerView($users);
+        }
+
         public function setSession($user){ // Starts a session for a certain user
 
             if(!$this->is_session_started())
@@ -153,7 +172,7 @@
             session_destroy();
             session_start();
 
-            $genreList = $this->DAOGenre->getGenresList();
+            $genreList = $this->DAOGenre->getAll();
             $moviesYearList = $this->DAOMovie->getArrayOfYears();
             
             ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION

@@ -1,9 +1,4 @@
 <?php
-    require_once('nav.php');
-    require_once('header.php');
-    
-?>
-<?php
     if (isset($shows)) {
         foreach ($shows as $show) {
             ?>                

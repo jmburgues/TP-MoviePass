@@ -1,20 +1,3 @@
-<?php
-    require_once('nav.php');
-    require_once('header.php');
-    
-?>
-<?php 
-/*    echo $date;
-    echo $time;
-    echo "<pre>";
-    print_r($selectedMovie);
-    echo "</pre>";
-    echo "<pre>";
-    print_r($rooms);
-    echo "</pre>";
-*/?>             
-    <?php 
-?>             
 <hr class="my-4">
     <div class="container  mt-3">   
         <div class="card card-body ">

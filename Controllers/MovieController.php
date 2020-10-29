@@ -32,14 +32,15 @@ class MovieController
 
     public function selectMoviesView()
     {
-        $movies = $this->daoMovie->getAll();
+        $movies = $this->pdoMovie->getAll();
       
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
         include(VIEWS_PATH.'selectMoviesView.php');
     }
 
     public function selectIdMovie($idMovie)
     {
-        $movies = $this->daoMovie->getAll();
+        $movies = $this->pdoMovie->getAll();
         $movieToAdd = null;
         foreach ($movies as $movie) {
             if ($movie->getMovieID() == $idMovie) {
@@ -58,6 +59,7 @@ class MovieController
         }
       
         $moviesBDD = $this->pdoMovie->getAll();
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
         include(VIEWS_PATH.'listMoviesBDD.php');
     }
 
@@ -98,19 +100,17 @@ class MovieController
         //}
     }
   function listMovies(){
-    $movies = $this->daoMovie->getAll();
+    $movies = $this->pdoMovie->getAll();
   }
 
   function listByGenre($genreId){
     
-    $genreName = $this->daoGenre->getById($genreId)->getName();
+    $genreName = $this->pdoGenre->getById($genreId)->getName();
     
-    /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
-    $genreList = $this->daoGenre->getAll(); 
-    /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
+    $genreList = $this->pdoGenre->getAll(); 
 
-    $moviesYearList = $this->daoMovie->getArrayOfYears();
-    $moviesList = $this->daoMovie->getAll();
+    $moviesYearList = $this->pdoMovie->getArrayOfYears();
+    $moviesList = $this->pdoMovie->getAll();
     $movies = array();
     
     foreach($moviesList as $oneMovie){
@@ -130,14 +130,12 @@ class MovieController
 
   function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
     
-    /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
-    $genreList = $this->daoGenre->getAll();
-    /********* IMPORTANTE: FALTA IMPLEMENTAR ESTA FUNCION EN PDO (ESTO GENERA BUG) */
+    $genreList = $this->pdoGenre->getAll();
 
-    $moviesYearList = $this->daoMovie->getArrayOfYears();
+    $moviesYearList = $this->pdoMovie->getArrayOfYears();
 
     if ($year > 1900 && $year <= 2020) {
-        $moviesList = $this->daoMovie->getAll();
+        $moviesList = $this->pdoMovie->getAll();
 
         $movies = array();
 
@@ -157,20 +155,21 @@ class MovieController
 
 
   public function selectMovie($selectedId){
-    $cinemas = $this->daoCinema->getActiveCinemas();  
-    $movies=$this->daoMovie->getAll();
+    $cinemas = $this->pdoCinema->getActiveCinemas();  
+    $movies=$this->pdoMovie->getAll();
     $listAdminMovies = null;
     foreach($movies as $movie){
       if($movie->getMovieId() == $selectedId){
         $listAdminMovies = $movie;
       }
     } 
+    ViewController::navView($genreList=null,$moviesYearList=null,null);
     include(VIEWS_PATH.'listMoviesAdmin.php');
   }
   
   public function selectRoom($selectedCinemaId, $selectedMovieId){
-    $cinemas = $this->daoCinema->getActiveCinemas();  
-    $movies=$this->daoMovie->getAll();
+    $cinemas = $this->pdoCinema->getActiveCinemas();  
+    $movies=$this->pdoMovie->getAll();
     $currentCinema = null;
     $currentMovie = null;
     foreach($cinemas as $cinema){
@@ -183,6 +182,7 @@ class MovieController
         $currentMovie = $movie;
       }
     }
+    ViewController::navView($genreList=null,$moviesYearList=null,null);
     include(VIEWS_PATH.'listRoomsAdmin.php');
   }
   

@@ -1,16 +1,3 @@
-
-<?php
-    require_once('nav.php');
-    require_once('header.php');
-    
-?>
-<!--Botones con las opciones del administrador-->
-
-<!--LISTAR CINES
-    Muestra un form con una lista de todos los cines guardados en el JSON.
-    Cada cine muestra su información y tienen un botón de eliminar o modificar.
-    Estos botones envían al controlador del cine al método action. 
--->
 <p>
     <form action="<?php echo FRONT_ROOT?>Cinema/showCinemas" method="POST">
         <input type ="submit" class="btn btn-primary bg-danger text-black mt-5 col-md-2 offset-md-1 " value="Cines" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 

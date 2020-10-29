@@ -32,11 +32,13 @@
         }
 
       //  include VIEWS_PATH.'showAddView.php';
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'adminShows.php';
     }
     
     public function addShowView(){
         $shows=$this->DAOShow->getAll();
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'adminShows.php';
         include VIEWS_PATH.'showAddView.php';
     }
@@ -45,7 +47,8 @@
         $shows=$this->DAOShow->getAll();
         $movies=$this->DAOMovie->GetAll();
         $moviesDB = $this->PDOMovie->getAll();
-       // print_r($moviesDB);
+       
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'listMoviesAdmin.php';
     }
 
@@ -60,9 +63,6 @@
 
         $rooms = $this->DAORoom->getAll(); 
         $movies=$this->DAOMovie->GetAll();
-        echo "<pre>";
-        //var_dump($movies);
-        echo "</pre>";
         foreach($rooms as $room){
             if($room->getRoomID() == $roomId){
                 $selectedRoom = $room;
@@ -81,7 +81,7 @@
         $this->DAOShow->add($show);
         //$movies->setIdShow();
 
-
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'adminShows.php';
     }
 
@@ -131,6 +131,7 @@
         $rooms = $this->DAORoom->getAll(); 
       //  print_r($rooms);
 
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'listCinemasAdmin.php';
     }
 }

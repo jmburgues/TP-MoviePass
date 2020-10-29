@@ -1,12 +1,3 @@
-<?php
-    require_once('nav.php');
-    require_once('header.php');
-    #use DAO\DAOCinema as DAOCinema;
-    #$dac = new DAOCinema;
-    #define("FFF_RR", "/TP-MoviePass/");
-    #echo "Current cinema <br>";
-    #var_dump($currentCinema);
-?>
 <hr class="my-4">
 
 <hr class="my-4">

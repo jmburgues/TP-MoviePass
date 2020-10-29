@@ -1,8 +1,3 @@
-<?php
-    require_once('nav.php');
-    require_once('header.php');
-    
-?>
 <div class="container mt-5" id="collapseExample3">
     <div class="card card-body mt-5"> Venta1    
         <ul>

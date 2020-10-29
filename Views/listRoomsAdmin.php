@@ -1,8 +1,3 @@
-<?php
-    require_once('nav.php');
-    require_once('header.php');
-    
-?>
 <!--Estilo de la página-->
     <style type="text/css">
             body {

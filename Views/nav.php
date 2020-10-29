@@ -7,7 +7,7 @@
         -o-background-size: cover;">
 	<ul class="navbar-nav mr-auto  mt-1 mt-lg-0" >
 		<li class="nav-item active" >
-			<strong><a class="nav-link text-white"  href="/TP-MoviePass/index.php">Home</a></strong>  
+			<strong><a class="nav-link text-white"  href="/TP-MoviePass">Home</a></strong>  
 		</li>
 	</ul>
 
@@ -17,23 +17,14 @@
 		<li class="nav-item" >
 			<div class="dropdown">
 				<form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>Movie/listByGenre" method=POST>
-					<button class="btn btn-secondary btn-dark dropdown-toggle" style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button class="btn btn-secondary btn-dark dropdown-toggle" style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <?php if($genresList==null){ ?> disabled <?php } ?>>
 					Genre
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		
-						<!-- 
-						ESTO FUE CORREGIDO: No se debe instanciar una controladora desde una vista.
-						Necesitamos utilizar AJAX o JQuery para llamar al controlador MovieController
-						y colocar todos los diferentes generos en el dropdown (atributo onchange="")
-						Por falta de tiempo no se implemento. 
-						-->
 
-						<?php							
-								foreach ($genresList as $genre){
-								?>
+						<?php if(isset($genresList) && $genresList != null) { foreach ($genresList as $genre){ ?>
 								<button type ="submit" class="dropdown-item" name="genreId" value="<?php echo $genre->getId(); ?>"><?php echo $genre->getName();?></button>
-							<?php } ?>
+							<?php } }?>
 
 					</div>
 				</form>
@@ -44,16 +35,14 @@
 		<li>
 			<div class="dropdown">
 				<form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>Movie/getMoviesByDate" method=POST?>
-					<button class="btn btn-secondary btn-dark dropdown-toggle" style="margin-right:10px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button class="btn btn-secondary btn-dark dropdown-toggle" style="margin-right:10px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <?php if($moviesYearList==null) { ?> disabled <?php } ?>>
 						Years
 					</button>
 					
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<?php if(!empty($moviesYearList)){ 
-							foreach($moviesYearList as $year){ ?>
+						<?php  if(isset($moviesYearList) && $moviesYearList != null) { foreach($moviesYearList as $year){ ?>
 							<button type ="submit" class="dropdown-item" name="year" value="<?php echo $year;?>"><?php echo $year;?></button>
-						<?php }
-					} ?>
+						<?php } } ?>
 					</div>
 				</form>
 			</div>
@@ -90,7 +79,8 @@
 
 					<?php } else if($_SESSION['role'] == 'owner'){?>
 
-							<button type ="button" disabled class="dropdown-item" value="OwnerTools" onclick="window.location.href='<?php echo FRONT_ROOT?>User/ownerView'">Owner Tools</button>
+						<button type ="button" class="dropdown-item" value="AdminTools" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView'">Admin Tools</button>
+							<button type ="button" class="dropdown-item" value="OwnerTools" onclick="window.location.href='<?php echo FRONT_ROOT?>User/ownerView'">Owner Tools</button>
 							
 						<?php } ?>
 						 

@@ -27,13 +27,15 @@
         include VIEWS_PATH.'showAddView.php';
         include VIEWS_PATH.'adminShows.php';*/
 
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'addRoomView.php';
     }
 
     public function addRoomView($idCinema){
         $rooms = array();
         $rooms = $this->DAORoom->getByCinema($idCinema);
-        $cinema = $this->DAOCinema->getById($idCinema);
+       // $cinema = $this->DAOCinema->getById($idCinema);
+       ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'addRoomView.php';
     }
 
@@ -67,14 +69,15 @@
         }  
         
         $rooms = $this->DAORoom->getAll();
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'addRoomView.php';
     }
 
-    public function deleteRoom($idRoom){
-        $rooms = $this->DAORoom->getAll();
-        $this->DAORoom->removeRoom($idRoom);
-        include VIEWS_PATH.'adminCinemas.php';// CAMBIAR LOS INCLUDE POR INCLUDE_ONCE/REQUIERE_ONCE
-    }
+    // public function deleteRoom($idRoom){
+    //     $rooms = $this->DAORoom->getAll();
+    //     $this->DAORoom->removeRoom($idRoom);
+    //     include VIEWS_PATH.'adminCinemas.php';// CAMBIAR LOS INCLUDE POR INCLUDE_ONCE/REQUIERE_ONCE
+    // }
 
 
 }

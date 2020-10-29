@@ -29,7 +29,23 @@
       catch(Exception $ex){
         throw $ex;
       }
+    }
 
+    public function changeRole($userName,$userRole){
+      try{
+        $query = "UPDATE ".$this->tableName." SET userRole = :userRole WHERE userName = :userName;";
+
+        $parameters['userName'] = $userName;
+        $parameters['userRole'] = $userRole;
+
+        $this->connection = Connection::GetInstance();
+
+        return $this->connection->ExecuteNonQuery($query, $parameters);
+      }
+
+      catch(Exception $ex){
+        throw $ex;
+      }
     }
 
     public function getAll(){

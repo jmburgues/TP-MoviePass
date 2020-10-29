@@ -1,9 +1,3 @@
-<?php
-    require_once('nav.php');
-    require_once('header.php');
-    
-?>
-
 <div class="container mt-5 mb-5 " >
     <div class="card card-body ">
         <form name="formulario" class="text-justify m-2" action="<?php echo FRONT_ROOT?>Show/addShow" method="POST" >

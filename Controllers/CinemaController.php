@@ -25,6 +25,7 @@
         $cinemas[0] = $aux;
       }
       //adminCinemas muestra el form para agregar un cine y el listado de cines activos
+      ViewController::navView($genreList=null,$moviesYearList=null,null);
       include VIEWS_PATH.'adminCinemas.php';
     }
 
