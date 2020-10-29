@@ -39,7 +39,7 @@
     public function addShowView(){
         $shows=$this->DAOShow->getAll();
         ViewController::navView($genreList=null,$moviesYearList=null,null);
-        include VIEWS_PATH.'adminShows.php';
+        $this->showShows();
         include VIEWS_PATH.'showAddView.php';
     }
 
@@ -63,6 +63,7 @@
 
         $rooms = $this->DAORoom->getAll(); 
         $movies=$this->DAOMovie->GetAll();
+
         foreach($rooms as $room){
             if($room->getRoomID() == $roomId){
                 $selectedRoom = $room;
@@ -74,56 +75,60 @@
                 $selectedMovie = $movie;
             }
         } 
+        
+        $lookingForShows=$this->DAOShow->getAll();
+        $flag = 0; 
+        foreach ($lookingForShows as $show) {
+            if ($show->getDate() == $date) {
+                if ($show->getIdRoom() == $roomId) {
+                    $extremoInferior = new DateTime($show->getStart());
+                    $extremoSuperior = new DateTime($show->getEnd());
+                    $inicio = new DateTime($start);
+                    $fin = new DateTime($end);
 
+                    if ($inicio>=$extremoInferior && $inicio<=$extremoSuperior) {
+                        $flag = 1;
+                    } else {
+                        if ($fin>=$extremoInferior && $fin<=$extremoSuperior) {
+                            $flag = 1;
+                        }
+                    }
+                }
+            }
+        }    
+            if ($flag != 1) {
+                $this->DAOShow->add($show);
+            } else {
+                $message = "Horario ocupado";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+            }
+        
+
+        
         $shows=$this->DAOShow->getAll();
-        //COMPROBACION DE LOS 15 MINUTOS ETC ETC
-
-        $this->DAOShow->add($show);
-        //$movies->setIdShow();
-
         ViewController::navView($genreList=null,$moviesYearList=null,null);
-        include VIEWS_PATH.'adminShows.php';
+        $this->showShows();
     }
 
     public function selectMovie($date, $start, $spectators, $movieId){
         $dateTime = new DateTime();
         $movies=$this->DAOMovie->GetAll();
-        echo "<br> start: "; 
-        echo $start;
+        
         foreach($movies as $movie){
             if($movie->getMovieId() == $movieId){
-                /*              $end = $dateTime->add($start, $movie->getDuration());
-                $end = $dateTime->add($end, DateInteval());
-                */
+        
                 $auxDate = $start;
                 $dateToInsert = new DateTime($auxDate.'M');
-                
-                echo "<br> auxDate: ";
-                echo $auxDate;
-                
-                echo "<br> duration: ";
-                echo $movie->getDuration();
-                
+
                 $auxEnd = ($movie->getDuration() +15 );
                 
-                echo "<br> aux: ";
-                echo $auxEnd;
-                
-
-                $interval = new DateInterval('PT'.$auxEnd.'M');
-                
-                
+                $interval = new DateInterval('PT'.$auxEnd.'M');         
 
                 $dateToInsertEnd = new DateTime($auxDate);
                 $dateToInsertEnd->add($interval);
-                
-                echo "<br> intervalo: ";
-                echo "<pre>";
-                print_r($interval);
-                echo "</pre>";
-
-
-                //$showList = $this->daoShow->getByIdTheaterDate($theaterId,$date);
+            
+                $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
+                $dateToInsertEnd = $dateToInsertEnd->format('Y-m-d  H:i:s');
 
                 $selectedMovie = $movie;
             }
