@@ -109,15 +109,21 @@
                 echo "<br> aux: ";
                 echo $auxEnd;
                 
-                $interval = new DateInterval($auxEnd.'M');
+
+                $interval = new DateInterval('PT'.$auxEnd.'M');
                 
+                
+
                 $dateToInsertEnd = new DateTime($auxDate);
                 $dateToInsertEnd->add($interval);
                 
                 echo "<br> intervalo: ";
-                echo $interval;
+                echo "<pre>";
+                print_r($interval);
+                echo "</pre>";
 
-                $showList = $this->daoShow->getByIdTheaterDate($theaterId,$date);
+
+                //$showList = $this->daoShow->getByIdTheaterDate($theaterId,$date);
 
                 $selectedMovie = $movie;
             }
