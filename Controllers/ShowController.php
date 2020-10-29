@@ -107,13 +107,7 @@
                     $inicio = new DateTime($start);
                     $fin = new DateTime($end);
                     
-                    print_r($extremoInferior);
-                    echo "<br>";
-                    print_r($extremoSuperior);
-                    echo "<br>";
-                    print_r($inicio);
-                    echo "<br>";
-                    print_r($fin);
+                 
 
                     if ($inicio>=$extremoInferior && $inicio<=$extremoSuperior) {
                         $flag = 1;

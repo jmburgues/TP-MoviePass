@@ -36,8 +36,8 @@ class HomeController
 
                 $movies = array();
                 #pasar luego a una QUERY del pdo
+                $aux = array();
                 foreach ($shows as $show) {
-                    $aux = array();
                     if(!(in_array($show->getIdMovie(),$aux))){
                         array_push($aux,$show->getIdMovie());
                         array_push($movies, $this->DAOMovie->getById($show->getIdMovie()));
