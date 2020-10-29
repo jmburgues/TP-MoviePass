@@ -21,14 +21,14 @@
         <div class="form-group row">
             <label for="inputHorario" class="col-sm-2 col-form-label">Openning hour:</label>
             <div class="col-sm-10">
-            <input type="number"   min="00:00" max="23:59" class="form-control" name="openning" placeholder="00:00" required>
+            <input type="time"   min="00:00" max="23:59" class="form-control" name="openning" placeholder="00:00" required>
 
             </div>
         </div>  
         <div class="form-group row">
             <label for="inputHorario" class="col-sm-2 col-form-label">Closing hour:</label>
             <div class="col-sm-10">
-            <input type="number"   min="00:00" max="23:59" class="form-control" name="closing" placeholder="23:59" required>
+            <input type="time"   min="00:00" max="23:59" class="form-control" name="closing" placeholder="23:59" required>
             
             </div>
         </div>

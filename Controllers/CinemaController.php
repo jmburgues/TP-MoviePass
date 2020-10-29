@@ -36,21 +36,30 @@
           //print_r ($currentCinema);
           $cinemas = $this->DAOCinema->getActiveCinemas();  
           $movies=$this->DAOMovie->GetAll();
+          ViewController::navView($genreList=null,$moviesYearList=null,null);
           include VIEWS_PATH.'cine-modify.php';
       }
         
   //Cambia el valor boolean de los cines isActive
     public function deleteCinema($idCinema){
-      //echo $idCinema;
+    
       $this->DAOCinema->removeCinema($idCinema);
-      $cinemas = $this->DAOCinema->getActiveCinemas();  
+      $cinemas = array();
+      $aux = $this->DAOCinema->getActiveCinemas();
+      if (is_array($aux)){
+        $cinemas = $aux;
+      } else{
+        $cinemas[0] = $aux;
+      }
+
       $movies=$this->DAOMovie->GetAll();
+      ViewController::navView($genreList=null,$moviesYearList=null,null);
       include VIEWS_PATH.'adminCinemas.php';// CAMBIAR LOS INCLUDE POR INCLUDE_ONCE/REQUIERE_ONCE
     }
 
     //Modifica los valores de los
     public function modifyCinema($id, $name, $address, $number, $openning, $closing){
-      echo $id, $name, $address, $number, $openning, $closing;
+     // echo $id, $name, $address, $number, $openning, $closing;
       $cinemasList = $this->DAOCinema->getActiveCinemas();
       foreach($cinemasList as $cinemas){
         if ($cinemas->getId() == $id) {

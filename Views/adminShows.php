@@ -12,8 +12,8 @@
                             <li>Show spectators: <?php echo $show->getSpectators()?></li>
                             <li>Show Room: <?php echo $auxRoom->getById($show->getIdRoom())->getName();?></li>
                             <li>Show Movie: <?php echo $auxMovie->getById($show->getIdMovie())->getTitle();?></li>
-                            <li>Show Cinema: <?php echo $auxCinema->getById($auxRoom->getById($show->getIdRoom())->getRoomID())->getName();?></li>
-
+                     <!--       <li>Show Cinema: <?php// echo $auxCinema->getById($auxRoom->getById($show->getIdRoom())->getRoomID())->getName();?></li>
+-->
                         </ul>  
     <!--card-->     </div>
     
