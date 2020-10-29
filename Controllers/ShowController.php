@@ -7,6 +7,7 @@
     use DAO\PDO\PDORoom as DAORoom;
     use DAO\PDO\PDOShow as DAOShow;
     use DAO\PDO\PDOCinema as DAOCinema;
+    use DAO\PDO\PDOGenre as PDOGenre;
     use Models\Show as Show;
     use Models\Cinema as Cinema;
     use Models\Movie as Movie;
@@ -17,6 +18,7 @@
         private $DAORoom;
         private $DAOShow;
         private $PDOMovie;
+        private $PDOGenre;
 
 
         public function __construct(){
@@ -24,7 +26,8 @@
             $this->DAORoom = new DAORoom(); 
             $this->DAOShow = new DAOShow();    
             $this->PDOMovie = new DAOMovie();     
-            $this->PDOCinema = new DAOCinema();        
+            $this->PDOCinema = new DAOCinema();    
+            $this->PDOGenre = new PDOGenre();    
         }
         
     public function showShows(){
@@ -130,6 +133,36 @@
         $this->showShows();
     }
 
+    function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
+    
+        $genreList = $this->PDOGenre->getAll();
+        $showList = $this->DAOShow->getAll();
+
+        $moviesYearList = $this->PDOMovie->getArrayOfYears();
+    
+        if ($year > 1900 && $year <= 2020) {
+            $moviesList = $this->PDOMovie->getAll();
+    
+            $movies = array();
+    
+            foreach ($moviesList as $oneMovie) {
+                $releaseDate = $oneMovie->getReleaseDate();
+                $releaseYear = DateTime::createFromFormat('Y-m-d', $releaseDate)->format('Y');
+    
+                if ($releaseYear == $year && !in_array( $oneMovie, $movies)) {
+                    foreach($showList as $show){
+                        if($show->getIdMovie() == $oneMovie->getMovieID()){
+                            array_push($movies, $oneMovie);
+                        }
+                    }
+                    
+                }
+            }
+        }
+    
+        ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
+        ViewController::homeView($movies,1,"Year: ".$year);
+      }
 
     public function selectMovie($date, $start, $spectators, $movieId){
         $dateTime = new DateTime();

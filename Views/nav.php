@@ -34,7 +34,7 @@
 		<!--Dropdown calendario, buscar por fecha-->
 		<li>
 			<div class="dropdown">
-				<form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>Movie/getMoviesByDate" method=POST?>
+				<form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>Show/getMoviesByDate" method=POST?>
 					<button class="btn btn-secondary btn-dark dropdown-toggle" style="margin-right:10px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <?php if($moviesYearList==null) { ?> disabled <?php } ?>>
 						Years
 					</button>

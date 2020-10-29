@@ -128,30 +128,7 @@ class MovieController
     ViewController::homeView($movies,1,"Genre: ".$genreName);
   }
 
-  function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
-    
-    $genreList = $this->pdoGenre->getAll();
 
-    $moviesYearList = $this->pdoMovie->getArrayOfYears();
-
-    if ($year > 1900 && $year <= 2020) {
-        $moviesList = $this->pdoMovie->getAll();
-
-        $movies = array();
-
-        foreach ($moviesList as $oneMovie) {
-            $releaseDate = $oneMovie->getReleaseDate();
-            $releaseYear = DateTime::createFromFormat('Y-m-d', $releaseDate)->format('Y');
-
-            if ($releaseYear == $year && !in_array( $oneMovie, $movies)) {
-                array_push($movies, $oneMovie);
-            }
-        }
-    }
-
-    ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
-    ViewController::homeView($movies,1,"Year: ".$year);
-  }
 
 
   public function selectMovie($selectedId){
