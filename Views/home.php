@@ -42,7 +42,7 @@
       
       <h4 class="card-title mb-2"><?php echo $movies[$i]->getTitle()?></h4>   
       
-      <input value="Buy Tickets" class="btn btn-secondary bg-danger text-white mb-2 col-md-5 " type="button" onclick="location='<?= FRONT_ROOT?>User/showPurchase'" />
+      <input disabled value="Buy Tickets" class="btn btn-secondary bg-danger text-white mb-2 col-md-5 " type="button" onclick="location='<?= FRONT_ROOT?>User/showPurchase'" />
       
       <p class="card-text" style="margin-bottom:0px;">
       <?php

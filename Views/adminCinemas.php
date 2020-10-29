@@ -3,32 +3,32 @@
         <div class="form-group row ">
             <label for="inputName" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="name" placeholder="Name" required>
+                <input type="text" class="form-control" name="name" placeholder="Example Cinema" required>
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputDireccion" class="col-sm-2 col-form-label">Address</label>
+            <label for="inputDireccion" class="col-sm-2 col-form-label">Street:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="address" placeholder="Address" required>
+                <input type="text" class="form-control" name="address" placeholder="Example Street" required>
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputNumber" class="col-sm-2 col-form-label">Number</label>
+            <label for="inputNumber" class="col-sm-2 col-form-label">St. Number:</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" name="number" placeholder="Number" required>
+                <input type="number" class="form-control" name="number" placeholder="1234" required>
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputHorario" class="col-sm-2 col-form-label">Openning</label>
+            <label for="inputHorario" class="col-sm-2 col-form-label">Openning hour:</label>
             <div class="col-sm-10">
-            <input type="number"   min="00:00" max="23:59" class="form-control" name="openning" placeholder="Openning" required>
+            <input type="number"   min="00:00" max="23:59" class="form-control" name="openning" placeholder="00:00" required>
 
             </div>
         </div>  
         <div class="form-group row">
-            <label for="inputHorario" class="col-sm-2 col-form-label">Closing</label>
+            <label for="inputHorario" class="col-sm-2 col-form-label">Closing hour:</label>
             <div class="col-sm-10">
-            <input type="number"   min="00:00" max="23:59" class="form-control" name="closing" placeholder="Closing" required>
+            <input type="number"   min="00:00" max="23:59" class="form-control" name="closing" placeholder="23:59" required>
             
             </div>
         </div>
@@ -42,13 +42,13 @@
                 ?>                
                 <div class="container  mt-5 mb-5">       
                     <div class="card card-body ">
-                        <?php echo $cinema->getName() ?>  
+                        <?php echo "<strong>".$cinema->getName()."</strong>" ?>  
                         <ul>
-                            <li>Cinema Name: <?php echo $cinema->getName() ?></li>
-                            <li>Cinema Adress: <?php echo $cinema->getAddress() ?></li>
-                            <li>Cinema Number: <?php echo $cinema->getNumber() ?></li>
-                            <li>Cinema Opening: <?php echo $cinema->getOpenning() ?></li>
-                            <li>Cinema Closing: <?php echo $cinema->getClosing() ?></li>
+                            <li><strong>Name:  </strong><?php echo $cinema->getName() ?></li>
+                            <li><strong>Street:  </strong><?php echo $cinema->getAddress() ?></li>
+                            <li><strong>St. Number:  </strong><?php echo $cinema->getNumber() ?></li>
+                            <li><strong>Opening hour:  </strong><?php echo $cinema->getOpenning() ?></li>
+                            <li><strong>Closing hour:  </strong><?php echo $cinema->getClosing() ?></li>
                             
                             <li style="list-style:none; padding-left:70%">
                                 <div class="btn-group" role="group" aria-label="Basic example">    
