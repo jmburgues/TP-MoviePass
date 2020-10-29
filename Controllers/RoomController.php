@@ -33,7 +33,7 @@
     public function addRoomView($idCinema){
         $rooms = array();
         $rooms = $this->DAORoom->getByCinema($idCinema);
-       // $cinema = $this->DAOCinema->getById($idCinema);
+        $cinema = $this->DAOCinema->getById($idCinema);
         include VIEWS_PATH.'addRoomView.php';
     }
 

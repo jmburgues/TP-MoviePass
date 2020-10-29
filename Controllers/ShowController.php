@@ -116,7 +116,7 @@
                 
                 echo "<br> intervalo: ";
                 echo $interval;
-                
+
                 $showList = $this->daoShow->getByIdTheaterDate($theaterId,$date);
 
                 $selectedMovie = $movie;
