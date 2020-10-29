@@ -28,14 +28,23 @@ class HomeController
                 }
 
 
+
                 $genreList = $this->DAOGenre->getAll();
                 $moviesYearList = $this->DAOMovie->getArrayOfYears();
                 
                 ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
 
-                $movies = $this->DAOMovie->getAll();
+                $movies = array();
+                #pasar luego a una QUERY del pdo
+                foreach ($shows as $show) {
+                    $aux = array();
+                    if(!(in_array($show->getIdMovie(),$aux))){
+                        array_push($aux,$show->getIdMovie());
+                        array_push($movies, $this->DAOMovie->getById($show->getIdMovie()));
+                    }
+                }
                 $page = $message;
-                $title = "LATEST MOVIES";
+                $title = "LATEST MOVIES IN PROYECTION";
                 
                 ViewController::homeView($movies,$page,$title);
             }catch(Exception $ex)
