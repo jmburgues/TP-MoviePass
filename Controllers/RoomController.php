@@ -2,13 +2,17 @@
     namespace Controllers;
 
     use DAO\PDO\PDORoom as DAORoom;
+    use DAO\PDO\PDOCinema as DAOCinema;
     use Models\Room as Room;
+    use Models\Cinema as Cinema;
 
     class RoomController{
     private $DAORoom;
-    
+    private $DAOCinema;
+
     public function __construct(){
-        $this->DAORoom = new DAORoom;
+        $this->DAORoom = new DAORoom();
+        $this->DAOCinema = new DAOCinema();
     }
 
     public function showRooms(){
@@ -29,7 +33,7 @@
     public function addRoomView($idCinema){
         $rooms = array();
         $rooms = $this->DAORoom->getByCinema($idCinema);
-        
+       // $cinema = $this->DAOCinema->getById($idCinema);
         include VIEWS_PATH.'addRoomView.php';
     }
 

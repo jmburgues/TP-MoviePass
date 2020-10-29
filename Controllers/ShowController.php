@@ -1,6 +1,8 @@
 <?php
     namespace Controllers;
 
+    use \DateTime as DateTime;
+    use \DateInterval as DateInterval;
     use DAO\PDO\PDOMovie as DAOMovie;
     use DAO\PDO\PDORoom as DAORoom;
     use DAO\PDO\PDOShow as DAOShow;
@@ -39,7 +41,7 @@
         include VIEWS_PATH.'showAddView.php';
     }
 
-    public function addShow($date, $start, $end, $spectators){
+    public function addShow($date, $start, $spectators){
         $shows=$this->DAOShow->getAll();
         $movies=$this->DAOMovie->GetAll();
         $moviesDB = $this->PDOMovie->getAll();
@@ -55,25 +57,6 @@
         $show->setSpectators($spectators);
         $show->setIdMovie($selectedMovieId);
         $show->setIdRoom($roomId);
-
-    echo $date;
-      echo "<br>";
-      echo $start;
-      echo "<br>";
-      echo $end;
-      echo "<br>";
-      echo $spectators;
-      echo "<br>";
-      echo $selectedMovieId;
-      echo "<br>";
-      echo $roomId;
-      echo "<br>";
-
-
-        echo "<pre>";
-        print_r($show);
-        echo $show->getIdMovie();
-        echo "</pre>";
 
         $rooms = $this->DAORoom->getAll(); 
         $movies=$this->DAOMovie->GetAll();
@@ -102,11 +85,40 @@
         include VIEWS_PATH.'adminShows.php';
     }
 
-    public function selectMovie($date, $start, $end, $spectators, $movieId){
-       // echo $movieId;
+    public function selectMovie($date, $start, $spectators, $movieId){
+        $dateTime = new DateTime();
         $movies=$this->DAOMovie->GetAll();
+        echo "<br> start: "; 
+        echo $start;
         foreach($movies as $movie){
             if($movie->getMovieId() == $movieId){
+                /*              $end = $dateTime->add($start, $movie->getDuration());
+                $end = $dateTime->add($end, DateInteval());
+                */
+                $auxDate = $start;
+                $dateToInsert = new DateTime($auxDate.'M');
+                
+                echo "<br> auxDate: ";
+                echo $auxDate;
+                
+                echo "<br> duration: ";
+                echo $movie->getDuration();
+                
+                $auxEnd = ($movie->getDuration() +15 );
+                
+                echo "<br> aux: ";
+                echo $auxEnd;
+                
+                $interval = new DateInterval($auxEnd.'M');
+                
+                $dateToInsertEnd = new DateTime($auxDate);
+                $dateToInsertEnd->add($interval);
+                
+                echo "<br> intervalo: ";
+                echo $interval;
+                
+                $showList = $this->daoShow->getByIdTheaterDate($theaterId,$date);
+
                 $selectedMovie = $movie;
             }
         } 
