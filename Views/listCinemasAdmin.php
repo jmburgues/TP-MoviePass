@@ -1,30 +1,35 @@
 <hr class="my-4">
     <div class="container  mt-3">   
         <div class="card card-body ">
+        <div class="panel-heading">
+            <br><h3 style="text-align: center;">Show info:</h3>
+        </div>
             <ul>
-                <li>Dia elegido: <?php echo $date ?></li>
-                <li>Hora elegido: <?php echo $start ?></li>
-                <li>Hora de finalización: <?php echo $dateToInsertEnd ?></li>
-                <li>Espectadores: <?php echo $spectators ?></li>
-                <li>Movie elegido: <?php echo $selectedMovie->getTitle()  ?></li>
-
-
-                </ul>
+                <li>Date: <?php echo $date ?></li>
+                <li>Starting hour: <?php echo $start ?></li>
+                <li>Closing hour: <?php echo $dateToInsertEnd ?></li>
+                <li>Spectators: <?php echo $spectators ?></li>
+                <li>Movie title: <?php echo $selectedMovie->getTitle() ?></li>
+            </ul>
         </div>
     </div>
 <hr class="my-4">
+        <div class="panel-heading">
+            <br><h4 style="text-align: center;">Select Room:</h4>
+        </div>
         <?php
         foreach ($rooms as $room) {
             ?>                
             <form action="<?php echo FRONT_ROOT?>Show/addCurrentShow" method="POST" class= " mt-5 mb-5">
             <div class="container  mt-5">           
                 <div class="card card-body ">
+                    
                         <input type="hidden"  value="<?php echo $date?>" name="date" ></input>     
                         <input type="hidden"  value="<?php echo $dateToInsert?>" name="dateToInsert" ></input>   
                         <input type="hidden"  value="<?php echo $dateToInsertEnd?>" name="dateToInsertEnd" ></input>  
                         <input type="hidden"  value="<?php echo $spectators?>" name="spectators" ></input>   
                         <input type="hidden"  value="<?php echo $selectedMovie->getMovieID() ?>" name="selectedMovieId" ></input>     
-                        <button class="font-weight-bold text-center text-uppercase mb-2"  type="submit" value="<?php echo $room->getRoomId()?>" name="roomId" style=" text-align:left; border: none; background: none;"><?php echo $room->getName()?></button>
+                        <button class="font-weight-bold text-center text-uppercase mb-2"  type="submit" value="<?php echo $room->getRoomId()?>" name="roomId" style=" text-align:left; border: none; background: none;">Add to: <?php echo $room->getName()?></button>
                         <hr style="margin-top: 2px">
                     <ul>
                         <li style="list-style:none">Room Name: <?php echo $room->getName() ?></li>

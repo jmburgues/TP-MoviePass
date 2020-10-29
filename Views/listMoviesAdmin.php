@@ -1,7 +1,9 @@
-<?php 
-    if (isset($moviesDB)) {
-        foreach ($moviesDB as $movie) {
-?>             
+<div class="panel-heading">
+    <br><h3 style="text-align: center;">Select movie:</h3>
+</div>
+<?php if (isset($moviesDB)) {
+        foreach ($moviesDB as $movie) { ?>      
+
     <form action="<?php echo FRONT_ROOT?>Show/selectMovie" method="POST" class= " mt-5 mb-5">
         <div class= "container">            
             <div class="card card-body ">
@@ -11,19 +13,13 @@
                 <button type="submit" value="<?php  echo $movie->getMovieId()?>" name="movieId" style=" text-align:left; border: none; background: none;"><?php echo $movie->getTitle()?></button>     
             </div>
         </div>
-        <?php
-        }
-        ?>
-        <?php
-        if(!$movies){
-            ?>
-            <div class="card card-body ">
-                <?php echo "No movies loaded yet"?>  
-            </div>
-        <?php
-        }
-        ?>  
+        
+        <?php } 
+            if(!$movies){ ?>
+                <div class="card card-body ">
+                    <?php echo "No movies loaded yet"?>  
+                </div>
+        <?php } 
+            } ?>  
     </form>
-    <?php
-    }
-    ?>
+
