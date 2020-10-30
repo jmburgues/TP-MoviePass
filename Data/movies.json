@@ -1,1369 +1,17 @@
 [
     {
-        "duration": 115,
-        "title": "Mulan",
-        "genre": [
-            {
-                "id": "Action",
-                "name": 28
-            },
-            {
-                "id": "Adventure",
-                "name": 12
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            },
-            {
-                "id": "Fantasy",
-                "name": 14
-            }
-        ],
-        "poster": "\/aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg",
-        "releaseDate": "2020-09-04",
-        "description": null,
-        "movieID": 337401
-    },
-    {
-        "duration": 82,
-        "title": "Money Plane",
-        "genre": [
-            {
-                "id": "Action",
-                "name": 28
-            }
-        ],
-        "poster": "\/6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg",
-        "releaseDate": "2020-09-29",
-        "description": null,
-        "movieID": 694919
-    },
-    {
-        "duration": 96,
-        "title": "Ava",
-        "genre": [
-            {
-                "id": "Action",
-                "name": 28
-            },
-            {
-                "id": "Crime",
-                "name": 80
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            }
-        ],
-        "poster": "\/qzA87Wf4jo1h8JMk9GilyIYvwsA.jpg",
-        "releaseDate": "2020-07-02",
-        "description": null,
-        "movieID": 539885
-    },
-    {
-        "duration": 114,
-        "title": "Peninsula",
-        "genre": [
-            {
-                "id": "Action",
-                "name": 28
-            },
-            {
-                "id": "Horror",
-                "name": 27
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            }
-        ],
-        "poster": "\/sy6DvAu72kjoseZEjocnm2ZZ09i.jpg",
-        "releaseDate": "2020-07-15",
-        "description": "A soldier and his team battle hordes of post-apocalyptic zombies in the wastelands of the Korean Peninsula.",
-        "movieID": 581392
-    },
-    {
-        "duration": 84,
-        "title": "Cats & Dogs 3: Paws Unite",
-        "genre": [
-            {
-                "id": "Comedy",
-                "name": 35
-            },
-            {
-                "id": "Action",
-                "name": 28
-            }
-        ],
-        "poster": "\/4BgSWFMW2MJ0dT5metLzsRWO7IJ.jpg",
-        "releaseDate": "2020-10-02",
-        "description": "It's been ten years since the creation of the Great Truce, an elaborate joint-species surveillance system designed and monitored by cats and dogs to keep the peace when conflicts arise. But when a tech-savvy villain hacks into wireless networks to use frequencies only heard by cats and dogs, he manipulates them into conflict and the worldwide battle between cats and dogs is BACK ON. Now, a team of inexperienced and untested agents will have to use their old-school animal instincts to restore order and peace between cats and dogs everywhere.",
-        "movieID": 726739
-    },
-    {
-        "duration": 105,
-        "title": "After We Collided",
-        "genre": [
-            {
-                "id": "Romance",
-                "name": 10749
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            }
-        ],
-        "poster": "\/kiX7UYfOpYrMFSAGbI6j1pFkLzQ.jpg",
-        "releaseDate": "2020-09-02",
-        "description": "Tessa finds herself struggling with her complicated relationship with Hardin; she faces a dilemma that could change their lives forever.",
-        "movieID": 613504
-    },
-    {
-        "duration": 114,
-        "title": "2067",
-        "genre": [
-            {
-                "id": "Science Fiction",
-                "name": 878
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            }
-        ],
-        "poster": "\/7D430eqZj8y3oVkLFfsWXGRcpEG.jpg",
-        "releaseDate": "2020-10-01",
-        "description": "A lowly utility worker is called to the future by a mysterious radio signal, he must leave his dying wife to embark on a journey that will force him to face his deepest fears in an attempt to change the fabric of reality and save humankind from its greatest environmental crisis yet.",
-        "movieID": 528085
-    },
-    {
-        "duration": 91,
-        "title": "Trolls World Tour",
-        "genre": [
-            {
-                "id": "Animation",
-                "name": 16
-            },
-            {
-                "id": "Family",
-                "name": 10751
-            },
-            {
-                "id": "Comedy",
-                "name": 35
-            },
-            {
-                "id": "Fantasy",
-                "name": 14
-            },
-            {
-                "id": "Adventure",
-                "name": 12
-            },
-            {
-                "id": "Music",
-                "name": 10402
-            }
-        ],
-        "poster": "\/7W0G3YECgDAfnuiHG91r8WqgIOe.jpg",
-        "releaseDate": "2020-03-12",
-        "description": "Queen Poppy and Branch make a surprising discovery \u2014 there are other Troll worlds beyond their own, and their distinct differences create big clashes between these various tribes. When a mysterious threat puts all of the Trolls across the land in danger, Poppy, Branch, and their band of friends must embark on an epic quest to create harmony among the feuding Trolls to unite them against certain doom.",
-        "movieID": 446893
-    },
-    {
-        "duration": 104,
-        "title": "My Hero Academia: Heroes Rising",
-        "genre": [
-            {
-                "id": "Animation",
-                "name": 16
-            },
-            {
-                "id": "Action",
-                "name": 28
-            }
-        ],
-        "poster": "\/zGVbrulkupqpbwgiNedkJPyQum4.jpg",
-        "releaseDate": "2019-12-20",
-        "description": "Class 1-A visits Nabu Island where they finally get to do some real hero work. The place is so peaceful that it's more like a vacation \u2026 until they're attacked by a villain with an unfathomable Quirk! His power is eerily familiar, and it looks like Shigaraki had a hand in the plan. But with All Might retired and citizens' lives on the line, there's no time for questions. Deku and his friends are the next generation of heroes, and they're the island's only hope.",
-        "movieID": 592350
-    },
-    {
-        "duration": 105,
-        "title": "Antebellum",
-        "genre": [
-            {
-                "id": "Horror",
-                "name": 27
-            }
-        ],
-        "poster": "\/irkse1FMm9dWemwlxKJ7RINT9Iy.jpg",
-        "releaseDate": "2020-09-02",
-        "description": "Successful author Veronica finds herself trapped in a horrifying reality and must uncover the mind-bending mystery before it's too late.",
-        "movieID": 627290
-    },
-    {
-        "duration": 92,
-        "title": "The Owners",
-        "genre": [
-            {
-                "id": "Thriller",
-                "name": 53
-            },
-            {
-                "id": "Horror",
-                "name": 27
-            },
-            {
-                "id": "Action",
-                "name": 28
-            }
-        ],
-        "poster": "\/gzFatNrw0lhKD5NxaU6zC7S2KjP.jpg",
-        "releaseDate": "2020-08-27",
-        "description": "A group of friends think they found the perfect easy score - an empty house with a safe full of cash. But when the elderly couple that lives there comes home early, the tables are suddenly turned. As a deadly game of cat and mouse ensues, the would-be thieves must fight to save themselves from a nightmare they could never have imagined.",
-        "movieID": 659986
-    },
-    {
-        "duration": 123,
-        "title": "The Outpost",
-        "genre": [
-            {
-                "id": "War",
-                "name": 10752
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            },
-            {
-                "id": "History",
-                "name": 36
-            },
-            {
-                "id": "Action",
-                "name": 28
-            }
-        ],
-        "poster": "\/hPkqY2EMqWUnFEoedukilIUieVG.jpg",
-        "releaseDate": "2020-06-24",
-        "description": "A small unit of U.S. soldiers, alone at the remote Combat Outpost Keating, located deep in the valley of three mountains in Afghanistan, battles to defend against an overwhelming force of Taliban fighters in a coordinated attack. The Battle of Kamdesh, as it was known, was the bloodiest American engagement of the Afghan War in 2009 and Bravo Troop 3-61 CAV became one of the most decorated units of the 19-year conflict.",
-        "movieID": 531876
-    },
-    {
-        "duration": 92,
-        "title": "Bill & Ted Face the Music",
-        "genre": [
-            {
-                "id": "Comedy",
-                "name": 35
-            },
-            {
-                "id": "Science Fiction",
-                "name": 878
-            },
-            {
-                "id": "Adventure",
-                "name": 12
-            }
-        ],
-        "poster": "\/4V2nTPfeB59TcqJcUfQ9ziTi7VN.jpg",
-        "releaseDate": "2020-08-27",
-        "description": "Yet to fulfill their rock and roll destiny, the now middle-aged best friends Bill and Ted set out on a new adventure when a visitor from the future warns them that only their song can save life as we know it. Along the way, they are helped by their daughters, a new batch of historical figures and a few music legends\u2014to seek the song that will set their world right and bring harmony to the universe.",
-        "movieID": 501979
-    },
-    {
-        "duration": 108,
-        "title": "Bad Education",
-        "genre": [
-            {
-                "id": "Comedy",
-                "name": 35
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            },
-            {
-                "id": "TV Movie",
-                "name": 10770
-            }
-        ],
-        "poster": "\/gizz5FphOtfSnLaGpRALOZgILd5.jpg",
-        "releaseDate": "2020-09-23",
-        "description": "A superintendent of a school district works for the betterment of the student\u2019s education when an embezzlement scheme is discovered, threatening to destroy everything.",
-        "movieID": 530723
-    },
-    {
-        "duration": 120,
-        "title": "Pinocchio",
-        "genre": [
-            {
-                "id": "Fantasy",
-                "name": 14
-            },
-            {
-                "id": "Family",
-                "name": 10751
-            },
-            {
-                "id": "Adventure",
-                "name": 12
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            }
-        ],
-        "poster": "\/4w1ItwCJCTtSi9nPfJC1vU6NIVg.jpg",
-        "releaseDate": "2019-12-19",
-        "description": "In this live-action adaptation of the beloved fairytale, old woodcarver Geppetto fashions a wooden puppet, Pinocchio, who magically comes to life. Pinocchio longs for adventure and is easily led astray, encountering magical beasts, fantastical spectacles, while making friends and foes along his journey. However, his dream is to become a real boy, which can only come true if he finally changes his ways.",
-        "movieID": 413518
-    },
-    {
-        "duration": 97,
-        "title": "Lost Girls & Love Hotels",
-        "genre": [
-            {
-                "id": "Drama",
-                "name": 18
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            }
-        ],
-        "poster": "\/vQgXwuJrlpzGDI8169tRQRy71Nv.jpg",
-        "releaseDate": "2020-09-18",
-        "description": "Searching for escape in Tokyo's back alleys, a haunted English teacher explores love and lust with a dashing Yakuza, as their tumultuous affair takes her on a journey through the city's dive bars and three-hour love hotels.",
-        "movieID": 479259
-    },
-    {
-        "duration": 150,
-        "title": "Tenet",
-        "genre": [
-            {
-                "id": "Action",
-                "name": 28
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            },
-            {
-                "id": "Science Fiction",
-                "name": 878
-            }
-        ],
-        "poster": "\/k68nPLbIST6NP96JmTxmZijEvCA.jpg",
-        "releaseDate": "2020-08-22",
-        "description": "Armed with only one word - Tenet - and fighting for the survival of the entire world, the Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
-        "movieID": 577922
-    },
-    {
-        "duration": 138,
-        "title": "The Devil All the Time",
-        "genre": [
-            {
-                "id": "Crime",
-                "name": 80
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            }
-        ],
-        "poster": "\/7G2VvG1lU8q758uOqU6z2Ds0qpA.jpg",
-        "releaseDate": "2020-09-11",
-        "description": "In Knockemstiff, Ohio and its neighboring backwoods, sinister characters converge around young Arvin Russell as he fights the evil forces that threaten him and his family.",
-        "movieID": 499932
-    },
-    {
-        "duration": 85,
-        "title": "Monsoon",
-        "genre": [
-            {
-                "id": "Drama",
-                "name": 18
-            },
-            {
-                "id": "Romance",
-                "name": 10749
-            }
-        ],
-        "poster": "\/xIKVeH1iAKJOYYh9lvObD3hYIaf.jpg",
-        "releaseDate": "2020-09-25",
-        "description": "Kit can\u2019t remember much of his native Vietnam. When he returns to the Land of the Golden Star for the first time in over thirty years, he takes in his local surroundings as any Western tourist would, and the environment is as exotic as the language is incomprehensible. The aim of Kit\u2019s travels \u2013 to find a place to scatter his parents\u2019 ashes \u2013 thus becomes part of a journey back to his roots and to the discovery of his identity, which external circumstances have rendered ambiguous and complex.",
-        "movieID": 605499
-    },
-    {
-        "duration": 137,
-        "title": "The King of Staten Island",
-        "genre": [
-            {
-                "id": "Comedy",
-                "name": 35
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            }
-        ],
-        "poster": "\/zQFjMmE3K9AX5QrBL1SXIxYQ9jz.jpg",
-        "releaseDate": "2020-07-22",
-        "description": "Scott has been a case of arrested development ever since his firefighter father died when he was seven. He\u2019s now reached his mid-20s having achieved little, chasing a dream of becoming a tattoo artist that seems far out of reach. As his ambitious younger sister heads off to college, Scott is still living with his exhausted ER nurse mother and spends his days smoking weed, hanging with the guys \u2014 Oscar, Igor and Richie \u2014 and secretly hooking up with his childhood friend Kelsey. But when his mother starts dating a loudmouth firefighter named Ray, it sets off a chain of events that will force Scott to grapple with his grief and take his first tentative steps toward moving forward in life.",
-        "movieID": 579583
-    },
-    {
-        "duration": 106,
-        "title": "Rogue",
-        "genre": [
-            {
-                "id": "Action",
-                "name": 28
-            }
-        ],
-        "poster": "\/uOw5JD8IlD546feZ6oxbIjvN66P.jpg",
-        "releaseDate": "2020-08-20",
-        "description": "Battle-hardened O\u2019Hara leads a lively mercenary team of soldiers on a daring mission: rescue hostages from their captors in remote Africa. But as the mission goes awry and the team is stranded, O\u2019Hara\u2019s squad must face a bloody, brutal encounter with a gang of rebels.",
-        "movieID": 718444
-    },
-    {
-        "duration": 117,
-        "title": "Demon Slayer: Kimetsu no Yaiba - The Movie: Mugen Train",
-        "genre": [
-            {
-                "id": "Animation",
-                "name": 16
-            },
-            {
-                "id": "Action",
-                "name": 28
-            },
-            {
-                "id": "History",
-                "name": 36
-            },
-            {
-                "id": "Adventure",
-                "name": 12
-            },
-            {
-                "id": "Fantasy",
-                "name": 14
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            }
-        ],
-        "poster": "\/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg",
-        "releaseDate": "2020-10-16",
-        "description": "Tanjir\u014d Kamado, joined with Inosuke Hashibira, a boy raised by boars who wears a boar's head, and Zenitsu Agatsuma, a scared boy who reveals his true power when he sleeps, boards the Infinity Train on a new mission with the Fire Hashira, Ky\u014djur\u014d Rengoku, to defeat a demon who has been tormenting the people and killing the demon slayers who oppose it!",
-        "movieID": 635302
-    },
-    {
-        "duration": 118,
-        "title": "Love and Monsters",
-        "genre": [
-            {
-                "id": "Adventure",
-                "name": 12
-            },
-            {
-                "id": "Science Fiction",
-                "name": 878
-            },
-            {
-                "id": "Romance",
-                "name": 10749
-            },
-            {
-                "id": "Comedy",
-                "name": 35
-            }
-        ],
-        "poster": "\/r4Lm1XKP0VsTgHX4LG4syAwYA2I.jpg",
-        "releaseDate": "2020-10-16",
-        "description": "Seven years after the Monsterpocalypse, Joel Dawson, along with the rest of humanity, has been living underground ever since giant creatures took control of the land. After reconnecting over radio with his high school girlfriend Aimee, who is now 80 miles away at a coastal colony, Joel begins to fall for her again. As Joel realizes that there\u2019s nothing left for him underground, he decides against all logic to venture out to Aimee, despite all the dangerous monsters that stand in his way.",
-        "movieID": 590223
-    },
-    {
-        "duration": 94,
-        "title": "The War with Grandpa",
-        "genre": [
-            {
-                "id": "Comedy",
-                "name": 35
-            },
-            {
-                "id": "Family",
-                "name": 10751
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            }
-        ],
-        "poster": "\/ltyARDw2EFXZ2H2ERnlEctXPioP.jpg",
-        "releaseDate": "2020-08-27",
-        "description": "Sixth-grader Peter is pretty much your average kid\u2014he likes gaming, hanging with his friends and his beloved pair of Air Jordans. But when his recently widowed grandfather Ed  moves in with Peter\u2019s family, the boy is forced to give up his most prized possession of all, his bedroom. Unwilling to let such an injustice stand, Peter devises a series of increasingly elaborate pranks to drive out the interloper, but Grandpa Ed won\u2019t go without a fight.",
-        "movieID": 425001
-    },
-    {
-        "duration": 86,
-        "title": "12 Hour Shift",
-        "genre": [
-            {
-                "id": "Thriller",
-                "name": 53
-            },
-            {
-                "id": "Horror",
-                "name": 27
-            },
-            {
-                "id": "Comedy",
-                "name": 35
-            },
-            {
-                "id": "Crime",
-                "name": 80
-            }
-        ],
-        "poster": "\/c3SbZPZPOfGMHq7DB7FnTIMQKuY.jpg",
-        "releaseDate": "2020-10-02",
-        "description": "It's 1998 and over the course of one 12-hour shift at an Arkansas hospital, a junkie nurse, her scheming cousin and a group of black market organ-trading criminals start a heist that could lead to their collective demise.",
-        "movieID": 667141
-    },
-    {
-        "duration": 97,
-        "title": "Spontaneous",
-        "genre": [
-            {
-                "id": "Horror",
-                "name": 27
-            },
-            {
-                "id": "Comedy",
-                "name": 35
-            },
-            {
-                "id": "Romance",
-                "name": 10749
-            },
-            {
-                "id": "Science Fiction",
-                "name": 878
-            }
-        ],
-        "poster": "\/22jwKxZf4rcrmh2NS07SZAQYYNY.jpg",
-        "releaseDate": "2020-10-02",
-        "description": "When students in their high school begin inexplicably exploding (literally...), seniors Mara and Dylan struggle to survive in a world where each moment may be their last.",
-        "movieID": 604578
-    },
-    {
-        "duration": 103,
-        "title": "Zombi Child",
-        "genre": [
-            {
-                "id": "Fantasy",
-                "name": 14
-            },
-            {
-                "id": "Horror",
-                "name": 27
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            }
-        ],
-        "poster": "\/tiuUUPnd3NGrBaF9aGYXXvXameL.jpg",
-        "releaseDate": "2019-06-12",
-        "description": "Haiti, 1962: A man is brought back from the dead only to be sent to the living hell of the sugarcane fields. In Paris, 55 years later, at the prestigious L\u00e9gion d\u2019honneur boarding school, a Haitian girl confesses an old family secret to a group of new friends - never imagining that this strange tale will convince a heartbroken classmate to do the unthinkable.",
-        "movieID": 554311
-    },
-    {
-        "duration": 75,
-        "title": "Away",
-        "genre": [
-            {
-                "id": "Animation",
-                "name": 16
-            },
-            {
-                "id": "Adventure",
-                "name": 12
-            },
-            {
-                "id": "Fantasy",
-                "name": 14
-            }
-        ],
-        "poster": "\/c59eplVELdwrUfGBUAZVin3HfaL.jpg",
-        "releaseDate": "2019-11-15",
-        "description": "After suffering a plane crash on a mysterious island, a young man embarks on an epic journey through forests, deserts and mountains trying to escape the shadow of a huge dark spirit.",
-        "movieID": 597398
-    },
-    {
-        "duration": 98,
-        "title": "Hard Kill",
-        "genre": [
-            {
-                "id": "Action",
-                "name": 28
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            }
-        ],
-        "poster": "\/ugZW8ocsrfgI95pnQ7wrmKDxIe.jpg",
-        "releaseDate": "2020-10-23",
-        "description": "The work of billionaire tech CEO Donovan Chalmers is so valuable that he hires mercenaries to protect it, and a terrorist group kidnaps his daughter just to get it.",
-        "movieID": 724989
-    },
-    {
-        "duration": 106,
-        "title": "Roald Dahl's The Witches",
-        "genre": [
-            {
-                "id": 14,
-                "name": "Fantasy"
-            },
-            {
-                "id": 10751,
-                "name": "Family"
-            },
-            {
-                "id": 12,
-                "name": "Adventure"
-            },
-            {
-                "id": 35,
-                "name": "Comedy"
-            },
-            {
-                "id": 27,
-                "name": "Horror"
-            }
-        ],
-        "poster": "\/betExZlgK0l7CZ9CsCBVcwO1OjL.jpg",
-        "releaseDate": "2020-10-26",
-        "description": "In late 1967, a young orphaned boy goes to live with his loving grandma in the rural Alabama town of Demopolis. As the boy and his grandmother encounter some deceptively glamorous but thoroughly diabolical witches, she wisely whisks him away to a seaside resort. Regrettably, they arrive at precisely the same time that the world's Grand High Witch has gathered.",
-        "movieID": 531219
-    },
-    {
-        "duration": 98,
-        "title": "Alone",
-        "genre": [
-            {
-                "id": "Thriller",
-                "name": 53
-            }
-        ],
-        "poster": "\/n9OzZmPMnVrV0cMQ7amX0DtBkQH.jpg",
-        "releaseDate": "2020-09-10",
-        "description": "A recently widowed traveler is kidnapped by a cold blooded killer, only to escape into the wilderness where she is forced to battle against the elements as her pursuer closes in on her.",
-        "movieID": 509635
-    },
-    {
-        "duration": 121,
-        "title": "Rebecca",
-        "genre": [
-            {
-                "id": 10749,
-                "name": "Romance"
-            },
-            {
-                "id": 18,
-                "name": "Drama"
-            },
-            {
-                "id": 9648,
-                "name": "Mystery"
-            },
-            {
-                "id": 53,
-                "name": "Thriller"
-            }
-        ],
-        "poster": "\/bSKVKcCXdKxkbgf0LL8lBTPG02e.jpg",
-        "releaseDate": "2020-10-16",
-        "description": "After a whirlwind romance with a wealthy widower, a na\u00efve bride moves to his family estate but can't escape the haunting shadow of his late wife.",
-        "movieID": 505379
-    },
-    {
-        "duration": 77,
-        "title": "Reaptown",
-        "genre": [
-            {
-                "id": "Horror",
-                "name": 27
-            }
-        ],
-        "poster": "\/zamW7KUYYtAdxMtTuCzukRjHTPO.jpg",
-        "releaseDate": "2020-09-28",
-        "description": "In this supernatural horror film, Carrie Baldwin is freed from prison under the conditions of a work-release program in Reaptown, Nevada. As she struggles to find her missing sister while working the night shift as a security guard for the Reaptown Railway Museum, Carrie soon finds herself in the presence of evil. Could the Railway hold the clues to her sister's mysterious disappearance?",
-        "movieID": 748224
-    },
-    {
         "duration": 90,
-        "title": "Unhinged",
-        "genre": [
-            {
-                "id": 28,
-                "name": "Action"
-            },
-            {
-                "id": 53,
-                "name": "Thriller"
-            }
-        ],
-        "poster": "\/6WC3cIhuaLZSq3SbtdOp2ZTSTe.jpg",
-        "releaseDate": "2020-07-02",
-        "description": "A divorced mother honks impatiently at a deranged middle-aged stranger at a red light while running late on her way to work. His road rage escalates to horrifyingly psychotic proportions as he becomes single-mindedly determined to teach her a deadly lesson for provoking him.",
-        "movieID": 625568
-    },
-    {
-        "duration": 95,
-        "title": "Death of Me",
+        "title": "The Tales of Strango the Clown",
         "genre": [
             {
                 "id": "Horror",
                 "name": 27
             }
         ],
-        "poster": "\/8F9xUvb1JMWUMkFV2Yq3aiueAbq.jpg",
-        "releaseDate": "2020-10-02",
-        "description": "A couple on holiday on a remote South Pacific island awaken one morning with a hang over and no recollection of what transpired. When playing back a video of the previous night, they see they participated in a local ritual that somehow ends with him murdering her.",
-        "movieID": 595149
-    },
-    {
-        "duration": 111,
-        "title": "Wendy",
-        "genre": [
-            {
-                "id": 14,
-                "name": "Fantasy"
-            },
-            {
-                "id": 12,
-                "name": "Adventure"
-            },
-            {
-                "id": 10751,
-                "name": "Family"
-            }
-        ],
-        "poster": "\/nphsStbtAuJ2IaXtCvDXDwMUF5N.jpg",
-        "releaseDate": "2020-02-28",
-        "description": "A re-imagining of \"Peter Pan\" from the point of view of Wendy Darling, who finds herself lost on a mysterious island where aging and time have come unglued. She must fight to save her family, her freedom and the joyous spirit of youth.",
-        "movieID": 399363
-    },
-    {
-        "duration": 89,
-        "title": "Pets United",
-        "genre": [
-            {
-                "id": "Family",
-                "name": 10751
-            },
-            {
-                "id": "Animation",
-                "name": 16
-            },
-            {
-                "id": "Adventure",
-                "name": 12
-            },
-            {
-                "id": "Comedy",
-                "name": 35
-            }
-        ],
-        "poster": "\/gtwqIYSOCRwEndZTg9s6iWjEZc1.jpg",
-        "releaseDate": "2019-11-08",
-        "description": "When Roger (a Robin Hood-esque, stray dog) and Belle (an elegant yet spoilt pet cat) are thrown together amidst the chaos of a robot take-over of their home city, they must push all their preconceptions aside in order to survive, as they embark on a high-stakes, action-packed adventure.",
-        "movieID": 638134
-    },
-    {
-        "duration": 90,
-        "title": "Palm Springs",
-        "genre": [
-            {
-                "id": 35,
-                "name": "Comedy"
-            },
-            {
-                "id": 10749,
-                "name": "Romance"
-            },
-            {
-                "id": 14,
-                "name": "Fantasy"
-            },
-            {
-                "id": 9648,
-                "name": "Mystery"
-            }
-        ],
-        "poster": "\/yf5IuMW6GHghu39kxA0oFx7Bxmj.jpg",
-        "releaseDate": "2020-07-10",
-        "description": "When carefree Nyles and reluctant maid of honor Sarah have a chance encounter at a Palm Springs wedding, things get complicated when they find themselves unable to escape the venue, themselves, or each other.",
-        "movieID": 587792
-    },
-    {
-        "duration": 96,
-        "title": "The Pale Door",
-        "genre": [
-            {
-                "id": "Horror",
-                "name": 27
-            },
-            {
-                "id": "Western",
-                "name": 37
-            }
-        ],
-        "poster": "\/jkAZb9jteax1XRnEFlCU9Oer1YJ.jpg",
-        "releaseDate": "2020-08-21",
-        "description": "The Dalton gang escape to a nearby town after a train robbery goes south, but they are met by a coven of witches with sinister plans for the unsuspecting outlaws.",
-        "movieID": 610201
-    },
-    {
-        "duration": 114,
-        "title": "Wotakoi: Love is Hard for Otaku",
-        "genre": [
-            {
-                "id": 35,
-                "name": "Comedy"
-            },
-            {
-                "id": 10749,
-                "name": "Romance"
-            }
-        ],
-        "poster": "\/9JV0LOcazudqEcz2NNOMqEIzACz.jpg",
-        "releaseDate": "2020-02-07",
-        "description": "An effervescent musical about one of the most unlikely couples seen on screen: two Otaku intent on hiding their nerdiness from their colleagues!",
-        "movieID": 552687
-    },
-    {
-        "duration": 99,
-        "title": "21 Bridges",
-        "genre": [
-            {
-                "id": "Crime",
-                "name": 80
-            },
-            {
-                "id": "Action",
-                "name": 28
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            }
-        ],
-        "poster": "\/bSN9SysoRBMwJKNkfOlQlCw2YQO.jpg",
-        "releaseDate": "2019-10-24",
-        "description": "An embattled NYPD detective, is thrust into a citywide manhunt for a pair of cop killers after uncovering a massive and unexpected conspiracy. As the night unfolds, lines become blurred on who he is pursuing, and who is in pursuit of him.",
-        "movieID": 535292
-    },
-    {
-        "duration": 83,
-        "title": "David Attenborough: A Life on Our Planet",
-        "genre": [
-            {
-                "id": 99,
-                "name": "Documentary"
-            }
-        ],
-        "poster": "\/mxdqWYOm3KnQthzJdEwtWzJtc06.jpg",
-        "releaseDate": "2020-09-28",
-        "description": "He knows our natural world like no other, and there\u2019s never been a more urgent time to hear his story and vision for our future.",
-        "movieID": 664280
-    },
-    {
-        "duration": 107,
-        "title": "The Secret: Dare to Dream",
-        "genre": [
-            {
-                "id": "Drama",
-                "name": 18
-            },
-            {
-                "id": "Romance",
-                "name": 10749
-            }
-        ],
-        "poster": "\/5mCqEeBA0MW7H6akFrFQXJu68rU.jpg",
-        "releaseDate": "2020-04-16",
-        "description": "A widow with three children hires a handyman to fix her house during a major storm. When not doing home repairs, he shares his philosophy of believing in the power of the universe to deliver what we want.",
-        "movieID": 550231
-    },
-    {
-        "duration": 97,
-        "title": "On the Rocks",
-        "genre": [
-            {
-                "id": 18,
-                "name": "Drama"
-            },
-            {
-                "id": 35,
-                "name": "Comedy"
-            }
-        ],
-        "poster": "\/fcijRCmB7yTtloh4Pumy9b1rkwU.jpg",
-        "releaseDate": "2020-10-02",
-        "description": "Faced with sudden doubts about her marriage, a young New York mother teams up with her larger-than-life playboy father to tail her husband.",
-        "movieID": 575417
-    },
-    {
-        "duration": 119,
-        "title": "Greenland",
-        "genre": [
-            {
-                "id": "Action",
-                "name": 28
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            }
-        ],
-        "poster": "\/sA154deR0X51EcR2lm2FfDczryg.jpg",
-        "releaseDate": "2020-07-29",
-        "description": "A detached married couple must get their son and themselves to safety after being randomly selected to enter an underground bunker, as a massive object from space threatens to destroy the world in less than 48 hours.",
-        "movieID": 524047
-    },
-    {
-        "duration": 98,
-        "title": "Pok\u00e9mon: Mewtwo Strikes Back - Evolution",
-        "genre": [
-            {
-                "id": 16,
-                "name": "Animation"
-            },
-            {
-                "id": 12,
-                "name": "Adventure"
-            },
-            {
-                "id": 14,
-                "name": "Fantasy"
-            },
-            {
-                "id": 28,
-                "name": "Action"
-            },
-            {
-                "id": 10751,
-                "name": "Family"
-            }
-        ],
-        "poster": "\/xlO50h3EX1w99KGztTzsjQBwPfs.jpg",
-        "releaseDate": "2019-07-12",
-        "description": "After accepting an invitation from a mysterious trainer, Ash, Misty and Brock meet Mewtwo, an artificially created Pok\u00e9mon who wants to do battle.",
-        "movieID": 571891
-    },
-    {
-        "duration": 97,
-        "title": "Vivarium",
-        "genre": [
-            {
-                "id": "Thriller",
-                "name": 53
-            },
-            {
-                "id": "Science Fiction",
-                "name": 878
-            },
-            {
-                "id": "Horror",
-                "name": 27
-            }
-        ],
-        "poster": "\/myf3qzpeN0JbuFRPwSpJcz7rmAT.jpg",
-        "releaseDate": "2019-09-07",
-        "description": "A young woman and her fianc\u00e9 are in search of the perfect starter home. After following a mysterious real estate agent to a new housing development, the couple finds themselves trapped in a maze of identical houses and forced to raise an otherworldly child.",
-        "movieID": 458305
-    },
-    {
-        "duration": 116,
-        "title": "Corpus Christi",
-        "genre": [
-            {
-                "id": 18,
-                "name": "Drama"
-            }
-        ],
-        "poster": "\/6VZlm8sEwxkE3L5nXxz17QLj1sF.jpg",
-        "releaseDate": "2020-01-09",
-        "description": "A pious 20-year-old juvenile delinquent is sent to work at a sawmill in a small town; on arrival, he dresses up as a priest and accidentally takes over the local parish. The arrival of this young, charismatic preacher is an opportunity for the local community to begin the healing process after a tragedy that happened a year prior.",
-        "movieID": 471707
-    },
-    {
-        "duration": 94,
-        "title": "Made in Italy",
-        "genre": [
-            {
-                "id": "Comedy",
-                "name": 35
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            }
-        ],
-        "poster": "\/erl30EcM8b8S84mvw8QXhNIeSfi.jpg",
-        "releaseDate": "2020-08-06",
-        "description": "A bohemian artist travels from London to Italy with his estranged son to sell the house they inherited from his late wife.",
-        "movieID": 659991
-    },
-    {
-        "duration": 88,
-        "title": "New Order",
-        "genre": [
-            {
-                "id": 18,
-                "name": "Drama"
-            }
-        ],
-        "poster": "\/1Q3x8VQrkOTya3VsPXkZgvFXdiu.jpg",
-        "releaseDate": "2020-10-22",
-        "description": "In the near future, a popular uprising in Mexico City interrupts a wedding held at the home of a wealthy family. After the riots have been quashed, they discover the bride has gone missing and plea with the military to help locate her.",
-        "movieID": 575446
-    },
-    {
-        "duration": 95,
-        "title": "Eternal Beauty",
-        "genre": [
-            {
-                "id": "Comedy",
-                "name": 35
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            }
-        ],
-        "poster": "\/2wXrBtfrvwMWE1i3iHjKjoRZjYk.jpg",
-        "releaseDate": "2020-08-21",
-        "description": "When Jane is rejected by life, she spirals into a chaotic, schizophrenic world where love and normality collide with humorous consequences.",
-        "movieID": 501953
-    },
-    {
-        "duration": 110,
-        "title": "Captive State",
-        "genre": [
-            {
-                "id": 878,
-                "name": "Science Fiction"
-            }
-        ],
-        "poster": "\/cVo7lylXAUDGuvDZBUYaP8Zjbku.jpg",
-        "releaseDate": "2019-03-15",
-        "description": "Nearly a decade after occupation by an extraterrestrial force, the lives of a Chicago neighborhood on both sides of the conflict are explored. In a working-class Chicago neighborhood occupied by an alien force for nine years, increased surveillance and the restriction of civil rights have given rise to an authoritarian system -- and dissent among the populace.",
-        "movieID": 429471
-    },
-    {
-        "duration": 91,
-        "title": "Think Like a Dog",
-        "genre": [
-            {
-                "id": "Family",
-                "name": 10751
-            },
-            {
-                "id": "Comedy",
-                "name": 35
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            }
-        ],
-        "poster": "\/cDbOrc2RtIA37nLm0CzVpFLrdaG.jpg",
-        "releaseDate": "2020-08-06",
-        "description": "A 12-year-old tech prodigy whose science experiment goes awry and he forges a telepathic connection with his best friend, his dog. The duo join forces and use their unique perspectives on life to comically overcome complications of family and school.",
-        "movieID": 513584
-    },
-    {
-        "duration": 0,
-        "title": "2 Hearts",
-        "genre": [
-            {
-                "id": 18,
-                "name": "Drama"
-            }
-        ],
-        "poster": "\/a7bW3uKOMPBnmHs8gnlpfhTD8YQ.jpg",
-        "releaseDate": "2020-10-16",
-        "description": "When illness strikes two people who are polar opposites, life and death bring them together in surprising ways.",
-        "movieID": 710356
-    },
-    {
-        "duration": 96,
-        "title": "Spycies",
-        "genre": [
-            {
-                "id": "Animation",
-                "name": 16
-            },
-            {
-                "id": "Comedy",
-                "name": 35
-            },
-            {
-                "id": "Action",
-                "name": 28
-            },
-            {
-                "id": "Adventure",
-                "name": 12
-            },
-            {
-                "id": "Family",
-                "name": 10751
-            }
-        ],
-        "poster": "\/jOY3dDCzjygXzumYeJ9UIyETzuj.jpg",
-        "releaseDate": "2020-01-11",
-        "description": "Vladimir and Hector, two secret agents opposed in every way, are trying to recover a top secret material stolen by unknown intruders.",
-        "movieID": 550738
-    },
-    {
-        "duration": 132,
-        "title": "Miracle in Cell No. 7",
-        "genre": [
-            {
-                "id": 18,
-                "name": "Drama"
-            },
-            {
-                "id": 35,
-                "name": "Comedy"
-            },
-            {
-                "id": 10751,
-                "name": "Family"
-            }
-        ],
-        "poster": "\/bOth4QmNyEkalwahfPCfiXjNh1r.jpg",
-        "releaseDate": "2019-10-10",
-        "description": "Separated from his daughter, a father with an intellectual disability must prove his innocence when he is jailed for the death of a commander's child.",
-        "movieID": 637920
-    },
-    {
-        "duration": 98,
-        "title": "Honest Thief",
-        "genre": [
-            {
-                "id": "Action",
-                "name": 28
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            },
-            {
-                "id": "Crime",
-                "name": 80
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            }
-        ],
-        "poster": "\/llBK9qjUYmc9E6QyXBdYAVGLrh9.jpg",
-        "releaseDate": "2020-09-03",
-        "description": "A bank robber tries to turn himself in because he's falling in love and wants to live an honest life...but when he realizes the Feds are more corrupt than him, he must fight back to clear his name.",
-        "movieID": 553604
-    },
-    {
-        "duration": 75,
-        "title": "Ella Bella Bingo",
-        "genre": [
-            {
-                "id": 16,
-                "name": "Animation"
-            },
-            {
-                "id": 10751,
-                "name": "Family"
-            }
-        ],
-        "poster": "\/vdK86hDn31gjtVJhMDB7ZMEAH8Z.jpg",
-        "releaseDate": "2020-01-24",
-        "description": "Ella Bella Bingo and Henry are best friends, but one day a new boy moves into the neighbourhood and everything changes.",
-        "movieID": 619918
-    },
-    {
-        "duration": 107,
-        "title": "Shirley",
-        "genre": [
-            {
-                "id": "Drama",
-                "name": 18
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            }
-        ],
-        "poster": "\/iSwTnNS7TKAS79Sz9LvyqlBxxrU.jpg",
-        "releaseDate": "2020-09-11",
-        "description": "A famous horror writer finds inspiration for her next book after she and her husband take in a young couple.",
-        "movieID": 547017
-    },
-    {
-        "duration": 137,
-        "title": "The Empty Man",
-        "genre": [
-            {
-                "id": 80,
-                "name": "Crime"
-            },
-            {
-                "id": 18,
-                "name": "Drama"
-            },
-            {
-                "id": 27,
-                "name": "Horror"
-            }
-        ],
-        "poster": "\/gBRM1EgfslcxcZCSf6Vp89VYCmP.jpg",
-        "releaseDate": "2020-10-22",
-        "description": "After a group of teens from a small Midwestern town begin to mysteriously disappear, the locals believe it is the work of an urban legend known as The Empty Man. As a retired cop investigates and struggles to make sense of the stories, he discovers a secretive group and their attempts to summon a horrific, mystical entity, and soon his life\u2014and the lives of those close to him\u2014are in grave danger.",
-        "movieID": 516632
-    },
-    {
-        "duration": 103,
-        "title": "Capone",
-        "genre": [
-            {
-                "id": "Crime",
-                "name": 80
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            }
-        ],
-        "poster": "\/75gDv38UgRtAukSxNXcjatyQmEa.jpg",
-        "releaseDate": "2020-07-10",
-        "description": "The 47-year old Al Capone, after 10 years in prison, starts suffering from dementia and comes to be haunted by his violent past.",
-        "movieID": 429422
-    },
-    {
-        "duration": 90,
-        "title": "The Hunt",
-        "genre": [
-            {
-                "id": 28,
-                "name": "Action"
-            },
-            {
-                "id": 53,
-                "name": "Thriller"
-            },
-            {
-                "id": 27,
-                "name": "Horror"
-            }
-        ],
-        "poster": "\/fHCMPd1w8wcJmrplR3ebCl6nfFI.jpg",
-        "releaseDate": "2020-03-11",
-        "description": "Twelve strangers wake up in a clearing. They don't know where they are\u2014or how they got there. In the shadow of a dark internet conspiracy theory, ruthless elitists gather at a remote location to hunt humans for sport. But their master plan is about to be derailed when one of the hunted turns the tables on her pursuers.",
-        "movieID": 514847
-    },
-    {
-        "duration": 88,
-        "title": "Follow Me",
-        "genre": [
-            {
-                "id": "Horror",
-                "name": 27
-            },
-            {
-                "id": "Adventure",
-                "name": 12
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            }
-        ],
-        "poster": "\/glwOyoD0Pzxzyb3l7nELEgjSjQ8.jpg",
-        "releaseDate": "2020-07-16",
-        "description": "A social media personality travels with his friends to Moscow to capture new content for his successful VLOG. Always pushing the limits and catering to a growing audience, they enter a cold world of mystery, excess, and danger. When the lines between real life and social media are blurred, the group must fight to escape, and survive.",
-        "movieID": 606625
-    },
-    {
-        "duration": 113,
-        "title": "The High Note",
-        "genre": [
-            {
-                "id": 10749,
-                "name": "Romance"
-            },
-            {
-                "id": 35,
-                "name": "Comedy"
-            },
-            {
-                "id": 10402,
-                "name": "Music"
-            },
-            {
-                "id": 18,
-                "name": "Drama"
-            }
-        ],
-        "poster": "\/yHsu8swJSgqDrsPiu7adBjOPLlp.jpg",
-        "releaseDate": "2020-06-10",
-        "description": "Set in the dazzling world of the LA music scene comes the story of Grace Davis, a superstar whose talent, and ego, have reached unbelievable heights. Maggie is Grace\u2019s overworked personal assistant who\u2019s stuck running errands, but still aspires to her childhood dream of becoming a music producer. When Grace\u2019s manager presents her with a choice that could alter the course of her career, Maggie and Grace come up with a plan that could change their lives forever.",
-        "movieID": 606679
-    },
-    {
-        "duration": 110,
-        "title": "Children of the Sea",
-        "genre": [
-            {
-                "id": "Animation",
-                "name": 16
-            },
-            {
-                "id": "Fantasy",
-                "name": 14
-            },
-            {
-                "id": "Adventure",
-                "name": 12
-            },
-            {
-                "id": "Mystery",
-                "name": 9648
-            }
-        ],
-        "poster": "\/2QKNREj8xPHShu993QAySoGDCwu.jpg",
-        "releaseDate": "2019-06-07",
-        "description": "Ruka is a young girl whose parents are separated and whose father works in an aquarium. When two boys, Umi and Sora, who were raised in the sea by dugongs, are brought to the aquarium, Ruka feels drawn to them and begins to realize that she has the same sort of supernatural connection to the ocean that they do. Umi and Sora's special power seems to be connected to strange events that have been occurring more and more frequently, such as the appearance of sea creatures far from their home territory and the disappearance of aquarium animals around the world. However, the exact nature of the boys' power and of the abnormal events is unknown, and Ruka gets drawn into investigating the mystery that surrounds her new friends.",
-        "movieID": 585077
+        "poster": "\/lvoUvHJTmbRJ6BE0qkuUib6gt3j.jpg",
+        "releaseDate": "2020-10-30",
+        "description": "The tragic story of a high powered business exec. Lawrence \"Strangio\" Del Rio who loses it all forcing him down a dark insidious path of multiple gruesome murders under the disguise as Strango The Clown. The most notorious and vulgar stand up comedian on the Dark Web.",
+        "movieID": 748225
     },
     {
         "duration": 0,
@@ -1388,230 +36,6 @@
         "movieID": 715387
     },
     {
-        "duration": 110,
-        "title": "The Last Full Measure",
-        "genre": [
-            {
-                "id": "Drama",
-                "name": 18
-            },
-            {
-                "id": "War",
-                "name": 10752
-            }
-        ],
-        "poster": "\/bMG8c80lyEkBXVgyHVqsdQhjgf6.jpg",
-        "releaseDate": "2020-01-23",
-        "description": "The incredible true story of Vietnam War hero William H. Pitsenbarger, a U.S. Air Force Pararescuemen medic who personally saved over sixty men. Thirty-two years later, Pentagon staffer Scott Huffman investigates a Congressional Medal of Honor request for Pitsenbarger and uncovers a high-level conspiracy behind the decades-long denial of the medal, prompting Huffman to put his own career on the line to seek justice for the fallen airman.",
-        "movieID": 442065
-    },
-    {
-        "duration": 90,
-        "title": "Killer Weekend",
-        "genre": [
-            {
-                "id": 53,
-                "name": "Thriller"
-            }
-        ],
-        "poster": "\/iyzMeofrUVYyiPoItBcKjRgxlIh.jpg",
-        "releaseDate": "2020-10-26",
-        "description": "A sexy young coed enjoys a lavish lifestyle thanks to a sugar daddy dating app, accessing their money by having them killed. She soon meets her match, however, in her new rich, handsome boyfriend - who happens to also be a serial killer.",
-        "movieID": 610069
-    },
-    {
-        "duration": 97,
-        "title": "The Doorman",
-        "genre": [
-            {
-                "id": "Action",
-                "name": 28
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            }
-        ],
-        "poster": "\/pklyUbh4k1DbHdnsOMASyw7C6NH.jpg",
-        "releaseDate": "2020-10-01",
-        "description": "A former Marine turned doorman at a luxury New York City high-rise must outsmart and battle a group of art thieves and their ruthless leader \u2014 while struggling to protect her sister's family. As the thieves become increasingly desperate and violent, the doorman calls upon her deadly fighting skills to end the showdown.",
-        "movieID": 737568
-    },
-    {
-        "duration": 111,
-        "title": "Radioactive",
-        "genre": [
-            {
-                "id": 18,
-                "name": "Drama"
-            },
-            {
-                "id": 10749,
-                "name": "Romance"
-            },
-            {
-                "id": 36,
-                "name": "History"
-            }
-        ],
-        "poster": "\/akHIQu8W3rOgT28r25ggXaKcQIr.jpg",
-        "releaseDate": "2020-03-11",
-        "description": "The story of Nobel Prize winner Marie Curie and her extraordinary scientific discoveries\u2014through the prism of her marriage to husband Pierre\u2014and the seismic and transformative effects their discovery of radium had on the 20th century.",
-        "movieID": 480857
-    },
-    {
-        "duration": 97,
-        "title": "The Other Lamb",
-        "genre": [
-            {
-                "id": "Horror",
-                "name": 27
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            }
-        ],
-        "poster": "\/ynPJkpmWNi4rnDUb0PuzDnJj5JI.jpg",
-        "releaseDate": "2020-04-03",
-        "description": "For her entire life, the cult she was born into has been all that teenage Selah has known. Along with a band of similarly cloistered young women she lives seemingly unstuck in time, cut off from modern society in a remote forest commune presided over by a man called Shepherd , a controlling, messiah-like figure with a frightening dark side. But when her insular world is rocked by a series of nightmarish visions and disturbing revelations, Selah begins to question everything about her existence\u2014including her allegiance to the increasingly dangerous Shepherd.",
-        "movieID": 617786
-    },
-    {
-        "duration": 120,
-        "title": "Soul of Hero",
-        "genre": [
-            {
-                "id": 28,
-                "name": "Action"
-            }
-        ],
-        "poster": "\/Am3avSjCB9y7fmqwFY8qIatPpYi.jpg",
-        "releaseDate": "2019-05-02",
-        "description": "A soldier will have a mission of rescuing his partner kidnapped in the Colombian jungle although he will miss a dating with a beautiful girl that is his partner's sister.",
-        "movieID": 646332
-    },
-    {
-        "duration": 108,
-        "title": "The Mortuary Collection",
-        "genre": [
-            {
-                "id": "Fantasy",
-                "name": 14
-            },
-            {
-                "id": "Horror",
-                "name": 27
-            }
-        ],
-        "poster": "\/69CIwPaIyCMaYtOfZIGUaOJCV0b.jpg",
-        "releaseDate": "2020-10-08",
-        "description": "In the phantasmagorical town of Raven's End, a misguided young girl takes refuge in a decrepit old mortuary. The eccentric undertaker chronicles the strange history of the town through a series of twisted tales, each more terrifying than the last, but the young girl's world is unhinged when she discovers that the final story... is her own.",
-        "movieID": 524216
-    },
-    {
-        "duration": 88,
-        "title": "The Beach House",
-        "genre": [
-            {
-                "id": 18,
-                "name": "Drama"
-            },
-            {
-                "id": 27,
-                "name": "Horror"
-            },
-            {
-                "id": 9648,
-                "name": "Mystery"
-            }
-        ],
-        "poster": "\/wyMjZJNAsvfnW8OS4JWh6TdKWzk.jpg",
-        "releaseDate": "2020-10-22",
-        "description": "A romantic getaway for two troubled college sweethearts turns into a struggle for survival when unexpected guests - and the surrounding environment - exhibit signs of a mysterious infection.",
-        "movieID": 632304
-    },
-    {
-        "duration": 121,
-        "title": "The Emperor of Paris",
-        "genre": [
-            {
-                "id": "Drama",
-                "name": 18
-            },
-            {
-                "id": "Crime",
-                "name": 80
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            }
-        ],
-        "poster": "\/6uCmrmGVVBlKCice9WeuTsZgWOH.jpg",
-        "releaseDate": "2018-12-19",
-        "description": "Paris, France, early 19th century. The legendary convict Fran\u00e7ois Vidocq lives in disguise trying to escape from a tragic past that torments him. When, after an unfortunate event, he crosses paths with the police chief, he makes a bold decision that will turn the ruthless mastermind of the Parisian underworld against him.",
-        "movieID": 478820
-    },
-    {
-        "duration": 113,
-        "title": "Kaguya-sama: Love Is War",
-        "genre": [
-            {
-                "id": 35,
-                "name": "Comedy"
-            },
-            {
-                "id": 10749,
-                "name": "Romance"
-            }
-        ],
-        "poster": "\/v2IDHTA35Qcl8rrfjVUzJ8e7a6R.jpg",
-        "releaseDate": "2019-09-06",
-        "description": "A high school girl and boy are part of the student council at a pricey school. They have a crush on one another, but have kept it under wraps so far. With awareness and an inkling of what the other one feels for each the challenge becomes to make the opposite side profess his or her love first.",
-        "movieID": 617402
-    },
-    {
-        "duration": 101,
-        "title": "Irresistible",
-        "genre": [
-            {
-                "id": "Comedy",
-                "name": 35
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            }
-        ],
-        "poster": "\/hUpYDriYa5YkwwxeafUsowTweBg.jpg",
-        "releaseDate": "2020-08-21",
-        "description": "A Democratic political consultant helps a retired Marine colonel run for mayor in a small, conservative Wisconsin town.",
-        "movieID": 595148
-    },
-    {
-        "duration": 95,
-        "title": "Guns Akimbo",
-        "genre": [
-            {
-                "id": 35,
-                "name": "Comedy"
-            },
-            {
-                "id": 28,
-                "name": "Action"
-            }
-        ],
-        "poster": "\/2kNnf7BwRCEm4bcFkdiE0T4U25s.jpg",
-        "releaseDate": "2019-09-09",
-        "description": "An ordinary guy suddenly finds himself forced to fight a gladiator-like battle for a dark website that streams the violence for viewers. Miles must fight heavily armed Nix and also save his kidnapped ex-girlfriend.",
-        "movieID": 457335
-    },
-    {
         "duration": 106,
         "title": "Misbehaviour",
         "genre": [
@@ -1634,106 +58,189 @@
         "movieID": 567965
     },
     {
-        "duration": 80,
-        "title": "Ouija: Blood Ritual",
+        "duration": 82,
+        "title": "Cult",
         "genre": [
             {
-                "id": 27,
-                "name": "Horror"
+                "id": 35,
+                "name": "Comedy"
+            },
+            {
+                "id": 18,
+                "name": "Drama"
             }
         ],
-        "poster": "\/e2tFHqAAfIiTBYBr6gF1W0HTjK6.jpg",
-        "releaseDate": "2020-10-26",
-        "description": "Kayla, her friend Rob, and her brother Dustin are making a web series in which they debunk supernatural urban legends. But after their first shoot testing out a ritual to summon the \"Closet Man\" seemingly fizzles out, strange things start happening. Is the Closet Man more than just a Creepypasta-inspired modern legend?",
-        "movieID": 483219
+        "poster": "\/yO0G40TP2nuwZh0D1saC7XlsOaM.jpg",
+        "releaseDate": "2020-10-29",
+        "description": "A documentary crew travel to a remote village in England to capture the lives of notorious cult 'Friends at the End'. F.A.T.E were once a growing religion but, after a miscalculated doomsday prediction in the 1950s, membership has dwindled. In recent years F.A.T.E have been linked to disappearances of former members, the leader Daniel Love has gone into self-imposed exile, and this year their crops are failing. Except the potatoes. In need of money, the gang recruit new member Rachel, at a local rehab facility. Rachel breathes new life into the group and, when she turns the head of lifelong member Comet, old relationships begin to fracture. As the comet that F.A.T.E believe will bring with it the end of the world approaches, the group's beliefs are tested. New secrets emerge which threaten everything the cult has been working towards.",
+        "movieID": 755021
     },
     {
-        "duration": 103,
-        "title": "Where'd You Go, Bernadette",
+        "duration": 90,
+        "title": "Killer Weekend",
+        "genre": [
+            {
+                "id": "Thriller",
+                "name": 53
+            }
+        ],
+        "poster": "\/iyzMeofrUVYyiPoItBcKjRgxlIh.jpg",
+        "releaseDate": "2020-10-26",
+        "description": "A sexy young coed enjoys a lavish lifestyle thanks to a sugar daddy dating app, accessing their money by having them killed. She soon meets her match, however, in her new rich, handsome boyfriend - who happens to also be a serial killer.",
+        "movieID": 610069
+    },
+    {
+        "duration": 121,
+        "title": "The Emperor of Paris",
+        "genre": [
+            {
+                "id": 18,
+                "name": "Drama"
+            },
+            {
+                "id": 80,
+                "name": "Crime"
+            },
+            {
+                "id": 53,
+                "name": "Thriller"
+            }
+        ],
+        "poster": "\/6uCmrmGVVBlKCice9WeuTsZgWOH.jpg",
+        "releaseDate": "2018-12-19",
+        "description": "Paris, France, early 19th century. The legendary convict Fran\u00e7ois Vidocq lives in disguise trying to escape from a tragic past that torments him. When, after an unfortunate event, he crosses paths with the police chief, he makes a bold decision that will turn the ruthless mastermind of the Parisian underworld against him.",
+        "movieID": 478820
+    },
+    {
+        "duration": 97,
+        "title": "The Doorman",
+        "genre": [
+            {
+                "id": "Action",
+                "name": 28
+            },
+            {
+                "id": "Thriller",
+                "name": 53
+            }
+        ],
+        "poster": "\/pklyUbh4k1DbHdnsOMASyw7C6NH.jpg",
+        "releaseDate": "2020-10-01",
+        "description": "A former Marine turned doorman at a luxury New York City high-rise must outsmart and battle a group of art thieves and their ruthless leader \u2014 while struggling to protect her sister's family. As the thieves become increasingly desperate and violent, the doorman calls upon her deadly fighting skills to end the showdown.",
+        "movieID": 737568
+    },
+    {
+        "duration": 149,
+        "title": "2001: A Space Odyssey",
+        "genre": [
+            {
+                "id": 878,
+                "name": "Science Fiction"
+            },
+            {
+                "id": 9648,
+                "name": "Mystery"
+            },
+            {
+                "id": 12,
+                "name": "Adventure"
+            }
+        ],
+        "poster": "\/zmmYdPa8Lxx999Af9vnVP4XQ1V6.jpg",
+        "releaseDate": "1968-04-09",
+        "description": "Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced super computer.",
+        "movieID": 62
+    },
+    {
+        "duration": 88,
+        "title": "The Beach House",
         "genre": [
             {
                 "id": "Drama",
                 "name": 18
             },
             {
-                "id": "Comedy",
-                "name": 35
+                "id": "Horror",
+                "name": 27
             },
             {
                 "id": "Mystery",
                 "name": 9648
             }
         ],
-        "poster": "\/BziuuZULnGmTRLthEty1QdKSEo.jpg",
-        "releaseDate": "2019-08-16",
-        "description": "When architect-turned-recluse Bernadette Fox goes missing prior to a family trip to Antarctica, her 15-year-old daughter Bee goes on a quest with Bernadette's husband to find her.",
-        "movieID": 405177
+        "poster": "\/wyMjZJNAsvfnW8OS4JWh6TdKWzk.jpg",
+        "releaseDate": "2020-10-22",
+        "description": "A romantic getaway for two troubled college sweethearts turns into a struggle for survival when unexpected guests - and the surrounding environment - exhibit signs of a mysterious infection.",
+        "movieID": 632304
     },
     {
-        "duration": 103,
-        "title": "Wolfwalkers",
+        "duration": 89,
+        "title": "Mogul Mowgli",
         "genre": [
             {
-                "id": 12,
-                "name": "Adventure"
-            },
+                "id": 18,
+                "name": "Drama"
+            }
+        ],
+        "poster": "\/iNCkptlAMlgCaOBaBs75gvGNU31.jpg",
+        "releaseDate": "2020-10-30",
+        "description": "Zed, a young British rapper, is about to start his first world tour, when a crippling illness strikes him down, and he is forced to move back in with his family. He tries to find himself between an international music career and Pakistani family traditions.",
+        "movieID": 665764
+    },
+    {
+        "duration": 95,
+        "title": "Friendsgiving",
+        "genre": [
             {
-                "id": 16,
-                "name": "Animation"
-            },
+                "id": "Comedy",
+                "name": 35
+            }
+        ],
+        "poster": "\/s9CGTv4AFmrVkgoydnYFwXPaxGx.jpg",
+        "releaseDate": "2020-10-23",
+        "description": "Newly-divorced actress Molly, her recently-dumped lesbian best friend Abby and Molly\u2019s mother Helen host a dysfunctional, comical and chaotic Thanksgiving dinner for their motley crew of close friends and strange acquaintances.",
+        "movieID": 524840
+    },
+    {
+        "duration": 0,
+        "title": "La huella de la pantera",
+        "genre": [],
+        "poster": "\/avefIfdPpsjh77zNRbObcsglSM6.jpg",
+        "releaseDate": "2020-10-29",
+        "description": "",
+        "movieID": 752859
+    },
+    {
+        "duration": 101,
+        "title": "Never Rarely Sometimes Always",
+        "genre": [
+            {
+                "id": "Drama",
+                "name": 18
+            }
+        ],
+        "poster": "\/7yiSyQhhjTFphhfCUcn05tCQxyG.jpg",
+        "releaseDate": "2020-03-13",
+        "description": "A pair of teenage girls in rural Pennsylvania travel to New York City to seek out medical help after an unintended pregnancy.",
+        "movieID": 595671
+    },
+    {
+        "duration": 110,
+        "title": "My Best Part",
+        "genre": [
             {
                 "id": 18,
                 "name": "Drama"
             },
             {
-                "id": 14,
-                "name": "Fantasy"
-            },
-            {
-                "id": 10751,
-                "name": "Family"
+                "id": 35,
+                "name": "Comedy"
             }
         ],
-        "poster": "\/ehAKuE48okTuonq6TpsNQj8vFTC.jpg",
-        "releaseDate": "2020-10-26",
-        "description": "In a time of superstition and magic, when wolves are seen as demonic and nature an evil to be tamed, a young apprentice hunter comes to Ireland with her father to wipe out the last pack. But when she saves a wild native girl, their friendship leads her to discover the world of the Wolfwalkers and transform her into the very thing her father is tasked to destroy.",
-        "movieID": 441130
-    },
-    {
-        "duration": 109,
-        "title": "The Broken Hearts Gallery",
-        "genre": [
-            {
-                "id": "Comedy",
-                "name": 35
-            },
-            {
-                "id": "Romance",
-                "name": 10749
-            }
-        ],
-        "poster": "\/wGkr4r1e8nubmSNKJpv3HL6sFrA.jpg",
-        "releaseDate": "2020-09-11",
-        "description": "Lucy is a young gallery assistant who collects mementos from her relationships. She discovers that she must let go of her past to move forward, and comes up with a lovely, artistic way to help herself and others who have suffered heartbreak.",
-        "movieID": 616251
-    },
-    {
-        "duration": 91,
-        "title": "Cold Blood",
-        "genre": [
-            {
-                "id": 53,
-                "name": "Thriller"
-            },
-            {
-                "id": 28,
-                "name": "Action"
-            }
-        ],
-        "poster": "\/uGMIxhhMvQEE0mNlATXpEAG4mgl.jpg",
-        "releaseDate": "2019-05-15",
-        "description": "A legendary but retired hit man lives in peace and isolation in the barren North American wilderness. When he rescues a woman from a snowmobiling accident, he soon discovers that she's harboring a secret that forces him to return to his lethal ways.",
-        "movieID": 595985
+        "poster": "\/xqBlEgr1RYjJiSlJd0KvdM4zsp2.jpg",
+        "releaseDate": "2020-10-28",
+        "description": "J\u00e9r\u00e9mie, a young man reaching a breaking point on all fronts, decides to leave behind Paris and return to Limosin, to the home of his intrusive mother.",
+        "movieID": 661229
     },
     {
         "duration": 127,
@@ -1754,171 +261,59 @@
         "movieID": 552178
     },
     {
-        "duration": 105,
-        "title": "Kajillionaire",
+        "duration": 101,
+        "title": "Cosa sar\u00e0",
         "genre": [
-            {
-                "id": 80,
-                "name": "Crime"
-            },
             {
                 "id": 18,
                 "name": "Drama"
-            },
-            {
-                "id": 35,
-                "name": "Comedy"
             }
         ],
-        "poster": "\/fkqJJDb4u9rEyJu8Jm8H1P2mux4.jpg",
-        "releaseDate": "2020-09-25",
-        "description": "Two con artists have spent 26 years training their only daughter to swindle, scam and steal at every turn. During a desperate and hastily conceived heist, they charm a stranger into joining them, only to have their entire world turned upside down.",
-        "movieID": 541305
-    },
-    {
-        "duration": 94,
-        "title": "Digimon Adventure: Last Evolution Kizuna",
-        "genre": [
-            {
-                "id": "Animation",
-                "name": 16
-            },
-            {
-                "id": "Action",
-                "name": 28
-            },
-            {
-                "id": "Thriller",
-                "name": 53
-            },
-            {
-                "id": "Adventure",
-                "name": 12
-            },
-            {
-                "id": "Fantasy",
-                "name": 14
-            }
-        ],
-        "poster": "\/rElHXdBX2ou2ju1Be3QiuOJrplb.jpg",
-        "releaseDate": "2020-02-21",
-        "description": "Tai is now a university student, living alone, working hard at school, and working every day, but with his future still undecided. Meanwhile, Matt and others continue to work on Digimon incidents and activities that help people with their partner Digimon. When an unprecedented phenomenon occurs, the DigiDestined discover that when they grow up, their relationship with their partner Digimon will come closer to an end.  As a countdown timer activates on the Digivice, they realize that the more they fight with their partner Digimon, the faster their bond breaks. Will they fight for others and lose their partner? The time to choose and decide is approaching fast. There is a short time before \u201cchosen children\u201d will become adults. This is the last adventure of Tai and Agumon.",
-        "movieID": 571265
+        "poster": "\/e2ofFVoO5oU8fJapg9xQyW0zOUS.jpg",
+        "releaseDate": "2020-10-29",
+        "description": "Bruno Salvati is a director of little success, fresh from the separation from his wife Anna with whom he had two children, the twenty-year-old Adele and the seventeen-year-old Tito. Following a sudden illness, Bruno is diagnosed with a disease that requires the intervention of a donor. All his family relationships are called into question, including that with his father Umberto, the custodian of a secret that will force Bruno to embark on a journey in search of someone who can help him.",
+        "movieID": 654894
     },
     {
         "duration": 95,
-        "title": "Missing Link",
-        "genre": [
-            {
-                "id": 16,
-                "name": "Animation"
-            },
-            {
-                "id": 35,
-                "name": "Comedy"
-            },
-            {
-                "id": 12,
-                "name": "Adventure"
-            },
-            {
-                "id": 14,
-                "name": "Fantasy"
-            },
-            {
-                "id": 10751,
-                "name": "Family"
-            }
-        ],
-        "poster": "\/gEkKHiiQRVUSX15Iwo8VFydXrtu.jpg",
-        "releaseDate": "2019-04-04",
-        "description": "The charismatic Sir Lionel Frost considers himself to be the world's foremost investigator of myths and monsters. Trouble is, none of his small-minded, high-society peers seems to recognize this. Hoping to finally gain acceptance from these fellow adventurers, Sir Lionel travels to the Pacific Northwest to prove the existence of a legendary creature known as the missing link.",
-        "movieID": 458253
-    },
-    {
-        "duration": 101,
-        "title": "Never Rarely Sometimes Always",
+        "title": "Outlaw",
         "genre": [
             {
                 "id": "Drama",
                 "name": 18
             }
         ],
-        "poster": "\/7yiSyQhhjTFphhfCUcn05tCQxyG.jpg",
-        "releaseDate": "2020-03-13",
-        "description": "A pair of teenage girls in rural Pennsylvania travel to New York City to seek out medical help after an unintended pregnancy.",
-        "movieID": 595671
+        "poster": "\/bDhM8YpbGU341UcB9hVeNfv8Dx4.jpg",
+        "releaseDate": "2020-10-29",
+        "description": "A high school student and a young criminal are trying to get reciprocity from the most popular guy in the school. The general and the dancer in 1985 put their careers and life on the line to be together.",
+        "movieID": 577000
+    },
+    {
+        "duration": 90,
+        "title": "DNA",
+        "genre": [
+            {
+                "id": 18,
+                "name": "Drama"
+            }
+        ],
+        "poster": "\/uJPVPHt3poxtvwRC3j4G2nVvgu.jpg",
+        "releaseDate": "2020-10-28",
+        "description": "DNA revolves around a woman with close ties to a beloved Algerian grandfather who protected her from a toxic home life as a child. When he dies, it triggers a deep identity crisis as tensions between her extended family members escalate revealing new depths of resentment and bitterness.",
+        "movieID": 664177
     },
     {
         "duration": 99,
-        "title": "The Secret Garden",
-        "genre": [
-            {
-                "id": 18,
-                "name": "Drama"
-            },
-            {
-                "id": 14,
-                "name": "Fantasy"
-            },
-            {
-                "id": 10751,
-                "name": "Family"
-            }
-        ],
-        "poster": "\/5MSDwUcqnGodFTvtlLiLKK0XKS.jpg",
-        "releaseDate": "2020-04-15",
-        "description": "Mary Lennox is born in India to wealthy British parents who never wanted her. When her parents suddenly die, she is sent back to England to live with her uncle. She meets her sickly cousin, and the two children find a wondrous secret garden lost in the grounds of Misselthwaite Manor.",
-        "movieID": 521034
-    },
-    {
-        "duration": 120,
-        "title": "The Banker",
+        "title": "My Little Sister",
         "genre": [
             {
                 "id": "Drama",
                 "name": 18
             }
         ],
-        "poster": "\/biXzsw22U6vSd0XktmZwAOc4uik.jpg",
-        "releaseDate": "2020-03-06",
-        "description": "In the 1960s, two entrepreneurs hatch an ingenious business plan to fight for housing integration\u2014and equal access to the American Dream.",
-        "movieID": 627725
-    },
-    {
-        "duration": 102,
-        "title": "Tesla",
-        "genre": [
-            {
-                "id": 36,
-                "name": "History"
-            },
-            {
-                "id": 18,
-                "name": "Drama"
-            }
-        ],
-        "poster": "\/v0guO0krvyz8IfKGxEje04LVM9d.jpg",
-        "releaseDate": "2020-08-14",
-        "description": "The story of the Promethean struggles of Nikola Tesla, as he attempts to transcend entrenched technology\u2014including his own previous work\u2014by pioneering a system of wireless energy that would change the world.",
-        "movieID": 517412
-    },
-    {
-        "duration": 97,
-        "title": "The Secrets We Keep",
-        "genre": [
-            {
-                "id": "Thriller",
-                "name": 53
-            },
-            {
-                "id": "Drama",
-                "name": 18
-            }
-        ],
-        "poster": "\/sobZ7jdhcrF9wu4RNHxMpRBIpyj.jpg",
-        "releaseDate": "2020-09-16",
-        "description": "In post-World War II America, a woman, rebuilding her life in the suburbs with her husband, kidnaps her neighbor and seeks vengeance for the heinous war crimes she believes he committed against her.",
-        "movieID": 615115
+        "poster": "\/7RLHIhADlZpsQbGvjdVTm66H2M0.jpg",
+        "releaseDate": "2020-10-29",
+        "description": "Berlin playwright Lisa follows her husband Martin to Switzerland, where he manages a private school. However, when her twin brother Sven\u2019s leukaemia begins to wreak havoc on his health, she decides she must return to her roots, which has significant consequences for her relationship.",
+        "movieID": 659967
     }
 ]

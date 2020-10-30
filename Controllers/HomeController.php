@@ -44,7 +44,7 @@ class HomeController
                     }
                 }
                 $page = $message;
-                $title = "LATEST MOVIES IN PROYECTION";
+                $title = "LATEST MOVIES IN PROJECTION";
                 
                 ViewController::homeView($movies,$page,$title);
             }catch(Exception $ex)

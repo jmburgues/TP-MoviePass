@@ -32,7 +32,7 @@ class MovieController
 
     public function selectMoviesView()
     {
-        $movies = $this->pdoMovie->getAll();
+        $movies = $this->daoMovie->getAll();
       
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include(VIEWS_PATH.'selectMoviesView.php');
@@ -40,7 +40,7 @@ class MovieController
 
     public function selectIdMovie($idMovie)
     {
-        $movies = $this->pdoMovie->getAll();
+        $movies = $this->daoMovie->getAll();
         $movieToAdd = null;
         foreach ($movies as $movie) {
             if ($movie->getMovieID() == $idMovie) {

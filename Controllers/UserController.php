@@ -65,7 +65,7 @@
 
                     $movies = $this->corn();
                     $page = 1;
-                    $title = "LATEST MOVIES IN PROYECTION";
+                    $title = "LATEST MOVIES IN PROJECTION";
                     
                     ViewController::homeView($movies,$page,$title);
                 }
@@ -88,7 +88,7 @@
 
                 $movies = $this->corn();
                 $page = 1;
-                $title = "LATEST MOVIES IN PROYECTION";
+                $title = "LATEST MOVIES IN PROJECTION";
                 
                 ViewController::homeView($movies,$page,$title);
             }
@@ -182,7 +182,7 @@
 
             $movies = $this->corn();
             $page = 1;
-            $title = "LATEST MOVIES IN PROYECTION";
+            $title = "LATEST MOVIES IN PROJECTION";
             
             ViewController::homeView($movies,$page,$title);
         }
