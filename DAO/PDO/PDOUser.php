@@ -54,7 +54,7 @@
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query);
         
-        return $this->parseToObject($resultSet);
+        return $this->toArray($this->parseToObject($resultSet));
       }
 
       catch(Exception $ex){
@@ -92,6 +92,14 @@
       else {
         return count($resp) > 1 ? $resp : $resp['0'];
       }
-		}
+    }
+    
+    private function toArray($value){
+      if(is_array($value))
+        return $value;
+      else
+        return array($value);
+    }
+
   }
 ?>

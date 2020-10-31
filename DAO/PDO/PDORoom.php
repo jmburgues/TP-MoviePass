@@ -37,7 +37,7 @@
             $query = "SELECT * FROM ".$this->tableNameRooms;
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
-            return $this->parseToObject($resultSet);
+            return $this->toArray($this->parseToObject($resultSet));
             }
             catch(Exception $ex){
             throw $ex;
@@ -64,7 +64,7 @@
                 $parameters['ID'] = $cinemaId;
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query,$parameters);
-                return $this->parseToObject($resultSet);
+                return $this->toArray($this->parseToObject($resultSet));
                 }
                 catch(Exception $ex){
                     throw $ex;
@@ -87,7 +87,12 @@
             }
         }
         
-        
+        private function toArray($value){
+            if(is_array($value))
+              return $value;
+            else
+              return array($value);
+          }
       
 
 

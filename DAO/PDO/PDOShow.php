@@ -46,7 +46,7 @@
             $query = "SELECT * FROM ".$this->tableNameShows;
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
-            return $this->parseToObjectTime($resultSet);
+            return $this->toArray($this->parseToObjectTime($resultSet));
             }
             catch(Exception $ex){
             throw $ex;
@@ -59,7 +59,7 @@
             $parameters['active'] = true;
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
-            return $this->parseToObject($resultSet);
+            return $this->toArray($this->parseToObject($resultSet));
             }
             catch(Exception $ex){
             throw $ex;
@@ -128,5 +128,11 @@
         }
     }
 
+    private function toArray($value){
+        if(is_array($value))
+          return $value;
+        else
+          return array($value);
+      }
 }
 ?>

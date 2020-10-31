@@ -64,7 +64,7 @@
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query);
         
-        return $this->parseToObject($resultSet);
+        return $this->toArray($this->parseToObject($resultSet));
       }
 
       catch(Exception $ex){
@@ -112,11 +112,13 @@
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query);
         
-        $aux =  $this->parseToObject($resultSet);
+        /*$aux =  $this->parseToObject($resultSet);
         if(is_array($aux))
           $moviesList = $aux;
         else 
-          $moviesList[0]=$aux;
+          $moviesList[0]=$aux;*/
+
+        $moviesList = $this->toArray($this->parseToObject($resultSet));
       }
 
       catch(Exception $ex){
@@ -143,7 +145,7 @@
           $query = "SELECT MOVIES.* FROM ".$this->tableNameMovies." INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameMovies.".idMovie=".$this->tableNameShows.".idMovie";
           $this->connection = Connection::GetInstance();
           $resultSet = $this->connection->Execute($query);
-          return $this->parseToObject($resultSet);
+          return $this->toArray($this->parseToObject($resultSet));
           }
           catch(Exception $ex){
           throw $ex;
@@ -185,6 +187,12 @@
       } catch (Exception $e) {
           throw $e;
       }  
+    }
+    private function toArray($value){
+      if(is_array($value))
+        return $value;
+      else
+        return array($value);
     }
   }
 ?>

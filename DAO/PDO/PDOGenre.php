@@ -37,7 +37,7 @@
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query);
         
-        return $this->parseToObject($resultSet);
+        return $this->toArray($this->parseToObject($resultSet));
       }
 
       catch(Exception $ex){
@@ -62,6 +62,7 @@
       
     }
 
+    //no se está usando
     public function getGenresList(){
       try {
         $query = "SELECT genreName FROM ".$this->tableName;
@@ -80,11 +81,7 @@
         $this->connection = Connection::GetInstance();
        
         $resultSet = $this->connection->Execute($query);
-        $aux =  $this->parseToObject($resultSet);
-        if(is_array($aux))
-          $resultSet = $aux;
-        else 
-          $resultSet[0]=$aux;
+        $resultSet =  $this->toArray($this->parseToObject($resultSet));
         return $resultSet;
 
       }
@@ -111,6 +108,11 @@
       }
     }
     
-    
+    private function toArray($value){
+      if(is_array($value))
+        return $value;
+      else
+        return array($value);
+    }
   }
 ?>
