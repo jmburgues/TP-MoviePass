@@ -135,10 +135,10 @@
 
     function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
     
-        $genreList = $this->PDOGenre->getAll();
+        $genreList = $this->PDOGenre->getGenresListFromShows();
         $showList = $this->DAOShow->getAll();
 
-        $moviesYearList = $this->PDOMovie->getArrayOfYears();
+        $moviesYearList = $this->PDOMovie->getArrayOfYearsFromShows();
     
         if ($year > 1900 && $year <= 2020) {
             $moviesList = $this->PDOMovie->getAll();
@@ -198,9 +198,9 @@
 
         $genreName = $this->PDOGenre->getById($genreId)->getName();
         $showList = $this->DAOShow->getAll();
-        $genreList = $this->PDOGenre->getAll(); 
+        $genreList = $this->PDOGenre->getGenresListFromShows(); 
 
-        $moviesYearList = $this->DAOMovie->getArrayOfYears();
+        $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
         $moviesList = $this->DAOMovie->getAll();
         $movies = array();
 
@@ -218,7 +218,7 @@
              } 
             }
         }
-
+ 
         ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
         ViewController::homeView($movies,1,"Genre: ".$genreName);
       }

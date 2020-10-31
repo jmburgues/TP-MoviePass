@@ -71,7 +71,7 @@ class DAOMovie{
     $return = file_put_contents($this->fileName , $jsonContent);
   }
 
-  public function getArrayOfYears(){// returns an array of years where different movies where created
+  public function getArrayOfYears(){// returns an array of years where different movies were created
     $moviesList = $this->getAll();
 
     $years = array();

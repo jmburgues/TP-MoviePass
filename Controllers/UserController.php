@@ -58,8 +58,8 @@
                     
                     $this->setSession($loggedUser);
 
-                    $genreList = $this->DAOGenre->getAll();
-                    $moviesYearList = $this->DAOMovie->getArrayOfYears();
+                    $genreList = $this->DAOGenre->getGenresListFromShows();
+                    $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
         
                     ViewController::navView($genreList,$moviesYearList,null);
 
@@ -183,8 +183,8 @@
             session_destroy();
             session_start();
 
-            $genreList = $this->DAOGenre->getAll();
-            $moviesYearList = $this->DAOMovie->getArrayOfYears();
+            $genreList = $this->DAOGenre->getGenresListFromShows();
+            $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
             
             ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
 

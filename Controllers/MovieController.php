@@ -107,9 +107,9 @@ class MovieController
     
     $genreName = $this->pdoGenre->getById($genreId)->getName();
     
-    $genreList = $this->pdoGenre->getAll(); 
+    $genreList = $this->pdoGenre->getGenresListFromShows(); 
 
-    $moviesYearList = $this->pdoMovie->getArrayOfYears();
+    $moviesYearList = $this->pdoMovie->getArrayOfYearsFromShows();
     $moviesList = $this->pdoMovie->getAll();
     $movies = array();
     

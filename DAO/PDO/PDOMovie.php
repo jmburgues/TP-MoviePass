@@ -106,6 +106,37 @@
       return $years; 
     }
 
+    public function getArrayOfYearsFromShows(){
+      try{
+        $query = "SELECT MOVIES.* FROM ".$this->tableNameMovies." INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameMovies.".idMovie=".$this->tableNameShows.".idMovie";
+        $this->connection = Connection::GetInstance();
+        $resultSet = $this->connection->Execute($query);
+        
+        $aux =  $this->parseToObject($resultSet);
+        if(is_array($aux))
+          $moviesList = $aux;
+        else 
+          $moviesList[0]=$aux;
+      }
+
+      catch(Exception $ex){
+        throw $ex;
+      }
+
+      $years = array();
+
+      foreach ($moviesList as $oneMovie) {
+        $releaseDate = $oneMovie->getReleaseDate();
+        
+        $releaseYear = DateTime::createFromFormat('Y-m-d', $releaseDate)->format('Y'); 
+        
+        if (!in_array($releaseYear, $years)) {
+          array_push($years, $releaseYear);
+        }
+      }
+      return $years;
+    }
+
     public function getIdMoviesFromShows(){
       try{
 
@@ -154,6 +185,6 @@
       } catch (Exception $e) {
           throw $e;
       }  
-		}
+    }
   }
 ?>
