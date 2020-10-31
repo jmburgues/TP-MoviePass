@@ -63,7 +63,12 @@
         
                     ViewController::navView($genreList,$moviesYearList,null);
 
-                    $movies = $this->corn();
+                    $aux = $this->DAOMovie->getIdMoviesFromShows();
+                    $movies = array();
+                    if(is_array($aux))
+                        $movies = $aux;
+                    else    
+                        $movies[0]=$aux;
                     $page = 1;
                     $title = "LATEST MOVIES IN PROJECTION";
                     
@@ -86,7 +91,12 @@
 
                 ViewController::navView($genreList = null, $moviesYearList = null, null);
 
-                $movies = $this->corn();
+                $aux = $this->DAOMovie->getIdMoviesFromShows();
+                $movies = array();
+                if(is_array($aux))
+                    $movies = $aux;
+                else    
+                    $movies[0]=$aux;
                 $page = 1;
                 $title = "LATEST MOVIES IN PROJECTION";
                 
@@ -179,8 +189,13 @@
             ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
 
             ViewController::navView($genreList,$moviesYearList,null);
-
-            $movies = $this->corn();
+            
+            $aux = $this->DAOMovie->getIdMoviesFromShows();
+            $movies = array();
+            if(is_array($aux))
+                $movies = $aux;
+            else    
+                $movies[0]=$aux;
             $page = 1;
             $title = "LATEST MOVIES IN PROJECTION";
             
@@ -201,6 +216,7 @@
     
     
     
+        /*
     function corn(){
         $auxShow = new PDOShow();
         $shows = array();
@@ -222,7 +238,7 @@
         }
         return $movies; 
     }  
-    
+  */  
     
     
     

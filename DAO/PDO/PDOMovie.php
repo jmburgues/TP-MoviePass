@@ -11,6 +11,7 @@
   class PDOMovie{
     private $connection;
     private $tableNameGenres ='GENRES';
+    private $tableNameShows = 'SHOWS';
     private $tableNameMovies ='MOVIES';
     private $tableNameMoviesGenres ='GENRES_X_MOVIES';
 
@@ -103,6 +104,19 @@
         }
       }
       return $years; 
+    }
+
+    public function getIdMoviesFromShows(){
+      try{
+
+          $query = "SELECT MOVIES.* FROM ".$this->tableNameMovies." INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameMovies.".idMovie=".$this->tableNameShows.".idMovie";
+          $this->connection = Connection::GetInstance();
+          $resultSet = $this->connection->Execute($query);
+          return $this->parseToObject($resultSet);
+          }
+          catch(Exception $ex){
+          throw $ex;
+      }
     }
 
     #Seguir trabajando en este
