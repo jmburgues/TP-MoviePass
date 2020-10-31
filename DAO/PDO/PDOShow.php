@@ -70,7 +70,7 @@
         try 
         {
             $query = "UPDATE ".$this->tableNameShows."
-            SET dateSelected = :date, startsAt = :start, endsAt = :end, spectators = :spectators, idRoom = :idRoom, idMovie = :idMovie 
+            SET dateSelected = :date, startsAt = :start, endsAt = :end, spectators = :spectators, idRoom = :idRoom, idMovie = :idMovie, isActive = active 
             WHERE idShow = :idShow;";
 
             $parameters['idShow'] = $show->getIdShow();
@@ -80,6 +80,7 @@
             $parameters['spectators'] = $show->getSpectators();
             $parameters['idRoom'] = $show->getIdRoom();
             $parameters['idMovie'] = $show->getIdMovie();
+            $parameters['active'] = $show->getActive();
             
             $this->connection = Connection::GetInstance();
             $response = $this->connection->ExecuteNonQuery($query, $parameters);
@@ -90,7 +91,24 @@
         }
     }
 
+    public function removeShow($id){
+        try{
+          $query = "Update ".$this->tableNameShows. " SET isActive = :active WHERE idShow = :id;";
+          
+          $parameters['id'] = $id;
+          $parameters['active'] = false;
+          
+          $this->connection = Connection::GetInstance();
+          return $this->connection ->ExecuteNonQuery($query,$parameters);
+        }
+  
+        catch(Exception $ex){
+            throw $ex;
+        }
+  
+      }
 
+      
     protected function parseToObject($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function($p){
@@ -117,7 +135,7 @@
 
             $aux2 = new DateTime($p['endsAt']);
             $p['endsAt'] = $aux2->format('H:i:s');
-            return new Show ($p['dateSelected'],$p['startsAt'],$p['endsAt'],$p['idRoom'],$p['idMovie'],$p['spectators'],$p['idShow']);
+            return new Show ($p['dateSelected'],$p['startsAt'],$p['endsAt'],$p['idRoom'],$p['idMovie'],$p['spectators'],$p['isActive'],$p['idShow']);
             }, $value);
 
         if(empty($resp)){

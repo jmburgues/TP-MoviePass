@@ -52,7 +52,7 @@
     }
 
     public function modify(Cinema $cinema){
-      print_r($cinema);
+      //print_r($cinema);
       try{
         $query = "UPDATE ".$this->tableName. " SET cinemaName = :name, adress = :address, adressNumber = :number ,
         openning = :openning , closing = :closing, isActive = :active 

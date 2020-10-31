@@ -8,9 +8,10 @@
                     <li>Room Name: <?php echo $room->getName() ?></li>
                     <li>Room capacity: <?php echo $room->getCapacity() ?></li>
                     <li>Room price: <?php echo $room->getPrice() ?></li>
-                    <li>Room cinema: <?php echo $cinema->getName(); ?></li>
+                    <li>Room type: <?php echo $room->getRoomType() ?></li>
+                    <li>Room cinema: <?php echo $cinema->getName() ?></li>
                     <li style="list-style:none">
-            <!--     <div class="btn-group" role="group" aria-label="Basic example">     
+                 <div class="btn-group" role="group" aria-label="Basic example">     
                         <form action="<?php echo FRONT_ROOT?>Room/modifyRoomView" method="POST">
                             <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getRoomID()?>"   name="idRoomM">Modify</button> 
                         </form>
@@ -18,7 +19,7 @@
                             <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getRoomID()?>"   name="idRoomD">Delete</button> 
                         </form>
                         </div>
-                -->
+                
                     </li>         
                 </ul>
                 </div>
@@ -79,6 +80,12 @@
             <label for="inputDireccion" class="col-sm-2 col-form-label">Price</label>
             <div class="col-sm-10">
                 <input type="number" class="form-control" name="price" placeholder="Price" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputDireccion" class="col-sm-2 col-form-label">Room Type</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="roomType" placeholder="roomType" required>
             </div>
         </div>
         <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>
