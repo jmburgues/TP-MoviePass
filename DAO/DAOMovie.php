@@ -34,7 +34,7 @@ class DAOMovie{
         $genreList = array();
         
         foreach($valueArray['genre'] as $value){
-          $genre = new Genre($value['id'],$value['name']);
+          $genre = new Genre($value['name'],$value['id']);
           array_push($genreList,$genre);
         }
         $movie = new Movie($valueArray['duration'],$valueArray['title'],$genreList,$valueArray['poster'],

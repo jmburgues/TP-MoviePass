@@ -69,8 +69,8 @@ class MovieController
     {
         //Llamada a la API
        // for ($i=1; $i<75 ; $i+1) {
-            $data = file_get_contents("http://api.themoviedb.org/3/movie/now_playing?page=1&language=en-US&api_key=601e12bf1e7197e7532eb9c4901b0d3a&page=5");
-    
+            $data = file_get_contents("http://api.themoviedb.org/3/movie/now_playing?page=1&language=en-US&api_key=601e12bf1e7197e7532eb9c4901b0d3a&page=4");
+            
             //Convierte el JSON a un arreglo
             $array = ($data) ? json_decode($data, true) : array();
 
@@ -88,7 +88,7 @@ class MovieController
 
                     //De cada película se obtienen los generos y se crea un objeto de éste
                     foreach ($movie["genres"] as $genreData) {
-                        $aux = new Genre($genreData["id"], $genreData["name"]);
+                        $aux = new Genre($genreData["name"], $genreData["id"]);
                         array_push($genre, $aux);
                         $this->daoGenre->add($aux);
                     }

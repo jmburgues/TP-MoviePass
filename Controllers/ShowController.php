@@ -193,6 +193,37 @@
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'listCinemasAdmin.php';
     }
+
+    function listByGenre($genreId){
+
+        $genreName = $this->PDOGenre->getById($genreId)->getName();
+        $showList = $this->DAOShow->getAll();
+        $genreList = $this->PDOGenre->getAll(); 
+
+        $moviesYearList = $this->DAOMovie->getArrayOfYears();
+        $moviesList = $this->DAOMovie->getAll();
+        $movies = array();
+
+        foreach($moviesList as $oneMovie){
+
+          $movieGenres = $oneMovie->getGenre();
+
+          foreach($movieGenres as $oneGenre){
+            if($oneGenre->getId() == $genreId){
+                foreach($showList as $show){
+                    if($show->getIdMovie() == $oneMovie->getMovieID()){
+                        array_push($movies,$oneMovie);
+                    }
+                }
+             } 
+            }
+        }
+
+        ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
+        ViewController::homeView($movies,1,"Genre: ".$genreName);
+      }
 }
+
+
 
     ?>
