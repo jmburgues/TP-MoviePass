@@ -55,11 +55,11 @@
 
     public function getActiveShows(){
         try{
-            $query = "SELECT * FROM ".$this->tableNameShows. " WHERE isActive = :active";
-            $parameters['active'] = true;
+            $query = "SELECT * FROM ".$this->tableNameShows." WHERE isActive = 1";
+            //$parameters['active'] = true;
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
-            return $this->toArray($this->parseToObject($resultSet));
+            return $this->toArray($this->parseToObjectTime($resultSet));
             }
             catch(Exception $ex){
             throw $ex;
@@ -108,6 +108,21 @@
   
       }
 
+      public function getById($id){
+        try{
+          $query = "SELECT * FROM ".$this->tableNameShows." where idShow = :id";
+          $parameters['id'] = $id;
+          $this->connection = Connection::GetInstance();
+          $resultSet = $this->connection->Execute($query,$parameters);
+          
+          return $this->parseToObjectTime($resultSet);
+        }
+  
+        catch(Exception $ex){
+          throw $ex;
+        }
+        
+      }
       
     protected function parseToObject($value) {
         $value = is_array($value) ? $value : [];

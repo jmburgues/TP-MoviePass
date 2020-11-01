@@ -221,6 +221,13 @@
         ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
         ViewController::homeView($movies,1,"Genre: ".$genreName);
       }
+
+      public function modifyShowView($showId){
+        $currentShow = $this->DAOShow->getById($showId);
+        $shows = $this->DAOShow->getActiveShows();
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        include VIEWS_PATH.'show-modify.php';
+      }
 }
 
 
