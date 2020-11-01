@@ -1,4 +1,4 @@
-<?php namespace DAO;
+<?php namespace PDO;
 
     require_once dirname(__FILE__)."/../Models/Cinema.php";
     

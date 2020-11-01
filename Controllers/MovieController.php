@@ -5,34 +5,29 @@ namespace Controllers;
 use \DateTime as DateTime;
 use Models\Movie as Movie;
 use Models\Genre as Genre;
-use DAO\DAOMovie as DAOMovie;
-use DAO\DAOGenre as DAOGenre;
-use DAO\PDO\PDOMovie as PDOMovie;
-use DAO\PDO\PDOCinema as DAOCinema;
-use DAO\PDO\PDOGenre as PDOGenre;
+use DB\PDO\DAOMovie as DAOMovie;
+use DB\PDO\DAOGenre as DAOGenre;
+use DB\PDO\DAOCinema as DAOCinema;
 
 class MovieController
 {
-    private $daoMovie;
-    private $daoGenre;
-    private $pdoMovie;
-    private $pdoGenre;
-    private $daoCinema;
+    private $DAOMovie;
+    private $DAOGenre;
+    private $DAOCinema;
     private $currentMovie;
 
 
     public function __construct()
     {
-        $this->daoMovie = new DAOMovie();
-        $this->daoGenre = new DAOGenre();
-        $this->pdoGenre = new PDOGenre();
-        $this->daoCinema = new DAOCinema();
-        $this->pdoMovie = new PDOMovie();
+        $this->DAOMovie = new DAOMovie();
+        $this->DAOGenre = new DAOGenre();
+        $this->DAOCinema = new DAOCinema();
     }
 
+    /* Brings up a list of previously selected movies wich are aviable for creating Shows */
     public function selectMoviesView()
     {
-        $movies = $this->pdoMovie->getAll();
+        $movies = $this->DAOMovie->getAll();
       
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include(VIEWS_PATH.'selectMoviesView.php');
@@ -90,11 +85,11 @@ class MovieController
                     foreach ($movie["genres"] as $genreData) {
                         $aux = new Genre($genreData["id"], $genreData["name"]);
                         array_push($genre, $aux);
-                        $this->daoGenre->add($aux);
+                        $this->DAOGenre->add($aux);
                     }
                     //Se crea el objeto Movie y se agrega al arrelgo
                     $newMovie = new Movie($movie["runtime"], $movie["title"], $genre, $movie["poster_path"], $movie["release_date"], $movie["overview"], $movie["id"]);
-                    $this->daoMovie->add($newMovie);
+                    $this->DAOMovie->add($newMovie);
                 }
             }
         //}
