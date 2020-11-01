@@ -53,7 +53,7 @@
         include VIEWS_PATH.'showAddView.php';
     }
 
-    public function addShow($date, $start, $spectators){
+    public function addShow($date, $start){
         $shows=$this->DAOShow->getAll();
         $movies=$this->DAOMovie->GetAll();
         $moviesDB = $this->DAOMovie->getAll();
@@ -62,12 +62,11 @@
         include VIEWS_PATH.'listMoviesAdmin.php';
     }
 
-    public function addCurrentShow( $date, $start, $end, $spectators, $selectedMovieId, $roomId ){
+    public function addCurrentShow( $date, $start, $end, $selectedMovieId, $roomId ){
         $newShow = new Show();
         $newShow->setDate($date);
         $newShow->setStart($start);
         $newShow->setEnd($end);
-        $newShow->setSpectators($spectators);
         $newShow->setIdMovie($selectedMovieId);
         $newShow->setIdRoom($roomId);
         $rooms = $this->DAORoom->getAll(); 
@@ -131,10 +130,10 @@
 
     function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
     
-        $genreList = $this->DAOGenre->getAll();
+        $genreList = $this->DAOGenre->getGenresListFromShows();
         $showList = $this->DAOShow->getAll();
 
-        $moviesYearList = $this->DAOMovie->getArrayOfYears();
+        $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
     
         if ($year > 1900 && $year <= 2020) {
             $moviesList = $this->DAOMovie->getAll();
@@ -160,7 +159,7 @@
         ViewController::homeView($movies,1,"Year: ".$year);
       }
 
-    public function selectMovie($date, $start, $spectators, $movieId){
+    public function selectMovie($date, $start, $movieId){
         $dateTime = new DateTime();
         $movies=$this->DAOMovie->GetAll();
         
@@ -189,6 +188,44 @@
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'listCinemasAdmin.php';
     }
+
+    function listByGenre($genreId){
+
+        $genreName = $this->DAOGenre->getById($genreId)->getName();
+        $showList = $this->DAOShow->getAll();
+        $genreList = $this->DAOGenre->getGenresListFromShows(); 
+
+        $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
+        $moviesList = $this->DAOMovie->getAll();
+        $movies = array();
+
+        foreach($moviesList as $oneMovie){
+
+          $movieGenres = $oneMovie->getGenre();
+
+          foreach($movieGenres as $oneGenre){
+            if($oneGenre->getId() == $genreId){
+                foreach($showList as $show){
+                    if($show->getIdMovie() == $oneMovie->getMovieID()){
+                        array_push($movies,$oneMovie);
+                    }
+                }
+             } 
+            }
+        }
+ 
+        ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
+        ViewController::homeView($movies,1,"Genre: ".$genreName);
+      }
+
+      public function modifyShowView($showId){
+        $currentShow = $this->DAOShow->getById($showId);
+        $shows = $this->DAOShow->getActiveShows();
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        include VIEWS_PATH.'show-modify.php';
+      }
 }
+
+
 
     ?>

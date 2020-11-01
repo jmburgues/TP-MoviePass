@@ -8,7 +8,9 @@
   class DAOGenre{
     private $connection;
     private $tableName ='GENRES';
-    
+    private $tableNameGenresXMovies = "GENRES_X_MOVIES";
+    private $tableNameShows = "SHOWS";
+
     public function add($genre){
       try{
         $query = "INSERT INTO ".$this->tableName." 
@@ -28,14 +30,14 @@
         throw $ex;
       }
     }
-
+    //este
     public function getAll(){
       try{
         $query = "SELECT * FROM ".$this->tableName;
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query);
         
-        return $this->parseToObject($resultSet);
+        return $this->toArray($this->parseToObject($resultSet));
       }
 
       catch(Exception $ex){
@@ -60,8 +62,8 @@
       
     }
 
+    //no se está usando
     public function getGenresList(){
- 
       try {
         $query = "SELECT genreName FROM ".$this->tableName;
         $this->connection = Connection::GetInstance();
@@ -70,6 +72,24 @@
       catch (Exception $ex) {
         throw $ex;
       }
+
+    }
+
+    public function getGenresListFromShows(){
+      try{
+        $query = "SELECT GENRES.* FROM ".$this->tableName." LEFT JOIN ".$this->tableNameGenresXMovies." ON ".$this->tableName.".idGenre=".$this->tableNameGenresXMovies.".idGenre INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameGenresXMovies.".idMovie = ".$this->tableNameShows.".idMovie GROUP BY idGenre";
+        $this->connection = Connection::GetInstance();
+       
+        $resultSet = $this->connection->Execute($query);
+        $resultSet =  $this->toArray($this->parseToObject($resultSet));
+        return $resultSet;
+
+      }
+
+      catch(Exception $ex){
+        throw $ex;
+      }
+
 
     }
 
@@ -88,6 +108,11 @@
       }
     }
     
-    
+    private function toArray($value){
+      if(is_array($value))
+        return $value;
+      else
+        return array($value);
+    }
   }
 ?>

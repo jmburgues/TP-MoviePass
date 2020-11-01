@@ -8,7 +8,6 @@
                 <li>Date: <?php echo $date ?></li>
                 <li>Starting hour: <?php echo $start ?></li>
                 <li>Closing hour: <?php echo $dateToInsertEnd ?></li>
-                <li>Spectators: <?php echo $spectators ?></li>
                 <li>Movie title: <?php echo $selectedMovie->getTitle() ?></li>
             </ul>
         </div>
@@ -26,8 +25,7 @@
                     
                         <input type="hidden"  value="<?php echo $date?>" name="date" ></input>     
                         <input type="hidden"  value="<?php echo $dateToInsert?>" name="dateToInsert" ></input>   
-                        <input type="hidden"  value="<?php echo $dateToInsertEnd?>" name="dateToInsertEnd" ></input>  
-                        <input type="hidden"  value="<?php echo $spectators?>" name="spectators" ></input>   
+                        <input type="hidden"  value="<?php echo $dateToInsertEnd?>" name="dateToInsertEnd" ></input>    
                         <input type="hidden"  value="<?php echo $selectedMovie->getMovieID() ?>" name="selectedMovieId" ></input>     
                         <button class="font-weight-bold text-center text-uppercase mb-2 bg-danger col-md-2 offset-md-5 text-white"  type="submit" value="<?php echo $room->getRoomId()?>" name="roomId" style=" text-align:left; border: none; background: none;">Add to: <?php echo $room->getName()?></button>
                         <hr style="margin-top: 2px">

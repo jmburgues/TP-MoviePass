@@ -12,8 +12,18 @@
                             <li>Show spectators: <?php echo $show->getSpectators()?></li>
                             <li>Show Room: <?php echo $auxRoom->getById($show->getIdRoom())->getName();?></li>
                             <li>Show Movie: <?php echo $auxMovie->getById($show->getIdMovie())->getTitle();?></li>
-                     <!--       <li>Show Cinema: <?php// echo $auxCinema->getById($auxRoom->getById($show->getIdRoom())->getRoomID())->getName();?></li>
--->
+                            <li>Show Cinema: <?php echo $auxCinema->getById($auxRoom->getById($show->getIdRoom())->getRoomID())->getName();?></li>
+                            
+                            <li style="list-style:none; padding-left:70%">
+                                <div class="btn-group" role="group" aria-label="Basic example">    
+                                    <form action="<?php echo FRONT_ROOT?>Show/modifyShowView" method="POST">
+                                        <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $show->getIdShow()?>"   name="idCinemaM">Modify</button> 
+                                    </form>
+                                    <form action="<?php echo FRONT_ROOT?>Show/deleteShow" method="POST">
+                                        <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $show->getIdShow()?>" disabled  name="idCinemaD">Delete</button> 
+                                    </form>
+                                </div>
+                            </li> 
                         </ul>  
     <!--card-->     </div>
     

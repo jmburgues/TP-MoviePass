@@ -58,18 +58,27 @@
                     
                     $this->setSession($loggedUser);
 
-                    $genreList = $this->DAOGenre->getAll();
-                    $moviesYearList = $this->DAOMovie->getArrayOfYears();
+                    $genreList = $this->DAOGenre->getGenresListFromShows();
+                    $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
         
                     ViewController::navView($genreList,$moviesYearList,null);
 
-                    $movies = $this->corn();
+                    $aux = $this->DAOMovie->getIdMoviesFromShows();
+                    $movies = array();
+                    if(is_array($aux))
+                        $movies = $aux;
+                    else    
+                        $movies[0]=$aux;
                     $page = 1;
-                    $title = "LATEST MOVIES IN PROYECTION";
+                    $title = "LATEST MOVIES IN PROJECTION";
                     
                     ViewController::homeView($movies,$page,$title);
                 }
                 else{
+                    $genreList = $this->DAOGenre->getGenresListFromShows();
+                    $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
+        
+                    ViewController::navView($genreList,$moviesYearList,null);
                     $error = "Invalid user/password!";
                     include_once VIEWS_PATH . 'login-view.php';
                 }
@@ -86,9 +95,14 @@
 
                 ViewController::navView($genreList = null, $moviesYearList = null, null);
 
-                $movies = $this->corn();
+                $aux = $this->DAOMovie->getIdMoviesFromShows();
+                $movies = array();
+                if(is_array($aux))
+                    $movies = $aux;
+                else    
+                    $movies[0]=$aux;
                 $page = 1;
-                $title = "LATEST MOVIES IN PROYECTION";
+                $title = "LATEST MOVIES IN PROJECTION";
                 
                 ViewController::homeView($movies,$page,$title);
             }
@@ -173,16 +187,21 @@
             session_destroy();
             session_start();
 
-            $genreList = $this->DAOGenre->getAll();
-            $moviesYearList = $this->DAOMovie->getArrayOfYears();
+            $genreList = $this->DAOGenre->getGenresListFromShows();
+            $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
             
             ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
 
             ViewController::navView($genreList,$moviesYearList,null);
-
-            $movies = $this->corn();
+            
+            $aux = $this->DAOMovie->getIdMoviesFromShows();
+            $movies = array();
+            if(is_array($aux))
+                $movies = $aux;
+            else    
+                $movies[0]=$aux;
             $page = 1;
-            $title = "LATEST MOVIES IN PROYECTION";
+            $title = "LATEST MOVIES IN PROJECTION";
             
             ViewController::homeView($movies,$page,$title);
         }
@@ -201,6 +220,7 @@
     
     
     
+        /*
     function corn(){
         $auxShow = new DAOShow();
         $shows = array();
@@ -222,7 +242,7 @@
         }
         return $movies; 
     }  
-    
+  */  
     
     
     

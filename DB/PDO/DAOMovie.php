@@ -11,6 +11,7 @@
   class DAOMovie{
     private $connection;
     private $tableNameGenres ='GENRES';
+    private $tableNameShows = 'SHOWS';
     private $tableNameMovies ='MOVIES';
     private $tableNameMoviesGenres ='GENRES_X_MOVIES';
 
@@ -63,7 +64,7 @@
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query);
         
-        return $this->parseToObject($resultSet);
+        return $this->toArray($this->parseToObject($resultSet));
       }
 
       catch(Exception $ex){
@@ -105,6 +106,52 @@
       return $years; 
     }
 
+    public function getArrayOfYearsFromShows(){
+      try{
+        $query = "SELECT MOVIES.* FROM ".$this->tableNameMovies." INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameMovies.".idMovie=".$this->tableNameShows.".idMovie";
+        $this->connection = Connection::GetInstance();
+        $resultSet = $this->connection->Execute($query);
+        
+        /*$aux =  $this->parseToObject($resultSet);
+        if(is_array($aux))
+          $moviesList = $aux;
+        else 
+          $moviesList[0]=$aux;*/
+
+        $moviesList = $this->toArray($this->parseToObject($resultSet));
+      }
+
+      catch(Exception $ex){
+        throw $ex;
+      }
+
+      $years = array();
+
+      foreach ($moviesList as $oneMovie) {
+        $releaseDate = $oneMovie->getReleaseDate();
+        
+        $releaseYear = DateTime::createFromFormat('Y-m-d', $releaseDate)->format('Y'); 
+        
+        if (!in_array($releaseYear, $years)) {
+          array_push($years, $releaseYear);
+        }
+      }
+      return $years;
+    }
+
+    public function getIdMoviesFromShows(){
+      try{
+
+          $query = "SELECT MOVIES.* FROM ".$this->tableNameMovies." INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameMovies.".idMovie=".$this->tableNameShows.".idMovie";
+          $this->connection = Connection::GetInstance();
+          $resultSet = $this->connection->Execute($query);
+          return $this->toArray($this->parseToObject($resultSet));
+          }
+          catch(Exception $ex){
+          throw $ex;
+      }
+    }
+
     #Seguir trabajando en este
     private function parseToObject($value){
 			$value = is_array($value) ? $value : [];
@@ -140,6 +187,12 @@
       } catch (Exception $e) {
           throw $e;
       }  
-		}
+    }
+    private function toArray($value){
+      if(is_array($value))
+        return $value;
+      else
+        return array($value);
+    }
   }
 ?>

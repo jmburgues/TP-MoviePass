@@ -16,7 +16,7 @@
 		
 		<li class="nav-item" >
 			<div class="dropdown">
-				<form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>Movie/listByGenre" method=POST>
+				<form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>Show/listByGenre" method=POST>
 					<button class="btn btn-secondary btn-dark dropdown-toggle" style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <?php if($genresList==null){ ?> disabled <?php } ?>>
 					Genre
 					</button>

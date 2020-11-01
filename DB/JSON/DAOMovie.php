@@ -34,7 +34,7 @@ class DAOMovie{
         $genreList = array();
         
         foreach($valueArray['genre'] as $value){
-          $genre = new Genre($value['id'],$value['name']);
+          $genre = new Genre($value['name'],$value['id']);
           array_push($genreList,$genre);
         }
         $movie = new Movie($valueArray['duration'],$valueArray['title'],$genreList,$valueArray['poster'],
@@ -71,7 +71,7 @@ class DAOMovie{
     $return = file_put_contents($this->fileName , $jsonContent);
   }
 
-  public function getArrayOfYears(){// returns an array of years where different movies where created
+  public function getArrayOfYears(){// returns an array of years where different movies were created
     $moviesList = $this->getAll();
 
     $years = array();

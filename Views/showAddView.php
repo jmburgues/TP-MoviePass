@@ -14,10 +14,7 @@
             <div class="w-100"></div>
     -->        
 
-            <div class="col mt-2">Spectators:</div>
-            <div class="col mt-2"><input type="number" name="spectators" min="0" max="325" required/></div>
-            <div class="w-100"></div>
-            
+           
             <button type="submit" class="btn btn-secondary bg-danger text-black col-2 mt-2" style="margin-left:80%"  >Send</button>
         </form>         
     </div>

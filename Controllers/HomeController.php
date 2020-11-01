@@ -29,8 +29,8 @@ class HomeController
 
 
 
-                $genreList = $this->DAOGenre->getAll();
-                $moviesYearList = $this->DAOMovie->getArrayOfYears();
+                $genreList = $this->DAOGenre->getGenresListFromShows();
+                $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
                 
                 ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
 
@@ -44,7 +44,7 @@ class HomeController
                     }
                 }
                 $page = $message;
-                $title = "LATEST MOVIES IN PROYECTION";
+                $title = "LATEST MOVIES IN PROJECTION";
                 
                 ViewController::homeView($movies,$page,$title);
             }catch(Exception $ex)

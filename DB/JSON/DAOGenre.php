@@ -40,7 +40,7 @@ class DAOgenre{
       $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
       foreach ($arrayToDecode as $valueArray) {
         
-        $genre = new genre($valueArray['id'],$valueArray['name']);
+        $genre = new genre($valueArray['name'],$valueArray['id']);
         array_push($this->genreList, $genre);
       }
     }
