@@ -1,5 +1,5 @@
 <?php
-namespace DAO;
+namespace DB\JSON;
 use Models\Movie as Movie;
 use Models\Genre as Genre;
 use \DateTime as DateTime;

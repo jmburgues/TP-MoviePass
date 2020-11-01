@@ -162,7 +162,7 @@
     public function selectMovie($date, $start, $movieId){
         $dateTime = new DateTime();
         $movies=$this->DAOMovie->GetAll();
-        
+        //se toma la película y se calcula la duración para devolver el final de la función 
         foreach($movies as $movie){
             if($movie->getMovieId() == $movieId){
         
@@ -218,11 +218,39 @@
         ViewController::homeView($movies,1,"Genre: ".$genreName);
       }
 
-      public function modifyShowView($showId){
-        $currentShow = $this->DAOShow->getById($showId);
-        $shows = $this->DAOShow->getActiveShows();
+      public function modifyShowView($showID){
+        $currentShow = $this->DAOShow->getById($showID);
+        $auxRoom = $this->DAORoom->getById($currentShow->getIdRoom());
+        $auxCinema = $this->DAOCinema->getById($auxRoom->getIDCinema());
+        $rooms = $this->DAORoom->getActiveRoomsByCinema($auxCinema->getId());
+        $movies = $this->DAOMovie->getAll();
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'show-modify.php';
+      }
+
+      public function modifyShow($idShow, $idRoom, $idMovie, $spectators, $active, $date, $start){
+        $movie = $this->DAOMovie->getById($idMovie);
+        $auxDate = $start;
+        $dateToInsert = new DateTime($auxDate.'M');
+
+        $auxEnd = ($movie->getDuration() +15 );
+        
+        $interval = new DateInterval('PT'.$auxEnd.'M');         
+
+        $dateToInsertEnd = new DateTime($auxDate);
+        $dateToInsertEnd->add($interval);
+    
+        $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
+        $dateToInsertEnd = $dateToInsertEnd->format('H:i:s');
+
+
+        $showsList = $this->DAOShow->getActiveShows();
+        $modifyShow = new Show($date, $start, $dateToInsertEnd, $idRoom, $idMovie, $spectators, $active, $idShow);
+        var_dump($modifyShow);
+        $this->DAOShow->modify($modifyShow);
+
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        include VIEWS_PATH.'adminShows.php';
       }
 }
 

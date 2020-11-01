@@ -65,6 +65,11 @@
         $parameters['openning'] = $cinema->getOpenning();
         $parameters['closing'] = $cinema->getClosing();
         $parameters['active'] = $cinema->getActive();
+
+          echo "<pre>";            
+          var_dump($cinema);
+          echo "</pre>";
+
         $this->connection = Connection::GetInstance(); 
         return $this->connection->ExecuteNonQuery($query, $parameters);
       }

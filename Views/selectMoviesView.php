@@ -9,7 +9,7 @@
     <form action="<?php echo FRONT_ROOT?>Movie/selectIdMovie" method="POST" class= " mt-5 mb-5">
         <div class= "container">            
             <div class="card card-body ">
-                <button type="submit" value="<?php  echo $movie->getMovieId()?>" name="movieId" style=" text-align:left; border: none; background: none;"><?php echo $movie->getTitle()?></button>     
+                <button type="submit" value="<?php  echo $movie->getMovieID()?>" name="movieId" style=" text-align:left; border: none; background: none;"><?php echo $movie->getTitle()?></button>     
             </div>
         </div>
         <?php

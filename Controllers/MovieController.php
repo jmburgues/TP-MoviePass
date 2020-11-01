@@ -8,12 +8,14 @@ use Models\Genre as Genre;
 use DB\PDO\DAOMovie as DAOMovie;
 use DB\PDO\DAOGenre as DAOGenre;
 use DB\PDO\DAOCinema as DAOCinema;
+use DB\JSON\DAOMovie as JSONMovie;
 
 class MovieController
 {
     private $DAOMovie;
     private $DAOGenre;
     private $DAOCinema;
+    private $JSONMovie;
     private $currentMovie;
 
 
@@ -22,12 +24,13 @@ class MovieController
         $this->DAOMovie = new DAOMovie();
         $this->DAOGenre = new DAOGenre();
         $this->DAOCinema = new DAOCinema();
-    }
+        $this->JSONMovie = new JSONMovie();
+      }
 
     /* Brings up a list of previously selected movies wich are aviable for creating Shows */
     public function selectMoviesView()
     {
-        $movies = $this->DAOMovie->getAll();
+        $movies = $this->JSONMovie->getAll();
       
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include(VIEWS_PATH.'selectMoviesView.php');
@@ -35,7 +38,7 @@ class MovieController
 
     public function selectIdMovie($idMovie)
     {
-        $movies = $this->daoMovie->getAll();
+        $movies = $this->JSONMovie->getAll();
         $movieToAdd = null;
         foreach ($movies as $movie) {
             if ($movie->getMovieID() == $idMovie) {
@@ -43,17 +46,17 @@ class MovieController
             }
         }
         
-        $moviesBDD = $this->pdoMovie->getAll();
+        $moviesBDD = $this->DAOMovie->getAll();
  
 
-        if (!($this->pdoMovie->getById($idMovie))) {
-            $this->pdoMovie->add($movieToAdd);
+        if (!($this->DAOMovie->getById($idMovie))) {
+            $this->DAOMovie->add($movieToAdd);
         } else {
             $message = "Movie already on database";
             echo "<script type='text/javascript'>alert('$message');</script>";
         }
       
-        $moviesBDD = $this->pdoMovie->getAll();
+        $moviesBDD = $this->DAOMovie->getAll();
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include(VIEWS_PATH.'listMoviesBDD.php');
     }
@@ -94,18 +97,16 @@ class MovieController
             }
         //}
     }
-  function listMovies(){
-    $movies = $this->pdoMovie->getAll();
-  }
+ 
 
   function listByGenre($genreId){
     
-    $genreName = $this->pdoGenre->getById($genreId)->getName();
+    $genreName = $this->DAOGenre->getById($genreId)->getName();
     
-    $genreList = $this->pdoGenre->getGenresListFromShows(); 
+    $genreList = $this->DAOGenre->getGenresListFromShows(); 
 
-    $moviesYearList = $this->pdoMovie->getArrayOfYearsFromShows();
-    $moviesList = $this->pdoMovie->getAll();
+    $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
+    $moviesList = $this->DAOMovie->getAll();
     $movies = array();
     
     foreach($moviesList as $oneMovie){
@@ -127,8 +128,8 @@ class MovieController
 
 
   public function selectMovie($selectedId){
-    $cinemas = $this->pdoCinema->getActiveCinemas();  
-    $movies=$this->pdoMovie->getAll();
+    $cinemas = $this->DAOCinema->getActiveCinemas();  
+    $movies=$this->DAOMovie->getAll();
     $listAdminMovies = null;
     foreach($movies as $movie){
       if($movie->getMovieId() == $selectedId){
@@ -140,8 +141,8 @@ class MovieController
   }
   
   public function selectRoom($selectedCinemaId, $selectedMovieId){
-    $cinemas = $this->pdoCinema->getActiveCinemas();  
-    $movies=$this->pdoMovie->getAll();
+    $cinemas = $this->DAOCinema->getActiveCinemas();  
+    $movies=$this->DAOMovie->getAll();
     $currentCinema = null;
     $currentMovie = null;
     foreach($cinemas as $cinema){

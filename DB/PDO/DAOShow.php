@@ -66,12 +66,13 @@
             }
         }
 
-    public function modify($show)    {
+    public function modify(Show $show)    {
         try 
         {
             $query = "UPDATE ".$this->tableNameShows."
             SET dateSelected = :date, startsAt = :start, endsAt = :end, spectators = :spectators, idRoom = :idRoom, idMovie = :idMovie, isActive = active 
             WHERE idShow = :idShow;";
+            
 
             $parameters['idShow'] = $show->getIdShow();
             $parameters['date'] = $show->getDate();;
