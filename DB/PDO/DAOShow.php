@@ -1,13 +1,13 @@
 <?php
-  namespace DAO\PDO;
+  namespace DB\PDO;
 
   use \DateTime as DateTime;
   use \Exception as Exception;
   use Models\Show as Show;
-  use DAO\PDO\Connection as Connection;
+  use DB\PDO\Connection as Connection;
 
 
-  class PDOShow{
+  class DAOShow{
     private $connection;
     private $tableNameShows = "SHOWS";
 

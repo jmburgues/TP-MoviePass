@@ -1,11 +1,11 @@
 <?php
-  namespace DAO\PDO;
+  namespace DB\PDO;
 
   use \Exception as Exception;
   use Models\Cinema as Cinema;
-  use DAO\PDO\Connection as Connection;
+  use DB\PDO\Connection as Connection;
 
-  class PDOCinema{
+  class DAOCinema{
     private $connection;
     private $tableName ='CINEMAS';
 

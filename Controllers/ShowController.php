@@ -3,31 +3,27 @@
 
     use \DateTime as DateTime;
     use \DateInterval as DateInterval;
-    use DAO\PDO\PDOMovie as DAOMovie;
-    use DAO\PDO\PDORoom as DAORoom;
-    use DAO\PDO\PDOShow as DAOShow;
-    use DAO\PDO\PDOCinema as DAOCinema;
-    use DAO\PDO\PDOGenre as PDOGenre;
-    use Models\Show as Show;
-    use Models\Cinema as Cinema;
-    use Models\Movie as Movie;
-    
+    use DB\PDO\DAOMovie as DAOMovie;
+    use DB\PDO\DAORoom as DAORoom;
+    use DB\PDO\DAOShow as DAOShow;
+    use DB\PDO\DAOCinema as DAOCinema;
+    use DB\PDO\DAOGenre as DAOGenre;
+    use Models\Show as Show;    
 
     class ShowController{
         private $DAOMovie;
         private $DAORoom;
         private $DAOShow;
-        private $PDOMovie;
-        private $PDOGenre;
+        private $DAOGenre;
 
 
         public function __construct(){
             $this->DAOMovie = new DAOMovie();   
             $this->DAORoom = new DAORoom(); 
             $this->DAOShow = new DAOShow();    
-            $this->PDOMovie = new DAOMovie();     
-            $this->PDOCinema = new DAOCinema();    
-            $this->PDOGenre = new PDOGenre();    
+            $this->DAOMovie = new DAOMovie();     
+            $this->DAOCinema = new DAOCinema();    
+            $this->DAOGenre = new DAOGenre();    
         }
         
     public function showShows(){
@@ -60,7 +56,7 @@
     public function addShow($date, $start, $spectators){
         $shows=$this->DAOShow->getAll();
         $movies=$this->DAOMovie->GetAll();
-        $moviesDB = $this->PDOMovie->getAll();
+        $moviesDB = $this->DAOMovie->getAll();
 
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'listMoviesAdmin.php';
@@ -135,13 +131,13 @@
 
     function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
     
-        $genreList = $this->PDOGenre->getAll();
+        $genreList = $this->DAOGenre->getAll();
         $showList = $this->DAOShow->getAll();
 
-        $moviesYearList = $this->PDOMovie->getArrayOfYears();
+        $moviesYearList = $this->DAOMovie->getArrayOfYears();
     
         if ($year > 1900 && $year <= 2020) {
-            $moviesList = $this->PDOMovie->getAll();
+            $moviesList = $this->DAOMovie->getAll();
     
             $movies = array();
     

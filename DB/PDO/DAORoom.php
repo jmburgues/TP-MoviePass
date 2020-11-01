@@ -1,12 +1,12 @@
 <?php
-  namespace DAO\PDO;
+  namespace DB\PDO;
 
   use \Exception as Exception;
   use Models\Room as Room;
-  use DAO\PDO\Connection as Connection;
+  use DB\PDO\Connection as Connection;
 
 
-  class PDORoom{
+  class DAORoom{
     private $connection;
     private $tableNameRooms ='ROOMS';
 

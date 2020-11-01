@@ -1,14 +1,14 @@
 <?php
-  namespace DAO\PDO;
+  namespace DB\PDO;
 
   use \Exception as Exception;
   use Models\Movie as Movie;
   use Models\Genre as Genre;
-  use DAO\PDO\Connection as Connection;
-  use DAO\PDO\PDOGenre as PDOGenre;
+  use DB\PDO\Connection as Connection;
+  use DB\PDO\PDOGenre as PDOGenre;
   use \DateTime as DateTime;
 
-  class PDOMovie{
+  class DAOMovie{
     private $connection;
     private $tableNameGenres ='GENRES';
     private $tableNameMovies ='MOVIES';

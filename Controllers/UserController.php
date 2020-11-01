@@ -2,10 +2,10 @@
     namespace Controllers;
 
     use Models\User as User;
-    use DAO\PDO\PDOUser as DAOUser;
-    use DAO\PDO\PDOGenre as DAOGenre;
-    use DAO\PDO\PDOMovie as DAOMovie;
-    use DAO\PDO\PDOShow as PDOShow;
+    use DB\PDO\DAOUser as DAOUser;
+    use DB\PDO\DAOGenre as DAOGenre;
+    use DB\PDO\DAOMovie as DAOMovie;
+    use DB\PDO\DAOShow as DAOShow;
 
     class UserController
     {
@@ -202,7 +202,7 @@
     
     
     function corn(){
-        $auxShow = new PDOShow();
+        $auxShow = new DAOShow();
         $shows = array();
         $aux = $auxShow->getAll();
         if (is_array($aux)){

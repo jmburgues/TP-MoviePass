@@ -1,8 +1,8 @@
 <?php
     namespace Controllers;
-    use DAO\PDO\PDOMovie as DAOMovie;
-    use DAO\PDO\PDOShow as PDOShow;
-    use DAO\PDO\PDOGenre as DAOGenre;
+    use DB\PDO\DAOMovie as DAOMovie;
+    use DB\PDO\DAOShow as DAOShow;
+    use DB\PDO\DAOGenre as DAOGenre;
 use Exception;
 
 class HomeController
@@ -18,7 +18,7 @@ class HomeController
         public function Index($message = 1)
         {
             try{
-                $auxShow = new PDOShow();
+                $auxShow = new DAOShow();
                 $shows = array();
                 $aux = $auxShow->getAll();
                 if (is_array($aux)){
@@ -35,7 +35,7 @@ class HomeController
                 ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
 
                 $movies = array();
-                #pasar luego a una QUERY del pdo
+                #pasar luego a una QUERY del DAO
                 $aux = array();
                 foreach ($shows as $show) {
                     if(!(in_array($show->getIdMovie(),$aux))){

@@ -1,11 +1,11 @@
 <?php
-  namespace DAO\PDO;
+  namespace DB\PDO;
 
   use \Exception as Exception;
   use Models\Genre as Genre;
-  use DAO\PDO\Connection as Connection;
+  use DB\PDO\Connection as Connection;
 
-  class PDOGenre{
+  class DAOGenre{
     private $connection;
     private $tableName ='GENRES';
     

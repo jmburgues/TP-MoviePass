@@ -1,11 +1,11 @@
 <?php
-  namespace DAO\PDO;
+  namespace DB\PDO;
 
   use \Exception as Exception;
   use Models\User as User;
   use DAO\PDO\Connection as Connection;
 
-  class PDOUser{
+  class DAOUser{
     private $connection;
     private $tableName ='USERS';
 

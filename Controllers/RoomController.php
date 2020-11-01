@@ -1,8 +1,8 @@
 <?php
     namespace Controllers;
 
-    use DAO\PDO\PDORoom as DAORoom;
-    use DAO\PDO\PDOCinema as DAOCinema;
+    use DB\PDO\DAORoom as DAORoom;
+    use DB\PDO\DAOCinema as DAOCinema;
     use Models\Room as Room;
     use Models\Cinema as Cinema;
 

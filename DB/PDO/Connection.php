@@ -1,9 +1,8 @@
 <?php
-  namespace DAO\PDO;
+  namespace DB\PDO;
   
   use \PDO as PDO;
   use \Exception as Exception;
-  use DAO\PDO\QueryType as QueryType;
 
   class Connection{
     private $pdo = null;

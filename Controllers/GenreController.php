@@ -1,6 +1,6 @@
 <?php
     namespace Controllers;
-    use DAO\PDO\PDOGenre as DAOGenre;
+    use DB\PDO\DAOGenre as DAOGenre;
     require_once dirname(__FILE__)."/../DAO/DAOGenre.php";
 
 

@@ -1,5 +1,5 @@
 <?php
-  namespace DAO\PDO;
+  namespace DB\PDO;
   
   abstract class QueryType{
     const Query = 0;

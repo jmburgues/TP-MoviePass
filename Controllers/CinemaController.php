@@ -1,8 +1,8 @@
 <?php
   namespace Controllers;
   
-  use DAO\PDO\PDOCinema as DAOCinema;
-  use DAO\PDO\PDOMovie as DAOMovie;
+  use DB\PDO\DAOCinema as DAOCinema;
+  use DB\PDO\DAOMovie as DAOMovie;
   use Models\Cinema as Cinema;
 
   class CinemaController{
