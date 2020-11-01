@@ -57,7 +57,7 @@
         include VIEWS_PATH.'showAddView.php';
     }
 
-    public function addShow($date, $start, $spectators){
+    public function addShow($date, $start){
         $shows=$this->DAOShow->getAll();
         $movies=$this->DAOMovie->GetAll();
         $moviesDB = $this->PDOMovie->getAll();
@@ -66,12 +66,11 @@
         include VIEWS_PATH.'listMoviesAdmin.php';
     }
 
-    public function addCurrentShow( $date, $start, $end, $spectators, $selectedMovieId, $roomId ){
+    public function addCurrentShow( $date, $start, $end, $selectedMovieId, $roomId ){
         $newShow = new Show();
         $newShow->setDate($date);
         $newShow->setStart($start);
         $newShow->setEnd($end);
-        $newShow->setSpectators($spectators);
         $newShow->setIdMovie($selectedMovieId);
         $newShow->setIdRoom($roomId);
         $rooms = $this->DAORoom->getAll(); 
@@ -164,7 +163,7 @@
         ViewController::homeView($movies,1,"Year: ".$year);
       }
 
-    public function selectMovie($date, $start, $spectators, $movieId){
+    public function selectMovie($date, $start, $movieId){
         $dateTime = new DateTime();
         $movies=$this->DAOMovie->GetAll();
         

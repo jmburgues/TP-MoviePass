@@ -75,6 +75,10 @@
                     ViewController::homeView($movies,$page,$title);
                 }
                 else{
+                    $genreList = $this->DAOGenre->getGenresListFromShows();
+                    $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
+        
+                    ViewController::navView($genreList,$moviesYearList,null);
                     $error = "Invalid user/password!";
                     include_once VIEWS_PATH . 'login-view.php';
                 }

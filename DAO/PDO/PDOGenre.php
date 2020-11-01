@@ -77,7 +77,7 @@
 
     public function getGenresListFromShows(){
       try{
-        $query = "SELECT GENRES.* FROM ".$this->tableName." INNER JOIN ".$this->tableNameGenresXMovies." ON ".$this->tableName.".idGenre=".$this->tableNameGenresXMovies.".idGenre INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameGenresXMovies.".idMovie = ".$this->tableNameShows.".idMovie";
+        $query = "SELECT GENRES.* FROM ".$this->tableName." LEFT JOIN ".$this->tableNameGenresXMovies." ON ".$this->tableName.".idGenre=".$this->tableNameGenresXMovies.".idGenre INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameGenresXMovies.".idMovie = ".$this->tableNameShows.".idMovie GROUP BY idGenre";
         $this->connection = Connection::GetInstance();
        
         $resultSet = $this->connection->Execute($query);
