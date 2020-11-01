@@ -5,7 +5,7 @@
   use Models\Movie as Movie;
   use Models\Genre as Genre;
   use DB\PDO\Connection as Connection;
-  use DB\PDO\PDOGenre as PDOGenre;
+  use DB\PDO\DAOGenre as DAOGenre;
   use \DateTime as DateTime;
 
   class DAOMovie{
@@ -36,10 +36,10 @@
 
         foreach ($genreList as $genre) {
 
-          $pdoGenre = new PDOGenre();
+          $DAOGenre = new DAOGenre();
 
-          if(!($pdoGenre->getByid($genre->getId()))){
-            $pdoGenre->add($genre);
+          if(!($DAOGenre->getByid($genre->getId()))){
+            $DAOGenre->add($genre);
           }
 
           $query =  "INSERT INTO " . $this->tableNameMoviesGenres . " (idMovie, idGenre) VALUES (:movieID, :genreID);";
@@ -119,11 +119,11 @@
          
         $genresIdList = $this->connection->Execute($query,$parameters);
          
-        $pdoGenre = new PDOGenre();
+        $DAOGenre = new DAOGenre();
         
         foreach ($genresIdList as $genreId) {
            
-          $genre = $pdoGenre->getById($genreId['idGenre']);
+          $genre = $DAOGenre->getById($genreId['idGenre']);
           
           array_push($genres, $genre);
         }
