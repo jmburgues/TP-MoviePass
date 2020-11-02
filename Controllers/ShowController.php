@@ -38,6 +38,7 @@
         $auxMovie = new DAOMovie();
         $auxCinema = new DAOCinema();
         $auxRoom = new DAORoom();
+        $auxCinemaName = new DAOShow();
 
 
 
@@ -54,23 +55,24 @@
     }
 
     public function addShow($date, $start){
-        $shows=$this->DAOShow->getAll();
-        $movies=$this->DAOMovie->GetAll();
         $moviesDB = $this->DAOMovie->getAll();
 
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'listMoviesAdmin.php';
     }
 
-    public function addCurrentShow( $date, $start, $end, $selectedMovieId, $roomId ){
+    public function addCurrentShow($date, $start, $end, $selectedMovieId, $roomId){
         $newShow = new Show();
         $newShow->setDate($date);
         $newShow->setStart($start);
         $newShow->setEnd($end);
         $newShow->setIdMovie($selectedMovieId);
         $newShow->setIdRoom($roomId);
+        $newShow->setSpectators(0);
+        
         $rooms = $this->DAORoom->getAll(); 
         $movies=$this->DAOMovie->GetAll();
+        
         foreach($rooms as $room){
             if($room->getRoomID() == $roomId){
                 $selectedRoom = $room;
@@ -92,7 +94,6 @@
             $lookingForShows[0] = $aux;
         }
 
-
         foreach ($lookingForShows as $show) {
           //  echo "Entra";
             if ($newShow->getDate() == $date) {
@@ -104,9 +105,6 @@
                     $extremoSuperior = new DateTime($show->getEnd());
                     $inicio = new DateTime($start);
                     $fin = new DateTime($end);
-                    
-                 
-
                     if ($inicio>=$extremoInferior && $inicio<=$extremoSuperior) {
                         $flag = 1;
                     } else {
@@ -166,6 +164,10 @@
         foreach($movies as $movie){
             if($movie->getMovieId() == $movieId){
         
+                /*
+                *  HACERR UNA GetMovieByID para traer la pelicula buscada en lugar de un FOREACH
+                */ 
+
                 $auxDate = $start;
                 $dateToInsert = new DateTime($auxDate.'M');
 
@@ -183,6 +185,7 @@
             }
         } 
         $rooms = $this->DAORoom->getAll(); 
+        
       //  print_r($rooms);
 
         ViewController::navView($genreList=null,$moviesYearList=null,null);
