@@ -32,7 +32,9 @@ class HomeController
                 $genreList = $this->DAOGenre->getGenresListFromShows();
                 $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
                 
-                ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
+
+
+         ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
 
                 $movies = array();
                 #pasar luego a una QUERY del DAO
