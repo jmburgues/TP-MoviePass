@@ -39,8 +39,9 @@ class MovieController
       include(VIEWS_PATH.'selectMoviesView.php');
     }
 
-    public function selectIdMovie($idMovie)
-    {
+    //Muestra el listado de las películas en la base de datos
+    //Recibe un id de la movie seleccionada y valida el id con la DB
+    public function selectIdMovie($idMovie){
         $movies = $this->JSONMovie->getAll();
         $movieToAdd = null;
         foreach ($movies as $movie) {
@@ -48,9 +49,7 @@ class MovieController
                 $movieToAdd = $movie;
             }
         }
-        
         $moviesBDD = $this->DAOMovie->getAll();
- 
 
         if (!($this->DAOMovie->getById($idMovie))) {
             $this->DAOMovie->add($movieToAdd);
@@ -61,9 +60,8 @@ class MovieController
         $moviesBDD = $this->DAOMovie->getAll();
         usort($moviesBDD, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
 
-
         ViewController::navView($genreList=null,$moviesYearList=null,null);        
-      include(VIEWS_PATH.'listMoviesBDD.php');
+        include(VIEWS_PATH.'listMoviesBDD.php');
     }
 
 

@@ -1,3 +1,7 @@
+<div class="text-center mt-5 mb-3">
+        <h3 class="text-white">Movies on Data Base:</h3>
+        <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Movie/selectMoviesView'"> Continue adding </button> 
+    </div>
 <?php 
     if (isset($moviesBDD)) {
         foreach ($moviesBDD as $movie) {

@@ -7,9 +7,9 @@
     $init = ($page-1)*$articlePerPage;
 
     ?>
-    <div style="text-align:center; margin-top:20px">
-        <h3>Select Movie you would like to add:</h3>
-        <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Movie/selectmoviesView'"> Go Back </button> 
+    <div class="text-center mt-5 mb-3">
+        <h3 class="text-white">Select Movie you would like to add:</h3>
+        <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView'"> Go Back </button> 
     </div>
 
     <div class="container" style="max-width:1600px">

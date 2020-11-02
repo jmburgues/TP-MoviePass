@@ -1,47 +1,49 @@
-<!--container--><div class="container mt-5" >   
-<form  action="<?php echo FRONT_ROOT ?>Cinema/AddCinema" method="POST">
-        <div class="form-group row ">
-            <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="name" placeholder="Example Cinema" required>
+<div class="container mt-5" >   
+    <div class="card card-body border-dark ">
+        <form  action="<?php echo FRONT_ROOT ?>Cinema/AddCinema" method="POST">
+            <div class="form-group row ">
+                <label for="inputName" class="col-sm-2 col-form-label"><strong>Name</strong></label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="name" placeholder="Example Cinema" required>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputDireccion" class="col-sm-2 col-form-label">Street:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="address" placeholder="Example Street" required>
+            <div class="form-group row">
+                <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Street:</strong></label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="address" placeholder="Example Street" required>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputNumber" class="col-sm-2 col-form-label">St. Number:</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" name="number" placeholder="1234" required>
+            <div class="form-group row">
+                <label for="inputNumber" class="col-sm-2 col-form-label"><strong>St. Number:</strong></label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" name="number" placeholder="1234" required>
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputHorario" class="col-sm-2 col-form-label">Openning hour:</label>
-            <div class="col-sm-10">
-            <input type="time"   min="00:00" max="23:59" class="form-control" name="openning" placeholder="00:00" required>
+            <div class="form-group row">
+                <label for="inputHorario" class="col-sm-2 col-form-label"><strong>Openning hour:</strong></label>
+                <div class="col-sm-10">
+                <input type="time"   min="00:00" max="23:59" class="form-control" name="openning" placeholder="00:00" required>
 
+                </div>
+            </div>  
+            <div class="form-group row">
+                <label for="inputHorario" class="col-sm-2 col-form-label"><strong>Closing hour:</strong></label>
+                <div class="col-sm-10">
+                <input type="time"   min="00:00" max="23:59" class="form-control" name="closing" placeholder="23:59" required>
+                
+                </div>
             </div>
-        </div>  
-        <div class="form-group row">
-            <label for="inputHorario" class="col-sm-2 col-form-label">Closing hour:</label>
-            <div class="col-sm-10">
-            <input type="time"   min="00:00" max="23:59" class="form-control" name="closing" placeholder="23:59" required>
-            
-            </div>
-        </div>
         <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>
-    </form>
-<!--container--></div>
+        </form>
+    </div>
+</div>
 <br>
 <?php
         if (isset($cinemas)) {    
             foreach ($cinemas as $cinema) {
                 ?>                
                 <div class="container  mt-5 mb-5">       
-                    <div class="card card-body ">
+                    <div class="card card-body  border-dark ">
                         <?php echo "<strong>".$cinema->getName()."</strong>" ?>  
                         <ul>
                             <li><strong>Name:  </strong><?php echo $cinema->getName() ?></li>

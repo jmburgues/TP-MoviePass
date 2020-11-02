@@ -27,7 +27,7 @@
   <hr class=" mt-4 mb-1 bg-danger text-dark">
 </div>
   
-<div class="container" style="max-width:1600px">
+<div class="container text-center" style="max-width:1600px">
   
   <div class="row row-cols-5">
   
@@ -36,21 +36,27 @@
   
   <div class="col">
   
-  <div class="card" style="margin-top:30px; height:720px">
+  <div class="card" style="margin-top:30px; height:720px;  background-color:#FFEDFA; ">
     <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $movies[$i]->getPoster()?>">
     <div class="card-body  ">
-      
-      <h4 class="card-title mb-2"><?php echo $movies[$i]->getTitle()?></h4>   
-      
-      <input disabled value="Buy Tickets" class="btn btn-secondary bg-danger text-white mb-2 col-md-5 " type="button" onclick="location='<?= FRONT_ROOT?>User/showPurchase'" />
+    <div style=" display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  border: red 5px dotted;
+  margin-bottom:5%;
+  " >
+      <h4 class="card-title  mb-2 text-center"><?php echo $movies[$i]->getTitle()?></h4>   
+      </div>
+      <input disabled value="Buy Tickets" class="btn btn-secondary bg-danger text-center text-white mb-2 col-md-5 " type="button" onclick="location='<?= FRONT_ROOT?>User/showPurchase'" />
       
       <p class="card-text" style="margin-bottom:0px;">
       <?php
           if ($movies[$i]->getDescription()) {
-              if (strlen($movies[$i]->getDescription()) < 150) {
+              if (strlen($movies[$i]->getDescription()) < 100) {
                   echo $movies[$i]->getDescription();
               } else {
-                  echo substr($movies[$i]->getDescription(), 0, 150);
+                  echo substr($movies[$i]->getDescription(), 0, 100);
               }
           } else {
               echo $movies[$i]->getTitle();
@@ -66,9 +72,10 @@
             style="width:500px; border-radius: 15px 15px 15px 15px;
                   -moz-border-radius: 15px 15px 15px 15px;
                   -webkit-border-radius: 15px 15px 15px 15px;
-                  border: 1px solid #000000; " 
+                  border: 1px solid #000000;
+                  background-color:#FFEDFA; " 
             aria-labelledby="dropdownMenuLink">
-          <?php echo $movies[$i]->getDescription(); ?>
+          <strong> <?php echo $movies[$i]->getDescription(); ?> </strong>
         </div>
       </div>   
       <?php } } ?>
