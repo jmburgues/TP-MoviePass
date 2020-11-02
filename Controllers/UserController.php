@@ -12,12 +12,14 @@
         private $DAOUser;
         private $DAOGenre;
         private $DAOMovie;
+        private $DAOShow;
 
         public function __construct()
         {
             $this->DAOUser = new DAOUser();
             $this->DAOGenre = new DAOGenre();
             $this->DAOMovie = new DAOMovie();
+            $this->DAOShow = new DAOShow();
         }
 
         public function register()
@@ -63,12 +65,18 @@
         
                     ViewController::navView($genreList,$moviesYearList,null);
 
-                    $aux = $this->DAOMovie->getIdMoviesFromShows();
+                    $movieIds = $this->DAOShow->getBillBoard();
+                    if (is_array($movieIds)){
+                        $shows = $movieIds;
+                    }else{
+                        $shows[0] = $movieIds;
+                    }
+
                     $movies = array();
-                    if(is_array($aux))
-                        $movies = $aux;
-                    else    
-                        $movies[0]=$aux;
+                    #pasar luego a una QUERY del DAO
+                    foreach ($movieIds as $key => $value) {
+                        array_push($movies, $this->DAOMovie->getById($value['idMovie']));
+                    }
                     $page = 1;
                     $title = "LATEST MOVIES IN PROJECTION";
                     
@@ -95,12 +103,18 @@
 
                 ViewController::navView($genreList = null, $moviesYearList = null, null);
 
-                $aux = $this->DAOMovie->getIdMoviesFromShows();
+                $movieIds = $this->DAOShow->getBillBoard();
+                if (is_array($movieIds)){
+                    $shows = $movieIds;
+                }else{
+                    $shows[0] = $movieIds;
+                }
+
                 $movies = array();
-                if(is_array($aux))
-                    $movies = $aux;
-                else    
-                    $movies[0]=$aux;
+            #pasar luego a una QUERY del DAO
+            foreach ($movieIds as $key => $value) {
+                array_push($movies, $this->DAOMovie->getById($value['idMovie']));
+            }
                 $page = 1;
                 $title = "LATEST MOVIES IN PROJECTION";
                 
@@ -194,12 +208,19 @@
 
             ViewController::navView($genreList,$moviesYearList,null);
             
-            $aux = $this->DAOMovie->getIdMoviesFromShows();
+            $movieIds = $this->DAOShow->getBillBoard();
+            if (is_array($movieIds)){
+                $shows = $movieIds;
+            }else{
+                $shows[0] = $movieIds;
+            }
+
             $movies = array();
-            if(is_array($aux))
-                $movies = $aux;
-            else    
-                $movies[0]=$aux;
+            #pasar luego a una QUERY del DAO
+            foreach ($movieIds as $key => $value) {
+                array_push($movies, $this->DAOMovie->getById($value['idMovie']));
+            }
+
             $page = 1;
             $title = "LATEST MOVIES IN PROJECTION";
             
