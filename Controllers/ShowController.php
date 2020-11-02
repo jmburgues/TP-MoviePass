@@ -38,6 +38,7 @@
         $auxMovie = new DAOMovie();
         $auxCinema = new DAOCinema();
         $auxRoom = new DAORoom();
+        $auxCinemaName = new DAOShow();
 
 
 
@@ -104,9 +105,6 @@
                     $extremoSuperior = new DateTime($show->getEnd());
                     $inicio = new DateTime($start);
                     $fin = new DateTime($end);
-                    
-                 
-
                     if ($inicio>=$extremoInferior && $inicio<=$extremoSuperior) {
                         $flag = 1;
                     } else {
