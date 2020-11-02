@@ -57,9 +57,9 @@ CONSTRAINT chq_capacity CHECK (capacity > 0 AND capacity < 500)
 
 CREATE TABLE IF NOT EXISTS SHOWS(
 idShow int auto_increment,
-dateSelected DateTime not null,
-startsAt DateTime not null,
-endsAt DateTime not null,
+dateSelected Date not null,
+startsAt Time not null,
+endsAt Time not null,
 spectators int default 0,
 idRoom int not null,
 idMovie int not null,
