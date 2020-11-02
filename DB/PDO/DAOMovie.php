@@ -167,11 +167,8 @@
 
     //Devulve las movies según el año
     public function getByYear($year){
-      settype($year,"integer");
-      var_dump($year);
-      try{
-        
-        $query = "SELECT * FROM " .$this->tableNameMovies. " WHERE releaseDate LIKE \"". $year. "\" % ";
+      try{        
+        $query = "SELECT * FROM " .$this->tableNameMovies. " WHERE releaseDate LIKE \"". $year."%\"";
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query);
         return $this->toArray($this->parseToObject($resultSet));

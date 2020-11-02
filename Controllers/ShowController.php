@@ -135,33 +135,7 @@
         ViewController::navView($genreList,$moviesYearList,null); 
 
 
-
-        $moves = $this->DAOMovie->getByYear($year);
-
-
-
-
-
-        if ($year > 1900 && $year <= 2020) {
-            $moviesList = $this->DAOMovie->getAll();
-    
-            $movies = array();
-    
-            foreach ($moviesList as $oneMovie) {
-                $releaseDate = $oneMovie->getReleaseDate();
-                $releaseYear = DateTime::createFromFormat('Y-m-d', $releaseDate)->format('Y');
-    
-                if ($releaseYear == $year && !in_array( $oneMovie, $movies)) {
-                    foreach($showList as $show){
-                        if($show->getIdMovie() == $oneMovie->getMovieID()){
-                            array_push($movies, $oneMovie);
-                        }
-                    }
-                    
-                }
-                
-            }
-        }
+        $movies = $this->DAOMovie->getByYear($year);
     
         ViewController::homeView($movies,1,"Year: ".$year);
     }

@@ -26,14 +26,17 @@ class MovieController
         $this->DAOCinema = new DAOCinema();
         $this->JSONMovie = new JSONMovie();
       }
+      
 
     /* Brings up a list of previously selected movies wich are aviable for creating Shows */
-    public function selectMoviesView()
+    public function selectMoviesView($page = 1)
     {
-        $movies = $this->JSONMovie->getAll();
+      $movies = $this->JSONMovie->getAll();
+      usort($movies, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
+        
+      ViewController::navView($genreList=null,$moviesYearList=null,null);
       
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
-        include(VIEWS_PATH.'selectMoviesView.php');
+      include(VIEWS_PATH.'selectMoviesView.php');
     }
 
     public function selectIdMovie($idMovie)
@@ -55,10 +58,12 @@ class MovieController
             $message = "Movie already on database";
             echo "<script type='text/javascript'>alert('$message');</script>";
         }
-      
         $moviesBDD = $this->DAOMovie->getAll();
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
-        include(VIEWS_PATH.'listMoviesBDD.php');
+        usort($moviesBDD, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
+
+
+        ViewController::navView($genreList=null,$moviesYearList=null,null);        
+      include(VIEWS_PATH.'listMoviesBDD.php');
     }
 
 

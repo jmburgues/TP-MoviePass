@@ -1,5 +1,6 @@
 <div class="panel-heading">
-    <br><h3 style="text-align: center;">Select movie:</h3>
+    <br><h3 style="text-align: center; margin-top:20px">Select movie:</h3>
+    <button type="submit" class="btn btn-secondary bg-danger text-black  mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Movie/adminView'"> Go Back </button> 
 </div>
 <?php if (isset($moviesDB)) {
         foreach ($moviesDB as $movie) { ?>      
