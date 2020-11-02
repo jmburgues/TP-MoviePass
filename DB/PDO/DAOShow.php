@@ -65,6 +65,19 @@
             throw $ex;
             }
         }
+        
+        //Devuelve el idMovie sin repetir de los shows. Muestra en el home sin repetir la cartelera.
+        public function getBillBoard(){
+            try{
+                $query = "SELECT DISTINCT idMovie FROM ".$this->tableNameShows;
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+                return ($resultSet);
+                }
+                catch(Exception $ex){
+                throw $ex;
+                } 
+        }
 
     public function modify(Show $show)    {
         try 
@@ -72,8 +85,6 @@
             $query = "UPDATE ".$this->tableNameShows."
             SET dateSelected = :date, startsAt = :start, endsAt = :end, spectators = :spectators, idRoom = :idRoom, idMovie = :idMovie, isActive = active 
             WHERE idShow = :idShow;";
-            
-
             $parameters['idShow'] = $show->getIdShow();
             $parameters['date'] = $show->getDate();;
             $parameters['start'] = $show->getStart();
@@ -94,37 +105,34 @@
 
     public function removeShow($id){
         try{
-          $query = "Update ".$this->tableNameShows. " SET isActive = :active WHERE idShow = :id;";
-          
-          $parameters['id'] = $id;
-          $parameters['active'] = false;
-          
-          $this->connection = Connection::GetInstance();
-          return $this->connection ->ExecuteNonQuery($query,$parameters);
+            $query = "Update ".$this->tableNameShows. " SET isActive = :active WHERE idShow = :id;";
+            
+            $parameters['id'] = $id;
+            $parameters['active'] = false;
+            
+            $this->connection = Connection::GetInstance();
+            return $this->connection ->ExecuteNonQuery($query,$parameters);
         }
-  
         catch(Exception $ex){
             throw $ex;
         }
-  
-      }
+    }
 
-      public function getById($id){
+        public function getById($id){
         try{
-          $query = "SELECT * FROM ".$this->tableNameShows." where idShow = :id";
-          $parameters['id'] = $id;
-          $this->connection = Connection::GetInstance();
-          $resultSet = $this->connection->Execute($query,$parameters);
-          
-          return $this->parseToObjectTime($resultSet);
+            $query = "SELECT * FROM ".$this->tableNameShows." where idShow = :id";
+            $parameters['id'] = $id;
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query,$parameters);
+            
+            return $this->parseToObjectTime($resultSet);
         }
-  
         catch(Exception $ex){
-          throw $ex;
+            throw $ex;
         }
         
-      }
-      
+        }
+    
     protected function parseToObject($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function($p){
@@ -164,9 +172,9 @@
 
     private function toArray($value){
         if(is_array($value))
-          return $value;
+            return $value;
         else
-          return array($value);
-      }
+            return array($value);
+        }
 }
 ?>

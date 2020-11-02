@@ -1,3 +1,4 @@
+
 <p>
     <form action="<?php echo FRONT_ROOT?>Cinema/showCinemas" method="POST">
         <input type ="submit" class="btn btn-primary bg-danger text-black mt-5 col-md-2 offset-md-1 " value="Manage Cinemas" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 

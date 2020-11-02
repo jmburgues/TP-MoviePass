@@ -1,4 +1,4 @@
-<div style="text-align:center;">
+<div style="text-align:center; margin-top:20px;">
     <h3>Select Movie you would like to add:</h3>
 </div>
 <?php 

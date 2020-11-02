@@ -18,37 +18,25 @@ class HomeController
         public function Index($message = 1)
         {
             try{
-                $auxShow = new DAOShow();
+                $movieIdsShow = new DAOShow();
                 $shows = array();
-                $aux = $auxShow->getAll();
-                if (is_array($aux)){
-                    $shows = $aux;
+                
+                $movieIds = $movieIdsShow->getBillBoard();
+                if (is_array($movieIds)){
+                    $shows = $movieIds;
                 }else{
-                    $shows[0] = $aux;
+                    $shows[0] = $movieIds;
                 }
-
-
 
                 $genreList = $this->DAOGenre->getGenresListFromShows();
                 $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
                 
-                echo"<pre>";
-                var_dump($genreList);
-                echo"</pre>";
-                echo"<pre>";
-                var_dump($moviesYearList);
-                echo"</pre>";
-
-         ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
-
+                ViewController::navView($genreList,$moviesYearList,null); 
+                
                 $movies = array();
                 #pasar luego a una QUERY del DAO
-                $aux = array();
-                foreach ($shows as $show) {
-                    if(!(in_array($show->getIdMovie(),$aux))){
-                        array_push($aux,$show->getIdMovie());
-                        array_push($movies, $this->DAOMovie->getById($show->getIdMovie()));
-                    }
+                foreach ($movieIds as $key => $value) {
+                    array_push($movies, $this->DAOMovie->getById($value['idMovie']));
                 }
                 $page = $message;
                 $title = "LATEST MOVIES IN PROJECTION";
