@@ -30,13 +30,15 @@
           }
      -->
      
-   <!--  <style type="text/css">
+     <style type="text/css">
           body {
-              background: -prefix-linear-gradient(top, black, red); 
-               background: linear-gradient(to bottom, black, red);
+               background: -prefix-linear-gradient(top, black, #F30000); 
+               background: linear-gradient(to bottom, black, #F30000);
                background-repeat: no-repeat;
+               background-attachment: fixed;
+
           }
      </style>
 
-     -->
+     
 </body>

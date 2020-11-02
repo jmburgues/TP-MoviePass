@@ -51,13 +51,12 @@
 
     }
 
+    //query para modificar los cines, recibe un objeto tipo cine.
     public function modify(Cinema $cinema){
-      //print_r($cinema);
       try{
         $query = "UPDATE ".$this->tableName. " SET cinemaName = :name, adress = :address, adressNumber = :number ,
         openning = :openning , closing = :closing, isActive = :active 
-        WHERE idCinema = :id;";
-        
+        WHERE idCinema = :id;";   
         $parameters['id'] = $cinema->getId();
         $parameters['name'] = $cinema->getName();
         $parameters['address'] = $cinema->getAddress();
@@ -65,11 +64,6 @@
         $parameters['openning'] = $cinema->getOpenning();
         $parameters['closing'] = $cinema->getClosing();
         $parameters['active'] = $cinema->getActive();
-
-          echo "<pre>";            
-          var_dump($cinema);
-          echo "</pre>";
-
         $this->connection = Connection::GetInstance(); 
         return $this->connection->ExecuteNonQuery($query, $parameters);
       }

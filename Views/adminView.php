@@ -1,5 +1,5 @@
 
-<div class="container " style="height:850px">
+<div class="container ">
     <div class="row mt-5">
         <div class="col mt-5">
             <form action="<?php echo FRONT_ROOT?>Cinema/showCinemas" method="POST">

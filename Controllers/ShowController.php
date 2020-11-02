@@ -26,6 +26,7 @@
             $this->DAOGenre = new DAOGenre();    
         }
         
+    //Redirige a vista adminShows donde se listan las funciones y el addShow
     public function showShows(){
         $shows = array();
         $aux =$this->DAOShow->getAll();
@@ -38,26 +39,15 @@
         $auxMovie = new DAOMovie();
         $auxCinema = new DAOCinema();
         $auxRoom = new DAORoom();
-
-
-
-      //  include VIEWS_PATH.'showAddView.php';
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'adminShows.php';
     }
-    
-    public function addShowView(){
-        $shows=$this->DAOShow->getAll();
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
-        $this->showShows();
-        include VIEWS_PATH.'showAddView.php';
-    }
 
+    //Crea un nuevo show
     public function addShow($date, $start){
         $shows=$this->DAOShow->getAll();
         $movies=$this->DAOMovie->GetAll();
         $moviesDB = $this->DAOMovie->getAll();
-
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'listMoviesAdmin.php';
     }
@@ -140,6 +130,8 @@
         ViewController::homeView($movies,1,"Year: ".$year);
     }
 
+    //Método luego de seleccionar la película para el show
+    //Muestra la información hasta el momento de la función y elige la sala
     public function selectMovie($date, $start, $movieId){
         $dateTime = new DateTime();
         $movies=$this->DAOMovie->GetAll();
@@ -182,6 +174,7 @@
         ViewController::homeView($movies,1,"Genre: ".$genreName);
     }
 
+    //Redirige a la vista para modificar el show seleccionado con todos sus datos
     public function modifyShowView($showID){
         $currentShow = $this->DAOShow->getById($showID);
         $auxRoom = $this->DAORoom->getById($currentShow->getIdRoom());

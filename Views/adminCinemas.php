@@ -1,4 +1,9 @@
-<div class="container mt-5" >   
+<div class="text-center mt-5 mb-3">
+        <h3 class="text-white">New Cinema:</h3>
+        <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView'"> Go Back </button> 
+    </div>
+
+<div class="container mt-5"  >   
     <div class="card card-body border-dark ">
         <form  action="<?php echo FRONT_ROOT ?>Cinema/AddCinema" method="POST">
             <div class="form-group row ">
@@ -38,6 +43,9 @@
     </div>
 </div>
 <br>
+<div class="text-center mt-5 mb-3">
+        <h3 class="text-white">Cinemas:</h3>
+    </div>
 <?php
         if (isset($cinemas)) {    
             foreach ($cinemas as $cinema) {
