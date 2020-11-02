@@ -70,17 +70,18 @@
             $roomExist = false;
             $message ="";
             foreach ($listRoom as $list) {
-                
-                if ($list->getName() == $name) {
-                    if($list->getActive() == true){
-                        $message = "The room already exists.";
-                        $roomExist=true;
-                    } else {
-                        $room->setActive(true);
-                        $room->setRoomID($list->getRoomID());
-                        $this->DAORoom->modify($room);
-                        $message = "The room is active again.";
-                        $roomExist=true;
+                if ($list->getIDCinema() == $idCinema){
+                    if ($list->getName() == $name) {
+                        if($list->getActive() == true){
+                            $message = "The room already exists.";
+                            $roomExist=true;
+                        } else {
+                            $room->setActive(true);
+                            $room->setRoomID($list->getRoomID());
+                            $this->DAORoom->modify($room);
+                            $message = "The room is active again.";
+                            $roomExist=true;
+                        }
                     }
                 }
             }
