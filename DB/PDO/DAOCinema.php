@@ -79,6 +79,8 @@
       }
     }
 
+    
+
     public function getAll(){
       try{
         $query = "SELECT * FROM ".$this->tableName;

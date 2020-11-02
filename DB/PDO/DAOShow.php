@@ -10,6 +10,8 @@
   class DAOShow{
     private $connection;
     private $tableNameShows = "SHOWS";
+    private $tableNameCinemas = "CINEMAS";
+    private $tableNameRooms = "ROOMS";
 
     public function add($show)    {
         try 
@@ -22,7 +24,7 @@
             $parameters['date'] = $show->getDate();
             $parameters['start'] = $show->getStart();
             $parameters['end'] = $show->getEnd();
-            $parameters['spectators'] = $show->getSpectators();
+            $parameters['spectators'] = 0;
             $parameters['idRoom'] = $show->getIdRoom();
             $parameters['idMovie'] = $show->getIdMovie();
             
@@ -136,6 +138,18 @@
         
         }
     
+        public function getCinemaNameFromShows($idShow){
+            try{
+                $query = "SELECT ".$this->tableNameCinemas .".cinemaName FROM ". $this->tableNameShows ." INNER JOIN ". $this->tableNameRooms ." ON ". $this->tableNameRooms .".idRoom = ". $this->tableNameShows .".idRoom INNER JOIN ". $this->tableNameCinemas ." ON ". $this->tableNameCinemas .".idCinema = ". $this->tableNameRooms .".idCinema WHERE ". $this->tableNameShows .".idShow = ". $idShow ." ;";
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+                return $resultSet[0]['cinemaName'];
+                }
+                catch(Exception $ex){
+                throw $ex;
+            }
+          }
+
     protected function parseToObject($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function($p){

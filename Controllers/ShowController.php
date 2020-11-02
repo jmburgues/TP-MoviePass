@@ -38,6 +38,7 @@
         $auxMovie = new DAOMovie();
         $auxCinema = new DAOCinema();
         $auxRoom = new DAORoom();
+        $auxCinemaName = new DAOShow();
 
 
 

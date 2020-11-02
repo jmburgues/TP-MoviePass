@@ -55,7 +55,7 @@
             ?>
             <div class="container mt-5">   
                 <div class="card card-body ">
-                    <?php echo "No cinemas loaded yet"?>  
+                    <?php echo "No room loaded yet"?>  
                 </div>
             </div>
         <?php
