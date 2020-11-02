@@ -155,7 +155,7 @@
     //Devuelve las películas según el id de género.
     public function getMoviesByGenre($idGenre){
       try{
-        $query = "SELECT * FROM " .$this->tableNameMovies." INNER JOIN ".$this->tableNameMoviesGenres." ON ".$this->tableNameMovies.".idMovie=".$this->tableNameMoviesGenres.".idMovie INNER JOIN ". $this->tableNameShows ." ON ". $this->tableNameShows .".idMovie = ". $this->tableNameMovies .".idMovie WHERE idGenre = ".$idGenre;
+        $query = "SELECT * FROM " .$this->tableNameMovies." INNER JOIN ".$this->tableNameMoviesGenres." ON ".$this->tableNameMovies.".idMovie=".$this->tableNameMoviesGenres.".idMovie INNER JOIN ". $this->tableNameShows ." ON ". $this->tableNameShows .".idMovie = ". $this->tableNameMovies .".idMovie WHERE idGenre = ".$idGenre." GROUP BY ".$this->tableNameMovies.".idMovie;";
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query);
         return $this->toArray($this->parseToObject($resultSet));
