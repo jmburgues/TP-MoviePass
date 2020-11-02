@@ -81,6 +81,7 @@
         $this->connection = Connection::GetInstance();
        
         $resultSet = $this->connection->Execute($query);
+       print_r($resultSet);
         $resultSet =  $this->toArray($this->parseToObject($resultSet));
         return $resultSet;
 

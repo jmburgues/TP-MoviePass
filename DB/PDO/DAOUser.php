@@ -3,7 +3,7 @@
 
   use \Exception as Exception;
   use Models\User as User;
-  use DAO\PDO\Connection as Connection;
+  use DB\PDO\Connection as Connection;
 
   class DAOUser{
     private $connection;
