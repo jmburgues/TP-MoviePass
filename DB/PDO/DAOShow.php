@@ -80,12 +80,14 @@
         }
 
     public function modify(Show $show)    {
+        echo"<pre>";
+        print_r($show);
+        echo"</pre>";
         try 
         {
             $query = "UPDATE ".$this->tableNameShows."
             SET dateSelected = :date, startsAt = :start, endsAt = :end, spectators = :spectators, idRoom = :idRoom, idMovie = :idMovie, isActive = active 
             WHERE idShow = :idShow;";
-            $parameters['idShow'] = $show->getIdShow();
             $parameters['date'] = $show->getDate();;
             $parameters['start'] = $show->getStart();
             $parameters['end'] = $show->getEnd();
@@ -93,6 +95,7 @@
             $parameters['idRoom'] = $show->getIdRoom();
             $parameters['idMovie'] = $show->getIdMovie();
             $parameters['active'] = $show->getActive();
+            $parameters['idShow'] = $show->getIdShow();
             
             $this->connection = Connection::GetInstance();
             $response = $this->connection->ExecuteNonQuery($query, $parameters);

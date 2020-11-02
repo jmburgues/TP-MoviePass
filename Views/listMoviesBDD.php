@@ -1,10 +1,3 @@
-<<!--Estilo de la página-->
-    <style type="text/css">
-            body {
-                background-color: #D2DAFF; 
-                background-image: none; 
-            }
-            </style>
 <?php 
     if (isset($moviesBDD)) {
         foreach ($moviesBDD as $movie) {

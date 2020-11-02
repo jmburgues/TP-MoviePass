@@ -190,9 +190,9 @@
         $movies = $this->DAOMovie->getAll();
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'show-modify.php';
-      }
+    }
 
-      public function modifyShow($idShow, $idRoom, $idMovie, $spectators, $active, $date, $start){
+    public function modifyShow($idShow, $idRoom, $idMovie, $spectators, $active, $date, $start){
         $movie = $this->DAOMovie->getById($idMovie);
         $auxDate = $start;
         $dateToInsert = new DateTime($auxDate.'M');
@@ -205,17 +205,17 @@
         $dateToInsertEnd->add($interval);
     
         $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
-        $dateToInsertEnd = $dateToInsertEnd->format('H:i:s');
+        $dateToInsertEnd = $dateToInsertEnd->format('Y-m-d H:i:s');
 
 
         $showsList = $this->DAOShow->getActiveShows();
-        $modifyShow = new Show($date, $start, $dateToInsertEnd, $idRoom, $idMovie, $spectators, $active, $idShow);
-       // var_dump($modifyShow);
+        $modifyShow = new Show($date, $dateToInsert, $dateToInsertEnd, $idRoom, $idMovie, $spectators, $active, $idShow);
+    // var_dump($modifyShow);
         $this->DAOShow->modify($modifyShow);
 
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'adminShows.php';
-      }
+    }
 }
 
 
