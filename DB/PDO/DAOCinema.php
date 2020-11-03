@@ -39,7 +39,7 @@
         $query = "Update ".$this->tableName. " SET isActive = :active WHERE idCinema = :id;";
         
         $parameters['id'] = $id;
-        $parameters['active'] = false;
+        $parameters['active'] = 0;
         
         $this->connection = Connection::GetInstance();
         return $this->connection ->ExecuteNonQuery($query,$parameters);
@@ -66,9 +66,9 @@
         $parameters['closing'] = $cinema->getClosing();
         $parameters['active'] = $cinema->getActive();
 
-          echo "<pre>";            
-          var_dump($cinema);
-          echo "</pre>";
+          #echo "<pre>";            
+          #var_dump($cinema);
+          #echo "</pre>";
 
         $this->connection = Connection::GetInstance(); 
         return $this->connection->ExecuteNonQuery($query, $parameters);

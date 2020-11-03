@@ -49,7 +49,7 @@
               $query = "Update ".$this->tableNameRooms. " SET isActive = :active WHERE idRoom = :id;";
               
               $parameters['id'] = $id;
-              $parameters['active'] = false;
+              $parameters['active'] = 0;
               
               $this->connection = Connection::GetInstance();
               return $this->connection ->ExecuteNonQuery($query,$parameters);
