@@ -33,15 +33,22 @@ class MovieController
     {
       $movies = $this->JSONMovie->getAll();
       usort($movies, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
-        
       ViewController::navView($genreList=null,$moviesYearList=null,null);
-      
       include(VIEWS_PATH.'selectMoviesView.php');
+    }
+
+    //Devuelve las palículas cargadas en la base de datos
+    public function selectMoviesFromBDD($page = 1)
+    {
+      $moviesBDD = $this->DAOMovie->getAll();
+      usort($moviesBDD, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
+      ViewController::navView($genreList=null,$moviesYearList=null,null);
+      include(VIEWS_PATH.'listMoviesBDD.php');
     }
 
     //Muestra el listado de las películas en la base de datos
     //Recibe un id de la movie seleccionada y valida el id con la DB
-    public function selectIdMovie($idMovie){
+    public function selectIdMovie($idMovie, $page = 1){
         $movies = $this->JSONMovie->getAll();
         $movieToAdd = null;
         foreach ($movies as $movie) {

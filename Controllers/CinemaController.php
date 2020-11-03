@@ -42,7 +42,6 @@
         
   //Cambia el valor boolean de los cines isActive
     public function deleteCinema($idCinema){
-    
       $this->DAOCinema->removeCinema($idCinema);
       $cinemas = array();
       $aux = $this->DAOCinema->getActiveCinemas();
@@ -57,9 +56,8 @@
       include VIEWS_PATH.'adminCinemas.php';// CAMBIAR LOS INCLUDE POR INCLUDE_ONCE/REQUIERE_ONCE
     }
 
-    //Modifica los valores de los
+    //Modifica los valores de los cines
     public function modifyCinema($id, $name, $address, $number, $openning, $closing){
-     // echo $id, $name, $address, $number, $openning, $closing;
       $cinemasList = $this->DAOCinema->getActiveCinemas();
       foreach($cinemasList as $cinemas){
         if ($cinemas->getId() == $id) {
@@ -78,8 +76,9 @@
     }
 
     //Agrega un nuevo cinema
+    //Verifica el nombre del cine y el borrado lógico
     public function AddCinema($name, $address, $number, $openning, $closing ){
-        if ($name != "") { // validaciones de nombre
+        if ($name != "") { 
             $cinema = new Cinema();
             $cinema->setName($name);
             $cinema->setAddress($address);
@@ -88,15 +87,12 @@
             $cinema->setClosing($closing);
             $cinema->setActive(true);
             $list=$this->DAOCinema->getAll();
-           // print_r($list);
             $cinemaExist = false;
             $message ="";
-            //echo $cinema->getName();
-            //Control del refresh del form
             foreach ($list as $l) {
                 if ($l->getName() == $name) {
                     $cinemaExist = true;
-                    if (!$l->getActive()) { // verifico borrado logico
+                    if (!$l->getActive()) { 
                       $cinema->setActive(true);
                       $cinema->setId($l->getId()); 
                       $this->DAOCinema->modify($cinema);
@@ -105,10 +101,9 @@
                   }
                       if($cinemaExist == false){
                         $message = "The cinema is already exist.";
-                  
                 }
             }
-            if ($cinemaExist == false) { // si no hay cines con mismo nombre, agrego.
+            if ($cinemaExist == false) { 
                 $this->DAOCinema->add($cinema);
                 $message = "Cinema successfully added";
             
@@ -120,7 +115,6 @@
         $cinemas = $this->DAOCinema->getActiveCinemas();
         $movies=$this->DAOMovie->GetAll();
         $this->showCinemas();
-        //include VIEWS_PATH.'adminCinemas.php';
     }
 
   }

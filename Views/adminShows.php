@@ -1,3 +1,30 @@
+<div class="text-center mt-5 mb-3">
+        <h3 class="text-white">New Show:</h3>
+        <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView'"> Go Back </button> 
+    </div>
+
+<div class="container mt-5 mb-5 " >
+    <div class="card card-body m-3 ">
+        <form action="<?php echo FRONT_ROOT?>Show/addShow" method="POST" >
+            <div class="row">
+            <div class="col mt-2 "><strong>Date: </strong></div>
+            <div class="col mt-2"><input type="date" name="date" step="1" min="<?php echo date("Y-m-d");?>" max="2027-12-31" value="<?php echo date("Y-m-d");?>" required></div>
+            <div class="w-100"></div>
+            
+            <div class="col mt-2"><strong>Starting hour:</strong> </div>
+            <div class="col mt-2"><input type="time" name="start" min="00:00" max="23:59" required/></div>
+            <div class="w-100"></div>
+
+        
+            <button type="submit" class="btn btn-secondary bg-danger text-black col-2 mt-2" style="margin-left:80%"  >Send</button>
+        </form>         
+    </div>
+</div>
+
+<div class="text-center mt-5 mb-3">
+    <h3 class="text-white">Billboard:</h3>
+</div>
+
 <?php
     if (isset($shows)) {
         foreach ($shows as $show) {
@@ -48,10 +75,6 @@
     <?php 
     }
                 ?>
-<form action="<?php echo FRONT_ROOT?>Show/addShowView" method="POST">
-        <input type ="submit" class="btn btn-primary bg-danger text-black mt-5 col-md-2 offset-md-5 " value="Add Show" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
-        </input>
-</form>
 </p>
 
 
