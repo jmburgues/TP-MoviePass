@@ -3,7 +3,7 @@
     $articlePerPage = 5;
     $pages = ($total / $articlePerPage );
     $pages = ceil($pages);
-    $init = (1-1)*$articlePerPage;
+    $init = ($page-1)*$articlePerPage;
     ?>
 
 <div class="text-center mt-5 mb-3">

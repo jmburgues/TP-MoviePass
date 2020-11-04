@@ -3,7 +3,7 @@
     $articlePerPage = 5;
     $pages = ($total / $articlePerPage );
     $pages = ceil($pages);
-    $init = (1-1)*$articlePerPage;
+    $init = ($page-1)*$articlePerPage;
     ?>
 
 <div class="text-center mt-5 mb-3">
@@ -75,13 +75,13 @@
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center mt-3">
-    <li class="page-item <?php echo $page <= 1 ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Movie/selectMoviesFromBDD/<?php echo $page-1 ?>">Previous</a></li>
+    <li class="page-item <?php echo $page <= 1 ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Movie/selectMoviesView/<?php echo $page-1 ?>">Previous</a></li>
     
     <?php for($i=0; $i<$pages; $i++) {?>
-      <li class="page-item <?php echo $page == $i+1 ? "active" : ""?>"><a class="page-link"  href="<?php echo  FRONT_ROOT?>Movie/selectMoviesFromBDD/<?php echo $i+1?>"> <?php echo $i+1?></a></li>
+      <li class="page-item <?php echo $page == $i+1 ? "active" : ""?>"><a class="page-link"  href="<?php echo  FRONT_ROOT?>Movie/selectMoviesView/<?php echo $i+1?>"> <?php echo $i+1?></a></li>
     <?php }?>
 
-    <li class="page-item <?php echo $page >= $pages ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Movie/selectMoviesFromBDD/<?php echo $page+1 ?>">Next</a></li>
+    <li class="page-item <?php echo $page >= $pages ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Movie/selectMoviesView/<?php echo $page+1 ?>">Next</a></li>
   </ul>
 </nav>
 
