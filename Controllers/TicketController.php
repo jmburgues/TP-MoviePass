@@ -41,5 +41,9 @@
             //Debería crear el ticket
             ViewController::userView($userName, $movie, $show, $ticket);
         }
+
+        public function confirmTicket(){
+            echo "Confirmado";
+        }
     
     }
