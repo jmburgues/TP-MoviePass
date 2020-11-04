@@ -23,6 +23,11 @@
             require_once(VIEWS_PATH.'ownerView.php');
         }
 
+        public static function userView($userName, $movie, $show, $ticket){
+
+            require_once(VIEWS_PATH.'userView.php');
+        }
+
     }
 
 

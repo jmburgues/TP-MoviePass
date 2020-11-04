@@ -22,14 +22,24 @@
             $this->DAOMovie = new DAOMovie();
             $this->DAOShow = new DAOShow();
         }
-        
+
         //Invoca la vista donde el usuario completa el form con los datos para la entrada
-        public function addTicket($movie, $roomName, $tickets)
+        public function showPurchase($movieId)
         {
             ViewController::navView($genreList = null, $moviesYearList = null, null);
-            print_r($movie);
-            print_r($roomName);
-            print_r($tickets);
+            $selectedMovie = $this->DAOMovie->getById($movieId);
+            $moviesForShows = $this->DAOShow->getShowFromMovie($movieId);
+            include VIEWS_PATH.'purchase-view.php';
+        }  
 
+        //Invocada desde la vista donde el usuario completa el formulario de Tickets
+        //Redirige a vista de usuario.
+        public function addTicket($movie, $show, $ticket)
+        {
+            ViewController::navView($genreList = null, $moviesYearList = null, null);
+            $userName = $_SESSION['loggedUser'];
+            //Debería crear el ticket
+            ViewController::userView($userName, $movie, $show, $ticket);
         }
+    
     }

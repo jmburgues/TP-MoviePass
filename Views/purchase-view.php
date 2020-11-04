@@ -9,23 +9,24 @@
   <div class="mt-3">
     <form  action="<?php echo FRONT_ROOT ?>Ticket/addTicket" method="POST">
       <div class="form-group">
-        <p class="" ><strong>Movie</strong></p>
-        <input type="text" class="form-control font-weight-bold"  placeholder=<?php echo $selectedMovie->getTitle()?> name="<?php echo $selectedMovie->getTitle()?>">
+      <label for="idRoom" ><strong>Movie</strong></label>
+        <input type="text" class="form-control font-weight-bold"  placeholder=<?php echo $selectedMovie->getTitle()?> name="movie" value="<?php echo $selectedMovie->getTitle()?>">
       </div>
       <div class="form-group">
-        <p class="" ><strong>Function</strong></p>
-          <select class="custom-select " >
-          
-          <?php foreach($moviesForShows as $movie => $key){ ?>
-            <option value="<?php print_r($key["roomName"])?>">"<?php echo "ROOM: " , $key["roomName"], " DATE: ", $key["dateSelected"], " START: ", $key["startsAt"], " END: ",$key["endsAt"]            
-            ?>"</option> 
+      <label for="idRoom" ><strong>Function</strong></label>
+        <select class="custom-select"  name="show" >    
+          <?php 
+          foreach($moviesForShows as $movie => $key){ ?>
+            <option value="<?php echo "ROOM: " , $key["roomName"], " DATE: ", $key["dateSelected"], " START: ", $key["startsAt"], " END: ",$key["endsAt"] ?>">
+            <?php echo "ROOM: " , $key["roomName"], " DATE: ", $key["dateSelected"], " START: ", $key["startsAt"], " END: ",$key["endsAt"]?>
+            </option> 
                 <?php
             }?>
-          </select>
-        </div>
+        </select>
+      </div>
       
       <div class="form-group ">
-        <p class="" ><strong>Number of Tickets</strong></p>
+      <label for="ticket" ><strong>Number of Tickets</strong></label>
           <input type="number" class="form-control"  placeholder="Number of Tickets" name="tickets" required>
       </div>
       

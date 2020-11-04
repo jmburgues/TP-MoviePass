@@ -17,7 +17,7 @@
 
 <!--Primer vista al entrar a la página-->
 <!--Jumbotron-->
-<div style="background-color:black; opacity:0.9; height:300px;">
+<div >
   <img style="width:400px; height:300px; margin-left: auto; margin-right: auto; display:block;" src="https://i.ibb.co/84W4VgT/Logo-Black.png">
 </div>
 
@@ -49,7 +49,7 @@
       <h4 class="card-title  mb-2 text-center"><?php echo $movies[$i]->getTitle()?></h4>   
       </div>                    
     
-      <form action="<?php echo FRONT_ROOT?>User/showPurchase" method="POST" >
+      <form action="<?php echo FRONT_ROOT?>Ticket/showPurchase" method="POST" >
         <button value="<?php echo $movies[$i]->getMovieID()?>" name="movieId" class="btn btn-secondary bg-danger text-black mb-2"  type="submit">Buy Tickets</button>
       </form>
 

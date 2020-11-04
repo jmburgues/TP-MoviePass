@@ -72,7 +72,7 @@
 					</button>
 					
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<button type ="button" disabled class="dropdown-item" value="MyAccount" onclick="URL">My Account</button>				
+						<button type ="button" class="dropdown-item" value="<?php echo $_SESSION['loggedUser']?>" name="userName" onclick="window.location.href='<?php echo FRONT_ROOT?>View/userView'">My Account</button>				
 
 					<?php if($_SESSION['role'] == 'admin') { ?> <!-- IS ADMIN -->
 							
@@ -84,7 +84,7 @@
 							<button type ="button" class="dropdown-item" value="OwnerTools" onclick="window.location.href='<?php echo FRONT_ROOT?>User/ownerView'">Owner Tools</button>
 							
 						<?php } ?>
-						 
+						
 					<button type ="button" class="dropdown-item" value="Logout" onclick="window.location.href='<?php echo FRONT_ROOT?>User/logout'">Logout</button>
 				
 					</div>
