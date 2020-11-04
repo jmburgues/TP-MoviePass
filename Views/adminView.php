@@ -1,4 +1,3 @@
-
 <div class="container ">
     <div class="row mt-5">
         <div class="col mt-5">
@@ -31,3 +30,17 @@
         </div>
     </div>
 </div>
+    
+    <div class="col mt-5"> 
+        <form action="<?php echo FRONT_ROOT?>User/sendMail" method="POST">
+            <input type ="submit" class="btn btn-primary bg-danger  text-black mt-5 col-md-7 offset-md-3  " value="Send mail" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
+            </input>
+        </form>
+    </div>
+    
+    <div class="col mt-5"> 
+        <form action="<?php echo FRONT_ROOT?>User/generateQR" method="POST">
+            <input type ="submit" class="btn btn-primary bg-danger  text-black mt-5 col-md-7 offset-md-3  " value="Generate QR" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
+            </input>
+        </form>
+    </div>

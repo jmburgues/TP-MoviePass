@@ -62,3 +62,26 @@ https://developers.themoviedb.org/3​ . De alli usaremos los GET:
   
   3.1 - Seleccionar y comprar entradas para una proyección de película determinada (C – item b, sin
 pago ni descuentos)
+
+
+function corn(){
+        $auxShow = new DAOShow();
+        $shows = array();
+        $aux = $auxShow->getAll();
+        if (is_array($aux)){
+            $shows = $aux;
+        }else{
+            $shows[0] = $aux;
+        }
+        
+        $movies = array();
+        #pasar luego a una QUERY del pdo
+        $aux = array();
+        foreach ($shows as $show) {
+            if(!(in_array($show->getIdMovie(),$aux))){
+                array_push($aux,$show->getIdMovie());
+                array_push($movies, $this->DAOMovie->getById($show->getIdMovie()));
+            }
+        }
+        return $movies; 
+    }  
