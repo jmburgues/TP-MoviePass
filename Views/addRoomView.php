@@ -1,8 +1,21 @@
 <div class="text-center mt-5 mb-3">
-    <h3 class="text-white">Add new Room :</h3>
+    <h3 class="text-white">Manage <?php echo $cinemaName?>'s Rooms:</h3>
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/showCinemas'"> Go Back </button> 
 </div>
-    
+
+<!-- COLLAPSE CARD EXISTENT ROOM -->
+
+<p style="margin-left:10%;">
+  <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#new" aria-expanded="false" aria-controls="collapseExample">
+    Add new room
+  </button>
+</p>
+
+<div class="collapse" id="new">
+
+    <div class="text-center mt-5 mb-3">
+        <h3 class="text-white">New room:</h3>
+    </div>
     <div class="container mt-5  mb-3" >   
     <div class="card card-body ">
         <form  action="<?php echo FRONT_ROOT ?>Room/addRoom" method="POST">
@@ -35,9 +48,20 @@
         </form>
     </div>
     </div>
-    
+</div>
+
+<!-- COLLAPSE CARD NEW ROOM -->
+
+<p style="margin-left:10%;">
+  <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#existent" aria-expanded="false" aria-controls="collapseExample">
+    Show existent rooms
+  </button>
+</p>
+
+<div class="collapse" id="existent">
+
     <div class="text-center mt-5 mb-3">
-        <h3 class="text-white">Rooms :</h3>    
+        <h3 class="text-white">Existent Rooms:</h3>    
     </div>
 
     <?php 
@@ -47,11 +71,11 @@
             <div class="container mt-5  mb-3">   
                 <div class="card card-body ">
                 <ul>
-                    <li><strong>Room Name: </strong><?php echo $room->getName() ?></li>
-                    <li><strong>Room capacity:</strong> <?php echo $room->getCapacity() ?></li>
-                    <li><strong>Room price:</strong> <?php echo $room->getPrice() ?></li>
-                    <li><strong>Room type:</strong> <?php echo $room->getRoomType() ?></li>
-                    <li><strong>Room cinema:</strong> <?php echo $cinema->getName() ?></li>
+                    <li><strong>Name: </strong><?php echo $room->getName() ?></li>
+                    <li><strong>Capacity:</strong> <?php echo $room->getCapacity() ?></li>
+                    <li><strong>Ticket price:</strong> <?php echo $room->getPrice() ?></li>
+                    <li><strong>Type:</strong> <?php echo $room->getRoomType() ?></li>
+                    <li><strong>Cinema:</strong> <?php echo $cinema->getName() ?></li>
                     <li style="list-style:none">
                  <div class="btn-group" role="group" aria-label="Basic example">     
                         <form action="<?php echo FRONT_ROOT?>Room/modifyRoomView" method="POST">
@@ -65,10 +89,9 @@
                     </li>         
                 </ul>
                 </div>
-                </div>
-                <?php
-        }
-        }else{
+            </div>
+    <?php } }
+        else{
             $room = $rooms;
             ?>
             <div class="container mt-5  mb-3">   

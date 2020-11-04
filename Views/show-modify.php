@@ -1,6 +1,6 @@
 
 <div class="text-center mt-5 mb-3">
-    <h3 class="text-center text-white">Nodify Show :</h3>
+    <h3 class="text-center text-white">Modify Show :</h3>
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/showShows'"> Back</button>
 </div>
 
@@ -13,23 +13,23 @@
                 </div>
             </div>
             <div class="form-group row"> 
-                <label for="idRoom" class="col-sm-1 col-form-label"><strong>Room</strong></label>
+                <label for="idRoom" class="col-sm-1 col-form-label"><strong>Room:</strong></label>
                     <div class="col-sm-10">
                         <select class="custom-select"  name="idRoom" id="idRoom">
                         <?php foreach($rooms as $room){
                         ?>
-                        <option <?php if($room->getRoomID() == $currentShow->getIdRoom()) echo "selected" ?> value="<?php echo $room->getRoomID()?>">"<?php echo $room->getName()?>"</option> 
+                        <option <?php if($room->getRoomID() == $currentShow->getIdRoom()) echo "selected" ?> value="<?php echo $room->getRoomID()?>"><?php echo $room->getName()?></option> 
                         <?php } ?>    
                         </select>
                     </div>
             </div>
             <div class="form-group row"> 
-                <label for="idMovie" class="col-sm-1 col-form-label"><strong>Movie</strong></label>
+                <label for="idMovie" class="col-sm-1 col-form-label"><strong>Movie:</strong></label>
                     <div class="col-sm-10">
                         <select class="custom-select" name="idMovie" id="idMovie">
                         <?php foreach($movies as $movie){
                         ?>
-                        <option <?php if($movie->getMovieID() == $currentShow->getIdMovie()) echo "selected" ?> value="<?php echo $movie->getMovieID()?>">"<?php echo $movie->getTitle()?>"</option> 
+                        <option <?php if($movie->getMovieID() == $currentShow->getIdMovie()) echo "selected" ?> value="<?php echo $movie->getMovieID()?>"><?php echo $movie->getTitle()?></option> 
                         <?php } ?>    
                         </select>
                     </div>
@@ -37,13 +37,13 @@
             <input type="hidden" class="form-control" name="spectators" value=<?php echo $currentShow->getSpectators() ?> >
             <input type="hidden" class="form-control" name="active" value=<?php echo $currentShow->getActive() ?> >
             <div class="form-group row ">
-                <label for="inputName" class="col-sm-1 col-form-label"><strong>Date</strong></label>
+                <label for="inputName" class="col-sm-1 col-form-label"><strong>Date:</strong></label>
                 <div class="col-sm-10">
                     <input type="date" class="form-control" name="date" value=<?php echo $currentShow->getDate() ?> required>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputDireccion" class="col-sm-1 col-form-label"><strong>Start</strong></label>
+                <label for="inputDireccion" class="col-sm-1 col-form-label"><strong>Hour:</strong></label>
                 <div class="col-sm-10">
                     <input type="time" class="form-control" name="start" value=<?php echo $currentShow->getStart() ?> required>
                 </div>

@@ -37,6 +37,7 @@
         $rooms = $this->DAORoom->getActiveRoomsByCinema($idCinema);
         $cinema = $this->DAOCinema->getById($idCinema);
         ViewController::navView($genreList=null,$moviesYearList=null,null);
+        $cinemaName = $cinema->getName();
         include VIEWS_PATH.'addRoomView.php';
     }
 
