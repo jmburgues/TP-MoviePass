@@ -99,12 +99,8 @@
                     $extremoSuperior = new DateTime($show->getEnd());
                     $inicio = new DateTime($start);
                     $fin = new DateTime($end);
-                    if ($inicio>=$extremoInferior && $inicio<=$extremoSuperior) {
+                    if (!($inicio>=$extremoSuperior) && !($fin<=$extremoInferior)) {
                         $flag = 1;
-                    } else {
-                        if ($fin>=$extremoInferior && $fin<=$extremoSuperior) {
-                            $flag = 1;
-                        }
                     }
                 }
             }
