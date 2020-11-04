@@ -152,6 +152,33 @@
       }
     }
 
+    //Devuelve las películas según el id de género.
+    public function getMoviesByGenre($idGenre){
+      try{
+        $query = "SELECT * FROM " .$this->tableNameMovies." INNER JOIN ".$this->tableNameMoviesGenres." ON ".$this->tableNameMovies.".idMovie=".$this->tableNameMoviesGenres.".idMovie INNER JOIN ". $this->tableNameShows ." ON ". $this->tableNameShows .".idMovie = ". $this->tableNameMovies .".idMovie WHERE idGenre = ".$idGenre." GROUP BY ".$this->tableNameMovies.".idMovie;";
+        $this->connection = Connection::GetInstance();
+        $resultSet = $this->connection->Execute($query);
+        return $this->toArray($this->parseToObject($resultSet));
+        }
+        catch(Exception $ex){
+        throw $ex;
+        }
+    }
+
+    //Devulve las movies según el año
+    public function getByYear($year){
+      try{        
+        $query = "SELECT * FROM " .$this->tableNameMovies. " WHERE releaseDate LIKE \"". $year."%\"";
+        $this->connection = Connection::GetInstance();
+        $resultSet = $this->connection->Execute($query);
+        return $this->toArray($this->parseToObject($resultSet));
+        }
+        catch(Exception $ex){
+        throw $ex;
+        }
+    }
+
+
     #Seguir trabajando en este
     private function parseToObject($value){
 			$value = is_array($value) ? $value : [];

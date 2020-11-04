@@ -10,6 +10,7 @@
     private $tableName ='GENRES';
     private $tableNameGenresXMovies = "GENRES_X_MOVIES";
     private $tableNameShows = "SHOWS";
+    private $tableNameMovies = "MOVIES";
 
     public function add($genre){
       try{
@@ -77,11 +78,11 @@
 
     public function getGenresListFromShows(){
       try{
-        $query = "SELECT GENRES.* FROM ".$this->tableName." LEFT JOIN ".$this->tableNameGenresXMovies." ON ".$this->tableName.".idGenre=".$this->tableNameGenresXMovies.".idGenre INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameGenresXMovies.".idMovie = ".$this->tableNameShows.".idMovie GROUP BY idGenre";
+        $query = "SELECT GENRES.* FROM ".$this->tableName." LEFT JOIN ".$this->tableNameGenresXMovies." ON ".$this->tableName.".idGenre=".$this->tableNameGenresXMovies.".idGenre INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameGenresXMovies.".idMovie = ".$this->tableNameShows.".idMovie GROUP BY idGenre;";
         $this->connection = Connection::GetInstance();
        
         $resultSet = $this->connection->Execute($query);
-       //print_r($resultSet);
+
         $resultSet =  $this->toArray($this->parseToObject($resultSet));
         return $resultSet;
 

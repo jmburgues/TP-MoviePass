@@ -26,18 +26,29 @@ class MovieController
         $this->DAOCinema = new DAOCinema();
         $this->JSONMovie = new JSONMovie();
       }
+      
 
     /* Brings up a list of previously selected movies wich are aviable for creating Shows */
-    public function selectMoviesView()
+    public function selectMoviesView($page = 1)
     {
-        $movies = $this->JSONMovie->getAll();
-      
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
-        include(VIEWS_PATH.'selectMoviesView.php');
+      $movies = $this->JSONMovie->getAll();
+      usort($movies, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
+      ViewController::navView($genreList=null,$moviesYearList=null,null);
+      include(VIEWS_PATH.'selectMoviesView.php');
     }
 
-    public function selectIdMovie($idMovie)
+    //Devuelve las palículas cargadas en la base de datos
+    public function selectMoviesFromBDD($page = 1)
     {
+      $moviesBDD = $this->DAOMovie->getAll();
+      usort($moviesBDD, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
+      ViewController::navView($genreList=null,$moviesYearList=null,null);
+      include(VIEWS_PATH.'listMoviesBDD.php');
+    }
+
+    //Muestra el listado de las películas en la base de datos
+    //Recibe un id de la movie seleccionada y valida el id con la DB
+    public function selectIdMovie($idMovie, $page = 1){
         $movies = $this->JSONMovie->getAll();
         $movieToAdd = null;
         foreach ($movies as $movie) {
@@ -45,9 +56,7 @@ class MovieController
                 $movieToAdd = $movie;
             }
         }
-        
         $moviesBDD = $this->DAOMovie->getAll();
- 
 
         if (!($this->DAOMovie->getById($idMovie))) {
             $this->DAOMovie->add($movieToAdd);
@@ -55,9 +64,10 @@ class MovieController
             $message = "Movie already on database";
             echo "<script type='text/javascript'>alert('$message');</script>";
         }
-      
         $moviesBDD = $this->DAOMovie->getAll();
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        usort($moviesBDD, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
+
+        ViewController::navView($genreList=null,$moviesYearList=null,null);        
         include(VIEWS_PATH.'listMoviesBDD.php');
     }
 

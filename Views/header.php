@@ -29,11 +29,16 @@
                
           }
      -->
+     
      <style type="text/css">
           body {
-               background-color: #D2DAFF; 
-                background-image: none; 
-               
+               background: -prefix-linear-gradient(top, black, #F30000); 
+               background: linear-gradient(to bottom, black, #F30000);
+               background-repeat: no-repeat;
+               background-attachment: fixed;
+
           }
      </style>
+
+     
 </body>

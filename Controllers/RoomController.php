@@ -31,14 +31,17 @@
         include VIEWS_PATH.'addRoomView.php';
     }
 
+    //Redirige a la vista para agregar una nueva sala
     public function addRoomView($idCinema){
         $rooms = array();
         $rooms = $this->DAORoom->getActiveRoomsByCinema($idCinema);
         $cinema = $this->DAOCinema->getById($idCinema);
-       ViewController::navView($genreList=null,$moviesYearList=null,null);
+        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        $cinemaName = $cinema->getName();
         include VIEWS_PATH.'addRoomView.php';
     }
 
+    //Redirige a la vista para modificar la sala
     public function modifyRoomView($idRoom){
         $currentRoom = $this->DAORoom->getById($idRoom);
         $rooms = $this->DAORoom->getActiveRooms();

@@ -24,7 +24,7 @@
             $parameters['date'] = $show->getDate();
             $parameters['start'] = $show->getStart();
             $parameters['end'] = $show->getEnd();
-            $parameters['spectators'] = $show->getSpectators();
+            $parameters['spectators'] = 0;
             $parameters['idRoom'] = $show->getIdRoom();
             $parameters['idMovie'] = $show->getIdMovie();
             
@@ -67,16 +67,29 @@
             throw $ex;
             }
         }
+        
+        //Devuelve el idMovie sin repetir de los shows. Muestra en el home sin repetir la cartelera.
+        public function getBillBoard(){
+            try{
+                $query = "SELECT DISTINCT idMovie FROM ".$this->tableNameShows;
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+                return ($resultSet);
+                }
+                catch(Exception $ex){
+                throw $ex;
+                } 
+        }
 
     public function modify(Show $show)    {
+        echo"<pre>";
+        print_r($show);
+        echo"</pre>";
         try 
         {
             $query = "UPDATE ".$this->tableNameShows."
             SET dateSelected = :date, startsAt = :start, endsAt = :end, spectators = :spectators, idRoom = :idRoom, idMovie = :idMovie, isActive = active 
             WHERE idShow = :idShow;";
-            
-
-            $parameters['idShow'] = $show->getIdShow();
             $parameters['date'] = $show->getDate();;
             $parameters['start'] = $show->getStart();
             $parameters['end'] = $show->getEnd();
@@ -84,6 +97,7 @@
             $parameters['idRoom'] = $show->getIdRoom();
             $parameters['idMovie'] = $show->getIdMovie();
             $parameters['active'] = $show->getActive();
+            $parameters['idShow'] = $show->getIdShow();
             
             $this->connection = Connection::GetInstance();
             $response = $this->connection->ExecuteNonQuery($query, $parameters);
@@ -96,49 +110,45 @@
 
     public function removeShow($id){
         try{
-          $query = "Update ".$this->tableNameShows. " SET isActive = :active WHERE idShow = :id;";
-          
-          $parameters['id'] = $id;
-          $parameters['active'] = false;
-          
-          $this->connection = Connection::GetInstance();
-          return $this->connection ->ExecuteNonQuery($query,$parameters);
+            $query = "Update ".$this->tableNameShows. " SET isActive = :active WHERE idShow = :id;";
+            
+            $parameters['id'] = $id;
+            $parameters['active'] = false;
+            
+            $this->connection = Connection::GetInstance();
+            return $this->connection ->ExecuteNonQuery($query,$parameters);
         }
-  
         catch(Exception $ex){
             throw $ex;
         }
-  
-      }
+    }
 
-      public function getById($id){
+        public function getById($id){
         try{
-          $query = "SELECT * FROM ".$this->tableNameShows." where idShow = :id";
-          $parameters['id'] = $id;
-          $this->connection = Connection::GetInstance();
-          $resultSet = $this->connection->Execute($query,$parameters);
-          
-          return $this->parseToObjectTime($resultSet);
+            $query = "SELECT * FROM ".$this->tableNameShows." where idShow = :id";
+            $parameters['id'] = $id;
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query,$parameters);
+            
+            return $this->parseToObjectTime($resultSet);
         }
-  
         catch(Exception $ex){
-          throw $ex;
+            throw $ex;
         }
         
-      }
-    
-      public function getCinemaNameFromShows($idShow){
-        try{
-            $query = "SELECT ".$this->tableNameCinemas .".cinemaName FROM ". $this->tableNameShows ." INNER JOIN ". $this->tableNameRooms ." ON ". $this->tableNameRooms .".idRoom = ". $this->tableNameShows .".idRoom INNER JOIN ". $this->tableNameCinemas ." ON ". $this->tableNameCinemas .".idCinema = ". $this->tableNameRooms .".idCinema WHERE ". $this->tableNameShows .".idShow = ". $idShow ." ;";
-            $this->connection = Connection::GetInstance();
-            $resultSet = $this->connection->Execute($query);
-            return $resultSet[0]['cinemaName'];
-            }
-            catch(Exception $ex){
-            throw $ex;
         }
-      }
-
+    
+        public function getCinemaNameFromShows($idShow){
+            try{
+                $query = "SELECT ".$this->tableNameCinemas .".cinemaName FROM ". $this->tableNameShows ." INNER JOIN ". $this->tableNameRooms ." ON ". $this->tableNameRooms .".idRoom = ". $this->tableNameShows .".idRoom INNER JOIN ". $this->tableNameCinemas ." ON ". $this->tableNameCinemas .".idCinema = ". $this->tableNameRooms .".idCinema WHERE ". $this->tableNameShows .".idShow = ". $idShow ." ;";
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+                return $resultSet[0]['cinemaName'];
+                }
+                catch(Exception $ex){
+                throw $ex;
+            }
+          }
 
     protected function parseToObject($value) {
         $value = is_array($value) ? $value : [];
@@ -179,9 +189,9 @@
 
     private function toArray($value){
         if(is_array($value))
-          return $value;
+            return $value;
         else
-          return array($value);
-      }
+            return array($value);
+        }
 }
 ?>

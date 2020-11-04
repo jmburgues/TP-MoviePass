@@ -28,9 +28,7 @@
     public function execute($query, $parameters = array(), $queryType = QueryType::Query){
       try{
         $this->Prepare($query);
-        
         $this->BindParameters($parameters, $queryType);
-        
         $this->pdoStatement->execute();
         return $this->pdoStatement->fetchAll();
       }
@@ -42,7 +40,6 @@
     public function executeNonQuery($query, $parameters = array(), $queryType = QueryType::Query){
       try{
         $this->Prepare($query);
-        
         $this->BindParameters($parameters, $queryType);
         $this->pdoStatement->execute();
         return $this->pdoStatement->rowCount();
@@ -70,6 +67,7 @@
         else
           $this->pdoStatement->bindParam($i, $parameters[$parameterName]);
       }
-    }
+       }
+    
   }
 ?>

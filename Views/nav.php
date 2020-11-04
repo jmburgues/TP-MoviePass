@@ -24,6 +24,7 @@
 
 						<?php if(isset($genresList) && $genresList != null) { foreach ($genresList as $genre){ ?>
 								<button type ="submit" class="dropdown-item" name="genreId" value="<?php echo $genre->getId(); ?>"><?php echo $genre->getName();?></button>
+
 							<?php } }?>
 
 					</div>

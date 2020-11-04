@@ -1,6 +1,9 @@
-<div class="panel-heading">
-    <br><h3 style="text-align: center;">Select movie:</h3>
-</div>
+<div class="text-center mt-5 mb-3">
+    <h3 class="text-white">Select the movie for the show :</h3>
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/showShows'"> Go to Shows List </button> 
+</div>  
+
+
 <?php if (isset($moviesDB)) {
         foreach ($moviesDB as $movie) { ?>      
 
