@@ -127,7 +127,7 @@
         ViewController::navView($genreList,$moviesYearList,null); 
 
 
-        $movies = $this->DAOMovie->getByYear($year);
+        $movies = $this->DAOMovie->getByYearFromShows($year);
     
         ViewController::homeView($movies,1,"Year: ".$year);
     }

@@ -73,6 +73,7 @@
 
     }
 
+      //Retorna una película según su ID
     public function getById($id){
       try{
         $query= "SELECT * FROM ".$this->tableNameMovies." WHERE idMovie = :movieID;";
@@ -89,9 +90,9 @@
       }
     }
 
+    //Retorna un arrelgo de strings con los años de todas las películas
     public function getArrayOfYears(){
       $moviesList = $this->getAll();
-
       $years = array();
 
       foreach ($moviesList as $oneMovie) {
@@ -106,18 +107,13 @@
       return $years; 
     }
 
+
+    //Retorna un arrelgo de strings con los años de todas las películas según los shows
     public function getArrayOfYearsFromShows(){
       try{
         $query = "SELECT MOVIES.* FROM ".$this->tableNameMovies." INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameMovies.".idMovie=".$this->tableNameShows.".idMovie";
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query);
-        
-        /*$aux =  $this->parseToObject($resultSet);
-        if(is_array($aux))
-          $moviesList = $aux;
-        else 
-          $moviesList[0]=$aux;*/
-
         $moviesList = $this->toArray($this->parseToObject($resultSet));
       }
 
@@ -139,6 +135,8 @@
       return $years;
     }
 
+
+    //Retorna las películas que se encuentrn en un Shows, (no solo el ID)
     public function getIdMoviesFromShows(){
       try{
 
@@ -165,7 +163,7 @@
         }
     }
 
-    //Devulve las movies según el año
+    //Devulve todas las películas según el año
     public function getByYear($year){
       try{        
         $query = "SELECT * FROM " .$this->tableNameMovies. " WHERE releaseDate LIKE \"". $year."%\"";
@@ -177,6 +175,23 @@
         throw $ex;
         }
     }
+
+    //Devulve las películas que tengan un showlos shows según el año
+    public function getByYearFromShows($year){
+      try{        
+          //SELECT * FROM SHOWS INNER JOIN MOVIES ON SHOWS.idMovie = MOVIES.idMovie WHERE MOVIES.releaseDate LIKE "2020%" GROUP BY SHOWS.idMovie;
+          $query = "SELECT MOVIES.* FROM " .$this->tableNameShows. " INNER JOIN " . $this->tableNameMovies . " ON " . $this->tableNameShows . ".idMovie = " .$this->tableNameMovies .".idMovie WHERE " .$this->tableNameMovies. ".releaseDate LIKE \"". $year."%\" GROUP BY " .$this->tableNameShows . ".idMovie;";
+          //$query = "SELECT MOVIES.* FROM " .$this->tableNameShows. " INNER JOIN " . $this->tableNameMovies . " ON " . $this->tableNameShows . ".idMovie = " .$this->tableNameMovies .".idMovie WHERE " .$this->tableNameMovies. ".releaseDate LIKE ':year%' GROUP BY " .$this->tableNameShows . ".idMovie;";
+         // $parameters['year'] = $year;
+          $this->connection = Connection::GetInstance();
+        //  $resultSet = $this->connection->Execute($query, $parameters);
+        $resultSet = $this->connection->Execute($query);
+          return $this->toArray($this->parseToObject($resultSet));
+          }
+          catch(Exception $ex){
+          throw $ex;
+          }
+      }
 
 
     #Seguir trabajando en este

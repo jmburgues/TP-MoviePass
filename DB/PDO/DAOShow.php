@@ -12,6 +12,7 @@
     private $tableNameShows = "SHOWS";
     private $tableNameCinemas = "CINEMAS";
     private $tableNameRooms = "ROOMS";
+    private $tableNameMovies = "MOVIES";
 
     public function add($show)    {
         try 
@@ -123,7 +124,7 @@
         }
     }
 
-        public function getById($id){
+    public function getById($id){
         try{
             $query = "SELECT * FROM ".$this->tableNameShows." where idShow = :id";
             $parameters['id'] = $id;
@@ -135,20 +136,23 @@
         catch(Exception $ex){
             throw $ex;
         }
-        
-        }
+    }
     
-        public function getCinemaNameFromShows($idShow){
-            try{
-                $query = "SELECT ".$this->tableNameCinemas .".cinemaName FROM ". $this->tableNameShows ." INNER JOIN ". $this->tableNameRooms ." ON ". $this->tableNameRooms .".idRoom = ". $this->tableNameShows .".idRoom INNER JOIN ". $this->tableNameCinemas ." ON ". $this->tableNameCinemas .".idCinema = ". $this->tableNameRooms .".idCinema WHERE ". $this->tableNameShows .".idShow = ". $idShow ." ;";
-                $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);
-                return $resultSet[0]['cinemaName'];
-                }
-                catch(Exception $ex){
-                throw $ex;
+    
+
+    
+    
+    public function getCinemaNameFromShows($idShow){
+        try{
+            $query = "SELECT ".$this->tableNameCinemas .".cinemaName FROM ". $this->tableNameShows ." INNER JOIN ". $this->tableNameRooms ." ON ". $this->tableNameRooms .".idRoom = ". $this->tableNameShows .".idRoom INNER JOIN ". $this->tableNameCinemas ." ON ". $this->tableNameCinemas .".idCinema = ". $this->tableNameRooms .".idCinema WHERE ". $this->tableNameShows .".idShow = ". $idShow ." ;";
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query);
+            return $resultSet[0]['cinemaName'];
             }
-          }
+            catch(Exception $ex){
+            throw $ex;
+        }
+        }
 
     protected function parseToObject($value) {
         $value = is_array($value) ? $value : [];
