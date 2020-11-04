@@ -1,12 +1,13 @@
 <?php
     namespace Controllers;
-
+  //  use PHPMailer\PHPMailer\PHPMailer;
     use Models\User as User;
     use DB\PDO\DAOUser as DAOUser;
     use DB\PDO\DAOGenre as DAOGenre;
     use DB\PDO\DAOMovie as DAOMovie;
     use DB\PDO\DAOShow as DAOShow;
-
+    
+  //  use Endroid\QrCode\QrCode;
     class UserController
     {
         private $DAOUser;
@@ -21,6 +22,20 @@
             $this->DAOMovie = new DAOMovie();
             $this->DAOShow = new DAOShow();
         }
+        
+        //Invoca la vista donde el usuario completa el form con los datos para la entrada
+        public function showPurchase($movieId)
+        {
+            ViewController::navView($genreList = null, $moviesYearList = null, null);
+            $selectedMovie = $this->DAOMovie->getById($movieId);
+            $moviesForShows = $this->DAOShow->getShowFromMovie($movieId);
+            
+            include VIEWS_PATH.'purchase-view.php';
+            
+        }
+        
+
+
 
         public function register()
         {
@@ -126,12 +141,32 @@
             }
         }
 
-        public function showPurchase()
-        {
-            include VIEWS_PATH.'purchase-view.php';
-            //include_once VIEWS_PATH.'footer.php';
+
+        public function sendMail(){
+            ini_set( 'display_errors', 1 );
+            error_reporting( E_ALL );
+
+            $from = "briascojazmin@gmail.com";
+            $to = "nikolasv1994@gmail.com";
+            $subject = "Hola bb";
+            $message = "Este es un mensaje automático de Movie Pass, gracias por formar parte de esta maravillosa familia. PD: THE GAME";
+            $headers = "From:" . $from;
+            mail($to,$subject,$message, $headers);
+            echo "The email message was sent.";
+
         }
-        
+
+        public function generateQR(){
+            $textqr = 100;
+            $sizeqr = 100;
+            $qrCode = new QrCode($textqr);
+            $qrCode->setSize($sizeqr);
+            $image= $qrCode->writeString();//Salida en formato de texto 
+            $imageData = base64_encode($image);//Codifico la imagen usando base64_encode
+            echo '<img src="data:image/png;base64,'.$imageData.'">';
+        }
+
+      
         public function add($userName, $password, $email, $birthDate, $dni, $admin)
         {
             $existentUser = false;
