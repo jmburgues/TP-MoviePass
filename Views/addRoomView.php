@@ -26,22 +26,29 @@
                     <input type="text" class="form-control" name="name" placeholder="Name" required>
                 </div>
             </div>
+
             <div class="form-group row">
                 <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Capacity</strong></label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" name="capacity" placeholder="Capacity" required>
                 </div>
             </div>
+
             <div class="form-group row">
                 <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Price</strong></label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" name="price" placeholder="Price" required>
                 </div>
             </div>
+
             <div class="form-group row">
-                <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Room Type</strong></label>
+                <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Room Type</strong></label>         
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="roomType" placeholder="roomType" required>
+                    <select name="roomType" id="roomType">
+                        <option value="2DMovie">2D Movie</option>
+                        <option value="3DMoovie">3D Movie</option>
+                        <option value="Atmos">ATMOS</option>
+                    </select> 
                 </div>
             </div>
             <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>
