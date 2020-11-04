@@ -10,7 +10,7 @@
     <form  action="<?php echo FRONT_ROOT ?>Ticket/addTicket" method="POST">
       <div class="form-group">
       <label for="idRoom" ><strong>Movie</strong></label>
-        <input type="text" class="form-control font-weight-bold"  placeholder=<?php echo $selectedMovie->getTitle()?> name="movie" value="<?php echo $selectedMovie->getTitle()?>">
+        <input readonly type="text" class="form-control font-weight-bold"  placeholder=<?php echo $selectedMovie->getTitle()?> name="movie" value="<?php echo $selectedMovie->getTitle()?>">
       </div>
       <div class="form-group">
       <label for="idRoom" ><strong>Function</strong></label>
