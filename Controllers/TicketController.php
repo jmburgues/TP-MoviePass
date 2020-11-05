@@ -38,20 +38,40 @@
 
         //Invocada desde la vista donde el usuario completa el formulario de Tickets
         //Se implementa la política de descuento
-        //Redirige a vista de compra con credito.
+        //Redirige a vista de compra con credito, habiendo elegido anteriormente la tarjeta.
         //Envía a la vista el costo de las entradas
-        public function addTicket($idShow, $ticketAmount){   
+        public function addTicket($idShow, $ticketAmount, $card){   
+            echo "<pre>";
+            echo $idShow;
+            echo "</pre>";
+            echo "<pre>";
+            echo $ticketAmount;
+            echo "</pre>";
+            echo $card;
+            echo "<pre>";
+            echo "</pre>";
+            
+
+
             ViewController::navView($genreList = null, $moviesYearList = null, null);
             $showSelected = $this->DAOShow->getById($idShow);
             $movieForShows = $this->DAOMovie->getMoviesFromShow($showSelected->getIdMovie());
             $costPerTicket = $this->DAOShow->getPriceByIdShow($idShow);
             $costPerTicket= $costPerTicket[0][0];
-
+            $patern;
             //Politica de descuento:
             $actualDate = date('l');
             if ($ticketAmount >= 2) {
                 if ($actualDate == "Tuesday" || $actualDate == "Wednesday") {
                     $costPerTicket = $costPerTicket -(((25 * $costPerTicket)/100));
+                }
+            }
+            if($card == "Master"){
+                $pattern = "[51-55]{2}[00-99]{2}[0000-9999]{4}[0000-9999]{4}[0000-9999]{4}";
+
+            }else{
+                if($card == "Visa"){
+                    $pattern = "[41-49]{2}[00-99]{2}[0000-9999]{4}[0000-9999]{4}[0000-9999]{4}";
                 }
             }
 
@@ -74,7 +94,7 @@
         }
 
         
-        public function confirmTicket($name, $cvc, $creditNumber, $expirationDate, $expirationYear, $card){
+        public function confirmTicket($name, $cvc, $creditNumber, $expirationDate, $expirationYear){
             ViewController::navView($genreList = null, $moviesYearList = null, null);
 
             $showCardLast = str_replace(range(0,9), "*", substr($creditNumber, 0, -4)) .  substr($creditNumber, -4);

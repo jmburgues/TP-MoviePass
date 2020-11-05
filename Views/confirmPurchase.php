@@ -20,8 +20,10 @@
 <div class="container  mt-5 mb-5">       
     <div class="card card-body  border-dark ">
         <ul>
+            
             <li><strong>Cost per ticket: </strong><?php print_r($costPerTicket);?> <?php ?></li>
             <li><strong>Total cost: </strong> <?php print_r($totalCost);?><?php ?></li>
+            <li><strong>Card Type: </strong> <?php print_r($card);?><?php ?></li>
     
         </ul>  
     </div>
@@ -35,9 +37,20 @@
                 <p class="text-center" ><strong>Credit Card</strong></p>
                     
                 <form action="<?php echo FRONT_ROOT ?>Ticket/confirmTicket" method="POST">
+                <div readolny class="form-group font-weight-bold pt-2" >
+                        <label for="cardNumber">Card </label>
+                        <input readonly type="text" placeholder= <?php echo $card?> class="form-control" name="cardNumber" required
+                      >
+                    
+                        
+                    </div>
+                    <div class="form-group font-weight-bold pt-2" >
+                        <label for="cardNumber">Card Number </label>
+                        <span class="text-muted"> No signs or space</span>
+                        <input type="text"   pattern=<?php echo $pattern?> min="1" max="9" class="form-control" name="cardNumber" required>
+                    </div>
                     <div class="form-group font-weight-bold">
                         <label for="owner">Owner</label>
-                        //Nombre del acrilico
                         <span class="text-muted"> Full name and surname</span>
                         <input type="text" class="form-control" name="owner" required>
                     </div>
@@ -46,12 +59,8 @@
                         <span class="text-muted"> security code behind the card</span>
                         <input type="number" min="100" max="999" placeholder= "123" class="form-control" name="cvv" required>
                     </div>
-                    <div class="form-group font-weight-bold pt-2" >
-                        <label for="cardNumber">Card Number </label>
-                        <span class="text-muted"> No signs or space</span>
-                        <input type="number" min="1111111111111111" max="9999999999999999" placeholder= "1234567891234567"class="form-control" name="cardNumber" required>
-                    </div>
-                       <div class="form-group font-weight-bold pt-2" >
+       
+                        <div class="form-group font-weight-bold pt-2" >
                         <label>Expiration Date</label>
                         <select class="custom-select" name="date">
                             <option value="01">January</option>
@@ -79,18 +88,8 @@
                     </div>
     
                 
-    
-
-                <div class="custom-control custom-radio ">
-                        <input type="radio" value="Visa" id="customRadio1" name="customRadio" class="custom-control-input" required>
-                        <img style="with:90px; height:80px; margin-left:-3%; margin-right:3%" src="https://cdn.icon-icons.com/icons2/1186/PNG/512/1490135017-visa_82256.png">
-                        <label class="custom-control-label mt-4" for="customRadio1">Visa</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" value="Master" id="customRadio2" name="customRadio" class="custom-control-input" required>
-                        <img style="with:90px; height:80px;  margin-left:-2%; margin-right:4%" src="https://www.flaticon.es/svg/static/icons/svg/196/196561.svg">
-                        <label class="custom-control-label  mt-4" for="customRadio2">Mastercard</label>
-                    </div>
+                    
+            
                         <br>
                         
                 </div>
@@ -102,3 +101,7 @@
         </div>
     </div>
 </div>
+
+
+<hr>
+
