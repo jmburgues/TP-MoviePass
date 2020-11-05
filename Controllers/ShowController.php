@@ -89,12 +89,8 @@
         }
 
         foreach ($lookingForShows as $show) {
-          //  echo "Entra";
             if ($newShow->getDate() == $date) {
-                //echo $newShow->getStart();
-                //echo $date;
                 if ($show->getIdRoom() == $roomId) {
-                  //  echo "id";
                     $extremoInferior = new DateTime($show->getStart());
                     $extremoSuperior = new DateTime($show->getEnd());
                     $inicio = new DateTime($start);
