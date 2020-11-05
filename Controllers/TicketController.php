@@ -34,12 +34,22 @@
 
         //Invocada desde la vista donde el usuario completa el formulario de Tickets
         //Redirige a vista de usuario.
-        public function addTicket($movie, $show, $ticket)
+        public function addTicket()
         {
             ViewController::navView($genreList = null, $moviesYearList = null, null);
             $userName = $_SESSION['loggedUser'];
             //Debería crear el ticket
-            ViewController::userView($userName, $movie, $show, $ticket);
+            ViewController::userView("Hola", "hola", "hoa", "aloh");
+        }
+
+        //Invocado desde purchase-view, recibe el id del show.
+        public function getMinMax($idShow){
+            ViewController::navView($genreList = null, $moviesYearList = null, null);
+            $min = 1;
+            $max = $this->DAORoom->getById($this->DAOShow->getById($idShow)->getIdRoom())->getCapacity()-$this->DAOShow->getById($idShow)->getSpectators();
+            print_r($max); 
+            include VIEWS_PATH.'numberTickets.php';
+            //$max = ($this->DAORoom->getById($value->getIdRoom())->getCapacity()) - $value->getSpectators();    
         }
 
         public function confirmTicket(){
