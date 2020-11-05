@@ -37,6 +37,7 @@
         }  
 
         //Invocada desde la vista donde el usuario completa el formulario de Tickets
+        //Se implementa la política de descuento
         //Redirige a vista de compra con credito.
         //Envía a la vista el costo de las entradas
         public function addTicket($idShow, $ticketAmount){   
@@ -45,7 +46,18 @@
             $movieForShows = $this->DAOMovie->getMoviesFromShow($showSelected->getIdMovie());
             $costPerTicket = $this->DAOShow->getPriceByIdShow($idShow);
             $costPerTicket= $costPerTicket[0][0];
-            $totalCost = $costPerTicket * $ticketAmount;
+
+            //Politica de descuento:
+            $actualDate = date('l');
+            if ($ticketAmount >= 2) {
+                if ($actualDate == "Tuesday" || $actualDate == "Wednesday") {
+                    $costPerTicket = $costPerTicket -(((25 * $costPerTicket)/100));
+                }
+            }
+
+                $totalCost = $costPerTicket * $ticketAmount;
+            
+            
             $showToString = "STARTS AT: ".$showSelected->getStart()." ENDS AT: ".$showSelected->getEnd();
             
 
@@ -61,6 +73,7 @@
             include VIEWS_PATH.'numberTickets.php';
         }
 
+        
         public function confirmTicket($name, $cvc, $creditNumber, $expirationDate, $expirationYear, $card){
             ViewController::navView($genreList = null, $moviesYearList = null, null);
 

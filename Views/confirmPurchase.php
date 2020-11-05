@@ -37,6 +37,7 @@
                 <form action="<?php echo FRONT_ROOT ?>Ticket/confirmTicket" method="POST">
                     <div class="form-group font-weight-bold">
                         <label for="owner">Owner</label>
+                        //Nombre del acrilico
                         <span class="text-muted"> Full name and surname</span>
                         <input type="text" class="form-control" name="owner" required>
                     </div>
