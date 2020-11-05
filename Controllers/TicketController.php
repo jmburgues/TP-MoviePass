@@ -50,10 +50,10 @@
         public function getMinMax($idShow){
             ViewController::navView($genreList = null, $moviesYearList = null, null);
             $min = 1;
-            $max = $this->DAORoom->getById($this->DAOShow->getById($idShow)->getIdRoom())->getCapacity()-$this->DAOShow->getById($idShow)->getSpectators();
+            $max = $this->DAORoom->getById($this->DAOShow->getById($idShow)->getRoom()->getRoomID())->getCapacity()-$this->DAOShow->getById($idShow)->getSpectators();
             print_r($max); 
             include VIEWS_PATH.'numberTickets.php';
-            //$max = ($this->DAORoom->getById($value->getIdRoom())->getCapacity()) - $value->getSpectators();    
+            //$max = ($this->DAORoom->getById($value->getRoom()->getRoomID())->getCapacity()) - $value->getSpectators();    
         }
 
         public function confirmTicket(){

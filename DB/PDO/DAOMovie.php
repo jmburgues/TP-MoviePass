@@ -5,17 +5,19 @@
   use Models\Movie as Movie;
   use Models\Genre as Genre;
   use DB\PDO\Connection as Connection;
+  use DB\PDO\DAOMovie as DAOMovie;
   use DB\PDO\DAOGenre as DAOGenre;
+  use DB\Interfaces\IDAOMovie as IDAOMovie;
   use \DateTime as DateTime;
 
-  class DAOMovie{
+  class DAOMovie implements IDAOMovie{
     private $connection;
     private $tableNameGenres ='GENRES';
     private $tableNameShows = 'SHOWS';
     private $tableNameMovies ='MOVIES';
     private $tableNameMoviesGenres ='GENRES_X_MOVIES';
 
-    public function add($movie){
+    public function add(Movie $movie){
       try{
         $query = "INSERT INTO ".$this->tableNameMovies." 
         (idMovie,duration,title,poster,releaseDate,movieDescription)

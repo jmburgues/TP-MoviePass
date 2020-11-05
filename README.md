@@ -78,9 +78,9 @@ function corn(){
         #pasar luego a una QUERY del pdo
         $aux = array();
         foreach ($shows as $show) {
-            if(!(in_array($show->getIdMovie(),$aux))){
-                array_push($aux,$show->getIdMovie());
-                array_push($movies, $this->DAOMovie->getById($show->getIdMovie()));
+            if(!(in_array($show->getMovie()->getMovieID(),$aux))){
+                array_push($aux,$show->getMovie()->getMovieID());
+                array_push($movies, $this->DAOMovie->getById($show->getMovie()->getMovieID()));
             }
         }
         return $movies; 

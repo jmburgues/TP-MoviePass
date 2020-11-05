@@ -4,15 +4,16 @@
   use \Exception as Exception;
   use Models\Genre as Genre;
   use DB\PDO\Connection as Connection;
+  use DB\Interfaces\IDAOGenre as IDAOGenre;
 
-  class DAOGenre{
+  class DAOGenre implements IDAOGenre{
     private $connection;
     private $tableName ='GENRES';
     private $tableNameGenresXMovies = "GENRES_X_MOVIES";
     private $tableNameShows = "SHOWS";
     private $tableNameMovies = "MOVIES";
 
-    public function add($genre){
+    public function add(Genre $genre){
       try{
         $query = "INSERT INTO ".$this->tableName." 
         (idGenre,genreName)

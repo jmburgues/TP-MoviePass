@@ -1,6 +1,5 @@
 <?php namespace Models;
 
-    use DAO\DAOCinema as DAOCinema;
 
 Class Cinema
 {

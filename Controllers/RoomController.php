@@ -73,7 +73,7 @@
             $roomExist = false;
             $message ="";
             foreach ($listRoom as $list) {
-                if ($list->getIDCinema() == $idCinema){
+                if ($list->getCinema()->getId() == $idCinema){
                     if ($list->getName() == $name) {
                         if($list->getActive() == true){
                             $message = "The room already exists.";
@@ -109,7 +109,7 @@
         $this->DAORoom->removeRoom($idRoom);
         
         ViewController::navView($genreList=null,$moviesYearList=null,null);
-        $this->addRoomView($this->DAORoom->getById($idRoom)->getIDCinema());
+        $this->addRoomView($this->DAORoom->getById($idRoom)->getCinema()->getId());
     }
 
 

@@ -93,7 +93,7 @@
             if ($newShow->getDate() == $date) {
                 //echo $newShow->getStart();
                 //echo $date;
-                if ($show->getIdRoom() == $roomId) {
+                if ($show->getRoom()->getRoomID() == $roomId) {
                   //  echo "id";
                     $extremoInferior = new DateTime($show->getStart());
                     $extremoSuperior = new DateTime($show->getEnd());
@@ -180,8 +180,8 @@
     //Redirige a la vista para modificar el show seleccionado con todos sus datos
     public function modifyShowView($showID){
         $currentShow = $this->DAOShow->getById($showID);
-        $auxRoom = $this->DAORoom->getById($currentShow->getIdRoom());
-        $auxCinema = $this->DAOCinema->getById($auxRoom->getIDCinema());
+        $auxRoom = $this->DAORoom->getById($currentShow->getRoom()->getRoomID());
+        $auxCinema = $this->DAOCinema->getById($auxRoom->getCinema()->getId());
         $rooms = $this->DAORoom->getActiveRoomsByCinema($auxCinema->getId());
         $movies = $this->DAOMovie->getAll();
         ViewController::navView($genreList=null,$moviesYearList=null,null);

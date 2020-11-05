@@ -1,37 +1,52 @@
 <?php
 
 namespace Models;
+use Models\Show as Show;
+use Models\Transaction as Transaction;
 
 class Ticket
 {
-    private $ticketNumber;
+    private $idTicket;
     private $QRCode;
-    private $seatNumber;
-/*
-    function __construct($QRCode, $seatNumber)
+    private $show;
+    private $transaction;
+
+
+    function __construct($QRCode='',Show $show,Transaction $transaction , $idTicket='')
     {
-        $this->ticketNumber = 1; //hacer incremental
         $this->QRCode = $QRCode;
-        $this->seatNumber = $seatNumber;
+        $this->show = $show;
+        $this->transaction = $transaction;
+        $this->idTicket = $idTicket;
     }
-*/
-    public function getTicketNumber()
+
+    public function getIdTicket()
     {
-        return $this->ticketNumber;
+        return $this->idTicket;
     }
 
     public function getQRCode(){
         return $this->QRCode;
     }
 
-    public function getSeatNumber()
+    public function getShow()
     {
-        return $this->seatNumber;
+        return $this->show;
     }
 
-    public function setTicketNumber($ticketNumber)
+    public function getTransaction()
     {
-        $this->ticketNumber = $ticketNumber;
+        return $this->transaction;
+    }
+
+    public function setTransaction($transaction)
+    {
+        $this->transaction = $transaction;
+    }
+
+    public function setIdTicket($idTicket)
+    {
+        $this->idTicket = $idTicket;
     }
 
     public function setQRCode($QRCode)
@@ -39,9 +54,9 @@ class Ticket
         $this->QRCode = $QRCode;
     }
     
-    public function setSeatNumber($seatNumber)
+    public function setShow($show)
     {
-        $this->seatNumber = $seatNumber;
+        $this->show = $show;
     }
 }
 ?>

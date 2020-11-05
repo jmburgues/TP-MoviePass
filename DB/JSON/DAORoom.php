@@ -62,7 +62,7 @@ class DAORoom{
             $valuesArray["ID"] = $room->getRoomID();
             $valuesArray["name"] = $room->getName();
             $valuesArray["capacity"] = $room->getCapacity();
-            $valuesArray["IDCinema"] = $room->getIDCinema();
+            $valuesArray["IDCinema"] = $room->getCinema()->getId();
             $valuesArray["price"] = $room->getPrice();
             array_push($arrayToEncode, $valuesArray);
         }

@@ -65,8 +65,8 @@
                                 <li><strong>Starting hour:</strong> <?php echo $show->getStart() ?></li>
                                 <li><strong>Ending hour:</strong> <?php echo $show->getEnd() ?></li>
                                 <li><strong>Spectators:</strong> <?php echo $show->getSpectators()?></li>
-                                <li><strong>Room:</strong> <?php echo $auxRoom->getById($show->getIdRoom())->getName();?></li>
-                                <li><strong>Movie:</strong> <?php echo $auxMovie->getById($show->getIdMovie())->getTitle();?></li>
+                                <li><strong>Room:</strong> <?php echo $auxRoom->getById($show->getRoom()->getRoomID())->getName();?></li>
+                                <li><strong>Movie:</strong> <?php echo $auxMovie->getById($show->getMovie()->getMovieID())->getTitle();?></li>
                                 <li><strong>Cinema:</strong> <?php echo $auxCinemaName->getCinemaNameFromShows($show->getIdShow());?></li>
                                 
                                 <li style="list-style:none; padding-left:70%">

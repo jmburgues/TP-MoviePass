@@ -4,17 +4,21 @@
   use \DateTime as DateTime;
   use \Exception as Exception;
   use Models\Show as Show;
+  use Models\Room as Room;
+  use DB\PDO\DAORoom as DAORoom;
+  use Models\Movie as Movie;
+  use DB\PDO\DAOMovie as DAOMovie;
+  use DB\Interfaces\IDAOShow as IDAOShow;
   use DB\PDO\Connection as Connection;
 
 
-  class DAOShow{
+  class DAOShow implements IDAOShow{
     private $connection;
     private $tableNameShows = "SHOWS";
     private $tableNameCinemas = "CINEMAS";
     private $tableNameRooms = "ROOMS";
-    private $tableNameMovies = "MOVIES";
 
-    public function add($show)    {
+    public function add(Show $show)    {
         try 
         {
             $query = "INSERT INTO ".$this->tableNameShows."
@@ -26,8 +30,8 @@
             $parameters['start'] = $show->getStart();
             $parameters['end'] = $show->getEnd();
             $parameters['spectators'] = 0;
-            $parameters['idRoom'] = $show->getIdRoom();
-            $parameters['idMovie'] = $show->getIdMovie();
+            $parameters['idRoom'] = $show->getRoom()->getRoomID();
+            $parameters['idMovie'] = $show->getMovie()->getMovieID();
             
             $this->connection = Connection::GetInstance();
             $response = $this->connection->ExecuteNonQuery($query, $parameters);
@@ -49,7 +53,7 @@
             $query = "SELECT * FROM ".$this->tableNameShows;
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
-            return $this->toArray($this->parseToObjectTime($resultSet));
+            return $this->toArray($this->parseToObject($resultSet));
             }
             catch(Exception $ex){
             throw $ex;
@@ -62,7 +66,7 @@
             //$parameters['active'] = true;
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
-            return $this->toArray($this->parseToObjectTime($resultSet));
+            return $this->toArray($this->parseToObject($resultSet));
             }
             catch(Exception $ex){
             throw $ex;
@@ -92,8 +96,8 @@
             $parameters['start'] = $show->getStart();
             $parameters['end'] = $show->getEnd();
             $parameters['spectators'] = $show->getSpectators();
-            $parameters['idRoom'] = $show->getIdRoom();
-            $parameters['idMovie'] = $show->getIdMovie();
+            $parameters['idRoom'] = $show->getRoom()->getRoomID();
+            $parameters['idMovie'] = $show->getMovie()->getMovieID();
             $parameters['active'] = $show->getActive();
             $parameters['idShow'] = $show->getIdShow();
             
@@ -128,7 +132,7 @@
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query,$parameters);
             
-            return $this->parseToObjectTime($resultSet);
+            return $this->parseToObject($resultSet);
         }
         catch(Exception $ex){
             throw $ex;
@@ -158,7 +162,7 @@
                 $parameters['idMovie'] = $idMovie;
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query, $parameters);
-                return $this->toArray($this->parseToObjectTime($resultSet));
+                return $this->toArray($this->parseToObject($resultSet));
                 }
                 catch(Exception $ex){
                 throw $ex;
@@ -169,20 +173,12 @@
         $value = is_array($value) ? $value : [];
         $resp = array_map(function($p){
 
-            return new Show ($p['dateSelected'],$p['startsAt'],$p['endsAt'],$p['idRoom'],$p['idMovie'],$p['spectators'],$p['idShow']);
-            }, $value);
+            $DAOMovie = new DAOMovie();
+            $movie = $DAOMovie->getById($p['idMovie']);
+            
+            $DAORoom = new DAORoom();
+            $room = $DAORoom->getById($p['idRoom']);
 
-        if(empty($resp)){
-            return $resp;
-        }
-        else {
-        return count($resp) > 1 ? $resp : $resp['0'];
-        }
-    }
-
-    protected function parseToObjectTime($value) {
-        $value = is_array($value) ? $value : [];
-        $resp = array_map(function($p){
             $aux = new DateTime($p['dateSelected']);
             $p['dateSelected'] = $aux->format('Y-m-d');
 
@@ -191,7 +187,7 @@
 
             $aux2 = new DateTime($p['endsAt']);
             $p['endsAt'] = $aux2->format('H:i:s');
-            return new Show ($p['dateSelected'],$p['startsAt'],$p['endsAt'],$p['idRoom'],$p['idMovie'],$p['spectators'],$p['isActive'],$p['idShow']);
+            return new Show ($p['dateSelected'],$p['startsAt'],$p['endsAt'],$room,$movie,$p['spectators'],$p['isActive'],$p['idShow']);
             }, $value);
 
         if(empty($resp)){

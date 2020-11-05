@@ -4,12 +4,13 @@
   use \Exception as Exception;
   use Models\Cinema as Cinema;
   use DB\PDO\Connection as Connection;
+  use DB\Interfaces\IDAOCinema as IDAOCinema;
 
-  class DAOCinema{
+  class DAOCinema implements IDAOCinema{
     private $connection;
     private $tableName ='CINEMAS';
 
-    public function add($cinema){
+    public function add(Cinema $cinema){
       try{
         $query = "INSERT INTO ".$this->tableName." 
         (cinemaName,adress,adressNumber,openning,closing,isActive)

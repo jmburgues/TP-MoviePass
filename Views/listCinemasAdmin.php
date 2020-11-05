@@ -35,7 +35,7 @@
                         <li style="list-style:none"><strong>Room Name:</strong> <?php echo $room->getName() ?></li>
                         <li style="list-style:none"><strong>Room Capacity:</strong> <?php echo $room->getCapacity() ?></li>
                         <li style="list-style:none"><strong>Room Price:</strong> <?php echo $room->getPrice() ?></li>
-                        <li style="list-style:none"><strong>Room Cinema: </strong><?php echo $room->getIDCinema() //var($this->DAORoom->getByCinema($room->getIDCinema())[0]->getName())  ?></li>
+                        <li style="list-style:none"><strong>Room Cinema: </strong><?php echo $room->getCinema()->getId() //var($this->DAORoom->getByCinema($room->getCinema()->getId())[0]->getName())  ?></li>
 
                     </ul>  
                 </div>

@@ -14,7 +14,7 @@
         </div>
         <div class="form-group row"> 
             <div class="col-sm-10">
-                <input type="hidden" class="form-control" name="IDCinema" value=<?php echo $currentRoom->getIDCinema() ?> >
+                <input type="hidden" class="form-control" name="IDCinema" value=<?php echo $currentRoom->getCinema()->getId() ?> >
             </div>
         </div>
         <div class="form-group row"> 

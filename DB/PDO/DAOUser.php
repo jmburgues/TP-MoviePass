@@ -4,12 +4,13 @@
   use \Exception as Exception;
   use Models\User as User;
   use DB\PDO\Connection as Connection;
+  use DB\Interfaces\IDAOUser as IDAOUser;
 
-  class DAOUser{
+  class DAOUser implements IDAOUser{
     private $connection;
     private $tableName ='USERS';
 
-    public function add($user){
+    public function add(User $user){
       try{
         $query = "INSERT INTO ".$this->tableName." (username,pass,email,birthdate,dni,userRole)
         values(:userName, :password, :email,:birthDate, :dni, :userRole);";

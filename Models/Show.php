@@ -1,5 +1,7 @@
 <?php
 namespace Models;
+use Models\Room as Room;
+use Models\Movie as Movie;
 
 class Show
 {
@@ -7,26 +9,26 @@ class Show
     private $date;
     private $start;
     private $end;
-    private $idRoom;
-    private $idMovie;
+    private $room;
+    private $movie;
     private $spectators;
     private $active;
     
-    function __construct($date='', $start='', $end='' ,$idRoom='', $idMovie='', $spectators='', $active=true, $idShow='')
+    function __construct($date='', $start='', $end='' ,Room $room, Movie $movie, $spectators='', $active=true, $idShow='')
     {
         $this->date = $date;
         $this->start = $start;
         $this->end = $end;
-        $this->idRoom = $idRoom;
-        $this->idMovie = $idMovie;
+        $this->room = $room;
+        $this->movie = $movie;
         $this->spectators = $spectators;
         $this->active = $active;
-        $this->idShow =  $idShow; //no es incremental porque lo recibe de la API
+        $this->idShow =  $idShow; 
     }
 
-    public function getIdRoom()
+    public function getRoom()
     {
-        return $this->idRoom;
+        return $this->room;
     }
 
     public function getStart()
@@ -49,9 +51,9 @@ class Show
         return $this->date;
     }
     
-    public function getIdMovie()
+    public function getMovie()
     {
-        return $this->idMovie;
+        return $this->movie;
     }
 
     public function getActive()
@@ -73,9 +75,9 @@ class Show
     {
         $this->active = $active;
     }
-    public function setIdMovie($idMovie)
+    public function setMovie($movie)
     {
-        $this->idMovie = $idMovie;
+        $this->movie = $movie;
     }
 
     public function setDate($date)
@@ -88,9 +90,9 @@ class Show
         $this->idShow = $idShow;
     }
 
-    public function setIdRoom($idRoom)
+    public function setRoom($room)
     {
-        $this->idRoom = $idRoom;
+        $this->room = $room;
     }
 
     public function setStart($start)

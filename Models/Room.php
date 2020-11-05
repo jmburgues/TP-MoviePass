@@ -1,21 +1,22 @@
 <?php
 
 namespace Models;
+use Models\Cinema as Cinema;
 
 class Room
 {
     private $ID;
     private $name;
     private $capacity;
-    private $IDCinema;
+    private $cinema;
     private $price;
     private $roomType;
     private $active;
 
-    function __construct($name='',$capacity='',$IDCinema='',$price='',$roomType='',$active=true,$ID=''){
+    function __construct($name='',$capacity='',Cinema $cinema,$price='',$roomType='',$active=true,$ID=''){
         $this->name = $name;
         $this->capacity = $capacity;
-        $this->IDCinema = $IDCinema;
+        $this->cinema = $cinema;
         $this->price = $price;
         $this->roomType = $roomType;
         $this->active = $active;
@@ -31,8 +32,8 @@ class Room
         return $this->capacity;
     }
 
-    public function getIDCinema(){
-        return $this->IDCinema;
+    public function getCinema(){
+        return $this->cinema;
     }
     public function getPrice(){
         return $this->price ;
@@ -75,8 +76,8 @@ class Room
         $this->capacity = $capacity;
     }
 
-    public function setIDCinema($IDCinema){
-        $this->IDCinema = $IDCinema;
+    public function setCinema($cinema){
+        $this->cinema = $cinema;
     }
 
 

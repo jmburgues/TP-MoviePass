@@ -18,7 +18,7 @@
                         <select class="custom-select"  name="idRoom" id="idRoom">
                         <?php foreach($rooms as $room){
                         ?>
-                        <option <?php if($room->getRoomID() == $currentShow->getIdRoom()) echo "selected" ?> value="<?php echo $room->getRoomID()?>"><?php echo $room->getName()?></option> 
+                        <option <?php if($room->getRoomID() == $currentShow->getRoom()->getRoomID()) echo "selected" ?> value="<?php echo $room->getRoomID()?>"><?php echo $room->getName()?></option> 
                         <?php } ?>    
                         </select>
                     </div>
@@ -29,7 +29,7 @@
                         <select class="custom-select" name="idMovie" id="idMovie">
                         <?php foreach($movies as $movie){
                         ?>
-                        <option <?php if($movie->getMovieID() == $currentShow->getIdMovie()) echo "selected" ?> value="<?php echo $movie->getMovieID()?>"><?php echo $movie->getTitle()?></option> 
+                        <option <?php if($movie->getMovieID() == $currentShow->getMovie()->getMovieID()) echo "selected" ?> value="<?php echo $movie->getMovieID()?>"><?php echo $movie->getTitle()?></option> 
                         <?php } ?>    
                         </select>
                     </div>

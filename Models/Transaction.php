@@ -1,54 +1,52 @@
 <?php
 
 namespace Models;
-
+use Models\User as User;
 class Transaction
 {
-    private $transactionID;
-    private $percentage;
-    private $description;
-    private $days;
+    private $idTransaction;
+    private $user;
+    private $date;
 
-    function __construct($percentage, $description, $days)
+    function __construct(User $user, $date , $idTransaction='')
     {
-        $this->transactionID = 1;//hacer incremental
-        $this->percentage = $percentage;
-        $this->description = $description;
-        $this->days = $days;
+        $this->idTransaction = $idTransaction;
+        $this->user = $user;
+        $this->date = $date;
     }
 
-    public function getTransactionID()
+    public function getIdTransaction()
     {
-        return $this->transactionID;
+        return $this->idTransaction;
     }
-    public function getPercentage()
+    public function getUser()
     {
-        return $this->percentage;
+        return $this->user;
     }
     public function getDescription()
     {
         return $this->description;
     }
-    public function getDays()
+    public function getDate()
     {
-        return $this->days;
+        return $this->date;
     }
 
-    public function setTransactionID($transactionID)
+    public function setIdTransaction($idTransaction)
     {
-        $this->$transactionID = $transactionID;
+        $this->$idTransaction = $idTransaction;
     }
-    public function setPercentage($percentage)
+    public function setUser($user)
     {
-        $this->percentage = $percentage;
+        $this->user = $user;
     }
     public function setDescription($description)
     {
         $this->description = $description;
     }
-    public function setDays($days)
+    public function setDate($date)
     {
-        $this->days= $days;
+        $this->date= $date;
     }
 }
 ?>

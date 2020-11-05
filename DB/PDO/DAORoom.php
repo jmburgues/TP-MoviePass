@@ -3,14 +3,17 @@
 
   use \Exception as Exception;
   use Models\Room as Room;
+  use Models\Cinema as Cinema;
+  use DB\PDO\DAOCinema as DAOCinema;
+  use DB\Interfaces\IDAORoom as IDAORoom;
   use DB\PDO\Connection as Connection;
 
 
-  class DAORoom{
+  class DAORoom implements IDAORoom{
     private $connection;
     private $tableNameRooms ='ROOMS';
 
-    public function add($room){
+    public function add(Room $room){
         try{
             $query = "INSERT INTO ".$this->tableNameRooms."
             (roomName, capacity, idCinema, price, roomType)
@@ -19,7 +22,7 @@
 
             $parameters['name'] = $room->getName();
             $parameters['capacity'] = $room->getCapacity();
-            $parameters['IDCinema'] = $room->getIDCinema();
+            $parameters['IDCinema'] = $room->getCinema()->getId();
             $parameters['price'] = $room->getPrice();
             $parameters['roomType'] = $room->getRoomType();
             
@@ -70,7 +73,7 @@
               $parameters['id'] = $room->getRoomID();
               $parameters['name'] = $room->getName();
               $parameters['capacity'] = $room->getCapacity();
-              $parameters['IDCinema'] = $room->getIDCinema();
+              $parameters['IDCinema'] = $room->getCinema()->getId();
               $parameters['price'] = $room->getPrice();
               $parameters['roomType'] = $room->getRoomType();
               $parameters['active'] = $room->getActive();
@@ -143,8 +146,11 @@
         protected function parseToObject($value) {
             $value = is_array($value) ? $value : [];
             $resp = array_map(function($p){
+
+            $DAOCinema = new DAOCinema();
+            $cinema = $DAOCinema->getById($p['idCinema']);
         
-                return new Room ($p['roomName'],$p['capacity'],$p['idCinema'],$p['price'],$p['roomType'],$p['isActive'], $p['idRoom']);
+                return new Room ($p['roomName'],$p['capacity'],$cinema,$p['price'],$p['roomType'],$p['isActive'], $p['idRoom']);
             }, $value);
             
             if(empty($resp)){
