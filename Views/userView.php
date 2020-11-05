@@ -16,7 +16,9 @@
                     <li><strong>cardBank:  </strong><?php echo $cardBank ?></li>
                     <li><strong>expirationDate:  </strong><?php echo $expirationDate ?></li>
                     <li><strong>expirationYear:  </strong><?php echo $expirationYear ?></li>
-                    <li><strong>idShow:  </strong><?php echo $idShow ?></li>
+                    <li><strong>Show Start:  </strong><?php echo $showData->getStart() ?></li>
+                    <li><strong>Show End:  </strong><?php echo $showData->getEnd() ?></li>
+                    <li><strong>Cinema:  </strong><?php echo $cinema ?></li>
                 </ul>   
                 <div class="offset-8"><?php echo $qr?></div>
             </div>

@@ -1,9 +1,6 @@
 <?php
     namespace Controllers;
-  //  use PHPMailer\PHPMailer\PHPMailer;
-    use Models\User as User;
-    use DB\PDO\DAOUser as DAOUser;
-    use DB\PDO\DAOGenre as DAOGenre;
+
     use DB\PDO\DAOMovie as DAOMovie;
     use DB\PDO\DAOShow as DAOShow;
     use DB\PDO\DAORoom as DAORoom;
@@ -11,16 +8,13 @@
   //  use Endroid\QrCode\QrCode;
     class TicketController
     {
-        private $DAOUser;
-        private $DAOGenre;
+
         private $DAOMovie;
         private $DAOShow;
         private $DAORoom;
 
-        public function __construct()
-        {
-            $this->DAOUser = new DAOUser();
-            $this->DAOGenre = new DAOGenre();
+        public function __construct(){
+
             $this->DAOMovie = new DAOMovie();
             $this->DAOShow = new DAOShow();
             $this->DAORoom = new DAORoom();
@@ -77,7 +71,6 @@
             ViewController::navView($genreList = null, $moviesYearList = null, null);
             $min = 1;
             $max = $this->DAORoom->getById($this->DAOShow->getById($idShow)->getIdRoom())->getCapacity()-$this->DAOShow->getById($idShow)->getSpectators();
-            print_r($max); 
             include VIEWS_PATH.'numberTickets.php';
         }
 
@@ -91,10 +84,9 @@
             
             $movieFromShow = $this->DAOMovie->getMovieFromShowByIdShow($idShow);
             $showData = $this->DAOShow->getById($idShow);
-
+            $cinema = $this->DAOShow->getCinemaNameFromShows($idShow);
             
-            $dataForQR = $name."%".$movieFromShow[0]->getTitle()."%".$showData->getStart()."%".$showData->getEnd()."%".$showData->getDate();
-            
+            $dataForQR = $name."%".$movieFromShow[0]->getTitle()."%".$showData->getStart()."%".$showData->getEnd()."%".$showData->getDate()."%".$cinema;
             $qr = $this->generateQR($dataForQR);
             
             $userName = $_SESSION['loggedUser'];
