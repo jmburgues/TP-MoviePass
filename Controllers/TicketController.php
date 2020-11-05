@@ -84,12 +84,17 @@
         
         public function confirmTicket($creditNumber, $name, $cvc,  $expirationDate, $expirationYear, $idShow, $cardBank){
             ViewController::navView($genreList = null, $moviesYearList = null, null);
-            print_r($idShow);
-            print_r($cardBank);
+
             $showCardLast = str_replace(range(0,9), "*", substr($creditNumber, 0, -4)) .  substr($creditNumber, -4);
 
             $name = str_replace(' ', '', $name);
-            $dataForQR = $name."%.".$cvc."%".$creditNumber."%".$expirationDate."%".$expirationYear."%".$cardBank;
+            
+            $movieFromShow = $this->DAOMovie->getMovieFromShowByIdShow($idShow);
+            $showData = $this->DAOShow->getById($idShow);
+
+            
+            $dataForQR = $name."%".$movieFromShow[0]->getTitle()."%".$showData->getStart()."%".$showData->getEnd()."%".$showData->getDate();
+            
             $qr = $this->generateQR($dataForQR);
             
             $userName = $_SESSION['loggedUser'];
