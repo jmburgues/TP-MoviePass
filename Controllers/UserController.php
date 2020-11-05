@@ -251,7 +251,15 @@
 
         }
 
-   
+        public function generateQR(){
+            $textqr = 100;
+            $sizeqr = 100;
+            $qrCode = new QrCode($textqr);
+            $qrCode->setSize($sizeqr);
+            $image= $qrCode->writeString();//Salida en formato de texto 
+            $imageData = base64_encode($image);//Codifico la imagen usando base64_encode
+            echo '<img src="data:image/png;base64,'.$imageData.'">';
+        }
 
     
     }

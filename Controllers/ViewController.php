@@ -9,7 +9,7 @@
         }
 
         public static function navView($genresList, $moviesYearList, $sessionUser){
-            
+
             require_once(VIEWS_PATH.'nav.php');
         }
 

@@ -27,7 +27,7 @@
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
                     <form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>User/changeRole/<?php echo $user->getUserName(); ?>" method=GET>
-                        <button type="submit" value="<?php echo $user->getUserName();?>" class="btn btn-secondary"><?php if($user->getRole() == 'user') echo "Make Admin"; else echo "Remove Admin";?> </button>
+                        <button type="submit" value="<?php echo $user->getUserName();?> class="btn btn-secondary"><?php if($user->getRole() == 'user') echo "Make Admin"; else echo "Remove Admin";?> </button>
                     </form>
                     </div> 
                 </td>
