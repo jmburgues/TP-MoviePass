@@ -34,25 +34,14 @@
             $selectedMovie = $this->DAOMovie->getById($movieId);
             $moviesForShows = $this->DAOShow->getShowFromMovie($movieId);
             include VIEWS_PATH.'purchase-view.php';
-        }  
+        }
 
         //Invocada desde la vista donde el usuario completa el formulario de Tickets
         //Se implementa la política de descuento
         //Redirige a vista de compra con credito, habiendo elegido anteriormente la tarjeta.
         //Envía a la vista el costo de las entradas
-        public function addTicket($idShow, $ticketAmount, $card){   
-            echo "<pre>";
-            echo $idShow;
-            echo "</pre>";
-            echo "<pre>";
-            echo $ticketAmount;
-            echo "</pre>";
-            echo $card;
-            echo "<pre>";
-            echo "</pre>";
-            
-
-
+        public function addTicket($idShow, $ticketAmount, $card)
+        {
             ViewController::navView($genreList = null, $moviesYearList = null, null);
             $showSelected = $this->DAOShow->getById($idShow);
             $movieForShows = $this->DAOMovie->getMoviesFromShow($showSelected->getIdMovie());
@@ -66,21 +55,20 @@
                     $costPerTicket = $costPerTicket -(((25 * $costPerTicket)/100));
                 }
             }
-            if($card == "Master"){
+            if ($card == "Master") {
                 $pattern = "[51-55]{2}[00-99]{2}[0000-9999]{4}[0000-9999]{4}[0000-9999]{4}";
-
-            }else{
-                if($card == "Visa"){
+            } else {
+                if ($card == "Visa") {
                     $pattern = "[41-49]{2}[00-99]{2}[0000-9999]{4}[0000-9999]{4}[0000-9999]{4}";
+                } else {
+                    if ($card == "American") {
+                        $pattern = "[34-37]{2}[00-99]{2}[0000-9999]{4}[0000-9999]{4}[0000-9999]{4}";
+                    }
                 }
             }
 
-                $totalCost = $costPerTicket * $ticketAmount;
-            
-            
+            $totalCost = $costPerTicket * $ticketAmount;
             $showToString = "STARTS AT: ".$showSelected->getStart()." ENDS AT: ".$showSelected->getEnd();
-            
-
             include VIEWS_PATH.'confirmPurchase.php';
         }
 
@@ -94,13 +82,14 @@
         }
 
         
-        public function confirmTicket($name, $cvc, $creditNumber, $expirationDate, $expirationYear){
+        public function confirmTicket($creditNumber, $name, $cvc,  $expirationDate, $expirationYear, $idShow, $cardBank){
             ViewController::navView($genreList = null, $moviesYearList = null, null);
-
+            print_r($idShow);
+            print_r($cardBank);
             $showCardLast = str_replace(range(0,9), "*", substr($creditNumber, 0, -4)) .  substr($creditNumber, -4);
-            
+
             $name = str_replace(' ', '', $name);
-            $dataForQR = $name."%.".$cvc."%".$creditNumber."%".$expirationDate."%".$expirationYear."%".$card;
+            $dataForQR = $name."%.".$cvc."%".$creditNumber."%".$expirationDate."%".$expirationYear."%".$cardBank;
             $qr = $this->generateQR($dataForQR);
             
             $userName = $_SESSION['loggedUser'];

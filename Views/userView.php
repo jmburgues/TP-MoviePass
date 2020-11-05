@@ -11,8 +11,12 @@
             <div class="card card-body  border-dark ">
                 <ul>
                     <li><strong>Name:  </strong><?php echo $name ?></li>
-                    <li><strong>Card:  </strong><?php echo $card ?></li>
-                    <li><strong>Card Number:  </strong><?php echo $showCardLast ?></li>
+                    <li><strong>CVC:  </strong><?php echo $cvc ?></li>
+                    <li><strong>showCardLast:  </strong><?php echo $showCardLast ?></li>
+                    <li><strong>cardBank:  </strong><?php echo $cardBank ?></li>
+                    <li><strong>expirationDate:  </strong><?php echo $expirationDate ?></li>
+                    <li><strong>expirationYear:  </strong><?php echo $expirationYear ?></li>
+                    <li><strong>idShow:  </strong><?php echo $idShow ?></li>
                 </ul>   
                 <div class="offset-8"><?php echo $qr?></div>
             </div>

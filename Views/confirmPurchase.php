@@ -40,9 +40,7 @@
                 <div readolny class="form-group font-weight-bold pt-2" >
                         <label for="cardNumber">Card </label>
                         <input readonly type="text" placeholder= <?php echo $card?> class="form-control" name="cardNumber" required
-                      >
-                    
-                        
+                    >                       
                     </div>
                     <div class="form-group font-weight-bold pt-2" >
                         <label for="cardNumber">Card Number </label>
@@ -93,6 +91,8 @@
                         <br>
                         
                 </div>
+                <input type="hidden" class="form-control" name="show" value=<?php echo $idShow ?> >
+                <input type="hidden" class="form-control" name="card" value=<?php echo $card ?> >
                 <div class="text-center">
                     <input type="submit" class="btn btn-primary bg-danger text-white col-md-3" value="Confirm"></input>
                 </div>

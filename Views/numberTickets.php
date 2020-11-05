@@ -31,6 +31,11 @@
                         <img style="with:90px; height:80px;  margin-left:-2%; margin-right:4%" src="https://www.flaticon.es/svg/static/icons/svg/196/196561.svg">
                         <label class="custom-control-label  mt-4" for="customRadio2">Mastercard</label>
                     </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" value="American" id="customRadio3" name="customRadio" class="custom-control-input" required>
+                        <img style="with:90px; height:80px;  margin-left:-2%; margin-right:4%" src="https://www.flaticon.es/svg/static/icons/svg/349/349228.svg">
+                        <label class="custom-control-label  mt-4" for="customRadio3">American Express</label>
+                    </div>
                     
         <div class="text-center">
             <input type="submit" class="btn btn-primary bg-danger text-white mt-3 col-md-3" value="Buy"></input>
