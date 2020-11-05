@@ -7,6 +7,7 @@
 <div class="container border p-4 col-md-6 form" style="background-color:#FFFFFF; margin-top:6%;">
     <div class="mt-3">
         <form  action="<?php echo FRONT_ROOT ?>Ticket/addTicket" method="POST">
+            <input type="hidden" class="form-control" name="show" value=<?php echo $idShow?> >
             <div class="form-group ">
                 <label for="ticket" ><strong>Number of Tickets </strong></label>
                     <input 

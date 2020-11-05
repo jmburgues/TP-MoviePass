@@ -49,6 +49,17 @@
             ViewController::ownerView($users);
         }
         
+
+        public function userView()
+        {
+
+            ViewController::navView($genreList = null, $moviesYearList = null, null);
+        $userName = $_SESSION['loggedUser'];
+            ViewController::userView($userName);
+        }
+        
+    
+
         public function showLoginForm()
         {
             ViewController::navView($genreList = null,$moviesYearList = null, null);

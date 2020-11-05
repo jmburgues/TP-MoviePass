@@ -20,7 +20,7 @@
 <body>
      <style type="text/css">
           body {
-               background: linear-gradient(to bottom, black, #F30000);
+               background: linear-gradient(to bottom, black, #6A0000);
                background-repeat: no-repeat;
                background-attachment: fixed;
           }      

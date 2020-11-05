@@ -37,13 +37,19 @@
         }  
 
         //Invocada desde la vista donde el usuario completa el formulario de Tickets
-        //Redirige a vista de usuario.
-        public function addTicket()
-        {
+        //Redirige a vista de compra con credito.
+        //Envía a la vista el costo de las entradas
+        public function addTicket($idShow, $ticketAmount){   
             ViewController::navView($genreList = null, $moviesYearList = null, null);
+            $showSelected = $this->DAOShow->getById($idShow);
+            $movieForShows = $this->DAOMovie->getMoviesFromShow($showSelected->getIdMovie());
+            $costPerTicket = $this->DAOShow->getPriceByIdShow($idShow);
+            $costPerTicket= $costPerTicket[0][0];
+            $totalCost = $costPerTicket * $ticketAmount;
+            $showToString = "STARTS AT: ".$showSelected->getStart()." ENDS AT: ".$showSelected->getEnd();
             
-            //Debería crear el ticket
-            ViewController::userView("Hola", "hola", "hoa", "aloh");
+
+            include VIEWS_PATH.'confirmPurchase.php';
         }
 
         //Invocado desde purchase-view, recibe el id del show.
@@ -53,18 +59,26 @@
             $max = $this->DAORoom->getById($this->DAOShow->getById($idShow)->getIdRoom())->getCapacity()-$this->DAOShow->getById($idShow)->getSpectators();
             print_r($max); 
             include VIEWS_PATH.'numberTickets.php';
-            //$max = ($this->DAORoom->getById($value->getIdRoom())->getCapacity()) - $value->getSpectators();    
         }
 
-        public function confirmTicket(){
-            echo "Confirmado";
+        public function confirmTicket($name, $cvc, $creditNumber, $expirationDate, $expirationYear, $card){
+            ViewController::navView($genreList = null, $moviesYearList = null, null);
+
+            $showCardLast = str_replace(range(0,9), "*", substr($creditNumber, 0, -4)) .  substr($creditNumber, -4);
+            
+            $name = str_replace(' ', '', $name);
+            $dataForQR = $name."%.".$cvc."%".$creditNumber."%".$expirationDate."%".$expirationYear."%".$card;
+            $qr = $this->generateQR($dataForQR);
+            
+            $userName = $_SESSION['loggedUser'];
+            include VIEWS_PATH.'userView.php';
         }
 
         
-        public function generateQR(){
-            $aux = "THE%20GAME";
-            $data = "http://api.qrserver.com/v1/create-qr-code/?data=".$aux."&size=250x250";
-            echo "<img src= ".$data."  alt='' title='' />";
+        public function generateQR($text){
+            //$aux = "THE%20GAME";
+            $data = "http://api.qrserver.com/v1/create-qr-code/?data=".$text."&size=250x250";
+            return "<img src= ".$data."  alt='' title='' />";
             
         }
     

@@ -137,8 +137,7 @@
               throw $ex;
             }
           }
-
-
+            
 
         protected function parseToObject($value) {
             $value = is_array($value) ? $value : [];
