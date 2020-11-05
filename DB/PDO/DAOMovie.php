@@ -203,15 +203,15 @@
         
         $query = "SELECT * FROM ".$this->tableNameMoviesGenres." where idMovie = :movieID;";
         $parameters['movieID'] = $p['idMovie'];
-         
+
         $this->connection = Connection::GetInstance();
-         
+        
         $genresIdList = $this->connection->Execute($query,$parameters);
-         
+        
         $DAOGenre = new DAOGenre();
         
         foreach ($genresIdList as $genreId) {
-           
+          
           $genre = $DAOGenre->getById($genreId['idGenre']);
           
           array_push($genres, $genre);
@@ -219,7 +219,7 @@
           
           return new Movie($p['duration'],$p['title'],$genres,$p['poster'],$p['releaseDate'], $p['movieDescription'], $p['idMovie']);
         }, $value);
-           
+          
         if(empty($resp)){
           return $resp;
         }
