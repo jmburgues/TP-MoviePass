@@ -6,6 +6,7 @@
     use DB\PDO\DAOGenre as DAOGenre;
     use DB\PDO\DAOMovie as DAOMovie;
     use DB\PDO\DAOShow as DAOShow;
+    use DB\PDO\DAORoom as DAORoom;
     
   //  use Endroid\QrCode\QrCode;
     class TicketController
@@ -14,6 +15,7 @@
         private $DAOGenre;
         private $DAOMovie;
         private $DAOShow;
+        private $DAORoom;
 
         public function __construct()
         {
@@ -21,12 +23,14 @@
             $this->DAOGenre = new DAOGenre();
             $this->DAOMovie = new DAOMovie();
             $this->DAOShow = new DAOShow();
+            $this->DAORoom = new DAORoom();
         }
 
         //Invoca la vista donde el usuario completa el form con los datos para la entrada
         public function showPurchase($movieId)
         {
             ViewController::navView($genreList = null, $moviesYearList = null, null);
+            $userName = $_SESSION['loggedUser'];
             $selectedMovie = $this->DAOMovie->getById($movieId);
             $moviesForShows = $this->DAOShow->getShowFromMovie($movieId);
             include VIEWS_PATH.'purchase-view.php';
@@ -37,7 +41,7 @@
         public function addTicket()
         {
             ViewController::navView($genreList = null, $moviesYearList = null, null);
-            $userName = $_SESSION['loggedUser'];
+            
             //Debería crear el ticket
             ViewController::userView("Hola", "hola", "hoa", "aloh");
         }
@@ -54,6 +58,14 @@
 
         public function confirmTicket(){
             echo "Confirmado";
+        }
+
+        
+        public function generateQR(){
+            $aux = "THE%20GAME";
+            $data = "http://api.qrserver.com/v1/create-qr-code/?data=".$aux."&size=250x250";
+            echo "<img src= ".$data."  alt='' title='' />";
+            
         }
     
     }

@@ -153,12 +153,12 @@
 
         //Retorna los shows en donde se esté dando la película
         public function getShowFromMovie($idMovie){
-         //   SELECT dateSelected, startsAt, endsAt, roomName FROM SHOWS INNER JOIN ROOMS ON SHOWS.idRoom = ROOMS.idRoom WHERE idMovie = 491926;
             try{
-                $query = "SELECT dateSelected, startsAt, endsAt, roomName FROM ". $this->tableNameShows ." INNER JOIN " . $this->tableNameRooms ." ON " . $this->tableNameShows .".idRoom = ".$this->tableNameRooms .".idRoom WHERE idMovie = ". $idMovie .";";
+                $query = "SELECT ". $this->tableNameShows .".* FROM ". $this->tableNameShows ." INNER JOIN " . $this->tableNameRooms ." ON " . $this->tableNameShows .".idRoom = ".$this->tableNameRooms .".idRoom WHERE " . $this->tableNameShows . ".idMovie = :idMovie AND " . $this->tableNameShows .".isActive = 1;";
+                $parameters['idMovie'] = $idMovie;
                 $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query);
-                return $resultSet;
+                $resultSet = $this->connection->Execute($query, $parameters);
+                return $this->toArray($this->parseToObjectTime($resultSet));
                 }
                 catch(Exception $ex){
                 throw $ex;
