@@ -6,13 +6,13 @@ class Movie
 {
     private $duration;
     private $title;
-    private $genre = array();
+    private $genre;
     private $poster;
     private $releaseDate;
     private $description;
     private $movieID;
 
-    function __construct($duration='', $title='',Genre $genre ,$poster='', $releaseDate='', $description='', $movieID='')
+    function __construct($duration='', $title='',$genre='' ,$poster='', $releaseDate='', $description='', $movieID='')
     {
         $this->duration = $duration;
         $this->title = $title;
