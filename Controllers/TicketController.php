@@ -48,7 +48,7 @@
         public function getMinMax($idShow){
             ViewController::navView($genreList = null, $moviesYearList = null, null);
             $min = 1;
-            $max = $this->DAORoom->getById($this->DAOShow->getById($idShow)->getIdRoom())->getCapacity()-$this->DAOShow->getById($idShow)->getSpectators();
+            $max = $this->DAOshow->getById($idShow)->getRoom()->getCapacity() - $this->DAOshow->getById($idShow)->getSpectators();
             include VIEWS_PATH.'numberTickets.php';
         }
 
@@ -61,7 +61,7 @@
         {
             ViewController::navView($genreList = null, $moviesYearList = null, null);
             $showSelected = $this->DAOShow->getById($idShow);
-            $movieForShows = $this->DAOMovie->getMoviesFromShow($showSelected->getIdMovie());
+            $movieForShows = $this->DAOMovie->getMoviesFromShow($showSelected->getMovie()->getMovieID());
             $costPerTicket = $this->DAOShow->getPriceByIdShow($idShow);
             $costPerTicket= $costPerTicket[0][0];
             $patern;
