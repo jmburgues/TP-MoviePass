@@ -118,19 +118,14 @@
             $dataForQR = str_replace(' ', '%20', $dataForQR);
             $qr = $this->generateQR($dataForQR);            
             
-            $ticket = new ticket();
+            $ticket = new Ticket();
             $ticket->setQRCode($qr);
             $ticket->setIdShow($idShow);
             $ticket->setTdTransaction($idTransaction);
             
             $this->DAOTicket->add($ticket);
 
-
-
-
-
-            //AGREGARLE LA DIRECCION Y LA SALA DEL CINE
-            
+             //AGREGARLE LA DIRECCION Y LA SALA DEL CINE
             $userName = $_SESSION['loggedUser'];
             include VIEWS_PATH.'userView.php';
         }
