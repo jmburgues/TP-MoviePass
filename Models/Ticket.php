@@ -49,10 +49,6 @@ class Ticket
         $this->idTicket = $idTicket;
     }
     
-    public function setIdTicket($idTicket)
-    {
-        $this->idTicket = $idTicket;   
-    }
 
     public function setQRCode($QRCode){
         $this->QRCode = $QRCode;

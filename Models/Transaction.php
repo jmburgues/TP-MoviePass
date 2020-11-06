@@ -30,7 +30,7 @@ class Transaction
 
     public function setIdTransaction($idTransaction)
     {
-        $this->$idTransaction = $idTransaction;
+        $this->idTransaction = $idTransaction;
     }
     public function setUser($user)
     {

@@ -141,33 +141,30 @@
     
     //Retorna el nombre del cine dependiendo el show
     public function getCinemaNameFromShows($idShow){
-        try{
+        try {
             $query = "SELECT ".$this->tableNameCinemas .".cinemaName FROM ". $this->tableNameShows ." INNER JOIN ". $this->tableNameRooms ." ON ". $this->tableNameRooms .".idRoom = ". $this->tableNameShows .".idRoom INNER JOIN ". $this->tableNameCinemas ." ON ". $this->tableNameCinemas .".idCinema = ". $this->tableNameRooms .".idCinema WHERE ". $this->tableNameShows .".idShow = ". $idShow ." ;";
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
             return $resultSet[0]['cinemaName'];
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }   
+    
+
+    //Retorna los shows en donde se esté dando la película
+    public function getShowFromMovie($idMovie){
+        try{
+            $query = "SELECT ". $this->tableNameShows .".* FROM ". $this->tableNameShows ." INNER JOIN " . $this->tableNameRooms ." ON " . $this->tableNameShows .".idRoom = ".$this->tableNameRooms .".idRoom WHERE " . $this->tableNameShows . ".idMovie = :idMovie AND " . $this->tableNameShows .".isActive = 1;";
+            $parameters['idMovie'] = $idMovie;
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query, $parameters);
+            return $this->toArray($this->parseToObject($resultSet));
             }
             catch(Exception $ex){
             throw $ex;
-            }
-    }
-
-   
-    
-
-        //Retorna los shows en donde se esté dando la película
-        public function getShowFromMovie($idMovie){
-            try{
-                $query = "SELECT ". $this->tableNameShows .".* FROM ". $this->tableNameShows ." INNER JOIN " . $this->tableNameRooms ." ON " . $this->tableNameShows .".idRoom = ".$this->tableNameRooms .".idRoom WHERE " . $this->tableNameShows . ".idMovie = :idMovie AND " . $this->tableNameShows .".isActive = 1;";
-                $parameters['idMovie'] = $idMovie;
-                $this->connection = Connection::GetInstance();
-                $resultSet = $this->connection->Execute($query, $parameters);
-                return $this->toArray($this->parseToObject($resultSet));
-                }
-                catch(Exception $ex){
-                throw $ex;
-            }
         }
+    }
 
         public function getPriceByIdShow($idShow){
             try{

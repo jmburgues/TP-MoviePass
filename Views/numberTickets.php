@@ -17,6 +17,7 @@
                         echo "disabled";
                     }
                 ?>
+                
             type="number" min = "<?php echo $min ?>" max ="<?php echo $max ?>" class="form-control"  placeholder="Number of Tickets" name="tickets" required>
             </div>
             

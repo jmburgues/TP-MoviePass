@@ -9,6 +9,7 @@
     class DAOTicket{
         private $connection;
         private $tableNameTicket = "TICKETS";
+        private $tableNameShow = "SHOWS";
 
         //Ingresa un nuevo ticket en la table TICKETS
         public function add($ticket)    {
@@ -20,11 +21,18 @@
                 (:QRCode, :idShow, :idTransaction);";
                 
                 $parameters['QRCode'] = $ticket->getQRCode();
-                $parameters['idShow'] = $ticket->getIdShow();
-                $parameters['idTransaction'] = $ticket->getTdTransaction();
+                $parameters['idShow'] = $ticket->getShow()->getIdShow();
+                $parameters['idTransaction'] = $ticket->getTransaction()->getIdTransaction();
 
                 $this->connection = Connection::GetInstance();
                 $response = $this->connection->ExecuteNonQuery($query, $parameters);
+                
+                $query2 = "UPDATE " .$this->tableNameShow . " SET spectators = spectators+1 WHERE idShow = :idShow;";
+                $parameters2['idShow'] = $ticket->getShow()->getIdShow();
+                
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query2, $parameters2);
+
                 return $response;
             }
             catch(Exception $ex){
@@ -39,7 +47,7 @@
                 $query = "SELECT * FROM ".$this->tableNameTicket;
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query);
-             
+            
                 return $resultSet;
                 }
                 catch(Exception $ex){

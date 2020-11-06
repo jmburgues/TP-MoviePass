@@ -22,6 +22,8 @@
 
     use Models\Transaction as Transaction;   
     use Models\Ticket as Ticket;   
+    use Models\Show as Show;   
+    use Models\User as User;   
 
 
     
@@ -80,7 +82,7 @@
             //Politica de descuento:
             $actualDate = date('l');
             if ($ticketAmount >= 2) {
-                if ($actualDate == "Tuesday" || $actualDate == "Wednesday") {
+                if ($actualDate == "Tuesday" || $actualDate == "Friday") {
                     $costPerTicket = $costPerTicket -(((25 * $costPerTicket)/100));
                 }
             }
@@ -100,18 +102,18 @@
             include VIEWS_PATH.'confirmPurchase.php';
         }
 
-        public function confirmTicket($creditNumber, $name, $cvc,  $expirationDate, $expirationYear, $idShow, $cardBank){
+        public function confirmTicket($costPerTicket, $totalCost, $ticketAmount, $creditNumber, $name, $cvc,  $expirationDate, $expirationYear, $idShow, $cardBank)
+        {
             ViewController::navView($genreList = null, $moviesYearList = null, null);
 
             $showCardLast = str_replace(range(0,9), "*", substr($creditNumber, 0, -4)) .  substr($creditNumber, -4);
 
-            $name = str_replace(' ', '', $name);
+            $nameString = str_replace(' ', '', $name);
             
             $movieFromShow = $this->DAOMovie->getMovieFromShowByIdShow($idShow);
             $showData = $this->DAOShow->getById($idShow);
-            $cinema = $this->DAOShow->getCinemaNameFromShows($idShow);
-            
-            $dataForQR = $name." ".$movieFromShow[0]->getTitle()." ".$showData->getStart()." ".$showData->getEnd()." ".$showData->getDate()." ".$cinema;
+
+            $dataForQR = "N ".$nameString." M ".$movieFromShow[0]->getTitle()." S ".$showData->getStart()." E ".$showData->getEnd()." D ".$showData->getDate()." R ".$showData->getRoom()->getName()." T ".$ticketAmount;
 
             $d = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
             $time = $d->format('Y-m-d H:i:s');
@@ -120,30 +122,38 @@
             $transaction->setDate($time);
         
             $this->DAOTransaction->p_add_transaction($transaction);
+            
             $idTransaction = $this->DAOTransaction->call();      
+            
+            $transaction->setIdTransaction($idTransaction);
 
             $dataForQR = str_replace(' ', '%20', $dataForQR);
             $qr = $this->generateQR($dataForQR);            
             
-            $ticket = new Ticket($showData,$transaction);
-            $ticket->setQRCode($qr);
+            if($ticketAmount != 1){
+                for ($i=0; $i < $ticketAmount ; $i++) { 
+                    $ticket = new Ticket($showData,$transaction);
+                    $ticket->setQRCode($qr);            
+                    $this->DAOTicket->add($ticket);
+                }
+            }else{
+                    $ticket = new Ticket($showData,$transaction);
+                    $ticket->setQRCode($qr);            
+                    $this->DAOTicket->add($ticket);
+            }
             
-            $this->DAOTicket->add($ticket);
-
+            $this->sendMail($name, $costPerTicket, $totalCost, $ticketAmount, $showData, $qr);
              //AGREGARLE LA DIRECCION Y LA SALA DEL CINE
             $userName = $_SESSION['loggedUser'];
             include VIEWS_PATH.'userView.php';
-
-
         }
 
-        private function sendMail(){
 
+
+
+        private function sendMail($name, $costPerTicket, $totalCost, $ticketAmount, Show $showData, $qr){
             $userName = $_SESSION['loggedUser'];
-            $user = $this->DAOUser->getByUserName($userName);
-
-            
-
+            $user = $this->DAOUser->getByUserName($userName);            
             $mail = new PHPMailer(true);
 
             try {
@@ -159,7 +169,8 @@
             
                 //Recipients
                 $mail->setFrom(MAIL_USR.'@'.MAIL_DOMAIN, 'Mailer');
-                $mail->addAddress($user->getEmail(), $user->getName());     // Add a recipient
+              //  $mail->addAddress($user->getEmail(), $user->getUserName());     // Add a recipient
+                $mail->addAddress('@gmail.com', $user->getUserName());     // Add a recipient
                 $mail->addReplyTo('info@TheMoviePass.com', 'Information');
             
                 // Attachments
@@ -168,9 +179,16 @@
             
                 // Content
                 $mail->isHTML(true);                                  // Set email format to HTML
-                $mail->Subject = 'Here is the subject';
-                $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-                $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+                $mail->Subject = 'Succes purchase information';
+                $mail->Body    = 'Thank you for your purchase ' .$name. '! <br><br> <h2>Purchase details</h2> <br> 
+                <ul><li>Ticket cost: '.$costPerTicket.'</li><li>Quantity bought: '.$ticketAmount.'</li><li>Total import: '.$totalCost.'</li></ul>
+                <h3>Show details: </h3><br>
+                <ul><li>Cinema: '.$showData->getRoom()->getCinema()->getName().'</li><li>Address: '.$showData->getRoom()->getCinema()->getAddress().'</li><li>Room: '.$showData->getRoom()->getName().'</li><li>Movie: '.$showData->getMovie()->getTitle().'</li><li>Starts: '.$showData->getStart().'</li><li>End: '.$showData->getEnd().'</li></ul><br>'.$qr;
+                
+                $mail->AltBody = 'Thank you for your purchase ' .$name. '! Purchase details
+                Ticket cost: '.$costPerTicket.'Quantity bought: '.$ticketAmount.'Total import: '.$totalCost.'
+                Show details: 
+                Cinema: '.$showData->getRoom()->getCinema()->getName().'Address: '.$showData->getRoom()->getCinema()->getAddress().'Room: '.$showData->getRoom()->getName().'Movie: '.$showData->getMovie()->getTitle().'Starts: '.$showData->getStart().'End: '.$showData->getEnd().' '.$qr;
             
                 $mail->send();
                 echo 'Message has been sent';
@@ -182,7 +200,6 @@
 
         
         public function generateQR($text){
-            //$aux = "THE%20GAME";
             $data = "http://api.qrserver.com/v1/create-qr-code/?data=".$text."&size=250x250";
             return "<img src= ".$data."  alt='' title='' />";
             

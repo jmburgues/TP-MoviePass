@@ -35,13 +35,10 @@
         }else{
             $shows[0] = $aux;
         }
-
         $auxMovie = new DAOMovie();
         $auxCinema = new DAOCinema();
         $auxRoom = new DAORoom();
         $auxCinemaName = new DAOShow();
-
-
 
       //  include VIEWS_PATH.'showAddView.php';
         ViewController::navView($genreList=null,$moviesYearList=null,null);

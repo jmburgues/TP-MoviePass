@@ -20,7 +20,6 @@
             
             <li><strong>Cost per ticket: </strong><?php print_r($costPerTicket);?> <?php ?></li>
             <li><strong>Total cost: </strong> <?php print_r($totalCost);?><?php ?></li>
-            <li><strong>Card Type: </strong> <?php print_r($cardBank);?><?php ?></li>
     
         </ul>  
     </div>
@@ -34,6 +33,10 @@
                 <p class="text-center" ><strong>Credit Card</strong></p>
                     
                 <form action="<?php echo FRONT_ROOT ?>Ticket/confirmTicket" method="POST">
+
+                <input hidden type="number" value= <?php echo $costPerTicket?> class="form-control" name="costPerTicket" >
+                <input hidden type="number" value= <?php echo $totalCost?> class="form-control" name="totalCost" >
+                <input hidden type="number" value= <?php echo $ticketAmount?> class="form-control" name="ticketAmount" >
                 <div readolny class="form-group font-weight-bold pt-2" >
                         <label for="cardNumber">Card </label>
                         <input readonly type="text" placeholder= <?php echo $cardBank?> class="form-control" name="cardNumber" required

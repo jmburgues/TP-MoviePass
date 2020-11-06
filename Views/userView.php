@@ -18,7 +18,7 @@
                     <li><strong>expirationYear:  </strong><?php echo $expirationYear ?></li>
                     <li><strong>Show Start:  </strong><?php echo $showData->getStart() ?></li>
                     <li><strong>Show End:  </strong><?php echo $showData->getEnd() ?></li>
-                    <li><strong>Cinema:  </strong><?php echo $cinema ?></li>
+                    <li><strong>Cinema:  </strong><?php echo $showData->getRoom()->getCinema()->getName() ?></li>
                 </ul>   
                 <div class="offset-8"><?php echo $qr?></div>
             </div>
