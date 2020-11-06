@@ -17,7 +17,7 @@
 
         <div class="col mt-5"> 
             <form action="<?php echo FRONT_ROOT?>Sale/showSales" method="POST">
-                <input style="font-style: italic" type ="submit" disabled class="btn btn-primary bg-danger  text-black mt-5 col-md-7 offset-md-3  " value="Sale Stats (Coming soon)" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
+                <input type ="submit" class="btn btn-primary bg-danger  text-black mt-5 col-md-7 offset-md-3  " value="Manage Sales" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
                 </input>
             </form>
         </div>

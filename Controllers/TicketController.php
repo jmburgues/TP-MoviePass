@@ -31,6 +31,7 @@
             $this->DAOShow = new DAOShow();
             $this->DAORoom = new DAORoom();
             $this->DAOTransaction = new DAOTransaction();
+            $this->DAOTicket = new DAOTicket();
         }
 
         //Invoca la primer vista donde el usuario completa el form con los datos para la entrada

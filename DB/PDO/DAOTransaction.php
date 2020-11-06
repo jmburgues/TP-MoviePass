@@ -11,47 +11,7 @@
     private $connection;
     private $tableNameTransaction = "TRANSACTIONS";
 
-    public function add($transaction)    {
-        try 
-        {
-            $query = "INSERT INTO ".$this->tableNameTransaction."
-            (username, transacctionDate )
-            values
-            (:username, :date );";
-            
-            $parameters['username'] = $transaction->getUserName();
-            $parameters['date'] = $transaction->getDate();
-
-            $this->connection = Connection::GetInstance();
-            $response = $this->connection->ExecuteNonQuery($query, $parameters);
-            return $response;
-        }
-        catch(Exception $ex){
-            throw $ex;
-        }
-    }
-/*
-    public function p_add_transaction($username, $dateTransaction, $p_idTRansaction)    {
-        try 
-        {
-            $query = "CREATE PROCEDURE p_add_transaction (:username VARCHAR(20), :dateTransaction DateTime, OUT ".$p_idTRansaction." INT BEGIN INSERT INTO ".$this->tableNameTransaction." (username, transacctionDate ) VALUES (:username, :dateTransaction); SET ".$p_idTRansaction." = LAST_INSERT_ID(); END; $$";
-            
-            
-            $parameters['username'] = $username;
-            $parameters['dateTransaction'] = $dateTransaction;
-
-            $this->connection = Connection::GetInstance();
-            $response = $this->connection->ExecuteNonQuery($query, $parameters);
-    
-            return $p_idTRansaction;
-        }
-        catch(Exception $ex){
-            throw $ex;
-        }
-    }
-*/
-    
-
+    //Inserta una transacción en la tabla por medio de procedure  para obtener el ID
     public function p_add_transaction($transaction){
         try{
             $query = "CALL p_add_transaction (". ":username" .",". ":dateTransaction" ."," ." @out);";
@@ -67,6 +27,7 @@
             }
         }
 
+    //Retorna el último ID agregado de transaction
     public function call(){
         try{
             $query = "SELECT @out;";
@@ -80,5 +41,37 @@
             }
     }
 
+     //Retorna todas las transacciones en la tabla
+    public function getAllTransactions(){
+        try{
+            $query = "SELECT * FROM ".$this->tableNameTransaction;
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query);
+
+            return $resultSet;
+            }
+            catch(Exception $ex){
+            throw $ex;
+            }
+    }
+
+
+    public function parseToObject($value) {
+        $value = is_array($value) ? $value : [];
+        $resp = array_map(function($p){
+    
+        return new Transaction ($p['username'], $p['transacctionDate'], $p['idTransaction']);
+        }, $value);
+        
+        if(empty($resp)){
+        return $resp;
+        }
+        else {
+        return count($resp) > 1 ? $resp : $resp['0'];
+        
+        }
+    }
+
 }
 ?>
+
