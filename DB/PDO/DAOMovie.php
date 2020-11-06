@@ -5,7 +5,6 @@
   use Models\Movie as Movie;
   use Models\Genre as Genre;
   use DB\PDO\Connection as Connection;
-  use DB\PDO\DAOMovie as DAOMovie;
   use DB\PDO\DAOGenre as DAOGenre;
   use DB\Interfaces\IDAOMovie as IDAOMovie;
   use \DateTime as DateTime;
