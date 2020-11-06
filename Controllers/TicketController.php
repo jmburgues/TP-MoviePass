@@ -1,7 +1,13 @@
 <?php
     namespace Controllers;
-  //  use PHPMailer\PHPMailer\PHPMailer;
-    use Models\User as User;
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    require ROOT.'phpmailer/phpmailer/src/Exception.php';
+    require 'phpmailer/phpmailer/src/PHPMailer.php';
+    require 'phpmailer/phpmailer/src/SMTP.php';
+
     use DB\PDO\DAOUser as DAOUser;
     use DB\PDO\DAOGenre as DAOGenre;
     use DB\PDO\DAOMovie as DAOMovie;
@@ -58,6 +64,33 @@
 
         public function confirmTicket(){
             echo "Confirmado";
+
+
+            $mail = new PHPMailer;
+
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.mailgun.org';                     // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'postmaster@sandbox00c09636e3954aa49f6a407b0ee3720b.mailgun.org';   // SMTP username
+            $mail->Password = '3381f526aa06ee0c8214076113e90d63-ea44b6dc-201841de';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable encryption, only 'tls' is accepted
+
+            $mail->From = 'postmaster@sandbox00c09636e3954aa49f6a407b0ee3720b.mailgun.org';
+            $mail->FromName = 'MoviePass TEST';
+            $mail->addAddress('burgues.jm@gmail.com');                 // Add a recipient
+
+            $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
+
+            $mail->Subject = 'TESTING';
+            $mail->Body    = 'Testing some Mailgun awesomness';
+
+            if(!$mail->send()) {
+                echo 'Message could not be sent.';
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            } else {
+                echo 'Message has been sent';
+            }
+
         }
 
         
