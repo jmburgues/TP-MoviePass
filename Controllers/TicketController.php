@@ -23,6 +23,7 @@
         private $DAOShow;
         private $DAORoom;
         private $DAOTransaction;
+        private $DAOTicket;
 
         public function __construct(){
 
@@ -108,14 +109,10 @@
 
             $transaction = new Transaction();
             $transaction->setUserName($_SESSION['loggedUser']);
-            $transaction->setDate( $time);
-            $this->DAOTransaction->add($transaction);
+            $transaction->setDate($time);
         
-            //$this->DAOTransaction->getAll());
-            /*Maneras de resolverlo:
-            * 1. Crear un stored prodecure (opción probablemente más correcta)
-            * 2. Crear una query getByUserAndDate (Opción más facil)
-            */
+            $this->DAOTransaction->p_add_transaction($transaction);
+            $idTransaction = $this->DAOTransaction->call();      
 
             $dataForQR = str_replace(' ', '%20', $dataForQR);
             $qr = $this->generateQR($dataForQR);            
@@ -123,10 +120,10 @@
             $ticket = new ticket();
             $ticket->setQRCode($qr);
             $ticket->setIdShow($idShow);
-          //  $ticket->setTdTransaction($transaction->getIdTransaction());
-            //print_r($ticket);
-           // $this->DAOTicket->add($ticket);
-           // print_r($this->DAOTicket->getAll());
+            $ticket->setTdTransaction($idTransaction);
+            
+            $this->DAOTicket->add($ticket);
+
 
 
 
