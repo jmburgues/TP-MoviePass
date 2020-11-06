@@ -12,13 +12,13 @@
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 
-    use DB\PDO\DAOUser as DAOUser;
-    use DB\PDO\DAOGenre as DAOGenre;
     use DB\PDO\DAOMovie as DAOMovie;
     use DB\PDO\DAOShow as DAOShow;
+    use DB\PDO\DAOUser as DAOUser;
     use DB\PDO\DAORoom as DAORoom;
     use DB\PDO\DAOTransaction as DAOTransaction;
     use DB\PDO\DAOTicket as DAOTicket;
+
 
     use Models\Transaction as Transaction;   
     use Models\Ticket as Ticket;   
@@ -31,6 +31,7 @@
 
         private $DAOMovie;
         private $DAOShow;
+        private $DAOUser;
         private $DAORoom;
         private $DAOTransaction;
         private $DAOTicket;
@@ -40,6 +41,7 @@
             $this->DAOMovie = new DAOMovie();
             $this->DAOShow = new DAOShow();
             $this->DAORoom = new DAORoom();
+            $this->DAOUser = new DAOUser();
             $this->DAOTransaction = new DAOTransaction();
             $this->DAOTicket = new DAOTicket();
         }
@@ -58,7 +60,7 @@
         public function getMinMax($idShow){
             ViewController::navView($genreList = null, $moviesYearList = null, null);
             $min = 1;
-            $max = $this->DAOshow->getById($idShow)->getRoom()->getCapacity() - $this->DAOshow->getById($idShow)->getSpectators();
+            $max = $this->DAOShow->getById($idShow)->getRoom()->getCapacity() - $this->DAOShow->getById($idShow)->getSpectators();
             include VIEWS_PATH.'numberTickets.php';
         }
 
@@ -74,7 +76,6 @@
             $movieForShows = $this->DAOMovie->getMoviesFromShow($showSelected->getMovie()->getMovieID());
             $costPerTicket = $this->DAOShow->getPriceByIdShow($idShow);
             $costPerTicket= $costPerTicket[0][0];
-            $patern;
 
             //Politica de descuento:
             $actualDate = date('l');
@@ -99,9 +100,6 @@
             include VIEWS_PATH.'confirmPurchase.php';
         }
 
-    
-
-        
         public function confirmTicket($creditNumber, $name, $cvc,  $expirationDate, $expirationYear, $idShow, $cardBank){
             ViewController::navView($genreList = null, $moviesYearList = null, null);
 
@@ -118,8 +116,7 @@
             $d = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
             $time = $d->format('Y-m-d H:i:s');
 
-            $transaction = new Transaction();
-            $transaction->setUserName($_SESSION['loggedUser']);
+            $transaction = new Transaction($this->DAOUser->getByUserName($_SESSION['loggedUser']));
             $transaction->setDate($time);
         
             $this->DAOTransaction->p_add_transaction($transaction);
@@ -128,10 +125,8 @@
             $dataForQR = str_replace(' ', '%20', $dataForQR);
             $qr = $this->generateQR($dataForQR);            
             
-            $ticket = new Ticket();
+            $ticket = new Ticket($showData,$transaction);
             $ticket->setQRCode($qr);
-            $ticket->setIdShow($idShow);
-            $ticket->setTdTransaction($idTransaction);
             
             $this->DAOTicket->add($ticket);
 
@@ -139,7 +134,10 @@
             $userName = $_SESSION['loggedUser'];
             include VIEWS_PATH.'userView.php';
 
-        protected function sendMail(){
+
+        }
+
+        private function sendMail(){
 
             $userName = $_SESSION['loggedUser'];
             $user = $this->DAOUser->getByUserName($userName);

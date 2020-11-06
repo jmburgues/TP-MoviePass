@@ -15,7 +15,7 @@
     public function p_add_transaction($transaction){
         try{
             $query = "CALL p_add_transaction (". ":username" .",". ":dateTransaction" ."," ." @out);";
-            $parameters['username'] = $transaction->getUserName();
+            $parameters['username'] = $transaction->getUser()->getUserName();
             $parameters['dateTransaction'] = $transaction->getDate();
 
             $this->connection = Connection::GetInstance();

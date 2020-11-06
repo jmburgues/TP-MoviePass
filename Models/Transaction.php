@@ -8,7 +8,7 @@ class Transaction
     private $user;
     private $date;
 
-    function __construct(User $user, $date , $idTransaction='')
+    function __construct(User $user, $date='', $idTransaction='')
     {
         $this->idTransaction = $idTransaction;
         $this->user = $user;
@@ -22,10 +22,6 @@ class Transaction
     public function getUser()
     {
         return $this->user;
-    }
-    public function getUserName()
-    {
-        return $this->userName;
     }
     public function getDate()
     {

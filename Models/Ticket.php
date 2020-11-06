@@ -12,7 +12,7 @@ class Ticket
     private $transaction;
 
 
-    function __construct($QRCode='',Show $show,Transaction $transaction , $idTicket='')
+    function __construct(Show $show,Transaction $transaction, $QRCode='', $idTicket='')
     {
         $this->QRCode = $QRCode;
         $this->show = $show;
