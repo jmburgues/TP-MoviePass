@@ -6,18 +6,17 @@ USE MOVIEPASSDB;
 CREATE TABLE IF NOT EXISTS MOVIES(
 idMovie int not null unique,
 duration int not null,
-title varchar(50) not null,
-poster varchar(100) not null, #esto es una URL ??
+title varchar(250) not null,
+poster varchar(200) not null, 
 releaseDate Date,
-movieDescription varchar(400),
+movieDescription varchar(1000),
 CONSTRAINT pk_idMovie primary key (idMovie)
 );
 
-
 CREATE TABLE IF NOT EXISTS CINEMAS(
 idCinema int auto_increment,
-cinemaName varchar(30) not null unique,
-adress varchar(50) not null,
+cinemaName varchar(100) not null unique,
+adress varchar(100) not null,
 adressNumber int not null,
 openning Time,
 closing Time,
@@ -25,7 +24,7 @@ isActive boolean default true,
 CONSTRAINT pk_idCinema primary key (idCinema)
 ); 
 
-CREATE TABLE IF NOT EXISTS DISCOUNT_POLICIES(
+/*CREATE TABLE IF NOT EXISTS DISCOUNT_POLICIES(
 idPolicy int auto_increment,
 discount float default 0,
 policyDescripton varchar(200),
@@ -41,10 +40,11 @@ CONSTRAINT pk_idCXDP primary key (idCXDP),
 CONSTRAINT fk_idCinemaCXDP foreign key (idCinema) references CINEMAS(idCinema),
 CONSTRAINT fk_idPolicy foreign key (idPolicy) references DISCOUNT_POLICIES(idPolicy)
 );
+*/
 
 CREATE TABLE IF NOT EXISTS ROOMS(
 idRoom int auto_increment,
-roomName varchar(50),
+roomName varchar(100),
 capacity int not null,
 idCinema int not null,
 price int not null,
@@ -86,45 +86,31 @@ CONSTRAINT fk_idMovie2 foreign key (idMovie) references MOVIES(idMovie)
 );
 
 CREATE TABLE IF NOT EXISTS USERS(
-username varchar(50),
-pass varchar(50), 
-email varchar(50) unique,
+username varchar(100),
+pass varchar(100), 
+email varchar(100) unique,
 birthdate Date,
 dni int,
-userRole varchar(10) default 'user',
+userRole varchar(100) default 'user',
 CONSTRAINT pk_username primary key (username)
 );
 
 CREATE TABLE IF NOT EXISTS TRANSACTIONS(
 idTransaction int auto_increment,
-username varchar(50),
-idDiscountPolicy int default null,
+username varchar(100),
+/*idDiscountPolicy int default null,*/
 transacctionDate DateTime,
 CONSTRAINT pk_idTransaction primary key (idTransaction),
-CONSTRAINT fk_username foreign key (username) references USERS(username),
-CONSTRAINT fk_idDiscountPolicy foreign key (idDiscountPolicy) references DISCOUNT_POLICIES(idPolicy)
+CONSTRAINT fk_username foreign key (username) references USERS(username)
+/*CONSTRAINT fk_idDiscountPolicy foreign key (idDiscountPolicy) references DISCOUNT_POLICIES(idPolicy)*/
 );
 
 CREATE TABLE IF NOT EXISTS TICKETS(
 idTicket int auto_increment,
-qrCode varchar(200), # URL para el qrCode
+qrCode varchar(500), 
 idShow int not null,
 idTransaction int not null,
 CONSTRAINT pk_idTicket primary key (idTicket),
 CONSTRAINT fk_idShowTicket foreign key (idShow) references SHOWS(idShow),
 CONSTRAINT fk_idTransaction foreign key (idTransaction) references TRANSACTIONS(idTransaction)
 );
-
-
-INSERT INTO CINEMAS (cinemaName, adress, adressNumber, openning,  closing ) VALUES ("Ambasador", "Rivadavia", 4831, 08-00, 00-30);
-INSERT INTO CINEMAS (cinemaName, adress, adressNumber, openning,  closing ) VALUES ("General", "Dorrego", 8741, 08-00, 22-30);
-INSERT INTO CINEMAS (cinemaName, adress, adressNumber, openning,  closing ) VALUES ("Grande", "Dorrego", 8741, 08-00, 22-30);
-UPDATE CINEMAS SET isActive=false WHERE idCinema=3;
-
-insert into USERS (username,pass,email,birthdate,dni,userRole) values ('user',1234,'u@u.com','1111-11-11',11111,'user');
-insert into USERS (username,pass,email,birthdate,dni,userRole) values ('admin',1234,'a@a.com','1111-11-11',11111,'admin');
-insert into USERS (username,pass,email,birthdate,dni,userRole) values ('owner',1234,'o@o.com','1111-11-11',11111,'owner');
-
-INSERT INTO ROOMS (roomName, capacity, idCinema, price) VALUES ("SALA 1", "70", 1, 54);
-INSERT INTO ROOMS (roomName, capacity, idCinema, price) VALUES ("SALA 2", "80", 2, 70);
-INSERT INTO ROOMS (roomName, capacity, idCinema, price) VALUES ("SALA 3", "90", 1, 40);

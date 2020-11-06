@@ -48,9 +48,13 @@ class Ticket
     {
         $this->idTicket = $idTicket;
     }
-
-    public function setQRCode($QRCode)
+    
+    public function setIdTicket($idTicket)
     {
+        $this->idTicket = $idTicket;   
+    }
+
+    public function setQRCode($QRCode){
         $this->QRCode = $QRCode;
     }
     
@@ -58,5 +62,7 @@ class Ticket
     {
         $this->show = $show;
     }
+
+
 }
 ?>

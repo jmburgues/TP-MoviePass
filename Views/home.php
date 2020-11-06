@@ -48,10 +48,14 @@
   " >
       <h4 class="card-title  mb-2 text-center"><?php echo $movies[$i]->getTitle()?></h4>   
       </div>                    
-    
-      <form action="<?php echo FRONT_ROOT?>Ticket/showPurchase" method="POST" >
-        <button value="<?php echo $movies[$i]->getMovieID()?>" name="movieId" class="btn btn-secondary bg-danger text-black mb-2"  type="submit">Buy Tickets</button>
-      </form>
+
+        <?php if(!isset($_SESSION['loggedUser'])){ ?> 
+          <form action="<?php echo FRONT_ROOT?>User/showLoginForm" method="POST" >
+          <?php }else{ ?>
+          <form action="<?php echo FRONT_ROOT?>Ticket/showPurchase" method="POST" >
+          <?php } ?>
+          <button value="<?php echo $movies[$i]->getMovieID()?>" name="movieId" class="btn btn-secondary bg-danger text-black mb-2"  type="submit">Buy Tickets</button>   
+          </form>
 
       <p class="card-text" style="margin-bottom:0px;">
       <?php
@@ -86,10 +90,6 @@
   </div> 
  <?php } ?>
 </div>
-
-<!-- 
-  MODIFICAR LAS REFERENCIAS EN LOS BOTONES DEL PAGINADO, USAR EL HOME VIEW ENVIANDO $MOVIES PAGINA Y TITULO.
- -->
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center mt-3">

@@ -17,7 +17,7 @@
         </div>
         
         <?php } 
-            if(!$movies){ ?>
+            if(!$moviesDB){ ?>
                 <div class="card card-body ">
                     <?php echo "No movies loaded yet"?>  
                 </div>

@@ -23,9 +23,9 @@ class Transaction
     {
         return $this->user;
     }
-    public function getDescription()
+    public function getUserName()
     {
-        return $this->description;
+        return $this->userName;
     }
     public function getDate()
     {
@@ -40,13 +40,14 @@ class Transaction
     {
         $this->user = $user;
     }
-    public function setDescription($description)
+    public function setUserName($userName)
     {
-        $this->description = $description;
+        $this->userName = $userName;
     }
     public function setDate($date)
     {
         $this->date= $date;
     }
+  
 }
 ?>

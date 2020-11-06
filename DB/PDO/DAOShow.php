@@ -139,10 +139,7 @@
         }
     }
     
-    
-
-    
-    
+    //Retorna el nombre del cine dependiendo el show
     public function getCinemaNameFromShows($idShow){
         try{
             $query = "SELECT ".$this->tableNameCinemas .".cinemaName FROM ". $this->tableNameShows ." INNER JOIN ". $this->tableNameRooms ." ON ". $this->tableNameRooms .".idRoom = ". $this->tableNameShows .".idRoom INNER JOIN ". $this->tableNameCinemas ." ON ". $this->tableNameCinemas .".idCinema = ". $this->tableNameRooms .".idCinema WHERE ". $this->tableNameShows .".idShow = ". $idShow ." ;";
@@ -154,6 +151,9 @@
             throw $ex;
             }
     }
+
+   
+    
 
         //Retorna los shows en donde se esté dando la película
         public function getShowFromMovie($idMovie){
@@ -168,6 +168,20 @@
                 throw $ex;
             }
         }
+
+        public function getPriceByIdShow($idShow){
+            try{
+                $query = "SELECT DISTINCT price FROM ". $this->tableNameRooms ." INNER JOIN " . $this->tableNameShows ." ON " . $this->tableNameShows .".idRoom = ".$this->tableNameRooms .".idRoom WHERE " . $this->tableNameShows . ".idShow = :idShow;";
+                $parameters['idShow'] = $idShow;
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query, $parameters);
+                return $resultSet;
+                }
+                catch(Exception $ex){
+                throw $ex;
+            }
+        }
+    
 
     protected function parseToObject($value) {
         $value = is_array($value) ? $value : [];

@@ -182,7 +182,7 @@
     public function getByYearFromShows($year){
       try{        
           //SELECT * FROM SHOWS INNER JOIN MOVIES ON SHOWS.idMovie = MOVIES.idMovie WHERE MOVIES.releaseDate LIKE "2020%" GROUP BY SHOWS.idMovie;
-          $query = "SELECT MOVIES.* FROM " .$this->tableNameShows. " INNER JOIN " . $this->tableNameMovies . " ON " . $this->tableNameShows . ".idMovie = " .$this->tableNameMovies .".idMovie WHERE " .$this->tableNameMovies. ".releaseDate LIKE \"". $year."%\" GROUP BY " .$this->tableNameShows . ".idMovie;";
+          $query = "SELECT ".$this->tableNameShows.".* FROM ".$this->tableNameShows. " INNER JOIN " . $this->tableNameMovies . " ON " . $this->tableNameShows . ".idMovie = " .$this->tableNameMovies .".idMovie WHERE " .$this->tableNameMovies. ".releaseDate LIKE \"". $year."%\" GROUP BY " .$this->tableNameShows . ".idMovie;";
           //$query = "SELECT MOVIES.* FROM " .$this->tableNameShows. " INNER JOIN " . $this->tableNameMovies . " ON " . $this->tableNameShows . ".idMovie = " .$this->tableNameMovies .".idMovie WHERE " .$this->tableNameMovies. ".releaseDate LIKE ':year%' GROUP BY " .$this->tableNameShows . ".idMovie;";
          // $parameters['year'] = $year;
           $this->connection = Connection::GetInstance();
@@ -195,6 +195,33 @@
           }
       }
 
+    //Retorna la película que se esten dando en ese show
+    public function getMoviesFromShow($idMovie){
+      try{
+          $query = "SELECT DISTINCT ". $this->tableNameMovies .".* FROM ". $this->tableNameShows ." INNER JOIN " . $this->tableNameMovies ." ON " . $this->tableNameShows .".idMovie = ".$this->tableNameMovies .".idMovie WHERE " . $this->tableNameShows . ".idMovie = :idMovie AND " . $this->tableNameShows .".isActive = 1;";
+          $parameters['idMovie'] = $idMovie;
+          $this->connection = Connection::GetInstance();
+          $resultSet = $this->connection->Execute($query, $parameters);
+          return $this->toArray($this->parseToObject($resultSet));
+          }
+          catch(Exception $ex){
+          throw $ex;
+      }
+  }
+
+   //Retorna la película que se esten dando en ese show en base al shoe
+    public function getMovieFromShowByIdShow($idShow){
+      try{
+          $query = "SELECT ".$this->tableNameMovies.".* FROM ". $this->tableNameMovies ." INNER JOIN " . $this->tableNameShows ." ON " . $this->tableNameMovies .".idMovie = ".$this->tableNameShows .".idMovie WHERE " . $this->tableNameShows . ".idShow= :idShow AND " . $this->tableNameShows .".isActive = 1;";
+          $parameters['idShow'] = $idShow;
+          $this->connection = Connection::GetInstance();
+          $resultSet = $this->connection->Execute($query, $parameters);
+          return $this->toArray($this->parseToObject($resultSet));
+          }
+          catch(Exception $ex){
+          throw $ex;
+      }
+  }
 
     #Seguir trabajando en este
     private function parseToObject($value){
