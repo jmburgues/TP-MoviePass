@@ -26,6 +26,7 @@
 
         public function register()
         {
+            ViewController::navView($genreList = null, $moviesYearList = null, null);
             include VIEWS_PATH.'register-view.php';
         }
 

@@ -4,51 +4,42 @@ namespace Models;
 
 class Transaction
 {
-    private $transactionID;
-    private $percentage;
-    private $description;
-    private $days;
-
-    function __construct($percentage, $description, $days)
+    private $idTransaction;
+    private $userName;
+    private $date;
+/*
+    function __construct($idTransaction, $userName, $date)
     {
-        $this->transactionID = 1;//hacer incremental
-        $this->percentage = $percentage;
-        $this->description = $description;
-        $this->days = $days;
+        $this->idTransaction = $idTransaction;
+        $this->userName = $userName;
+        $this->date = $date;
+    }
+*/
+    public function getIdTransaction()
+    {
+        return $this->idTransaction;
+    }
+    public function getUserName()
+    {
+        return $this->userName;
+    }
+    public function getDate()
+    {
+        return $this->date;
     }
 
-    public function getTransactionID()
+    public function setIdTransaction($idTransaction)
     {
-        return $this->transactionID;
+        $this->$idTransaction = $idTransaction;
     }
-    public function getPercentage()
+    public function setUserName($userName)
     {
-        return $this->percentage;
+        $this->userName = $userName;
     }
-    public function getDescription()
+    public function setDate($date)
     {
-        return $this->description;
+        $this->date = $date;
     }
-    public function getDays()
-    {
-        return $this->days;
-    }
-
-    public function setTransactionID($transactionID)
-    {
-        $this->$transactionID = $transactionID;
-    }
-    public function setPercentage($percentage)
-    {
-        $this->percentage = $percentage;
-    }
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-    public function setDays($days)
-    {
-        $this->days= $days;
-    }
+  
 }
 ?>

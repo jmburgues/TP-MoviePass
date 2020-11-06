@@ -1,6 +1,3 @@
-
-
-
 <div class="text-center mt-5 mb-3">
     <h2 class="text-white">Purchase</h2>
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>index.php'"> Go Home </button> 
@@ -23,7 +20,7 @@
             
             <li><strong>Cost per ticket: </strong><?php print_r($costPerTicket);?> <?php ?></li>
             <li><strong>Total cost: </strong> <?php print_r($totalCost);?><?php ?></li>
-            <li><strong>Card Type: </strong> <?php print_r($card);?><?php ?></li>
+            <li><strong>Card Type: </strong> <?php print_r($cardBank);?><?php ?></li>
     
         </ul>  
     </div>
@@ -39,17 +36,17 @@
                 <form action="<?php echo FRONT_ROOT ?>Ticket/confirmTicket" method="POST">
                 <div readolny class="form-group font-weight-bold pt-2" >
                         <label for="cardNumber">Card </label>
-                        <input readonly type="text" placeholder= <?php echo $card?> class="form-control" name="cardNumber" required
+                        <input readonly type="text" placeholder= <?php echo $cardBank?> class="form-control" name="cardNumber" required
                     >                       
                     </div>
                     <div class="form-group font-weight-bold pt-2" >
                         <label for="cardNumber">Card Number </label>
-                        <span class="text-muted"> No signs or space</span>
+                        <span class="text-muted">No signs or space</span>
                         <input type="text"   pattern=<?php echo $pattern?> min="1" max="9" class="form-control" name="cardNumber" required>
                     </div>
                     <div class="form-group font-weight-bold">
                         <label for="owner">Owner</label>
-                        <span class="text-muted"> Full name and surname</span>
+                        <span class="text-muted">Name that appears on the card</span>
                         <input type="text" class="form-control" name="owner" required>
                     </div>
                     <div class="form-group font-weight-bold pt-2">
@@ -57,7 +54,6 @@
                         <span class="text-muted"> security code behind the card</span>
                         <input type="number" min="100" max="999" placeholder= "123" class="form-control" name="cvv" required>
                     </div>
-       
                         <div class="form-group font-weight-bold pt-2" >
                         <label>Expiration Date</label>
                         <select class="custom-select" name="date">
@@ -92,7 +88,7 @@
                         
                 </div>
                 <input type="hidden" class="form-control" name="show" value=<?php echo $idShow ?> >
-                <input type="hidden" class="form-control" name="card" value=<?php echo $card ?> >
+                <input type="hidden" class="form-control" name="card" value=<?php echo $cardBank ?> >
                 <div class="text-center">
                     <input type="submit" class="btn btn-primary bg-danger text-white col-md-3" value="Confirm"></input>
                 </div>

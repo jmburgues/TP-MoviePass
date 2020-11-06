@@ -171,7 +171,7 @@
                 $parameters['idShow'] = $idShow;
                 $this->connection = Connection::GetInstance();
                 $resultSet = $this->connection->Execute($query, $parameters);
-                return $this->toArray($resultSet);
+                return $resultSet;
                 }
                 catch(Exception $ex){
                 throw $ex;

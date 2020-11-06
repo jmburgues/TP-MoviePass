@@ -1,10 +1,9 @@
-<!--Estilo de la página-->
-<style type="text/css">
-            body {
-                background-color: white; 
-                    
-            }
-            </style>
+
+<div class="text-center mt-5 mb-3">
+    <h3 class="text-white">Register:</h3>
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>index.php'"> Go Back </button> 
+</div>  
+
 <div class="container border p-4 col-md-4 form" style="background-color:#FFFFFF; margin-top:6%;">
   <div class="abs-center">
     <form action="<?php echo FRONT_ROOT;?>User/frontRegister" method=POST>
