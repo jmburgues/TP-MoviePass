@@ -1,5 +1,5 @@
 <?php
-namespace DAO;
+namespace DB\JSON;
 use Models\Show as Show;
 
 class DAOShow{

@@ -1,4 +1,4 @@
-<?php namespace PDO;
+<?php namespace DB\JSON;
 
     require_once dirname(__FILE__)."/../Models/Cinema.php";
     
