@@ -19,9 +19,24 @@
           if (isset($moviesBDD[$i])) { ?>
   
   <div class="col">
-  
   <div class="card" id="cardsStyle">
-    <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $moviesBDD[$i]->getPoster()?>">
+
+<?php
+  if($moviesBDD[$i]->getPoster() == null){
+        ?><img id="notFoundImageCardDB" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+      <?php
+      }else{
+        ?>
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $moviesBDD[$i]->getPoster()?>">
+        <?php
+      }
+      
+      ?>
+    
+    
+
+
+
     <div class="card-body  ">
     <div class="centerImageHome" >
       <h4 class="card-title  mb-2 text-center"><?php echo $moviesBDD[$i]->getTitle()?></h4>   

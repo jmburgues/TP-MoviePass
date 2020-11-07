@@ -56,13 +56,8 @@
     }
 
     public function addCurrentShow($date, $start, $end, $selectedMovieId, $roomId){
-        $newShow = new Show();
-        $newShow->setDate($date);
-        $newShow->setStart($start);
-        $newShow->setEnd($end);
-        $newShow->setIdMovie($selectedMovieId);
-        $newShow->setIdRoom($roomId);
-        $newShow->setSpectators(0);
+        $newShow = new Show($date,$start, $end,$this->DAORoom->getById($roomId), $this->DAOMovie->getById($selectedMovieId),0);
+        
         
         $rooms = $this->DAORoom->getAll(); 
         $movies=$this->DAOMovie->GetAll();

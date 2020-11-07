@@ -89,7 +89,10 @@ body {
 }
 
 #imgCardType{
-    width:90px; height:60px; margin-left:-3%; margin-right:3%
+    width:90px; 
+    height:60px; 
+    margin-left:-3%; 
+    margin-right:3%
 }
 
 .panelOwner{
@@ -107,8 +110,27 @@ body {
 
 }
 
+#noMovieImg{
+    width:1000px; 
+    display:block;
+    margin:auto;
+}
+
+.fontWeight{
+    font-size: 30px;
+}
+
+#notFoundImageCard{
+    
+    height:73%; 
+
+}
 
 
+#notFoundImageCardDB{
+    
+    height:60%; 
 
+}
 
 

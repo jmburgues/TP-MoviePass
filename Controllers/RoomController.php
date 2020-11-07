@@ -62,13 +62,8 @@
 
     public function addRoom($idCinema, $name, $capacity, $price, $roomType){
         if ($name != "") {
-            //echo $idCinema, $name, $capacity, $price;
-            $room = new Room();
-            $room->setIDCinema($idCinema);
-            $room->setName($name);
-            $room->setCapacity($capacity);
-            $room->setprice($price);
-            $room->setRoomType($roomType);
+            $cinema = $this->DAOCinema->getById($idCinema);
+            $room = new Room($name, $capacity, $cinema, $roomType, 1 );
             $listRoom = $this->DAORoom->getAll();
             $roomExist = false;
             $message ="";

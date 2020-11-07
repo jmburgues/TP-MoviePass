@@ -1,4 +1,3 @@
-
 <div class = "backgroundBlack">
 
   <?php
@@ -26,12 +25,25 @@
     
     <div class="row row-cols-5">
     
+
         <?php for($i = $init; $i < $init+5; $i++ ){
             if (isset($movies[$i])) { ?>
     
     <div class="col">
     <div class="card " id="cardsStyle" >
-      <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $movies[$i]->getPoster()?>">
+
+<?php
+  if($movies[$i]->getPoster() == null){
+        ?><img id="notFoundImageCard" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+      <?php
+      }else{
+        ?>
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $movies[$i]->getPoster()?>">
+        <?php
+      }
+      
+      ?>
+          
       <div class="card-body  ">
       <div class="centerImageHome">
         <h4 class="card-title  mb-2 text-center"><?php echo $movies[$i]->getTitle()?></h4>   
@@ -73,6 +85,7 @@
     <?php } ?>
   </div>
   
+  <?php if ($movies != null) { ?>
   <div class ="backgroundBlack marginTop100" >
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center mt-3">
@@ -87,4 +100,10 @@
   </nav>
 
   <hr class=" mt-4 mb-1 bg-danger text-dark">
-  </div ></div >
+  </div >
+  <?php }else{
+    ?><img id="noMovieImg" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">   <?php
+    ?><p class="text-white text-center font-weight-bold fontWeight">NO LOADED MOVIES YET</p>
+    <p class="text-muted text-center"> <?php echo "PLEASE TRY AGAIN LATER"?><p><?php
+  } ?>
+</div >

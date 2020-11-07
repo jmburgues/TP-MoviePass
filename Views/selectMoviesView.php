@@ -20,7 +20,25 @@
   
   <div class="col">
     <div class="card" id="cardsStyle">
-      <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $movies[$i]->getPoster()?>">
+
+
+
+    
+
+      <?php if ($movies[$i]->getPoster()){
+        ?>
+        <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $movies[$i]->getPoster()?>">
+      <?php
+      } 
+      if($movies[$i]->getPoster() == null){
+        ?><img id="notFoundImageCard" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+      <?php
+      }
+      
+      ?>
+
+
+
       <div class="card-body  ">
       <div class ="centerImageHome">
       <h4 class="card-title  mb-2 text-center"><?php echo $movies[$i]->getTitle()?></h4>   
