@@ -1,6 +1,6 @@
 <?php
 
-namespace DAO;
+namespace DB\JSON;
 
 use Models\User as User;
 

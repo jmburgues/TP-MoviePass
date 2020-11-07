@@ -1,5 +1,5 @@
 <?php
-namespace DAO;
+namespace DB\JSON;
 use Models\Genre as Genre;
 
 class DAOgenre{

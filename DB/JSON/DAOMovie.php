@@ -3,12 +3,16 @@ namespace DB\JSON;
 use Models\Movie as Movie;
 use Models\Genre as Genre;
 use \DateTime as DateTime;
+use DB\JSON\DAOGenre as DAOGenre;
 
 class DAOMovie{
   private $movieList;
   private $fileName = ROOT."Data/movies.json";
 
-  
+  public function __construct(){
+    $this->DAOGenre = new DAOGenre();
+  }
+
   public function add(Movie $movie){
     $this->retrieveData();
     $exist = $this->GetById($movie->getMovieID());
@@ -86,7 +90,54 @@ class DAOMovie{
         }
       }
       return $years; 
-}
+  }
+   
+  public function addMoreLatestMovies(){
+    $json = $this->getAll();
+    if ((count($json) % 20) == 0){
+      $page = (count($json) / 20) + 1;
+    }
+    else{
+      $page = round((count($json) / 20), 0);
+    }
+    $this->callLatestMoviesFromApi($page);
+  }
+   
+   
+  /*Función que trae de la API e invoca funciones del DAO para guardar en archivo JSON */
+  public function callLatestMoviesFromApi($page=''){
+    //Llamada a la API
+    // for ($i=1; $i<75 ; $i+1) {
+    echo $page;
+    $data = file_get_contents("http://api.themoviedb.org/3/movie/now_playing?page=1&language=en-US&api_key=601e12bf1e7197e7532eb9c4901b0d3a&page=".$page);
+    
+    //Convierte el JSON a un arreglo
+    $array = ($data) ? json_decode($data, true) : array();
+
+    //Accede a la clave 'results'
+    $result = $array["results"];
+
+    //Recorre el arreglo con los resultados
+    foreach ($result as $value) {
+      if (is_array($value)) {
+        //Trae toda la información de cada película
+        $movieData = file_get_contents("https://api.themoviedb.org/3/movie/".$value["id"]."?language=en-US&api_key=601e12bf1e7197e7532eb9c4901b0d3a");
+        $movie = ($movieData) ? json_decode($movieData, true) : array();
+        $genre = array();
+
+        //De cada película se obtienen los generos y se crea un objeto de éste
+        foreach ($movie["genres"] as $genreData) {
+          $aux = new Genre($genreData["name"], $genreData["id"]);
+          array_push($genre, $aux);
+          $this->DAOGenre->add($aux);
+        }
+        //Se crea el objeto Movie y se agrega al arrelgo
+        $newMovie = new Movie($movie["runtime"], $movie["title"], $genre, $movie["poster_path"], $movie["release_date"], $movie["overview"], $movie["id"]);
+        $this->add($newMovie);
+      }
+    }
+  }
+
 
   public function GetById($id){
     $this->RetrieveData();
