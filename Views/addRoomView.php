@@ -1,5 +1,5 @@
 <div class="text-center mt-5 mb-3">
-    <h3 class="text-white">Manage <?php echo $cinemaName?>'s Rooms:</h3>
+    <h3 class="text-white">Manage <?php echo $cinema->getName()?>'s Rooms:</h3>
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/showCinemas'"> Go Back </button> 
 </div>
 
@@ -82,7 +82,7 @@
                     <li><strong>Capacity:</strong> <?php echo $room->getCapacity() ?></li>
                     <li><strong>Ticket price:</strong> <?php echo $room->getPrice() ?></li>
                     <li><strong>Type:</strong> <?php echo $room->getRoomType() ?></li>
-                    <li><strong>Cinema:</strong> <?php echo $cinema->getName() ?></li>
+                    <li><strong>Cinema:</strong> <?php echo $room->getCinema()->getName() ?></li>
                     <li class="liStyleNone">
                     <div class="btn-group" role="group" aria-label="Basic example">     
                         <form action="<?php echo FRONT_ROOT?>Room/modifyRoomView" method="POST">
@@ -107,7 +107,7 @@
                     <li><strong>Room Name: </strong><?php echo $room->getName() ?></li>
                     <li><strong>Room capacity:</strong> <?php echo $room->getCapacity() ?></li>
                     <li><strong>Room price:</strong> <?php echo $room->getPrice() ?></li>
-                    <li><strong>Nombre cinema: </strong><?php echo $cinema->getName(); ?></li>
+                    <li><strong>Nombre cinema: </strong><?php $room->getCinema()->getName() ?></li>
                     <li class="liStyleNone">
             <!--     <div class="btn-group" role="group" aria-label="Basic example">     
                         <form action="<?php echo FRONT_ROOT?>Room/modifyRoomView" method="POST">

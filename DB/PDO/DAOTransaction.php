@@ -53,7 +53,7 @@
             catch(Exception $ex){
             throw $ex;
             }
-    }
+    } 
 
 
     public function parseToObject($value) {

@@ -36,7 +36,7 @@
         $shows = $this->DAOShow->getAll();
 
         $activeShows = $this->DAOShow->getActiveShows();
-
+        echo "probando el mergeito ";
       //  include VIEWS_PATH.'showAddView.php';
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'adminShows.php';

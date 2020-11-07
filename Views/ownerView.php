@@ -27,12 +27,12 @@
             </tr>
                 <?php }else{?>
                 <td>
-                <strong><?php echo "No users uploaded yet";?></strong>
+                <strong><?php echo $user->getUserName();?></strong>
             </td>
             <?php
-                }
-            }
-            ?>
+                            }
+                                        }
+             ?>
             
         </table>
     </div>
