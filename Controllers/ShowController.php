@@ -3,6 +3,7 @@
 
     use \DateTime as DateTime;
     use \DateInterval as DateInterval;
+    use \DateTimeZone as DateTimeZone;
     use DB\PDO\DAOMovie as DAOMovie;
     use DB\PDO\DAORoom as DAORoom;
     use DB\PDO\DAOShow as DAOShow;
@@ -28,21 +29,14 @@
         
     //Redirige a vista adminShows donde se listan las funciones y el addShow
     public function showShows(){
-        $this->DAOShow->removeShowFromActive();
-        $shows = array();
-        $aux =$this->DAOShow->getAll();
-        if (is_array($aux)){
-            $shows = $aux;
-        }else{
-            $shows[0] = $aux;
-        }
-        $auxMovie = new DAOMovie();
-        $auxCinema = new DAOCinema();
-        $auxRoom = new DAORoom();
-        $auxCinemaName = new DAOShow();
+        $this->validateActiveShows();
+        #Esto es para que no se puedan agregar shows el mismo dia que se esta
+        $oneDayAhead = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
+        $oneDayAhead->add(new DateInterval('P1D'));
+        $shows = $this->DAOShow->getAll();
 
         $activeShows = $this->DAOShow->getActiveShows();
-
+        echo "probando el mergeito ";
       //  include VIEWS_PATH.'showAddView.php';
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'adminShows.php';
@@ -56,8 +50,8 @@
     }
 
     public function addCurrentShow($date, $start, $end, $selectedMovieId, $roomId){
+
         $newShow = new Show($date,$start, $end,$this->DAORoom->getById($roomId), $this->DAOMovie->getById($selectedMovieId),0);
-        
         
         $rooms = $this->DAORoom->getAll(); 
         $movies=$this->DAOMovie->GetAll();
@@ -85,9 +79,15 @@
 
         foreach ($lookingForShows as $show) {
           //  echo "Entra";
-            if ($newShow->getDate() == $date) {
-                //echo $newShow->getStart();
-                //echo $date;
+            if ($newShow->getDate() == $show->getDate()) {
+                
+                echo "<pre>";
+                echo $newShow->getDate();
+                echo "</pre>";
+                echo "<pre>";
+                echo $show->getDate();
+                echo "</pre>";
+
                 if ($show->getRoom()->getRoomID() == $roomId) {
                   //  echo "id";
                     $extremoInferior = new DateTime($show->getStart());
@@ -205,10 +205,24 @@
         $this->DAOShow->modify($modifyShow);
 
         ViewController::navView($genreList=null,$moviesYearList=null,null);
-        include VIEWS_PATH.'adminShows.php';
+        $this->showShows();
     }
-}
 
 
+    public function validateActiveShows(){
+      $CurrentActiveShows = $this->DAOShow->getActiveShows();
+      
+      $dateTimeNow = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
+        foreach ($CurrentActiveShows as $CurrentActiveShow){
+          $dateTimeShow = new DateTime($CurrentActiveShow->getDate().' '.$CurrentActiveShow->getStart());
+          if ($CurrentActiveShow->getSpectators() == $CurrentActiveShow->getRoom()->getCapacity()){
+            $this->DAOShow->removeShowFromActive($CurrentActiveShow->getIdShow());
+          }
+          if ($dateTimeShow < $dateTimeNow){
+            $this->DAOShow->removeShowFromActive($CurrentActiveShow->getIdShow());
+        }
+      }
+    }
 
-    ?>
+  }
+?>

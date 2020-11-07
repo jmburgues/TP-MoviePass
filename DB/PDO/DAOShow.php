@@ -105,17 +105,11 @@
         }
     }
 
-    public function removeShowFromActive(){
+    public function removeShowFromActive($idShow){
         try{
-            $d = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
-            $date = $d->format('Y-m-d');
-            $time = $d->format('H:i:s');
-
-            $query = "Update ".$this->tableNameShows. " SET ".$this->tableNameShows.".isActive = 0 FROM ".$this->tableNameShows." INNER JOIN ".$this->tableNameRooms." ON ".$this->tableNameShows.".idRoom = ".$this->tableNameRooms.".idRoom WHERE ".$this->tableNameShows.".spectators = ".$this->tableNameRooms.".capacity AND ".$this->tableNameShows.".dateSelected < :date AND ".$this->tableNameShows.".startsAt < :time;";
+            $query = "Update ".$this->tableNameShows. " SET ".$this->tableNameShows.".isActive = 0 WHERE ".$this->tableNameShows."idShow = :idShow";
             
-            $parameters['date'] = $date;
-            $parameters['time'] = $time;
-            
+            $parameters['idShow'] = $idShow;
             $this->connection = Connection::GetInstance();
             return $this->connection ->ExecuteNonQuery($query,$parameters);
         }

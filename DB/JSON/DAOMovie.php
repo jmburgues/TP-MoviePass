@@ -107,8 +107,6 @@ class DAOMovie{
   /*Función que trae de la API e invoca funciones del DAO para guardar en archivo JSON */
   public function callLatestMoviesFromApi($page=''){
     //Llamada a la API
-    // for ($i=1; $i<75 ; $i+1) {
-    echo $page;
     $data = file_get_contents("http://api.themoviedb.org/3/movie/now_playing?page=1&language=en-US&api_key=601e12bf1e7197e7532eb9c4901b0d3a&page=".$page);
     
     //Convierte el JSON a un arreglo

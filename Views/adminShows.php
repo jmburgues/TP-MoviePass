@@ -21,7 +21,7 @@
             <form action="<?php echo FRONT_ROOT?>Show/addShow" method="POST" >
                 <div class="row">
                 <div class="col mt-2 "><strong>Date: </strong></div>
-                <div class="col mt-2"><input type="date" name="date" step="1" min="<?php echo date("Y-m-d");?>" max="2027-12-31" value="<?php echo date("Y-m-d");?>" required></div>
+                <div class="col mt-2"><input type="date" name="date" step="1" min="<?php echo $oneDayAhead->format("Y-m-d");?>" max="2027-12-31" value="<?php echo $oneDayAhead->format("Y-m-d");?>" required></div>
                 <div class="w-100"></div>
                 
                 <div class="col mt-2"><strong>Starting hour:</strong> </div>
@@ -64,6 +64,17 @@
                             <li><strong>Room:</strong> <?php echo $aShow->getRoom()->getName();?></li>
                             <li><strong>Movie:</strong> <?php echo $aShow->getMovie()->getTitle();?></li>
                             <li><strong>Cinema:</strong> <?php echo $aShow->getRoom()->getCinema()->getName();?></li>
+
+                            <li class="liStyleNone liStylePadding-l-70">
+                                <div class="btn-group" role="group" aria-label="Basic example">    
+                                    <form action="<?php echo FRONT_ROOT?>Show/modifyShowView" method="POST">
+                                        <button <?php $aShow->getSpectators()!=0 ? " " : "disabled" ?> type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $show->getIdShow()?>"   name="idCinemaM">Modify</button> 
+                                    </form>
+                                    <form action="<?php echo FRONT_ROOT?>Show/deleteShow" method="POST">
+                                        <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $show->getIdShow()?>" disabled  name="idCinemaD">Delete</button> 
+                                    </form>
+                                </div>
+                            </li> 
                         
                         </ul>  
                     </div>
@@ -115,20 +126,10 @@
                                 <li><strong>Starting hour:</strong> <?php echo $show->getStart() ?></li>
                                 <li><strong>Ending hour:</strong> <?php echo $show->getEnd() ?></li>
                                 <li><strong>Spectators:</strong> <?php echo $show->getSpectators()?></li>
-                                <li><strong>Room:</strong> <?php echo $auxRoom->getById($show->getRoom()->getRoomID())->getName();?></li>
-                                <li><strong>Movie:</strong> <?php echo $auxMovie->getById($show->getMovie()->getMovieID())->getTitle();?></li>
-                                <li><strong>Cinema:</strong> <?php echo $auxCinemaName->getCinemaNameFromShows($show->getIdShow());?></li>
+                                <li><strong>Room:</strong> <?php echo $show->getRoom()->getName();?></li>
+                                <li><strong>Movie:</strong> <?php echo $show->getMovie()->getTitle();?></li>
+                                <li><strong>Cinema:</strong> <?php echo $show->getRoom()->getCinema()->getName();?></li>
                                 
-                                <li class="liStyleNone liStylePadding-l-70">
-                                    <div class="btn-group" role="group" aria-label="Basic example">    
-                                        <form action="<?php echo FRONT_ROOT?>Show/modifyShowView" method="POST">
-                                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $show->getIdShow()?>"   name="idCinemaM">Modify</button> 
-                                        </form>
-                                        <form action="<?php echo FRONT_ROOT?>Show/deleteShow" method="POST">
-                                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $show->getIdShow()?>" disabled  name="idCinemaD">Delete</button> 
-                                        </form>
-                                    </div>
-                                </li> 
                             </ul>  
         <!--card-->     </div>
         
