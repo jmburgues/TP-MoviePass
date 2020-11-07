@@ -5,7 +5,7 @@
 <br>
 
 <!-- COLLAPSE CARD NEW CINEMA-->
-<p style="margin-left:10%;">
+<p class="p-ml-10">
   <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newCinema" aria-expanded="false" aria-controls="collapseExample">
     Add new cinema
   </button>
@@ -60,7 +60,7 @@
 <br>
 <!-- COLLAPSE CARD EXISTENT CINEMAS -->
 
-<p style="margin-left:10%;">
+<p class="p-ml-10">
   <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#existentCinema" aria-expanded="false" aria-controls="collapseExample">
     Show existent cinemas
   </button>
@@ -85,7 +85,7 @@
                             <li><strong>Opening hour:  </strong><?php echo $cinema->getOpenning() ?></li>
                             <li><strong>Closing hour:  </strong><?php echo $cinema->getClosing() ?></li>
                             
-                            <li style="list-style:none; padding-left:70%">
+                            <li class="liStyleNone liStylePadding-l-70">
                                 <div class="btn-group" role="group" aria-label="Basic example">    
                                     <form action="<?php echo FRONT_ROOT?>Cinema/modifyCinemaView" method="POST">
                                         <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaM">Modify</button> 

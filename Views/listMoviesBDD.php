@@ -11,7 +11,7 @@
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Movie/selectMoviesView'"> Keep adding </button> 
 </div>
 
-<div class="container text-center" style="max-width:1600px">
+<div class="container text-center" id="maxWidth1600">
   
   <div class="row row-cols-5">
   
@@ -20,21 +20,13 @@
   
   <div class="col">
   
-  <div class="card" style="margin-top:30px; height:720px;  background-color:#FFEDFA; ">
+  <div class="card" id="cardsStyle">
     <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $moviesBDD[$i]->getPoster()?>">
     <div class="card-body  ">
-    <div style=" display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  border: red 5px dotted;
-  margin-bottom:5%;
-  " >
+    <div class="centerImageHome" >
       <h4 class="card-title  mb-2 text-center"><?php echo $moviesBDD[$i]->getTitle()?></h4>   
       </div>
-     
-      
-      <p class="card-text" style="margin-bottom:0px;">
+      <p>
       <?php
           if ($moviesBDD[$i]->getDescription()) {
               if (strlen($moviesBDD[$i]->getDescription()) < 100) {
@@ -49,15 +41,10 @@
     </div> 
     <?php if ($moviesBDD[$i]->getDescription() && strlen($moviesBDD[$i]->getDescription()) >= 155) {?>
       <div class="dropdown show"  >
-        <a class="btn dropdown-toggle card-text"  style="margin-left:65%; margin-bottom:0; " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="btn dropdown-toggle card-text aDropCards" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <small class="text-muted" >Leer más</small>
         </a>
-        <div class="dropdown-menu dropdown-menu-right p-2" 
-            style="width:500px; border-radius: 15px 15px 15px 15px;
-                  -moz-border-radius: 15px 15px 15px 15px;
-                  -webkit-border-radius: 15px 15px 15px 15px;
-                  border: 1px solid #000000;
-                  background-color:#FFEDFA; " 
+        <div class="dropdown-menu dropdown-menu-right p-2 "id="dropDownCard"
             aria-labelledby="dropdownMenuLink">
           <strong> <?php echo $moviesBDD[$i]->getDescription(); ?> </strong>
         </div>

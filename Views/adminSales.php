@@ -8,8 +8,8 @@
             <div class="container  mt-5">           
                 <div class="card card-body ">
                     <ul>
-                        <li style="list-style:none"><strong>User:</strong> <?php print_r($trans['username']) ?></li>
-                        <li style="list-style:none"><strong>Date:</strong> <?php print_r($trans['transacctionDate']) ?></li>
+                        <li class="liStyleNone"><strong>User:</strong> <?php print_r($trans['username']) ?></li>
+                        <li class="liStyleNone"><strong>Date:</strong> <?php print_r($trans['transacctionDate']) ?></li>
                     </ul>  
                 </div>
             </div>
@@ -27,7 +27,7 @@
             <div class="container  mt-5">           
                 <div class="card card-body ">
                     <ul>
-                        <li style="list-style:none"><strong>QR:</strong> <?php print_r($tick['qrCode'])?></li>
+                        <li class="liStyleNone"><strong>QR:</strong> <?php print_r($tick['qrCode'])?></li>
                     </ul>  
                 </div>
             </div>

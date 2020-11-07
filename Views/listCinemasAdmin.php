@@ -29,13 +29,13 @@
                         <input type="hidden"  value="<?php echo $dateToInsert?>" name="dateToInsert" ></input>   
                         <input type="hidden"  value="<?php echo $dateToInsertEnd?>" name="dateToInsertEnd" ></input>    
                         <input type="hidden"  value="<?php echo $selectedMovie->getMovieID() ?>" name="selectedMovieId" ></input>     
-                        <button class="font-weight-bold text-center text-uppercase mb-2 bg-danger col-md-2 offset-md-5 text-white"  type="submit" value="<?php echo $room->getRoomId()?>" name="roomId" style=" text-align:left; border: none; background: none;">Add to: <?php echo $room->getName()?></button>
-                        <hr style="margin-top: 2px">
+                        <button class="font-weight-bold text-center text-uppercase mb-2 bg-danger col-md-2 offset-md-5 text-white buttonList"  type="submit" value="<?php echo $room->getRoomId()?>" name="roomId" >Add to: <?php echo $room->getName()?></button>
+                        <hr class="marginTop2">
                     <ul>
-                        <li style="list-style:none"><strong>Room Name:</strong> <?php echo $room->getName() ?></li>
-                        <li style="list-style:none"><strong>Room Capacity:</strong> <?php echo $room->getCapacity() ?></li>
-                        <li style="list-style:none"><strong>Room Price:</strong> <?php echo $room->getPrice() ?></li>
-                        <li style="list-style:none"><strong>Room Cinema: </strong><?php echo $room->getCinema()->getId() //var($this->DAORoom->getByCinema($room->getCinema()->getId())[0]->getName())  ?></li>
+                        <li class="liStyleNone"><strong>Room Name:</strong> <?php echo $room->getName() ?></li>
+                        <li class="liStyleNone"><strong>Room Capacity:</strong> <?php echo $room->getCapacity() ?></li>
+                        <li class="liStyleNone"><strong>Room Price:</strong> <?php echo $room->getPrice() ?></li>
+                        <li class="liStyleNone"><strong>Room Cinema: </strong><?php echo $room->getCinema()->getId() //var($this->DAORoom->getByCinema($room->getCinema()->getId())[0]->getName())  ?></li>
 
                     </ul>  
                 </div>

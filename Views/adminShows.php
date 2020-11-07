@@ -5,7 +5,7 @@
 
 
 <!-- COLLAPSE CARD NEW SHOW-->
-<p style="margin-left:10%;">
+<p class="p-ml-10">
   <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#new" aria-expanded="false" aria-controls="collapseExample">
     Add new show
   </button>
@@ -40,7 +40,7 @@
 
 
 
-<p style="margin-left:10%;">
+<p class="p-ml-10">
   <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#active" aria-expanded="false" aria-controls="collapseExample">
     Active Shows:
   </button>
@@ -90,7 +90,7 @@
 
 
 <!-- COLLAPSE CARD EXISTENT SHOW-->
-<p style="margin-left:10%;">
+<p class="p-ml-10">
   <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#existent" aria-expanded="false" aria-controls="collapseExample">
     Manage existent Shows:
   </button>
@@ -119,7 +119,7 @@
                                 <li><strong>Movie:</strong> <?php echo $auxMovie->getById($show->getMovie()->getMovieID())->getTitle();?></li>
                                 <li><strong>Cinema:</strong> <?php echo $auxCinemaName->getCinemaNameFromShows($show->getIdShow());?></li>
                                 
-                                <li style="list-style:none; padding-left:70%">
+                                <li class="liStyleNone liStylePadding-l-70">
                                     <div class="btn-group" role="group" aria-label="Basic example">    
                                         <form action="<?php echo FRONT_ROOT?>Show/modifyShowView" method="POST">
                                             <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $show->getIdShow()?>"   name="idCinemaM">Modify</button> 

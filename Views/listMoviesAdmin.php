@@ -12,7 +12,7 @@
             <div class="card card-body ">
                 <input type="hidden"  value="<?php echo $date?>" name="date" ></input>     
                 <input type="hidden"  value="<?php echo $start?>" name="start" ></input>   
-                <button type="submit" value="<?php  echo $movie->getMovieId()?>" name="movieId" style=" text-align:left; border: none; background: none;"><?php echo $movie->getTitle()?></button>     
+                <button type="submit" value="<?php  echo $movie->getMovieId()?>" name="movieId" class="buttonList"><?php echo $movie->getTitle()?></button>     
             </div>
         </div>
         

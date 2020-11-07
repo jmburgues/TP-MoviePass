@@ -5,7 +5,7 @@
 </div>  
 
 
-<div class="container border p-4 col-md-6 form" style="background-color:#FFFFFF; margin-top:6%;">
+<div class="container border p-4 col-md-6 form loginCard" >
     <div class="mt-3">
         <form  action="<?php echo FRONT_ROOT ?>Ticket/addTicket" method="POST">
             <input type="hidden" class="form-control" name="show" value=<?php echo $idShow?> >
@@ -21,20 +21,20 @@
             type="number" min = "<?php echo $min ?>" max ="<?php echo $max ?>" class="form-control"  placeholder="Number of Tickets" name="tickets" required>
             </div>
             
-            <label for="ticket" ><strong>Select a payment method</strong></label>
-            <div class="custom-control custom-radio ">
+            <label for="ticket" class="mt-2" ><strong>Select a payment method</strong></label>
+            <div class="custom-control custom-radio mt-1">
                         <input type="radio" value="Visa" id="customRadio1" name="customRadio" class="custom-control-input" required>
-                        <img style="with:90px; height:80px; margin-left:-3%; margin-right:3%" src="https://cdn.icon-icons.com/icons2/1186/PNG/512/1490135017-visa_82256.png">
+                        <img id= "imgCardType" src="<?php echo FRONT_ROOT ?>/Views/img/visa.png">
                         <label class="custom-control-label mt-4" for="customRadio1">Visa</label>
                     </div>
                     <div class="custom-control custom-radio">
                         <input type="radio" value="Master" id="customRadio2" name="customRadio" class="custom-control-input" required>
-                        <img style="with:90px; height:80px;  margin-left:-2%; margin-right:4%" src="https://www.flaticon.es/svg/static/icons/svg/196/196561.svg">
+                        <img id= "imgCardType" src="<?php echo FRONT_ROOT ?>/Views/img/master.svg">
                         <label class="custom-control-label  mt-4" for="customRadio2">Mastercard</label>
                     </div>
                     <div class="custom-control custom-radio">
                         <input type="radio" value="American" id="customRadio3" name="customRadio" class="custom-control-input" required>
-                        <img style="with:90px; height:80px;  margin-left:-2%; margin-right:4%" src="https://www.flaticon.es/svg/static/icons/svg/349/349228.svg">
+                        <img id= "imgCardType" src="<?php echo FRONT_ROOT ?>/Views/img/american.svg">
                         <label class="custom-control-label  mt-4" for="customRadio3">American Express</label>
                     </div>
                     

@@ -1,10 +1,5 @@
 <!--Boton HOME-->
-<nav class="navbar navbar-expand-lg p-0" style="background-image: url(https://us.123rf.com/450wm/kebox/kebox1705/kebox170500033/77319728-fondo-degradado-rayas-colores-rojo-y-negro.jpg?ver=6); 
-		background-repeat: no-repeat;     
-		background-size: cover;
-        -moz-background-size: cover;
-        -webkit-background-size: cover;
-        -o-background-size: cover;">
+<nav class="navbar navbar-expand-lg p-0 navClass" src="<?php echo FRONT_ROOT ?>/Views/img/nav.png" >
 	<ul class="navbar-nav mr-auto  mt-1 mt-lg-0" >
 		<li class="nav-item active" >
 			<strong><a class="nav-link text-white"  href="/TP-MoviePass">Home</a></strong>  
@@ -12,12 +7,12 @@
 	</ul>
 
 <!--Dropdown buscar por género-->
-	<ul class="navbar-nav mr-auto " style="margin-left:65%; " >
+	<ul class="navbar-nav mr-auto aDropCards"  >
 		
 		<li class="nav-item" >
 			<div class="dropdown">
 				<form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>Show/listByGenre" method=POST>
-					<button class="btn btn-secondary btn-dark dropdown-toggle" style="margin-right:10px; "  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <?php if($genresList==null){ ?> disabled <?php } ?>>
+					<button class="btn btn-secondary btn-dark dropdown-toggle marginRight10" id="marginRight10" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <?php if($genresList==null){ ?> disabled <?php } ?>>
 					Genre
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -36,7 +31,7 @@
 		<li>
 			<div class="dropdown">
 				<form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>Show/getMoviesByDate" method=POST?>
-					<button class="btn btn-secondary btn-dark dropdown-toggle" style="margin-right:10px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <?php if($moviesYearList==null) { ?> disabled <?php } ?>>
+					<button class="btn btn-secondary btn-dark dropdown-toggle" id="marginRight10" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <?php if($moviesYearList==null) { ?> disabled <?php } ?>>
 						Years
 					</button>
 					
@@ -56,7 +51,7 @@
 
 			<?php if(!isset($_SESSION['loggedUser'])){ ?> <!--  USER NOT LOGGED -->
 
-					<button class="btn btn-secondary btn-dark dropdown-toggle" style="margin-right:10px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button class="btn btn-secondary btn-dark dropdown-toggle" id="marginRight10" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Hello Guest!
 					</button>
 					
@@ -67,7 +62,7 @@
 				
 			<?php } else { ?> <!--IS LOGGED -->
 				
-					<button class="btn btn-secondary btn-dark dropdown-toggle" style="margin-right:10px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button class="btn btn-secondary btn-dark dropdown-toggle" id="marginRight10" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Hello <?=$_SESSION['loggedUser']?>!
 					</button>
 					

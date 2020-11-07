@@ -4,7 +4,7 @@
 </div>  
 
  
-<div class="container border p-4 col-md-4 form" style="background-color:#FFFFFF; margin-top:6%;">
+<div class="container border p-4 col-md-4 form loginCard" >
   <div class="abs-center">
     <form action="<?php echo FRONT_ROOT;?>User/frontLogin" method=POST>
       <div class="form-group">

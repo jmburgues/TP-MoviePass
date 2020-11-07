@@ -1,4 +1,114 @@
 body {
-    background-color: black; 
+    background-color: rgb(255, 0, 0); 
     background-image: none; 
 }
+body {
+    background: linear-gradient(to bottom, black, #6A0000);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}      
+
+.liStyleNone{
+    list-style: none;
+}
+
+.liStylePadding-l-70{
+    list-style: none;
+}
+
+.p-ml-10{
+    margin-left:10%;
+}
+.marginl30{
+    margin-left:30%
+}
+.centerImageHome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    border: red 5px dotted;
+    margin-bottom:5%;
+}
+
+#cardsStyle{
+    margin-top:30px; 
+    height:720px;  
+    background-color:#ffe4ec;
+}
+
+.backgroundBlack{
+    background-color: black; 
+}
+
+#maxWidth1600{
+    max-width: 1600px;
+}
+
+.marginTop100{
+    padding-top: 1%;
+    margin-top:0;
+}
+
+#marginRight10{
+    margin-right:10px;
+}
+
+#dropDownCard{
+    width:500px; border-radius: 15px 15px 15px 15px;
+    -moz-border-radius: 15px 15px 15px 15px;
+    -webkit-border-radius: 15px 15px 15px 15px;
+    border: 1px solid #000000;
+    background-color:#ffe4ec;
+}
+
+.aDropCards{
+    margin-left:65%; margin-bottom:0;
+}
+
+.marginTop2{
+    margin-top: 2px;
+}
+
+.styleImageJumHome{
+    width:400px; 
+    height:300px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    display:block;
+}
+
+.buttonList{
+    text-align:left; 
+    border: none; 
+    background: none;
+}
+
+.loginCard{
+    background-color:#FFFFFF; margin-top:5%;
+}
+
+#imgCardType{
+    width:90px; height:60px; margin-left:-3%; margin-right:3%
+}
+
+.panelOwner{
+    width: 50%;
+    margin:10px;
+}
+
+.navClass{
+    background-image: url(https://us.123rf.com/450wm/kebox/kebox1705/kebox170500033/77319728-fondo-degradado-rayas-colores-rojo-y-negro.jpg?ver=6); 
+    background-repeat: no-repeat;     
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+
+}
+
+
+
+
+
+

@@ -5,8 +5,8 @@
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
      <!--CSS-->
-     <link rel="stylesheet" href="/home/jazmin/Documentos/Xampp/TP-MoviePass/Views/css">
-     <link rel="icon" href="Views/img/Logo.bmp"/>
+     <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/style.css">
+     <link rel="icon" href="<?php echo FRONT_ROOT ?>/Views/img/Logo.bmp"/>
 
      <!--BOOTSTRAP-->
      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -18,11 +18,4 @@
 
 </head>
 <body>
-     <style type="text/css">
-          body {
-               background: linear-gradient(to bottom, black, #6A0000);
-               background-repeat: no-repeat;
-               background-attachment: fixed;
-          }      
-     </style>
 </body>
