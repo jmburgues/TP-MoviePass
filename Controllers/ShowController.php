@@ -28,6 +28,7 @@
         
     //Redirige a vista adminShows donde se listan las funciones y el addShow
     public function showShows(){
+        $this->DAOShow->removeShowFromActive();
         $shows = array();
         $aux =$this->DAOShow->getAll();
         if (is_array($aux)){
@@ -39,6 +40,8 @@
         $auxCinema = new DAOCinema();
         $auxRoom = new DAORoom();
         $auxCinemaName = new DAOShow();
+
+        $activeShows = $this->DAOShow->getActiveShows();
 
       //  include VIEWS_PATH.'showAddView.php';
         ViewController::navView($genreList=null,$moviesYearList=null,null);

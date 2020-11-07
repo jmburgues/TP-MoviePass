@@ -2,6 +2,7 @@
   namespace DB\PDO;
 
   use \DateTime as DateTime;
+  use \DateTimeZone as DateTimeZone;
   use \Exception as Exception;
   use Models\Show as Show;
   use Models\Room as Room;
@@ -44,12 +45,6 @@
 
     public function getAll(){
         try{
-
-            /*
-            $query = "UPDATE ".$this->tableNameShows."
-            SET dateSelected = :date, startsAt = :start, endsAt = :end, spectators = :spectators, idRoom = :idRoom, idMovie = :idMovie 
-            WHERE idShow = :idShow;";
-            */
             $query = "SELECT * FROM ".$this->tableNameShows;
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
@@ -110,12 +105,16 @@
         }
     }
 
-    public function removeShow($id){
+    public function removeShowFromActive(){
         try{
-            $query = "Update ".$this->tableNameShows. " SET isActive = :active WHERE idShow = :id;";
+            $d = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
+            $date = $d->format('Y-m-d');
+            $time = $d->format('H:i:s');
+
+            $query = "Update ".$this->tableNameShows. " SET ".$this->tableNameShows.".isActive = 0 FROM ".$this->tableNameShows." INNER JOIN ".$this->tableNameRooms." ON ".$this->tableNameShows.".idRoom = ".$this->tableNameRooms.".idRoom WHERE ".$this->tableNameShows.".spectators = ".$this->tableNameRooms.".capacity AND ".$this->tableNameShows.".dateSelected < :date AND ".$this->tableNameShows.".startsAt < :time;";
             
-            $parameters['id'] = $id;
-            $parameters['active'] = false;
+            $parameters['date'] = $date;
+            $parameters['time'] = $time;
             
             $this->connection = Connection::GetInstance();
             return $this->connection ->ExecuteNonQuery($query,$parameters);
@@ -152,10 +151,10 @@
     }   
     
 
-    //Retorna los shows en donde se esté dando la película
-    public function getShowFromMovie($idMovie){
+    //Retorna los shows en donde se esté dando la película y las salas con al menos 1 espacio disponible
+    public function getShowFromMovieRoom($idMovie){
         try{
-            $query = "SELECT ". $this->tableNameShows .".* FROM ". $this->tableNameShows ." INNER JOIN " . $this->tableNameRooms ." ON " . $this->tableNameShows .".idRoom = ".$this->tableNameRooms .".idRoom WHERE " . $this->tableNameShows . ".idMovie = :idMovie AND " . $this->tableNameShows .".isActive = 1;";
+            $query = "SELECT ". $this->tableNameShows .".* FROM ". $this->tableNameShows ." INNER JOIN " . $this->tableNameRooms ." ON " . $this->tableNameShows .".idRoom = ".$this->tableNameRooms .".idRoom WHERE " . $this->tableNameShows . ".idMovie = :idMovie AND " . $this->tableNameShows .".isActive = 1 AND " . $this->tableNameShows .".spectators < .". $this->tableNameRooms .".capacity;";
             $parameters['idMovie'] = $idMovie;
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query, $parameters);
@@ -179,7 +178,6 @@
             }
         }
     
-
     protected function parseToObject($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function($p){

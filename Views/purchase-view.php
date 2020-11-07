@@ -10,24 +10,27 @@
       <label for="idRoom" ><strong>Movie</strong></label>
       <input readonly type="text" class="form-control font-weight-bold"  placeholder="<?php echo $selectedMovie->getTitle()?>" name="movie">
     </div>
-
     <form  action="<?php echo FRONT_ROOT ?>Ticket/getMinMax" method="POST"  name="show" id="show" >
       <div class="form-group" >
         <label ><strong>Function</strong></label>
         <select class="custom-select" name="idShow" id="idShow" >
           <?php 
-          foreach($moviesForShows as $show ){ 
+              foreach ($moviesForShows as $show) {
+                  ?>
+              <option value="<?php echo $show->getIdShow(); ?>"  >
+              <?php echo "ROOM: " , $show->getRoom()->getRoomID(),  " DATE "  , $show->getDate(), " START " , $show->getStart(), " END " , $show->getEnd() ?>
+              </option> 
+                  <?php
+              }
             ?>
-            <option value="<?php echo $show->getIdShow();?>"  >
-            <?php echo "ROOM: " , $show->getRoom()->getRoomID(),  " DATE "  , $show->getDate(), " START " , $show->getStart(), " END " , $show->getEnd() ?>
-            </option> 
-                <?php
-            }?>
+                    <?php if($moviesForShows ==null){
+                    ?> <option value="Out stock">Out stock </option> 
+                    <?php
+                    }  ?>
           </select>
         </div>
-
       <div class="text-center">
-        <input type="submit" class="btn btn-primary bg-danger text-white mt-3 col-md-3" value="Next"></input>
+        <input type="submit" <?php echo $moviesForShows!=null ? " " : "disabled" ?>  class=" btn btn-primary bg-danger text-white mt-3 col-md-3" value="Next"></input>
       </div>
 
     </form>

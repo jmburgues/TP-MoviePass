@@ -38,8 +38,58 @@
 
 
 
-<!-- COLLAPSE CARD EXISTENT SHOW-->
 
+
+<p style="margin-left:10%;">
+  <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#active" aria-expanded="false" aria-controls="collapseExample">
+    Active Shows:
+  </button>
+</p>
+
+<div class="collapse" id="active">
+    <div class="text-center mt-5 mb-3">
+        <h3 class="text-white">Active shows: </h3>
+    </div>
+    <?php
+        if (isset($activeShows)) {
+            foreach ($activeShows as $aShow) {
+                ?>                
+                <div class="container  mt-5">           
+                    <div class="card card-body ">
+                        <ul>
+                            <li><strong>Date:</strong> <?php echo $aShow->getDate() ?></li>
+                            <li><strong>Starting hour:</strong> <?php echo $aShow->getStart() ?></li>
+                            <li><strong>Ending hour:</strong> <?php echo $aShow->getEnd() ?></li>
+                            <li><strong>Spectators:</strong> <?php echo $aShow->getSpectators()?></li>
+                            <li><strong>Room:</strong> <?php echo $aShow->getRoom()->getName();?></li>
+                            <li><strong>Movie:</strong> <?php echo $aShow->getMovie()->getTitle();?></li>
+                            <li><strong>Cinema:</strong> <?php echo $aShow->getRoom()->getCinema()->getName();?></li>
+                        
+                        </ul>  
+                    </div>
+                </div>
+            <?php
+            }
+        }
+        if(!$activeShows){
+            ?>
+            <div class="container  mt-5">   
+                <div class="card card-body ">
+                    <ul>
+                        <li><?php echo "No Shows loaded yet" ?></li>                                
+                    </ul>  
+            </div>
+    </div>
+        <?php 
+        }
+        ?>
+    </div>
+    </p>
+</div>
+
+
+
+<!-- COLLAPSE CARD EXISTENT SHOW-->
 <p style="margin-left:10%;">
   <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#existent" aria-expanded="false" aria-controls="collapseExample">
     Manage existent Shows:

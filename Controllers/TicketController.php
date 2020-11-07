@@ -54,7 +54,7 @@
             ViewController::navView($genreList = null, $moviesYearList = null, null);
             $userName = $_SESSION['loggedUser'];
             $selectedMovie = $this->DAOMovie->getById($movieId);
-            $moviesForShows = $this->DAOShow->getShowFromMovie($movieId);
+            $moviesForShows = $this->DAOShow->getShowFromMovieRoom($movieId);
             include VIEWS_PATH.'purchase-view.php';
         }
         
