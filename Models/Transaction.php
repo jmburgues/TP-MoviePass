@@ -8,11 +8,13 @@ class Transaction
     private $user;
     private $date;
 
-    function __construct(User $user, $date='', $idTransaction='')
+    function __construct(User $user, $date='', $ticketAmount='',$costPerTicket='', $idTransaction='')
     {
         $this->idTransaction = $idTransaction;
         $this->user = $user;
         $this->date = $date;
+        $this->ticketAmount = $ticketAmount;
+        $this->costPerTicket = $costPerTicket;
     }
 
     public function getIdTransaction()
@@ -27,7 +29,24 @@ class Transaction
     {
         return $this->date;
     }
+    public function getTicketAmount()
+    {
+        return $this->ticketAmount;
+    }
+    public function getCostPerTicket()
+    {
+        return $this->costPerTicket;
+    }
 
+    public function setCostPerTicket($costPerTicket)
+    {
+        $this->costPerTicket = $costPerTicket;
+    }
+
+    public function setTicketAmount($ticketAmount)
+    {
+        $this->ticketAmount = $ticketAmount;
+    }
     public function setIdTransaction($idTransaction)
     {
         $this->idTransaction = $idTransaction;

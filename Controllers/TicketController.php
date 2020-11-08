@@ -117,9 +117,10 @@
 
             $d = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
             $time = $d->format('Y-m-d H:i:s');
-
             $transaction = new Transaction($this->DAOUser->getByUserName($_SESSION['loggedUser']));
             $transaction->setDate($time);
+            $transaction->setCostPerTicket($costPerTicket);
+            $transaction->setTicketAmount($ticketAmount);
         
             $this->DAOTransaction->p_add_transaction($transaction);
             

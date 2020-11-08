@@ -68,10 +68,10 @@
                             <li class="liStyleNone liStylePadding-l-70">
                                 <div class="btn-group" role="group" aria-label="Basic example">    
                                     <form action="<?php echo FRONT_ROOT?>Show/modifyShowView" method="POST">
-                                        <button <?php $aShow->getSpectators()!=0 ? " " : "disabled" ?> type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $show->getIdShow()?>"   name="idCinemaM">Modify</button> 
+                                        <button <?php $aShow->getSpectators()!=0 ? " " : "disabled" ?> type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $aShow->getIdShow()?>"   name="idCinemaM">Modify</button> 
                                     </form>
                                     <form action="<?php echo FRONT_ROOT?>Show/deleteShow" method="POST">
-                                        <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $show->getIdShow()?>" disabled  name="idCinemaD">Delete</button> 
+                                        <button <?php $aShow->getSpectators()!=0 ? " " : "disabled" ?> type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $aShow->getIdShow()?>" disabled  name="idCinemaD">Delete</button> 
                                     </form>
                                 </div>
                             </li> 
