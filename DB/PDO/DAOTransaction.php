@@ -65,7 +65,7 @@
 
     public function getTransactionsByUser($user){
         try{
-            $query = "SELECT * FROM ".$this->tableNameTransaction ." INNER JOIN ". $this->tableNameUsers ." ON ".$this->tableNameTransaction .".username = ".$this->tableNameUsers .".username WHERE ". $this->tableNameUsers .".username = :name; ";
+            $query = "SELECT ". $this->tableNameTransaction . ".* FROM ".$this->tableNameTransaction ." INNER JOIN ". $this->tableNameUsers ." ON ".$this->tableNameTransaction .".username = ".$this->tableNameUsers .".username WHERE ". $this->tableNameUsers .".username = :name; ";
             $parameters['name'] = $user->getUserName();
 
             $this->connection = Connection::GetInstance();
