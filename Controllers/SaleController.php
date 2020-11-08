@@ -19,10 +19,21 @@
         public function showSales(){
             ViewController::navView($genreList=null,$moviesYearList=null,null);
             $transactions = $this->DAOTransaction->getAllTransactions();
-           // print_r($transactions);
-            $tickets = $this->getTickets();
+            $totalTicketsAmount = 0;
+            $totalCostSold = 0;
+
+            foreach($transactions as $t){
+                $totalCostSold =  $totalCostSold + ($t->getCostPerTicket() * $t->getTicketAmount());
+            }
+            foreach($transactions as $t){
+                $totalTicketsAmount =  $totalTicketsAmount +  $t->getTicketAmount();
+            }
+
+            $costs = $totalCostSold;
+            $tickets = $totalTicketsAmount;
+
             include VIEWS_PATH.'adminSales.php';
-    }
+        }
 
         //getAll de tickets, muestra todas las tickets. 
         public function getTickets(){

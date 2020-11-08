@@ -5,18 +5,23 @@
   use \Exception as Exception;
   use Models\Transaction as Transaction;
   use DB\PDO\Connection as Connection;
-
+  use DB\PDO\DAOUser as DAOUser;
 
   class DAOTransaction{
     private $connection;
     private $tableNameTransaction = "TRANSACTIONS";
 
+
+
     //Inserta una transacción en la tabla por medio de procedure  para obtener el ID
     public function p_add_transaction($transaction){
         try{
-            $query = "CALL p_add_transaction (". ":username" .",". ":dateTransaction" ."," ." @out);";
+            $query = "CALL p_add_transaction (". ":username" .",". ":dateTransaction" ."," . ":ticketAmount" .",". ":costPerTicket" ."," ." @out);";
             $parameters['username'] = $transaction->getUser()->getUserName();
             $parameters['dateTransaction'] = $transaction->getDate();
+            $parameters['ticketAmount'] = $transaction->getTicketAmount();
+            $parameters['costPerTicket'] = $transaction->getCostPerTicket();
+        
 
             $this->connection = Connection::GetInstance();
             $response = $this->connection->ExecuteNonQuery($query, $parameters);
@@ -48,7 +53,7 @@
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
 
-            return $resultSet;
+            return $this->parseToObject($resultSet);
             }
             catch(Exception $ex){
             throw $ex;
@@ -57,21 +62,22 @@
 
 
     public function parseToObject($value) {
-        $value = is_array($value) ? $value : [];
-        $resp = array_map(function($p){
     
-        return new Transaction ($p['username'], $p['transacctionDate'], $p['idTransaction']);
+        $value = is_array($value) ? $value : [];
+        $resp = array_map(function ($p) {
+            
+            $DAOUser = new DAOUser();
+            $user = $DAOUser->getByUserName($p['username']);
+            return new Transaction($user, $p['transacctionDate'], $p['ticketAmount'], $p['costPerTicket'], $p['idTransaction']);
         }, $value);
-        
-        if(empty($resp)){
-        return $resp;
-        }
-        else {
-        return count($resp) > 1 ? $resp : $resp['0'];
-        
+    
+        if (empty($resp)) {
+            return $resp;
+        } else {
+            return count($resp) > 1 ? $resp : $resp['0'];
         }
     }
-
 }
+
 ?>
 

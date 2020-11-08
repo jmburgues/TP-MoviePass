@@ -34,9 +34,7 @@
         $oneDayAhead = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
         $oneDayAhead->add(new DateInterval('P1D'));
         $shows = $this->DAOShow->getAll();
-
         $activeShows = $this->DAOShow->getActiveShows();
-      //  include VIEWS_PATH.'showAddView.php';
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'adminShows.php';
     }

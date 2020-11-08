@@ -57,7 +57,7 @@
                 $this->DAORoom->modify($modifyRoom);
             }  
         }
-      $this->addRoomView($IDCinema);
+        $this->addRoomView($IDCinema);
     }
 
     public function addRoom($idCinema, $name, $capacity, $price, $roomType){
