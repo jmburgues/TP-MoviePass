@@ -15,9 +15,11 @@
             <div class="card card-body  border-dark ">
                 <ul>
                     <li><strong>Name:  </strong><?php echo $value['username'] ?></li>
-                    <li><strong>Ddate:  </strong><?php echo $value['transacctionDate'] ?></li>
+                    <li><strong>Date purchase:  </strong><?php echo $value['transacctionDate'] ?></li>
                     <li><strong>Amount ticket:  </strong><?php echo $value['ticketAmount'] ?></li>
                     <li><strong>Cost per ticket:  </strong><?php echo $value['costPerTicket'] ?></li>
+                    <li><strong>Qr:  </strong></li>
+                    <li class="liStyleNone"><span class ="aDropCards"><?php echo $value['qrCode'] ?></span></li>
                 </ul>   
             </div>
         </div>

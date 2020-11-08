@@ -4,6 +4,7 @@
   use \DateTime as DateTime;
   use \Exception as Exception;
   use Models\Transaction as Transaction;
+  use Models\Tickets as Tickets;
   use Models\User as User;
   use DB\PDO\Connection as Connection;
   use DB\PDO\DAOUser as DAOUser;
@@ -11,6 +12,7 @@
   class DAOTransaction{
     private $connection;
     private $tableNameTransaction = "TRANSACTIONS";
+    private $tableNameTickets = "TICKETS";
     private $tableNameUsers = "USERS";
 
 
@@ -65,9 +67,9 @@
 
     public function getTransactionsByUser($user){
         try{
-            $query = "SELECT ". $this->tableNameTransaction . ".* FROM ".$this->tableNameTransaction ." INNER JOIN ". $this->tableNameUsers ." ON ".$this->tableNameTransaction .".username = ".$this->tableNameUsers .".username WHERE ". $this->tableNameUsers .".username = :name; ";
+            $query = "SELECT * FROM ".$this->tableNameUsers ." INNER JOIN ". $this->tableNameTransaction ." ON ". $this->tableNameUsers .".username = ". $this->tableNameTransaction .".username INNER JOIN ". $this->tableNameTickets ." ON ". $this->tableNameTransaction .".idTransaction = ". $this->tableNameTickets .".idTransaction WHERE " .$this->tableNameUsers .".username = :name;";
+            
             $parameters['name'] = $user->getUserName();
-
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query, $parameters);
             return $resultSet;
