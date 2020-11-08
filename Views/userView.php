@@ -2,7 +2,14 @@
     <h3 class="text-white text-uppercase">Hi <?php echo $userName ?> !</h3>
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>index.php'"> Go Back </button> 
 </div>  
+<?php
 
+foreach($transaction as $t){
+    echo "<pre>";
+    print_r($t);
+    echo "</pre>";
+}
+?>
 
 <div class="text-center mt-5 mb-3">
     <h3 class="text-white ">Cart:</h3>

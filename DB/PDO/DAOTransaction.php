@@ -4,12 +4,14 @@
   use \DateTime as DateTime;
   use \Exception as Exception;
   use Models\Transaction as Transaction;
+  use Models\User as User;
   use DB\PDO\Connection as Connection;
   use DB\PDO\DAOUser as DAOUser;
 
   class DAOTransaction{
     private $connection;
     private $tableNameTransaction = "TRANSACTIONS";
+    private $tableNameUsers = "USERS";
 
 
 
@@ -50,6 +52,7 @@
     public function getAllTransactions(){
         try{
             $query = "SELECT * FROM ".$this->tableNameTransaction;
+            
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
 
@@ -60,6 +63,19 @@
             }
     } 
 
+    public function getTransactionsByUser($user){
+        try{
+            $query = "SELECT * FROM ".$this->tableNameTransaction ." INNER JOIN ". $this->tableNameUsers ." ON ".$this->tableNameTransaction .".username = ".$this->tableNameUsers .".username WHERE ". $this->tableNameUsers .".username = :name; ";
+            $parameters['name'] = $user->getUserName();
+
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query, $parameters);
+            return $resultSet;
+            }
+            catch(Exception $ex){
+            throw $ex;
+            }
+    } 
 
     public function parseToObject($value) {
     
