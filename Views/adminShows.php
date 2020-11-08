@@ -68,7 +68,7 @@
                             <li class="liStyleNone liStylePadding-l-70">
                                 <div class="btn-group" role="group" aria-label="Basic example">    
                                     <form action="<?php echo FRONT_ROOT?>Show/modifyShowView" method="POST">
-                                        <button <?php echo $aShow->getSpectators()==0 ? "" : "disabled" ?> type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $aShow->getIdShow()?>"   name="modify">Modify</button> 
+                                        <button <?php echo ($aShow->getSpectators()==0 && $today->format("Y-m-d") != $aShow->getDate()) ? "" : "disabled" ?> type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $aShow->getIdShow()?>"   name="modify">Modify</button> 
                                     </form>
                                     <form action="<?php echo FRONT_ROOT?>Show/removeShow" method="POST">
                                         <button <?php echo $aShow->getSpectators()==0 ? "" : "disabled" ?> type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $aShow->getIdShow()?>"   name="delete">Delete</button> 

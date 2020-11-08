@@ -84,16 +84,18 @@
     public function modify(Show $show)    {
         try 
         {
-            $query = "UPDATE ".$this->tableNameShows."
-            SET dateSelected = :date, startsAt = :start, endsAt = :end, spectators = :spectators, idRoom = :idRoom, idMovie = :idMovie, isActive = active 
-            WHERE idShow = :idShow;";
-            $parameters['date'] = $show->getDate();;
+            $query = "UPDATE ".$this->tableNameShows." 
+            SET dateSelected = :date, startsAt = :start, endsAt = :end, 
+            spectators = :spectators, idRoom = :idRoom, idMovie = :idMovie, 
+            isActive = :active 
+            WHERE idShow = :idShow; ";
+            $parameters['date'] = $show->getDate();
             $parameters['start'] = $show->getStart();
             $parameters['end'] = $show->getEnd();
-            $parameters['spectators'] = $show->getSpectators();
+            $parameters['spectators'] = 0;
             $parameters['idRoom'] = $show->getRoom()->getRoomID();
             $parameters['idMovie'] = $show->getMovie()->getMovieID();
-            $parameters['active'] = $show->getActive();
+            $parameters['active'] = 1;
             $parameters['idShow'] = $show->getIdShow();
             
             $this->connection = Connection::GetInstance();

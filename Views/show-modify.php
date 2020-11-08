@@ -34,8 +34,6 @@
                         </select>
                     </div>
             </div>
-            <input type="hidden" class="form-control" name="spectators" value=<?php echo $currentShow->getSpectators() ?> >
-            <input type="hidden" class="form-control" name="active" value=<?php echo $currentShow->getActive() ?> >
             <div class="form-group row ">
                 <label for="inputName" class="col-sm-1 col-form-label"><strong>Date:</strong></label>
                 <div class="col-sm-10">

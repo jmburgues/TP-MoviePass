@@ -31,6 +31,7 @@
     public function showShows(){
         #$this->validateActiveShows();
         #Esto es para que no se puedan agregar shows el mismo dia que se esta
+        $today = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
         $oneDayAhead = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
         $oneDayAhead->add(new DateInterval('P1D'));
         $shows = $this->DAOShow->getAll();
@@ -116,18 +117,10 @@
         #==============================#
         $selectedMovie=$this->DAOMovie->getById($movieId);
         //se toma la película y se calcula la duración para devolver el final de la función + los 15 minutos 
-        $auxDate = $start;
-        $dateToInsert = new DateTime($auxDate.'M');
+        $dateToInsert = new DateTime($start.'M');
 
-        $auxEnd = ($selectedMovie->getDuration() +15 );
-        
-        $interval = new DateInterval('PT'.$auxEnd.'M');         
-
-        $dateToInsertEnd = new DateTime($auxDate);
-        $dateToInsertEnd->add($interval);
-    
         $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
-        $dateToInsertEnd = $dateToInsertEnd->format('Y-m-d H:i:s');
+        $dateToInsertEnd = $this->addInterval($start, ($selectedMovie->getDuration() +15 ));
 
         echo '<pre>';
         print_r($dateToInsert);
@@ -154,39 +147,65 @@
     //Redirige a la vista para modificar el show seleccionado con todos sus datos
     public function modifyShowView($showID){
         $currentShow = $this->DAOShow->getById($showID);
-        $auxRoom = $this->DAORoom->getById($currentShow->getRoom()->getRoomID());
-        $auxCinema = $this->DAOCinema->getById($auxRoom->getCinema()->getId());
-        $rooms = $this->DAORoom->getActiveRoomsByCinema($auxCinema->getId());
+        $rooms = $this->DAORoom->getActiveRoomsByCinema($currentShow->getRoom()->getCinema()->getId());
         $movies = $this->DAOMovie->getAll();
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'show-modify.php';
     }
-
-    public function modifyShow($idShow, $idRoom, $idMovie, $spectators, $active, $date, $start){
+#33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+    public function modifyShow($idShow, $idRoom, $idMovie, $date, $start){
+        //Calculo el nuevo fin de la funcion
         $movie = $this->DAOMovie->getById($idMovie);
-        $auxDate = $start;
-        $dateToInsert = new DateTime($auxDate.'M');
-
-        $auxEnd = ($movie->getDuration() +15 );
-        
-        $interval = new DateInterval('PT'.$auxEnd.'M');         
-
-        $dateToInsertEnd = new DateTime($auxDate);
-        $dateToInsertEnd->add($interval);
-    
+        $dateToInsert = new DateTime($start.'M');
         $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
-        $dateToInsertEnd = $dateToInsertEnd->format('Y-m-d H:i:s');
-
-
+        $dateToInsertEnd = $this->addInterval($start, ($movie->getDuration() +15 ));
+        #----------------------------------------#
+        //Creo el objeto show a modificar y por verificar
+        $modifyShow = new Show($date, $dateToInsert, $dateToInsertEnd, $this->DAORoom->getByID($idRoom), $this->DAOMovie->getByID($idMovie), 0, 1, $idShow);
+        #----------------------------------------#
+        //realizo las validaciones
+        $msg;
+        #Validacion de fecha y hora
+        $startAux = new DateTime ($start);
+        $endAux = new DateTime ($dateToInsertEnd);
         $showsList = $this->DAOShow->getActiveShows();
-        $modifyShow = new Show($date, $dateToInsert, $dateToInsertEnd, $idRoom, $idMovie, $spectators, $active, $idShow);
-    // var_dump($modifyShow);
-        $this->DAOShow->modify($modifyShow);
-
+        foreach ($showsList as $show) {
+          if ($modifyShow->getDate() == $show->getDate()) {
+            if ($show->getRoom()->getRoomID() == $idRoom) {
+              $extremoInferior = new DateTime($show->getDate().' '.$show->getStart());
+              if ($startAux->format('Y-m-d') == $endAux->format('Y-m-d')){
+                $extremoSuperior = new DateTime($show->getDate().' '.$show->getEnd());
+              }else{
+                $extremoSuperior = new DateTime($endAux->format('Y-m-d').' '.$show->getEnd());
+              }
+              $inicio = $dateToInsert;
+              $fin = $dateToInsertEnd;
+              if (!($inicio>=$extremoSuperior) && !($fin<=$extremoInferior)) {
+                $msg = 'Horario ocupado';
+              }
+            }
+          }
+        }
+        
+        $aux = $this->DAOShow->getByDateAndMovieId($date, $idMovie);
+        if ($aux != null){
+          if (($aux[0]->getRoom()->getRoomID() != $idRoom) && ($aux[0]->getIdShow() != $idShow)){
+            $msg = 'Esa pelicula se esta trasmitiendo en otra sala o cine este dia';
+          }
+        }
+        
+        var_dump($modifyShow);
+        
+        if (isset($msg)){
+          echo "<script type='text/javascript'>alert('$msg');</script>";
+        }else{
+          $this->DAOShow->modify($modifyShow);
+        }
+        
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         $this->showShows();
     }
-
+#33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
 
     public function validateActiveShows(){
       $CurrentActiveShows = $this->DAOShow->getActiveShows();
@@ -209,5 +228,11 @@
       $this->showShows();
     }
 
+    public function addInterval ($start ,$duration){
+      $interval = new DateInterval('PT'.$duration.'M');         
+      $dateToInsertEnd = new DateTime($start);
+      $dateToInsertEnd->add($interval);
+      return $dateToInsertEnd->format('Y-m-d H:i:s');
+    }
   }
 ?>

@@ -55,7 +55,8 @@
     //query para modificar los cines, recibe un objeto tipo cine.
     public function modify(Cinema $cinema){
       try{
-        $query = "UPDATE ".$this->tableName. " SET cinemaName = :name, adress = :address, adressNumber = :number ,
+        $query = "UPDATE ".$this->tableName. " SET cinemaName = :name,
+        adress = :address, adressNumber = :number ,
         openning = :openning , closing = :closing, isActive = :active 
         WHERE idCinema = :id;";   
         $parameters['id'] = $cinema->getId();
