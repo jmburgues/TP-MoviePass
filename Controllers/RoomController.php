@@ -63,7 +63,7 @@
     public function addRoom($idCinema, $name, $capacity, $price, $roomType){
         if ($name != "") {
             $cinema = $this->DAOCinema->getById($idCinema);
-            $room = new Room($name, $capacity, $cinema, $roomType, 1 );
+            $room = new Room($name, $capacity, $cinema, $price,$roomType, 1 );
             $listRoom = $this->DAORoom->getAll();
             $roomExist = false;
             $message ="";
