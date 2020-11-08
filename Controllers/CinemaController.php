@@ -35,7 +35,7 @@
           $currentCinema = $this->DAOCinema->placeholderCinemaDAO($idCinema);
           //print_r ($currentCinema);
           $cinemas = $this->DAOCinema->getActiveCinemas();  
-          $movies=$this->DAOMovie->GetAll();
+          $movies=$this->DAOMovie->getAll();
           ViewController::navView($genreList=null,$moviesYearList=null,null);
           include VIEWS_PATH.'cine-modify.php';
       }
@@ -51,7 +51,7 @@
         $cinemas[0] = $aux;
       }
 
-      $movies=$this->DAOMovie->GetAll();
+      $movies=$this->DAOMovie->getAll();
       ViewController::navView($genreList=null,$moviesYearList=null,null);
       include VIEWS_PATH.'adminCinemas.php';// CAMBIAR LOS INCLUDE POR INCLUDE_ONCE/REQUIERE_ONCE
     }
@@ -113,7 +113,7 @@
             echo "<script type='text/javascript'>alert('$message');</script>";  //Sacar del controlador
         }
         $cinemas = $this->DAOCinema->getActiveCinemas();
-        $movies=$this->DAOMovie->GetAll();
+        $movies=$this->DAOMovie->getAll();
         $this->showCinemas();
     }
 

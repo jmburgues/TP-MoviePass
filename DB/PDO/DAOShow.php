@@ -107,7 +107,7 @@
 
     public function removeShowFromActive($idShow){
         try{
-            $query = "Update ".$this->tableNameShows. " SET ".$this->tableNameShows.".isActive = 0 WHERE ".$this->tableNameShows."idShow = :idShow";
+            $query = "Update ".$this->tableNameShows. " SET ".$this->tableNameShows.".isActive = 0 WHERE ".$this->tableNameShows.".idShow = :idShow";
             
             $parameters['idShow'] = $idShow;
             $this->connection = Connection::GetInstance();
@@ -126,6 +126,21 @@
             $resultSet = $this->connection->Execute($query,$parameters);
             
             return $this->parseToObject($resultSet);
+        }
+        catch(Exception $ex){
+            throw $ex;
+        }
+    }
+
+    public function getByDateAndMovieId($date, $idMovie){
+    try{
+            $query = "SELECT * FROM ".$this->tableNameShows." where dateSelected = :date and idMovie = :idMovie";
+            $parameters['date'] = $date;
+            $parameters['idMovie'] = $idMovie;
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query,$parameters);
+            
+            return $this->toArray($this->parseToObject($resultSet));
         }
         catch(Exception $ex){
             throw $ex;

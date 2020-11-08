@@ -42,7 +42,7 @@
 
 <p class="p-ml-10">
   <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#active" aria-expanded="false" aria-controls="collapseExample">
-    Active Shows:
+    Manage Active Shows:
   </button>
 </p>
 
@@ -68,10 +68,10 @@
                             <li class="liStyleNone liStylePadding-l-70">
                                 <div class="btn-group" role="group" aria-label="Basic example">    
                                     <form action="<?php echo FRONT_ROOT?>Show/modifyShowView" method="POST">
-                                        <button <?php $aShow->getSpectators()!=0 ? " " : "disabled" ?> type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $show->getIdShow()?>"   name="idCinemaM">Modify</button> 
+                                        <button <?php echo $aShow->getSpectators()==0 ? "" : "disabled" ?> type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $aShow->getIdShow()?>"   name="modify">Modify</button> 
                                     </form>
-                                    <form action="<?php echo FRONT_ROOT?>Show/deleteShow" method="POST">
-                                        <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $show->getIdShow()?>" disabled  name="idCinemaD">Delete</button> 
+                                    <form action="<?php echo FRONT_ROOT?>Show/removeShow" method="POST">
+                                        <button <?php echo $aShow->getSpectators()==0 ? "" : "disabled" ?> type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $aShow->getIdShow()?>"   name="delete">Delete</button> 
                                     </form>
                                 </div>
                             </li> 
@@ -103,7 +103,7 @@
 <!-- COLLAPSE CARD EXISTENT SHOW-->
 <p class="p-ml-10">
   <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#existent" aria-expanded="false" aria-controls="collapseExample">
-    Manage existent Shows:
+    History of shows:
   </button>
 </p>
 
@@ -111,7 +111,7 @@
 
 
     <div class="text-center mt-5 mb-3">
-        <h3 class="text-white">Manage existent shows (billboard):</h3>
+        <h3 class="text-white">Full show list:</h3>
     </div>
 
     <?php
@@ -129,7 +129,7 @@
                                 <li><strong>Room:</strong> <?php echo $show->getRoom()->getName();?></li>
                                 <li><strong>Movie:</strong> <?php echo $show->getMovie()->getTitle();?></li>
                                 <li><strong>Cinema:</strong> <?php echo $show->getRoom()->getCinema()->getName();?></li>
-                                
+
                             </ul>  
         <!--card-->     </div>
         

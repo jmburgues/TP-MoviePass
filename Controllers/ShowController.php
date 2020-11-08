@@ -29,14 +29,13 @@
         
     //Redirige a vista adminShows donde se listan las funciones y el addShow
     public function showShows(){
-        $this->validateActiveShows();
+        #$this->validateActiveShows();
         #Esto es para que no se puedan agregar shows el mismo dia que se esta
         $oneDayAhead = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
         $oneDayAhead->add(new DateInterval('P1D'));
         $shows = $this->DAOShow->getAll();
 
         $activeShows = $this->DAOShow->getActiveShows();
-        echo "probando el mergeito ";
       //  include VIEWS_PATH.'showAddView.php';
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'adminShows.php';
@@ -50,48 +49,30 @@
     }
 
     public function addCurrentShow($date, $start, $end, $selectedMovieId, $roomId){
-
         $newShow = new Show($date,$start, $end,$this->DAORoom->getById($roomId), $this->DAOMovie->getById($selectedMovieId),0);
         
-        $rooms = $this->DAORoom->getAll(); 
-        $movies=$this->DAOMovie->GetAll();
-        
-        foreach($rooms as $room){
-            if($room->getRoomID() == $roomId){
-                $selectedRoom = $room;
-            }
-        } 
-        foreach($movies as $movie){
-            if($movie->getMovieId() == $selectedMovieId){
-                $selectedMovie = $movie;
-            }
-        } 
+        $startAux = new DateTime ($start);
+        $endAux = new DateTime ($end);
+
+        #$rooms = $this->DAORoom->getAll(); 
+        #$movies=$this->DAOMovie->getAll();
         
         $flag = 0; 
         
-        $lookingForShows = array();
-        $aux =$this->DAOShow->getAll();
-        if (is_array($aux)){
-            $lookingForShows = $aux;
-        }else{
-            $lookingForShows[0] = $aux;
-        }
+        $lookingForShows = $this->DAOShow->getActiveShows();
 
         foreach ($lookingForShows as $show) {
           //  echo "Entra";
             if ($newShow->getDate() == $show->getDate()) {
-                
-                echo "<pre>";
-                echo $newShow->getDate();
-                echo "</pre>";
-                echo "<pre>";
-                echo $show->getDate();
-                echo "</pre>";
 
                 if ($show->getRoom()->getRoomID() == $roomId) {
                   //  echo "id";
-                    $extremoInferior = new DateTime($show->getStart());
-                    $extremoSuperior = new DateTime($show->getEnd());
+                    $extremoInferior = new DateTime($show->getDate().' '.$show->getStart());
+                    if ($startAux->format('Y-m-d') == $endAux->format('Y-m-d')){
+                      $extremoSuperior = new DateTime($show->getDate().' '.$show->getEnd());
+                    }else{
+                      $extremoSuperior = new DateTime($endAux->format('Y-m-d').' '.$show->getEnd());
+                    }
                     $inicio = new DateTime($start);
                     $fin = new DateTime($end);
                     if (!($inicio>=$extremoSuperior) && !($fin<=$extremoInferior)) {
@@ -126,36 +107,36 @@
     //Método luego de seleccionar la película para el show
     //Muestra la información hasta el momento de la función y elige la sala
     public function selectMovie($date, $start, $movieId){
-        $dateTime = new DateTime();
-        $movies=$this->DAOMovie->GetAll();
-        //se toma la película y se calcula la duración para devolver el final de la función 
-        foreach($movies as $movie){
-            if($movie->getMovieId() == $movieId){
+        #Validacion de que en un dia que ya se esta dando una pelicula en una funcion solo puede darse en ese mismo cine y sala
+        $aux = $this->DAOShow->getByDateAndMovieId($date, $movieId);
+        if ($aux == null){
+          $rooms = $this->DAORoom->getAll(); 
+        }else{
+          #Se que no esta del todo bien pero hay un error que no estaria encontrando
+          $rooms = array($aux[0]->getRoom());
+        }
+        #==============================#
+        $selectedMovie=$this->DAOMovie->getById($movieId);
+        //se toma la película y se calcula la duración para devolver el final de la función + los 15 minutos 
+        $auxDate = $start;
+        $dateToInsert = new DateTime($auxDate.'M');
+
+        $auxEnd = ($selectedMovie->getDuration() +15 );
         
-                /*
-                *  HACERR UNA GetMovieByID para traer la pelicula buscada en lugar de un FOREACH
-                */ 
+        $interval = new DateInterval('PT'.$auxEnd.'M');         
 
-                $auxDate = $start;
-                $dateToInsert = new DateTime($auxDate.'M');
+        $dateToInsertEnd = new DateTime($auxDate);
+        $dateToInsertEnd->add($interval);
+    
+        $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
+        $dateToInsertEnd = $dateToInsertEnd->format('Y-m-d H:i:s');
 
-                $auxEnd = ($movie->getDuration() +15 );
-                
-                $interval = new DateInterval('PT'.$auxEnd.'M');         
-
-                $dateToInsertEnd = new DateTime($auxDate);
-                $dateToInsertEnd->add($interval);
-            
-                $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
-                $dateToInsertEnd = $dateToInsertEnd->format('Y-m-d  H:i:s');
-
-                $selectedMovie = $movie;
-            }
-        } 
-        $rooms = $this->DAORoom->getAll(); 
-        
-      //  print_r($rooms);
-
+        echo '<pre>';
+        print_r($dateToInsert);
+        echo '</pre>';
+        echo '<pre>';
+        print_r($dateToInsertEnd);
+        echo '</pre>';
         ViewController::navView($genreList=null,$moviesYearList=null,null);
         include VIEWS_PATH.'listCinemasAdmin.php';
     }
@@ -222,6 +203,12 @@
             $this->DAOShow->removeShowFromActive($CurrentActiveShow->getIdShow());
         }
       }
+    }
+
+    public function removeShow ($idShow){
+      #Podria agregar alguna comprobacion ? yo creo que no ya se hace en el view.
+      $this->DAOShow->removeShowFromActive($idShow);
+      $this->showShows();
     }
 
   }
