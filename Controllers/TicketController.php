@@ -51,7 +51,7 @@
         //Invoca la primer vista donde el usuario completa el form con los datos para la entrada
         public function showPurchase($movieId)
         {
-            ViewController::navView($genreList = null, $moviesYearList = null, null);
+            ViewController::navView($genreList = null, $moviesYearList = null, null, null);
             $userName = $_SESSION['loggedUser'];
             $selectedMovie = $this->DAOMovie->getById($movieId);
             $moviesForShows = $this->DAOShow->getShowFromMovieRoom($movieId);
@@ -60,7 +60,7 @@
         
         //Invocado desde purchase-view, recibe el id del show.
         public function getMinMax($idShow){
-            ViewController::navView($genreList = null, $moviesYearList = null, null);
+            ViewController::navView($genreList = null, $moviesYearList = null, null, null);
             $min = 1;
             $max = $this->DAOShow->getById($idShow)->getRoom()->getCapacity() - $this->DAOShow->getById($idShow)->getSpectators();
             include VIEWS_PATH.'numberTickets.php';
@@ -73,7 +73,7 @@
         //Envía a la vista el costo de las entradas
         public function addTicket($idShow, $ticketAmount, $cardBank)
         {
-            ViewController::navView($genreList = null, $moviesYearList = null, null);
+            ViewController::navView($genreList = null, $moviesYearList = null, null, null);
             $showSelected = $this->DAOShow->getById($idShow);
             $movieForShows = $this->DAOMovie->getMoviesFromShow($showSelected->getMovie()->getMovieID());
             $costPerTicket = $this->DAOShow->getPriceByIdShow($idShow);
@@ -104,7 +104,7 @@
 
         public function confirmTicket($costPerTicket, $totalCost, $ticketAmount, $creditNumber, $name, $cvc,  $expirationDate, $expirationYear, $idShow, $cardBank)
         {
-            ViewController::navView($genreList = null, $moviesYearList = null, null);
+            ViewController::navView($genreList = null, $moviesYearList = null, null, null);
 
             $showCardLast = str_replace(range(0,9), "*", substr($creditNumber, 0, -4)) .  substr($creditNumber, -4);
 

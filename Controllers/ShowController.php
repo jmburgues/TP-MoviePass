@@ -10,6 +10,7 @@
     use DB\PDO\DAOCinema as DAOCinema;
     use DB\PDO\DAOGenre as DAOGenre;
     use Models\Show as Show;    
+    use \Exception as Exception;
 
     class ShowController{
         private $DAOMovie;
@@ -36,14 +37,14 @@
         $oneDayAhead->add(new DateInterval('P1D'));
         $shows = $this->DAOShow->getAll();
         $activeShows = $this->DAOShow->getActiveShows();
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include VIEWS_PATH.'adminShows.php';
     }
 
     //Crea un nuevo show
     public function addShow($date, $start){
         $moviesDB = $this->DAOMovie->getAll();
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include VIEWS_PATH.'listMoviesAdmin.php';
     }
 
@@ -87,20 +88,22 @@
                 echo "<script type='text/javascript'>alert('$message');</script>";
             }        
         $shows=$this->DAOShow->getAll();
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         $this->showShows();
     }
 
     function getMoviesByDate($year){ // returns an array of movies (Object) created on a given date (1st revision)
-    
+      try {
         $genreList = $this->DAOGenre->getGenresListFromShows();
         $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
-        ViewController::navView($genreList,$moviesYearList,null); 
-
-
         $movies = $this->DAOMovie->getByYearFromShows($year);
-    
-        ViewController::homeView($movies,1,"Year: ".$year);
+        
+      } 
+      catch (Exception $ex){
+        $arrayOfErrors [] = $ex->getMessage();
+      }
+      ViewController::navView($genreList,$moviesYearList,null,null); 
+      ViewController::homeView($movies,1,"Year: ".$year);
     }
 
     //Método luego de seleccionar la película para el show
@@ -122,20 +125,14 @@
         $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
         $dateToInsertEnd = $this->addInterval($start, ($selectedMovie->getDuration() +15 ));
 
-        echo '<pre>';
-        print_r($dateToInsert);
-        echo '</pre>';
-        echo '<pre>';
-        print_r($dateToInsertEnd);
-        echo '</pre>';
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include VIEWS_PATH.'listCinemasAdmin.php';
     }
 
     function listByGenre($genreId){
         $genreList = $this->DAOGenre->getGenresListFromShows(); 
         $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
-        ViewController::navView($genreList,$moviesYearList,null); 
+        ViewController::navView($genreList,$moviesYearList,null,null); 
     
         $movies = $this->DAOMovie->getMoviesByGenre($genreId);
         $genreName = $this->DAOGenre->getById($genreId)->getName();
@@ -149,7 +146,7 @@
         $currentShow = $this->DAOShow->getById($showID);
         $rooms = $this->DAORoom->getActiveRoomsByCinema($currentShow->getRoom()->getCinema()->getId());
         $movies = $this->DAOMovie->getAll();
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include VIEWS_PATH.'show-modify.php';
     }
 #33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
@@ -202,7 +199,7 @@
           $this->DAOShow->modify($modifyShow);
         }
         
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         $this->showShows();
     }
 #33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333

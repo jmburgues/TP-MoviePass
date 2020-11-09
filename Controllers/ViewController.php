@@ -8,7 +8,7 @@
             require_once(VIEWS_PATH.'home.php');
         }
 
-        public static function navView($genresList, $moviesYearList, $sessionUser){
+        public static function navView($genresList, $moviesYearList, $sessionUser,$arrayOfErrors){
 
             require_once(VIEWS_PATH.'nav.php');
         }

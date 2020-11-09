@@ -17,7 +17,7 @@
         
         //getAll de transacciones, muestra todas las transacciones. 
         public function showSales(){
-            ViewController::navView($genreList=null,$moviesYearList=null,null);
+            ViewController::navView($genreList=null,$moviesYearList=null,null,null);
             $transactions = $this->DAOTransaction->getAllTransactions();
             $totalTicketsAmount = 0;
             $totalCostSold = 0;
@@ -37,7 +37,7 @@
 
         //getAll de tickets, muestra todas las tickets. 
         public function getTickets(){
-            ViewController::navView($genreList=null,$moviesYearList=null,null);
+            ViewController::navView($genreList=null,$moviesYearList=null,null,null);
             $tickets = $this->DAOTicket->getAllTickets();
             return $tickets;
         }

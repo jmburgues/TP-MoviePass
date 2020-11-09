@@ -33,7 +33,7 @@ class MovieController
       $this->JSONMovie->addMoreLatestMovies();
       $movies = $this->JSONMovie->getAll();
       #usort($movies, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
-      ViewController::navView($genreList=null,$moviesYearList=null,null);
+      ViewController::navView($genreList=null,$moviesYearList=null,null,null);
       include(VIEWS_PATH.'selectMoviesView.php');
     }
 
@@ -42,7 +42,7 @@ class MovieController
     {
       $movies = $this->JSONMovie->getAll();
       #usort($movies, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
-      ViewController::navView($genreList=null,$moviesYearList=null,null);
+      ViewController::navView($genreList=null,$moviesYearList=null,null,null);
       include(VIEWS_PATH.'selectMoviesView.php');
     }
 
@@ -51,7 +51,7 @@ class MovieController
     {
       $moviesBDD = $this->DAOMovie->getAll();
       usort($moviesBDD, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
-      ViewController::navView($genreList=null,$moviesYearList=null,null);
+      ViewController::navView($genreList=null,$moviesYearList=null,null,null);
       include(VIEWS_PATH.'listMoviesBDD.php');
     }
 
@@ -76,7 +76,7 @@ class MovieController
         $moviesBDD = $this->DAOMovie->getAll();
         usort($moviesBDD, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
 
-        ViewController::navView($genreList=null,$moviesYearList=null,null);        
+        ViewController::navView($genreList=null,$moviesYearList=null,null,null);        
         include(VIEWS_PATH.'listMoviesBDD.php');
     }
  
@@ -102,7 +102,7 @@ class MovieController
       }
     }
 
-    ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
+    ViewController::navView($genreList,$moviesYearList,null,null); // falta implementar SESSION
     ViewController::homeView($movies,1,"Genre: ".$genreName);
   }
 
@@ -118,7 +118,7 @@ class MovieController
         $listAdminMovies = $movie;
       }
     } 
-    ViewController::navView($genreList=null,$moviesYearList=null,null);
+    ViewController::navView($genreList=null,$moviesYearList=null,null,null);
     include(VIEWS_PATH.'listMoviesAdmin.php');
   }
   
@@ -137,7 +137,7 @@ class MovieController
         $currentMovie = $movie;
       }
     }
-    ViewController::navView($genreList=null,$moviesYearList=null,null);
+    ViewController::navView($genreList=null,$moviesYearList=null,null,null);
     include(VIEWS_PATH.'listRoomsAdmin.php');
   }
   

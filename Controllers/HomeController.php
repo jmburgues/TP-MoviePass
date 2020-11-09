@@ -31,7 +31,7 @@ class HomeController
                 $genreList = $this->DAOGenre->getGenresListFromShows();
                 $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
                 
-                ViewController::navView($genreList,$moviesYearList,null); 
+                ViewController::navView($genreList,$moviesYearList,null,null); 
                 
                 $movies = array();
                 #pasar luego a una QUERY del DAO
@@ -44,7 +44,9 @@ class HomeController
                 ViewController::homeView($movies,$page,$title);
             }catch(Exception $ex)
             {
-                throw $ex;
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+                ViewController::homeView($movies,$page,$title);
             }
         }        
     }

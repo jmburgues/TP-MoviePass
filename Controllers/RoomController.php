@@ -27,7 +27,7 @@
         include VIEWS_PATH.'showAddView.php';
         include VIEWS_PATH.'adminShows.php';*/
 
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include VIEWS_PATH.'addRoomView.php';
     }
 
@@ -36,7 +36,7 @@
         $rooms = array();
         $rooms = $this->DAORoom->getActiveRoomsByCinema($idCinema);
         $cinema = $this->DAOCinema->getById($idCinema);
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         $cinemaName = $cinema->getName();
         include VIEWS_PATH.'addRoomView.php';
     }
@@ -45,7 +45,7 @@
     public function modifyRoomView($idRoom){
         $currentRoom = $this->DAORoom->getById($idRoom);
         $rooms = $this->DAORoom->getActiveRooms();
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include VIEWS_PATH.'room-modify.php';
     }
 
@@ -95,7 +95,7 @@
         //$rooms = $this->DAORoom->getAll();
         $rooms = $this->DAORoom->getByCinema($idCinema);
         $cinema = $this->DAOCinema->getById($idCinema);
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include VIEWS_PATH.'addRoomView.php';
     }
 
@@ -103,7 +103,7 @@
     
         $this->DAORoom->removeRoom($idRoom);
         
-        ViewController::navView($genreList=null,$moviesYearList=null,null);
+        ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         $this->addRoomView($this->DAORoom->getById($idRoom)->getCinema()->getId());
     }
 

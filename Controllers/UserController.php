@@ -26,7 +26,7 @@
 
         public function register()
         {
-            ViewController::navView($genreList = null, $moviesYearList = null, null);
+            ViewController::navView($genreList = null, $moviesYearList = null, null, null);
             include VIEWS_PATH.'register-view.php';
         }
 
@@ -35,7 +35,7 @@
             $genreList = null;
             $moviesYearList = null; // el adminView no espera contenido para filtrar
 
-            ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
+            ViewController::navView($genreList,$moviesYearList,null,null); // falta implementar SESSION
             
             ViewController::adminView();
 
@@ -44,7 +44,7 @@
         public function ownerView()
         {
 
-            ViewController::navView($genreList = null, $moviesYearList = null, null);
+            ViewController::navView($genreList = null, $moviesYearList = null, null, null);
 
             $users=$this->DAOUser->getAll();
             ViewController::ownerView($users);
@@ -54,7 +54,7 @@
         public function userView()
         {
 
-            ViewController::navView($genreList = null, $moviesYearList = null, null);
+            ViewController::navView($genreList = null, $moviesYearList = null, null, null);
         $userName = $_SESSION['loggedUser'];
             ViewController::userView($userName);
         }
@@ -63,7 +63,7 @@
 
         public function showLoginForm()
         {
-            ViewController::navView($genreList = null,$moviesYearList = null, null);
+            ViewController::navView($genreList = null,$moviesYearList = null, null, null);
             include VIEWS_PATH.'login-view.php';
         }
         public function frontLogin($userName, $pass)
@@ -77,7 +77,7 @@
                     $genreList = $this->DAOGenre->getGenresListFromShows();
                     $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
         
-                    ViewController::navView($genreList,$moviesYearList,null);
+                    ViewController::navView($genreList,$moviesYearList,null,null);
 
                     $movieIds = $this->DAOShow->getBillBoard();
                     if (is_array($movieIds)){
@@ -100,7 +100,7 @@
                     $genreList = $this->DAOGenre->getGenresListFromShows();
                     $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
         
-                    ViewController::navView($genreList,$moviesYearList,null);
+                    ViewController::navView($genreList,$moviesYearList,null,null);
                     $error = "Invalid user/password!";
                     include_once VIEWS_PATH . 'login-view.php';
                 }
@@ -115,7 +115,7 @@
                 
                 $this->setSession($newUser);
 
-                ViewController::navView($genreList = null, $moviesYearList = null, null);
+                ViewController::navView($genreList = null, $moviesYearList = null, null, null);
 
                 $movieIds = $this->DAOShow->getBillBoard();
                 if (is_array($movieIds)){
@@ -186,7 +186,7 @@
                 $this->DAOUser->changeRole($userName,'admin');   
             }
 
-            ViewController::navView($genreList = null, $moviesYearList = null,null);
+            ViewController::navView($genreList = null, $moviesYearList = null,null,null);
             
             $users = $this->DAOUser->getAll();
             ViewController::ownerView($users);
@@ -213,9 +213,9 @@
             $genreList = $this->DAOGenre->getGenresListFromShows();
             $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
             
-            ViewController::navView($genreList,$moviesYearList,null); // falta implementar SESSION
+            ViewController::navView($genreList,$moviesYearList,null,null); // falta implementar SESSION
 
-            ViewController::navView($genreList,$moviesYearList,null);
+            ViewController::navView($genreList,$moviesYearList,null,null);
             
             $movieIds = $this->DAOShow->getBillBoard();
             if (is_array($movieIds)){

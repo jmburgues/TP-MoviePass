@@ -181,7 +181,7 @@
     public function getByYearFromShows($year){
       try{        
           //SELECT * FROM SHOWS INNER JOIN MOVIES ON SHOWS.idMovie = MOVIES.idMovie WHERE MOVIES.releaseDate LIKE "2020%" GROUP BY SHOWS.idMovie;
-          $query = "SELECT ".$this->tableNameShows.".* FROM ".$this->tableNameShows. " INNER JOIN " . $this->tableNameMovies . " ON " . $this->tableNameShows . ".idMovie = " .$this->tableNameMovies .".idMovie WHERE " .$this->tableNameMovies. ".releaseDate LIKE \"". $year."%\" GROUP BY " .$this->tableNameShows . ".idMovie;";
+          $query = "SELECT ".$this->tableNameMovies.".* FROM ".$this->tableNameShows. " INNER JOIN " . $this->tableNameMovies . " ON " . $this->tableNameShows . ".idMovie = " .$this->tableNameMovies .".idMovie WHERE " .$this->tableNameMovies. ".releaseDate LIKE \"". $year."%\" GROUP BY " .$this->tableNameShows . ".idMovie;";
           //$query = "SELECT MOVIES.* FROM " .$this->tableNameShows. " INNER JOIN " . $this->tableNameMovies . " ON " . $this->tableNameShows . ".idMovie = " .$this->tableNameMovies .".idMovie WHERE " .$this->tableNameMovies. ".releaseDate LIKE ':year%' GROUP BY " .$this->tableNameShows . ".idMovie;";
          // $parameters['year'] = $year;
           $this->connection = Connection::GetInstance();

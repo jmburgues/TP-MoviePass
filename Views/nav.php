@@ -91,4 +91,13 @@
 		</li>
 	</ul>      
 
+
+<?php
+
+   if(!empty($arrayOfErrors)){
+      $arrayOfErrors = implode('\n',$arrayOfErrors);
+      echo "<script>alert('$arrayOfErrors');</script>" ;
+  }?>
+
+
 </nav>
