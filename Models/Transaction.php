@@ -7,6 +7,8 @@ class Transaction
     private $idTransaction;
     private $user;
     private $date;
+    private $ticketAmount;
+    private $costPerTicket;
 
     function __construct(User $user, $date='', $ticketAmount='',$costPerTicket='', $idTransaction='')
     {

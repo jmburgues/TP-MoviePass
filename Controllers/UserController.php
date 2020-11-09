@@ -62,6 +62,8 @@
             $user = $this->DAOUser->getByUserName($userName);
             $transaction = $this->DAOTransaction->getTransactionsByUser($user);
             
+            
+            
             //$transaction = $this->DAOUser->parseToObject($transaction);
             //print_r($transaction);
             
