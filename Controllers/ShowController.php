@@ -232,3 +232,82 @@
     }
   }
 ?>
+
+
+
+
+<?php
+
+############################################################################
+
+cantidad de tickets por su costo de determinado cine (el valor de los tickets cambia según las salas del cine)
+Traer todos los tickets de un cine, sala, show.
+
+#SHOW
+SELECT TICKETS .* 
+	FROM
+		TICKETS INNER JOIN SHOWS ON TICKETS.idShow = SHOWS.idShow
+		INNER JOIN ROOMS ON SHOWS.idRoom = ROOMS.idRoom
+		INNER JOIN CINEMAS ON ROOMS.idCinema = CINEMAS.idCinema
+	WHERE 
+		TICKETS.idShow = 1
+	GROUP BY 
+		TICKETS.idTransaction
+    ;
+        
+#CINEMA
+SELECT TICKETS .* 
+	FROM
+		TICKETS INNER JOIN SHOWS ON TICKETS.idShow = SHOWS.idShow
+		INNER JOIN ROOMS ON SHOWS.idRoom = ROOMS.idRoom
+		INNER JOIN CINEMAS ON ROOMS.idCinema = CINEMAS.idCinema
+	WHERE 
+		CINEMAS.idCinema = 1;
+        
+		
+#ROOM
+SELECT TICKETS .* , ROOMS.idRoom  
+	FROM
+		TICKETS INNER JOIN SHOWS ON TICKETS.idShow = SHOWS.idShow
+		INNER JOIN ROOMS ON SHOWS.idRoom = ROOMS.idRoom
+		INNER JOIN CINEMAS ON ROOMS.idCinema = CINEMAS.idCinema
+	WHERE 
+		ROOMS.idRoom = 1;
+
+############################################################################
+		
+
+#DATE
+
+############################################################################
+
+#SHOW
+SELECT TICKETS .* 
+	FROM
+		TICKETS INNER JOIN SHOWS ON TICKETS.idShow = SHOWS.idShow
+		INNER JOIN ROOMS ON SHOWS.idRoom = ROOMS.idRoom
+		INNER JOIN CINEMAS ON ROOMS.idCinema = CINEMAS.idCinema
+	WHERE 
+		TICKETS.idShow = 1 AND SHOWS.dateSelected BETWEEN :firstDate AND :lastDate;
+        
+#CINEMA
+SELECT TICKETS .* 
+	FROM
+		TICKETS INNER JOIN SHOWS ON TICKETS.idShow = SHOWS.idShow
+		INNER JOIN ROOMS ON SHOWS.idRoom = ROOMS.idRoom
+		INNER JOIN CINEMAS ON ROOMS.idCinema = CINEMAS.idCinema
+	WHERE 
+		CINEMAS.idCinema = 1 AND SHOWS.dateSelected BETWEEN :firstDate AND :lastDate;
+        
+		
+#ROOM
+SELECT TICKETS .* , ROOMS.idRoom  
+	FROM
+		TICKETS INNER JOIN SHOWS ON TICKETS.idShow = SHOWS.idShow
+		INNER JOIN ROOMS ON SHOWS.idRoom = ROOMS.idRoom
+		INNER JOIN CINEMAS ON ROOMS.idCinema = CINEMAS.idCinema
+	WHERE 
+		ROOMS.idRoom = 1 AND SHOWS.dateSelected BETWEEN :firstDate AND :lastDate;
+
+############################################################################
+?>
