@@ -6,6 +6,7 @@
     use DB\PDO\DAOGenre as DAOGenre;
     use DB\PDO\DAOMovie as DAOMovie;
     use DB\PDO\DAOShow as DAOShow;
+    use DB\PDO\DAOTransaction as DAOTransaction;
     
   //  use Endroid\QrCode\QrCode;
     class UserController
@@ -14,6 +15,7 @@
         private $DAOGenre;
         private $DAOMovie;
         private $DAOShow;
+        private $DAOTransaction;
 
         public function __construct()
         {
@@ -21,6 +23,7 @@
             $this->DAOGenre = new DAOGenre();
             $this->DAOMovie = new DAOMovie();
             $this->DAOShow = new DAOShow();
+            $this->DAOTransaction = new DAOTransaction();
         }
         
 
@@ -55,8 +58,16 @@
         {
 
             ViewController::navView($genreList = null, $moviesYearList = null, null, null);
-        $userName = $_SESSION['loggedUser'];
-            ViewController::userView($userName);
+            $userName = $_SESSION['loggedUser'];
+            $user = $this->DAOUser->getByUserName($userName);
+            $transaction = $this->DAOTransaction->getTransactionsByUser($user);
+            
+            
+            
+            //$transaction = $this->DAOUser->parseToObject($transaction);
+            //print_r($transaction);
+            
+            include VIEWS_PATH.'userView.php';
         }
         
     

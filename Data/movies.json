@@ -1274,5 +1274,339 @@
         "releaseDate": "2020-01-09",
         "description": "A pious 20-year-old juvenile delinquent is sent to work at a sawmill in a small town; on arrival, he dresses up as a priest and accidentally takes over the local parish. The arrival of this young, charismatic preacher is an opportunity for the local community to begin the healing process after a tragedy that happened a year prior.",
         "movieID": 471707
+    },
+    {
+        "duration": 132,
+        "title": "Miracle in Cell No. 7",
+        "genre": [
+            {
+                "id": 18,
+                "name": "Drama"
+            },
+            {
+                "id": 35,
+                "name": "Comedy"
+            },
+            {
+                "id": 10751,
+                "name": "Family"
+            }
+        ],
+        "poster": "\/bOth4QmNyEkalwahfPCfiXjNh1r.jpg",
+        "releaseDate": "2019-10-10",
+        "description": "Separated from his daughter, a father with an intellectual disability must prove his innocence when he is jailed for the death of a commander's child.",
+        "movieID": 637920
+    },
+    {
+        "duration": 95,
+        "title": "Eternal Beauty",
+        "genre": [
+            {
+                "id": 35,
+                "name": "Comedy"
+            },
+            {
+                "id": 18,
+                "name": "Drama"
+            }
+        ],
+        "poster": "\/2wXrBtfrvwMWE1i3iHjKjoRZjYk.jpg",
+        "releaseDate": "2020-08-21",
+        "description": "When Jane is rejected by life, she spirals into a chaotic, schizophrenic world where love and normality collide with humorous consequences.",
+        "movieID": 501953
+    },
+    {
+        "duration": 95,
+        "title": "Guns Akimbo",
+        "genre": [
+            {
+                "id": 35,
+                "name": "Comedy"
+            },
+            {
+                "id": 28,
+                "name": "Action"
+            }
+        ],
+        "poster": "\/2kNnf7BwRCEm4bcFkdiE0T4U25s.jpg",
+        "releaseDate": "2019-09-09",
+        "description": "An ordinary guy suddenly finds himself forced to fight a gladiator-like battle for a dark website that streams the violence for viewers. Miles must fight heavily armed Nix and also save his kidnapped ex-girlfriend.",
+        "movieID": 457335
+    },
+    {
+        "duration": 108,
+        "title": "The Mortuary Collection",
+        "genre": [
+            {
+                "id": 14,
+                "name": "Fantasy"
+            },
+            {
+                "id": 27,
+                "name": "Horror"
+            }
+        ],
+        "poster": "\/69CIwPaIyCMaYtOfZIGUaOJCV0b.jpg",
+        "releaseDate": "2020-10-08",
+        "description": "In the phantasmagorical town of Raven's End, a misguided young girl takes refuge in a decrepit old mortuary. The eccentric undertaker chronicles the strange history of the town through a series of twisted tales, each more terrifying than the last, but the young girl's world is unhinged when she discovers that the final story... is her own.",
+        "movieID": 524216
+    },
+    {
+        "duration": 144,
+        "title": "The Shining",
+        "genre": [
+            {
+                "id": 27,
+                "name": "Horror"
+            },
+            {
+                "id": 53,
+                "name": "Thriller"
+            }
+        ],
+        "poster": "\/b6ko0IKC8MdYBBPkkA1aBPLe2yz.jpg",
+        "releaseDate": "1980-05-23",
+        "description": "Jack Torrance accepts a caretaker job at the Overlook Hotel, where he, along with his wife Wendy and their son Danny, must live isolated from the rest of the world for the winter. But they aren't prepared for the madness that lurks within.",
+        "movieID": 694
+    },
+    {
+        "duration": 110,
+        "title": "Children of the Sea",
+        "genre": [
+            {
+                "id": 16,
+                "name": "Animation"
+            },
+            {
+                "id": 14,
+                "name": "Fantasy"
+            },
+            {
+                "id": 12,
+                "name": "Adventure"
+            },
+            {
+                "id": 9648,
+                "name": "Mystery"
+            }
+        ],
+        "poster": "\/2QKNREj8xPHShu993QAySoGDCwu.jpg",
+        "releaseDate": "2019-06-07",
+        "description": "Ruka is a young girl whose parents are separated and whose father works in an aquarium. When two boys, Umi and Sora, who were raised in the sea by dugongs, are brought to the aquarium, Ruka feels drawn to them and begins to realize that she has the same sort of supernatural connection to the ocean that they do. Umi and Sora's special power seems to be connected to strange events that have been occurring more and more frequently, such as the appearance of sea creatures far from their home territory and the disappearance of aquarium animals around the world. However, the exact nature of the boys' power and of the abnormal events is unknown, and Ruka gets drawn into investigating the mystery that surrounds her new friends.",
+        "movieID": 585077
+    },
+    {
+        "duration": 93,
+        "title": "Arctic Dogs",
+        "genre": [
+            {
+                "id": 16,
+                "name": "Animation"
+            },
+            {
+                "id": 12,
+                "name": "Adventure"
+            },
+            {
+                "id": 35,
+                "name": "Comedy"
+            }
+        ],
+        "poster": "\/5YHjyjd2N0ZXcnGuB8G1nIa6h9t.jpg",
+        "releaseDate": "2019-11-01",
+        "description": "Animals band together to save the day when the evil Otto Von Walrus hatches a sinister scheme to accelerate global warming and melt the Arctic Circle.",
+        "movieID": 416153
+    },
+    {
+        "duration": 0,
+        "title": "Let Him Go",
+        "genre": [
+            {
+                "id": 18,
+                "name": "Drama"
+            },
+            {
+                "id": 53,
+                "name": "Thriller"
+            },
+            {
+                "id": 80,
+                "name": "Crime"
+            }
+        ],
+        "poster": "\/yBZu9MOX38NCshVkHK57GkOps8S.jpg",
+        "releaseDate": "2020-11-05",
+        "description": "A retired sheriff and his wife fight to rescue their grandson from a dangerous off-grid family upon the death of their son.",
+        "movieID": 596161
+    },
+    {
+        "duration": 98,
+        "title": "Honest Thief",
+        "genre": [
+            {
+                "id": 28,
+                "name": "Action"
+            },
+            {
+                "id": 53,
+                "name": "Thriller"
+            },
+            {
+                "id": 80,
+                "name": "Crime"
+            },
+            {
+                "id": 18,
+                "name": "Drama"
+            }
+        ],
+        "poster": "\/zeD4PabP6099gpE0STWJrJrCBCs.jpg",
+        "releaseDate": "2020-09-03",
+        "description": "A bank robber tries to turn himself in because he's falling in love and wants to live an honest life...but when he realizes the Feds are more corrupt than him, he must fight back to clear his name.",
+        "movieID": 553604
+    },
+    {
+        "duration": 108,
+        "title": "The Way Back",
+        "genre": [
+            {
+                "id": 18,
+                "name": "Drama"
+            }
+        ],
+        "poster": "\/ylPnfaphW3FrLBUVwAREVtiL9My.jpg",
+        "releaseDate": "2020-03-05",
+        "description": "A former basketball all-star, who has lost his wife and family foundation in a struggle with addiction attempts to regain his soul and salvation by becoming the coach of a disparate ethnically mixed high school basketball team at his alma mater.",
+        "movieID": 529485
+    },
+    {
+        "duration": 0,
+        "title": "Given",
+        "genre": [
+            {
+                "id": 16,
+                "name": "Animation"
+            },
+            {
+                "id": 18,
+                "name": "Drama"
+            },
+            {
+                "id": 10402,
+                "name": "Music"
+            }
+        ],
+        "poster": "\/xKCtoYHUyX8zAg68eemnYa2orep.jpg",
+        "releaseDate": "2020-08-22",
+        "description": "Following the airing of the final episode of the Given anime adaptation today in Japan, the official Twitter account announced that a feature film adaptation will be released in 2020 directly picking up where the TV series left off.",
+        "movieID": 632632
+    },
+    {
+        "duration": 99,
+        "title": "Amulet",
+        "genre": [
+            {
+                "id": 27,
+                "name": "Horror"
+            }
+        ],
+        "poster": "\/51v67HYQtDkTiqHbIjq7tT8uCHP.jpg",
+        "releaseDate": "2020-07-24",
+        "description": "Tomaz, an ex-soldier now homeless in London, is offered a place to stay at a decaying house, inhabited by a young woman and her dying mother. As he starts to fall for Magda, Tomaz cannot ignore his suspicion that something insidious might also be living alongside them.",
+        "movieID": 653615
+    },
+    {
+        "duration": 101,
+        "title": "Freaky",
+        "genre": [
+            {
+                "id": 27,
+                "name": "Horror"
+            },
+            {
+                "id": 53,
+                "name": "Thriller"
+            },
+            {
+                "id": 35,
+                "name": "Comedy"
+            }
+        ],
+        "poster": "\/mn3XTLLlCo1ZHZ7QUxgbq1PkuKQ.jpg",
+        "releaseDate": "2020-11-11",
+        "description": "A mystical, ancient dagger causes a notorious serial killer to magically switch bodies with a 17-year-old girl.",
+        "movieID": 551804
+    },
+    {
+        "duration": 97,
+        "title": "The Other Lamb",
+        "genre": [
+            {
+                "id": 27,
+                "name": "Horror"
+            },
+            {
+                "id": 18,
+                "name": "Drama"
+            },
+            {
+                "id": 53,
+                "name": "Thriller"
+            }
+        ],
+        "poster": "\/ynPJkpmWNi4rnDUb0PuzDnJj5JI.jpg",
+        "releaseDate": "2020-04-03",
+        "description": "For her entire life, the cult she was born into has been all that teenage Selah has known. Along with a band of similarly cloistered young women she lives seemingly unstuck in time, cut off from modern society in a remote forest commune presided over by a man called Shepherd , a controlling, messiah-like figure with a frightening dark side. But when her insular world is rocked by a series of nightmarish visions and disturbing revelations, Selah begins to question everything about her existence\u2014including her allegiance to the increasingly dangerous Shepherd.",
+        "movieID": 617786
+    },
+    {
+        "duration": 83,
+        "title": "David Attenborough: A Life on Our Planet",
+        "genre": [
+            {
+                "id": 99,
+                "name": "Documentary"
+            }
+        ],
+        "poster": "\/mxdqWYOm3KnQthzJdEwtWzJtc06.jpg",
+        "releaseDate": "2020-09-28",
+        "description": "He knows our natural world like no other, and there\u2019s never been a more urgent time to hear his story and vision for our future.",
+        "movieID": 664280
+    },
+    {
+        "duration": 110,
+        "title": "The Last Full Measure",
+        "genre": [
+            {
+                "id": 18,
+                "name": "Drama"
+            },
+            {
+                "id": 10752,
+                "name": "War"
+            }
+        ],
+        "poster": "\/bMG8c80lyEkBXVgyHVqsdQhjgf6.jpg",
+        "releaseDate": "2020-01-23",
+        "description": "The incredible true story of Vietnam War hero William H. Pitsenbarger, a U.S. Air Force Pararescuemen medic who personally saved over sixty men. Thirty-two years later, Pentagon staffer Scott Huffman investigates a Congressional Medal of Honor request for Pitsenbarger and uncovers a high-level conspiracy behind the decades-long denial of the medal, prompting Huffman to put his own career on the line to seek justice for the fallen airman.",
+        "movieID": 442065
+    },
+    {
+        "duration": 103,
+        "title": "Capone",
+        "genre": [
+            {
+                "id": 80,
+                "name": "Crime"
+            },
+            {
+                "id": 18,
+                "name": "Drama"
+            }
+        ],
+        "poster": "\/75gDv38UgRtAukSxNXcjatyQmEa.jpg",
+        "releaseDate": "2020-07-10",
+        "description": "The 47-year old Al Capone, after 10 years in prison, starts suffering from dementia and comes to be haunted by his violent past.",
+        "movieID": 429422
     }
 ]

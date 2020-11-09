@@ -5,51 +5,48 @@
     </div>
 <br>
 
-<div class="text-center mt-5 mb-3">
-    <h3 class="text-white">Total sold:</h3>
-</div>
-    <div class="container  mt-5">           
-        <div class="card card-body ">
-            <ul>
-                <li class="liStyleNone"><strong>Total Sold: $ </strong> <?php print_r($costs)?></li>
-                <li class="liStyleNone"><strong>Total tickets sold:  </strong> <?php print_r($tickets)?></li>
-            </ul>  
-        </div>
+
+
+<!------------------------>
+<p class="p-ml-10">
+  <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#existentCinema" aria-expanded="false" aria-controls="collapseExample">
+        Total sales per Shows
+  </button>
+</p>
+
+<div class="collapse" id="existentCinema">
+    <div class="text-center mt-5 mb-3">
+        <h3 class="text-white"> Sales per Shows:</h3>
     </div>
-            
-
-<div class="text-center mt-5 mb-3">
-    <h3 class="text-white">Transactions:</h3>
+    <?php
+        if (isset($ticketByShow)) {    
+            foreach ($ticketByShow as $notShow) {
+                ?>                
+                <div class="container  mt-5 mb-5">       
+                    <div class="card card-body  border-dark ">
+                        
+                        <ul>
+                            <li><strong>Name:  </strong><?php echo $notShow['nameShow']?></li>
+                            <li><strong>Tickets sold:  </strong><?php echo $notShow['ticketSold'] ?></li>
+                            <li><strong>Total income:  </strong><?php echo  $notShow['ticketAmount'] ?></li>
+                            <li><strong>Total unsold:  </strong><?php echo  $notShow['unsoldTickets'] ?></li>
+                        </ul>  
+    <!--card-->     </div>
+    <!--container--></div>
+                    <?php
+                }
+                ?>
+                    <?php
+                }
+                if(!$ticketByShow){
+                    ?>
+                    <div class="container mt-5 mb-5">   
+                        <div class="card card-body ">
+                            <?php echo "No cinemas loaded yet"?>  
+                        </div>
+                    </div>
+                <?php
+                }   ?>
 </div>
-        <?php
-        if (isset($transactions)) {
-            foreach ($transactions as $trans) {
-                ?>               
-            <div class="container  mt-5">           
-                <div class="card card-body ">
-                    <ul>
-                        <li class="liStyleNone"><strong>User purchase:</strong> <?php print_r($trans->getUser()->getUserName()); ?></li>
-                        <li class="liStyleNone"><strong>Date:</strong> <?php print_r($trans->getDate()); ?></li>
-                        <li class="liStyleNone"><strong>Ticket amount:</strong> <?php print_r($trans->getTicketAmount()); ?></li>
-                        <li class="liStyleNone"><strong>Cost per Ticket:</strong> <?php print_r($trans->getCostPerTicket()); ?></li>
-                    </ul>  
-                </div>
-            </div>
-        <?php
-            }
-        }
-        if(!$transactions){
-            ?>
-            <div class="container mt-5 mb-5">   
-                <div class="card card-body ">
-                    <?php echo "No transactions loaded yet"?>  
-                </div>
-            </div>
-        <?php
-        }   
-        ?>
 
 
-<br><br>
-       
-        
