@@ -28,6 +28,7 @@ class MovieController
       }
       
 
+    //Botón de la visa de agregar películas a la base de datos. Agregar más películas de la API
     public function addToSelectMoviesView($page = 1)
     {
       $this->JSONMovie->addMoreLatestMovies();
@@ -37,7 +38,7 @@ class MovieController
       include(VIEWS_PATH.'selectMoviesView.php');
     }
 
-    /* Brings up a list of previously selected movies wich are aviable for creating Shows */
+    //Muestra las películas del JSON que pueden ser cargadas en la base de datos.
     public function selectMoviesView($page = 1)
     {
       $movies = $this->JSONMovie->getAll();
@@ -46,7 +47,7 @@ class MovieController
       include(VIEWS_PATH.'selectMoviesView.php');
     }
 
-    //Devuelve las palículas cargadas en la base de datos
+    //Devuelve las palículas cargadas en la base de datos. Paginación.
     public function selectMoviesFromBDD($page = 1)
     {
       $moviesBDD = $this->DAOMovie->getAll();
@@ -69,9 +70,10 @@ class MovieController
 
         if (!($this->DAOMovie->getById($idMovie))) {
             $this->DAOMovie->add($movieToAdd);
+            $message = "Movie added i database";
         } else {
             $message = "Movie already on database";
-            echo "<script type='text/javascript'>alert('$message');</script>";
+            
         }
         $moviesBDD = $this->DAOMovie->getAll();
         usort($moviesBDD, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});

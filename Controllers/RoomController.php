@@ -17,16 +17,6 @@
 
     public function showRooms(){
         $rooms = $this->DAORoom->getAll();
-        /*$shows = array();
-        $aux =$this->DAOShow->getAll();
-        if (is_array($aux)){
-            $shows = $aux;
-        }else{
-            $shows[0] = $aux;
-        }
-        include VIEWS_PATH.'showAddView.php';
-        include VIEWS_PATH.'adminShows.php';*/
-
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include VIEWS_PATH.'addRoomView.php';
     }
@@ -49,6 +39,7 @@
         include VIEWS_PATH.'room-modify.php';
     }
 
+    //Recibe los nuevos valores
     public function modifyRoom($roomID, $IDCinema, $active, $name, $capacity, $price, $roomType){
         $roomsList = $this->DAORoom->getActiveRooms();
         $modifyRoom = new Room($name, $capacity, $IDCinema, $price, $roomType, $active, $roomID);
@@ -60,6 +51,7 @@
         $this->addRoomView($IDCinema);
     }
 
+    //Crea una nueva sala
     public function addRoom($idCinema, $name, $capacity, $price, $roomType){
         if ($name != "") {
             $cinema = $this->DAOCinema->getById($idCinema);

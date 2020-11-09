@@ -16,6 +16,7 @@
     private $tableNameMovies ='MOVIES';
     private $tableNameMoviesGenres ='GENRES_X_MOVIES';
 
+    //INSERT INTO MOVIES
     public function add(Movie $movie){
       try{
         $query = "INSERT INTO ".$this->tableNameMovies." 
@@ -57,8 +58,9 @@
       catch(Exception $ex){
         throw $ex;
       }
-
     }
+
+    //SELECT * FROM MOVIES
     public function getAll(){
       try{
         $query = "SELECT * FROM ".$this->tableNameMovies;
@@ -74,7 +76,9 @@
 
     }
 
-      //Retorna una película según su ID
+    
+    //Retorna una película según su ID
+    //SELECT * FROM MOVIES WHERE ID = ID
     public function getById($id){
       try{
         $query= "SELECT * FROM ".$this->tableNameMovies." WHERE idMovie = :movieID;";
@@ -110,6 +114,7 @@
 
 
     //Retorna un arrelgo de strings con los años de todas las películas según los shows
+    //INNER JOIN MOVIES + SHOWS
     public function getArrayOfYearsFromShows(){
       try{
         $query = "SELECT MOVIES.* FROM ".$this->tableNameMovies." INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameMovies.".idMovie=".$this->tableNameShows.".idMovie";
@@ -138,6 +143,7 @@
 
 
     //Retorna las películas que se encuentrn en un Shows, (no solo el ID)
+    //INNER JOIN MOVIES + SHOWS
     public function getIdMoviesFromShows(){
       try{
 
@@ -152,6 +158,7 @@
     }
 
     //Devuelve las películas según el id de género.
+    //INNER JOIN MOVIES + MXG + SHOWS
     public function getMoviesByGenre($idGenre){
       try{
         $query = "SELECT * FROM " .$this->tableNameMovies." INNER JOIN ".$this->tableNameMoviesGenres." ON ".$this->tableNameMovies.".idMovie=".$this->tableNameMoviesGenres.".idMovie INNER JOIN ". $this->tableNameShows ." ON ". $this->tableNameShows .".idMovie = ". $this->tableNameMovies .".idMovie WHERE idGenre = ".$idGenre." GROUP BY ".$this->tableNameMovies.".idMovie;";
@@ -165,6 +172,7 @@
     }
 
     //Devulve todas las películas según el año
+    //SELECT * FROM MOVIES WHERE year
     public function getByYear($year){
       try{        
         $query = "SELECT * FROM " .$this->tableNameMovies. " WHERE releaseDate LIKE \"". $year."%\"";
@@ -178,6 +186,7 @@
     }
 
     //Devulve las películas que tengan un showlos shows según el año
+    //INNER JOIN MOVIES + SHOWS year
     public function getByYearFromShows($year){
       try{        
           //SELECT * FROM SHOWS INNER JOIN MOVIES ON SHOWS.idMovie = MOVIES.idMovie WHERE MOVIES.releaseDate LIKE "2020%" GROUP BY SHOWS.idMovie;
@@ -195,6 +204,7 @@
       }
 
     //Retorna la película que se esten dando en ese show
+    //INNER JOIN MOVIES + SHOWS idMovie
     public function getMoviesFromShow($idMovie){
       try{
           $query = "SELECT DISTINCT ". $this->tableNameMovies .".* FROM ". $this->tableNameShows ." INNER JOIN " . $this->tableNameMovies ." ON " . $this->tableNameShows .".idMovie = ".$this->tableNameMovies .".idMovie WHERE " . $this->tableNameShows . ".idMovie = :idMovie AND " . $this->tableNameShows .".isActive = 1;";
@@ -208,7 +218,8 @@
       }
   }
 
-   //Retorna la película que se esten dando en ese show en base al shoe
+   //Retorna la película que se esten dando en ese show en base al show
+   //INNER JOIN MOVIES + SHOWS
     public function getMovieFromShowByIdShow($idShow){
       try{
           $query = "SELECT ".$this->tableNameMovies.".* FROM ". $this->tableNameMovies ." INNER JOIN " . $this->tableNameShows ." ON " . $this->tableNameMovies .".idMovie = ".$this->tableNameShows .".idMovie WHERE " . $this->tableNameShows . ".idShow= :idShow AND " . $this->tableNameShows .".isActive = 1;";
@@ -265,4 +276,12 @@
         return array($value);
     }
   }
+
+
+/*
+getArrayOfYears() mal ubicado, sin uso
+getArrayOfYearsFromShows() Y getIdMoviesFromShows() misma función.
+
+*/
+
 ?>

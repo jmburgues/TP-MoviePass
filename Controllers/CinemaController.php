@@ -16,7 +16,7 @@
     }
 
 
-    //Primer método luego del borón Cines
+    //Primer método luego del botón Cines, retorna los cines activos
     public function showCinemas(){
       try {
         $cinemas = array();
@@ -42,9 +42,7 @@
     //Dirige a la vista cine-modify mostrando el cine con los datos anteriores
     public function modifyCinemaView($idCinema){
       try {
-        //echo "id". $idCinema;
           $currentCinema = $this->DAOCinema->placeholderCinemaDAO($idCinema);
-          //print_r ($currentCinema);
           $cinemas = $this->DAOCinema->getActiveCinemas();  
           $movies=$this->DAOMovie->getAll();
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
@@ -68,10 +66,7 @@
           $cinemas = $aux;
         } else{
           $cinemas[0] = $aux;
-        }
-        
-        #$movies=$this->DAOMovie->getAll();
-        #ViewController::navView($genreList=null,$moviesYearList=null,null,null);
+        }        
       } 
 
       catch (Exception $ex){
@@ -143,8 +138,8 @@
             
               }
         }
-        #Test de excepciones
-        throw New Exception ($message);  //Sacar del controlador
+        
+        throw New Exception ($message);  
         $this->showCinemas();
       } 
 
@@ -154,6 +149,5 @@
         $this->showCinemas();
       }
     }
-
   }
 ?>

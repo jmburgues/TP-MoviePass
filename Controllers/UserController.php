@@ -258,32 +258,6 @@
             }
             return FALSE;
         }
-    
-
-        public function sendMail(){
-            ini_set( 'display_errors', 1 );
-            error_reporting( E_ALL );
-
-            $from = "briascojazmin@gmail.com";
-            $to = "nikolasv1994@gmail.com";
-            $subject = "Hola bb";
-            $message = "Este es un mensaje automático de Movie Pass, gracias por formar parte de esta maravillosa familia. PD: THE GAME";
-            $headers = "From:" . $from;
-            mail($to,$subject,$message, $headers);
-            echo "The email message was sent.";
-
-        }
-
-        public function generateQR(){
-            $textqr = 100;
-            $sizeqr = 100;
-            $qrCode = new QrCode($textqr);
-            $qrCode->setSize($sizeqr);
-            $image= $qrCode->writeString();//Salida en formato de texto 
-            $imageData = base64_encode($image);//Codifico la imagen usando base64_encode
-            echo '<img src="data:image/png;base64,'.$imageData.'">';
-        }
-
-    
+        
     }
 ?>

@@ -29,7 +29,7 @@
         }
         
     //Redirige a vista adminShows donde se listan las funciones y el addShow
-    public function showShows(){
+    public function showShows($message = ''){
         #$this->validateActiveShows();
         #Esto es para que no se puedan agregar shows el mismo dia que se esta
         $today = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
@@ -85,7 +85,6 @@
                 $this->DAOShow->add($newShow);
             } else {
                 $message = "Horario ocupado";
-                echo "<script type='text/javascript'>alert('$message');</script>";
             }        
         $shows=$this->DAOShow->getAll();
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
@@ -191,7 +190,7 @@
           }
         }
         
-        var_dump($modifyShow);
+       // var_dump($modifyShow);
         
         if (isset($msg)){
           echo "<script type='text/javascript'>alert('$msg');</script>";

@@ -10,6 +10,7 @@
     private $connection;
     private $tableName ='CINEMAS';
 
+    //INSERT INTO CINEMAS
     public function add(Cinema $cinema){
       try{
         $query = "INSERT INTO ".$this->tableName." 
@@ -32,9 +33,9 @@
       catch(Exception $ex){
         throw $ex;
       }
-
     }
 
+    //SET isActive = 0
     public function removeCinema($id){
       try{
         $query = "Update ".$this->tableName. " SET isActive = :active WHERE idCinema = :id;";
@@ -52,6 +53,7 @@
 
     }
 
+    //UPDATE CINEMAS
     //query para modificar los cines, recibe un objeto tipo cine.
     public function modify(Cinema $cinema){
       try{
@@ -76,7 +78,7 @@
     }
 
     
-
+    //SELECT * FROM CINEMAS
     public function getAll(){
       try{
         $query = "SELECT * FROM ".$this->tableName;
@@ -89,10 +91,10 @@
       catch(Exception $ex){
         throw $ex;
       }
-
     }
 
 
+    //SELECT * FROM CINEMAS WHERE id
     public function placeholderCinemaDAO($id){
         try{
           
@@ -108,7 +110,7 @@
         }
     }
 
-
+    //SELECT * FROM CINEMAS WHERE isActive = 1
     public function getActiveCinemas(){
       try{
         $query = "SELECT * FROM ".$this->tableName. " WHERE isActive = :active";
@@ -123,6 +125,7 @@
       }
     }
 
+    //SELECT * FROM CINEMAS WHERE id
     public function getById($id){
       try{
         $query= "SELECT * FROM ".$this->tableName." WHERE idCinema = :id;";
@@ -161,4 +164,12 @@
         return array($value);
     }
   }
+
+
+/*
+placeholderCinemaDAO() y getById() cumplen la misma función, cambiar las llamadas de la primera por getById();
+*/
+
 ?>
+
+

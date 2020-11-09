@@ -19,6 +19,8 @@
     private $tableNameCinemas = "CINEMAS";
     private $tableNameRooms = "ROOMS";
 
+    
+    //INSERT INTO SHOWS
     public function add(Show $show)    {
         try 
         {
@@ -43,6 +45,7 @@
         }
     }
 
+    //SELECT * FROM SHOWS
     public function getAll(){
         try{
             $query = "SELECT * FROM ".$this->tableNameShows;
@@ -55,6 +58,7 @@
             }
         }
 
+   //SELECT * FROM SHOWS WHERE idActive = 1
     public function getActiveShows(){
         try{
             $query = "SELECT * FROM ".$this->tableNameShows." WHERE isActive = 1";

@@ -13,6 +13,8 @@
     private $tableNameShows = "SHOWS";
     private $tableNameMovies = "MOVIES";
 
+
+    //INSERT INTO
     public function add(Genre $genre){
       try{
         $query = "INSERT INTO ".$this->tableName." 
@@ -32,7 +34,8 @@
         throw $ex;
       }
     }
-    //este
+    
+    //SELECT * FROM GENRES
     public function getAll(){
       try{
         $query = "SELECT * FROM ".$this->tableName;
@@ -48,6 +51,7 @@
 
     }
 
+    //SELECT * FROM GENRES WHERE id
     public function getById($id){
       try{
         $query = "SELECT * FROM ".$this->tableName." where idGenre = :id";
@@ -64,7 +68,7 @@
       
     }
 
-    //no se está usando
+    //no se está usando, cambio a objetos
     public function getGenresList(){
       try {
         $query = "SELECT genreName FROM ".$this->tableName;
@@ -74,14 +78,14 @@
       catch (Exception $ex) {
         throw $ex;
       }
-
     }
 
+    //JOIN DE GENRES + GXM + SHOWS
     public function getGenresListFromShows(){
       try{
         $query = "SELECT GENRES.* FROM ".$this->tableName." LEFT JOIN ".$this->tableNameGenresXMovies." ON ".$this->tableName.".idGenre=".$this->tableNameGenresXMovies.".idGenre INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameGenresXMovies.".idMovie = ".$this->tableNameShows.".idMovie GROUP BY idGenre;";
         $this->connection = Connection::GetInstance();
-       
+      
         $resultSet = $this->connection->Execute($query);
 
         $resultSet =  $this->toArray($this->parseToObject($resultSet));

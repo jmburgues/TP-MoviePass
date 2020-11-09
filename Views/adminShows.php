@@ -2,8 +2,7 @@
         <h3 class="text-white">Manage Shows:</h3>
         <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView'"> Go Back </button> 
 </div>
-
-
+<?php  if(!isset($message)) echo "<script type='text/javascript'>alert('$message');</script>";?>
 <!-- COLLAPSE CARD NEW SHOW-->
 <p class="p-ml-10">
   <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#new" aria-expanded="false" aria-controls="collapseExample">

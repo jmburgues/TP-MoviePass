@@ -21,6 +21,7 @@ class HomeController
                 $movieIdsShow = new DAOShow();
                 $shows = array();
                 
+                //Get de la cartelera, trae los shows isActive = 1
                 $movieIds = $movieIdsShow->getBillBoard();
                 if (is_array($movieIds)){
                     $shows = $movieIds;
