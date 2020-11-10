@@ -7,6 +7,8 @@
     use DB\PDO\DAOMovie as DAOMovie;
     use DB\PDO\DAOShow as DAOShow;
     use DB\PDO\DAOTransaction as DAOTransaction;
+
+    use \Exception as Exception;
     
   //  use Endroid\QrCode\QrCode;
     class UserController
@@ -46,28 +48,36 @@
 
         public function ownerView()
         {
+            try {
+                ViewController::navView($genreList = null, $moviesYearList = null, null, null);
+                $users=$this->DAOUser->getAll();
+                ViewController::ownerView($users);
+            } 
 
-            ViewController::navView($genreList = null, $moviesYearList = null, null, null);
-
-            $users=$this->DAOUser->getAll();
-            ViewController::ownerView($users);
+            catch (Exception $ex){
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+                ViewController::homeView($movies,$page,$title);
+            }
+            
         }
         
 
         public function userView()
         {
+            try{
+                ViewController::navView($genreList = null, $moviesYearList = null, null, null);
+                $userName = $_SESSION['loggedUser'];
+                $user = $this->DAOUser->getByUserName($userName);
+                $transaction = $this->DAOTransaction->getTransactionsByUser($user);
+                include VIEWS_PATH.'userView.php';
+            } 
 
-            ViewController::navView($genreList = null, $moviesYearList = null, null, null);
-            $userName = $_SESSION['loggedUser'];
-            $user = $this->DAOUser->getByUserName($userName);
-            $transaction = $this->DAOTransaction->getTransactionsByUser($user);
-            
-            
-            
-            //$transaction = $this->DAOUser->parseToObject($transaction);
-            //print_r($transaction);
-            
-            include VIEWS_PATH.'userView.php';
+            catch (Exception $ex){
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+                ViewController::homeView($movies,$page,$title);
+            }
         }
         
     
@@ -79,6 +89,7 @@
         }
         public function frontLogin($userName, $pass)
         {
+            try{
                 $loggedUser = $this->login($userName,$pass);
 
                 if($loggedUser){
@@ -115,64 +126,85 @@
                     $error = "Invalid user/password!";
                     include_once VIEWS_PATH . 'login-view.php';
                 }
+            } 
+
+            catch (Exception $ex){
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+                ViewController::homeView($movies,$page,$title);
+            }
         }
 
         public function frontRegister($userName,$password,$email,$birthDate,$dni)
         {
-            $role = "user";
-            $newUser = $this->add($userName,$password,$email,$birthDate,$dni,$role);
-            
-            if($newUser){
+            try{
+                $role = "user";
+                $newUser = $this->add($userName,$password,$email,$birthDate,$dni,$role);
                 
-                $this->setSession($newUser);
+                if($newUser){
+                    
+                    $this->setSession($newUser);
 
-                ViewController::navView($genreList = null, $moviesYearList = null, null, null);
+                    ViewController::navView($genreList = null, $moviesYearList = null, null, null);
 
-                $movieIds = $this->DAOShow->getBillBoard();
-                if (is_array($movieIds)){
-                    $shows = $movieIds;
-                }else{
-                    $shows[0] = $movieIds;
+                    $movieIds = $this->DAOShow->getBillBoard();
+                    if (is_array($movieIds)){
+                        $shows = $movieIds;
+                    }else{
+                        $shows[0] = $movieIds;
+                    }
+
+                    $movies = array();
+                #pasar luego a una QUERY del DAO
+                foreach ($movieIds as $key => $value) {
+                    array_push($movies, $this->DAOMovie->getById($value['idMovie']));
                 }
+                    $page = 1;
+                    $title = "LATEST MOVIES IN PROJECTION";
+                    
+                    ViewController::homeView($movies,$page,$title);
+                }
+                else{
+                    $error = "Username or Email already exists!";
+                    include VIEWS_PATH.'register-view.php';
+                }
+            } 
 
-                $movies = array();
-            #pasar luego a una QUERY del DAO
-            foreach ($movieIds as $key => $value) {
-                array_push($movies, $this->DAOMovie->getById($value['idMovie']));
-            }
-                $page = 1;
-                $title = "LATEST MOVIES IN PROJECTION";
-                
+            catch (Exception $ex){
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
                 ViewController::homeView($movies,$page,$title);
-            }
-            else{
-                $error = "Username or Email already exists!";
-                include VIEWS_PATH.'register-view.php';
             }
         }
 
 
         public function add($userName, $password, $email, $birthDate, $dni, $admin)
         {
-            $existentUser = false;
-            $existentEmail = false;
+            try{
+                $existentUser = false;
+                $existentEmail = false;
 
-            $userList = $this->DAOUser->getAll(); // buscar ese usuario en particular o email en particular
+                $userList = $this->DAOUser->getAll(); // buscar ese usuario en particular o email en particular
 
-            foreach($userList as $oneUser){
-                if($oneUser->getUserName() == $userName)
-                    $existentUser = true;
-                if($oneUser->getEmail() == $email)
-                    $existentEmail = true;
-            }
-            if(!$existentUser && !$existentEmail){
-                $user = new User($userName, $password, $email, $birthDate, $dni, $admin);
-                $this->DAOUser->add($user);
+                foreach($userList as $oneUser){
+                    if($oneUser->getUserName() == $userName)
+                        $existentUser = true;
+                    if($oneUser->getEmail() == $email)
+                        $existentEmail = true;
+                }
+                if(!$existentUser && !$existentEmail){
+                    $user = new User($userName, $password, $email, $birthDate, $dni, $admin);
+                    $this->DAOUser->add($user);
 
-                return $user;
-            }
-            else{
-                return false;
+                    return $user;
+                }
+                else{
+                    return false;
+                }
+            } 
+
+            catch (Exception $ex){
+                throw $ex;
             }
         }
 
@@ -188,19 +220,27 @@
         }
 
         public function changeRole($userName){
-            $oneUserObj = $this->DAOUser->getByUserName($userName);
-            
-            if($oneUserObj->getRole() == 'admin'){
-                $this->DAOUser->changeRole($userName,'user');
-            }
-            elseif($oneUserObj->getRole() == 'user'){
-                $this->DAOUser->changeRole($userName,'admin');   
-            }
+            try{
+                $oneUserObj = $this->DAOUser->getByUserName($userName);
+                
+                if($oneUserObj->getRole() == 'admin'){
+                    $this->DAOUser->changeRole($userName,'user');
+                }
+                elseif($oneUserObj->getRole() == 'user'){
+                    $this->DAOUser->changeRole($userName,'admin');   
+                }
 
-            ViewController::navView($genreList = null, $moviesYearList = null,null,null);
-            
-            $users = $this->DAOUser->getAll();
-            ViewController::ownerView($users);
+                ViewController::navView($genreList = null, $moviesYearList = null,null,null);
+                
+                $users = $this->DAOUser->getAll();
+                ViewController::ownerView($users);
+            } 
+
+            catch (Exception $ex){
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+                ViewController::ownerView($users);
+            }
         }
 
         public function setSession($user){ // Starts a session for a certain user

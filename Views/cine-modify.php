@@ -29,15 +29,15 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputHorario" class="col-sm-2 col-form-label"><strong>Openning</strong></label>
+                <!--<label for="inputHorario" class="col-sm-2 col-form-label"><strong>Openning</strong></label>-->
                 <div class="col-sm-10">
-                    <input type="time" min="00:00" max="23:59" class="form-control" name="openning" value=<?php echo $currentCinema->getOpenning() ?> required>
+                    <input hidden type="time" min="00:00" max="23:59" class="form-control" name="openning" value=<?php echo $currentCinema->getOpenning() ?> required>
                 </div>
             </div>  
             <div class="form-group row">
-                <label for="inputHorario" class="col-sm-2 col-form-label"><strong>Closing</strong></label>
+                <!--<label for="inputHorario" class="col-sm-2 col-form-label"><strong>Closing</strong></label>-->
                 <div class="col-sm-10">
-                    <input type="time" min="00:00" max="23:59" class="form-control" name="closing" value=<?php echo $currentCinema->getClosing() ?>  required>
+                    <input hidden type="time" min="00:00" max="23:59" class="form-control" name="closing" value=<?php echo $currentCinema->getClosing() ?>  required>
                 </div>
             </div>
             <button type="submit" name="idCinema" class="btn btn-secondary bg-danger text-black col-2  float-right" value="<?php echo $currentCinema->getId()?>" >Send</button>

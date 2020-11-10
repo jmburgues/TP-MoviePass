@@ -4,7 +4,9 @@
     $pages = ($total / $articlePerPage );
     $pages = ceil($pages);
     $init = ($page-1)*$articlePerPage;
-echo "<script type='text/javascript'>alert('$message');</script>";
+    if (isset($message)){
+      echo "<script type='text/javascript'>alert('$message');</script>";
+    }
     ?>
 <div class="text-center mt-5 mb-3">
     <h3 class="text-white">Movies on Data Base:</h3>

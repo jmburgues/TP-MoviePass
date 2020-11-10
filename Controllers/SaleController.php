@@ -15,7 +15,7 @@
     use Models\Show as Show;
     use Models\Room as Room;  
 
-
+    use \Exception as Exception;
 
     class SaleController{
         private $DAOTransaction;
@@ -37,47 +37,56 @@
         
         //getAll de transacciones, muestra todas las transacciones. 
         public function showSales(){
-            ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-            $transactions = $this->DAOTransaction->getAllTransactions();
-            $totalTicketsAmount = 0;
-            $totalCostSold = 0;
+            try {
+                ViewController::navView($genreList=null,$moviesYearList=null,null,null);
+                $transactions = $this->DAOTransaction->getAllTransactions();
+                $totalTicketsAmount = 0;
+                $totalCostSold = 0;
 
-            foreach($transactions as $t){
-                $totalCostSold =  $totalCostSold + ($t->getCostPerTicket() * $t->getTicketAmount());
-            }
-            foreach($transactions as $t){
-                $totalTicketsAmount =  $totalTicketsAmount +  $t->getTicketAmount();
-            }
-            
-            $costs = $totalCostSold;
-            $tickets = $totalTicketsAmount;
-            
-            
-            $shows = $this->DAOShow->getAll();
-            $ticketByShow = array();
-            
-            $i = 0;
-
-            foreach ($shows as $show) {
-                $ticketAmount = 0;
-                $ticketSold = 0;
-                $unsoldTickets = $show->getRoom()->getCapacity();
-
-                foreach ($this->DAOTicket->getTicketsByShow($show->getIdShow()) as $corn) {
-                    $ticketAmount += $corn->getTransaction()->getTicketAmount();
-                    $ticketSold += ($corn->getTransaction()->getCostPerTicket()) * $ticketAmount;
-                    $unsoldTickets -= $ticketAmount;
+                foreach($transactions as $t){
+                    $totalCostSold =  $totalCostSold + ($t->getCostPerTicket() * $t->getTicketAmount());
                 }
-                $ticketByShow[$i]['nameShow'] = $show->getMovie()->getTitle();
-                $ticketByShow[$i]['ticketSold'] = $ticketSold;
-                $ticketByShow[$i]['ticketAmount'] = $ticketAmount;
-                $ticketByShow[$i]['unsoldTickets'] = $unsoldTickets;
-                $i++;
+                foreach($transactions as $t){
+                    $totalTicketsAmount =  $totalTicketsAmount +  $t->getTicketAmount();
+                }
+                
+                $costs = $totalCostSold;
+                $tickets = $totalTicketsAmount;
+                
+                
+                $shows = $this->DAOShow->getAll();
+                $ticketByShow = array();
+                
+                $i = 0;
+
+                foreach ($shows as $show) {
+                    $ticketAmount = 0;
+                    $ticketSold = 0;
+                    $unsoldTickets = $show->getRoom()->getCapacity();
+
+                    foreach ($this->DAOTicket->getTicketsByShow($show->getIdShow()) as $corn) {
+                        $ticketAmount += $corn->getTransaction()->getTicketAmount();
+                        $ticketSold += ($corn->getTransaction()->getCostPerTicket()) * $ticketAmount;
+                        $unsoldTickets -= $ticketAmount;
+                    }
+                    $ticketByShow[$i]['nameShow'] = $show->getMovie()->getTitle();
+                    $ticketByShow[$i]['ticketSold'] = $ticketSold;
+                    $ticketByShow[$i]['ticketAmount'] = $ticketAmount;
+                    $ticketByShow[$i]['unsoldTickets'] = $unsoldTickets;
+                    $i++;
+                }
+
+
+                
+                include VIEWS_PATH.'adminSales.php';
+
+            } 
+
+            catch (Exception $ex){
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+                ViewController::adminView();
             }
-
-
-            
-            include VIEWS_PATH.'adminSales.php';
         }
 
         //getAll de tickets, muestra todas las tickets. 

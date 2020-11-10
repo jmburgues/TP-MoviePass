@@ -37,16 +37,16 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputHorario" class="col-sm-2 col-form-label"><strong>Openning hour:</strong></label>
+                    <!--<label for="inputHorario" class="col-sm-2 col-form-label"><strong>Openning hour:</strong></label>-->
                     <div class="col-sm-10">
-                    <input type="time"   min="00:00" max="23:59" class="form-control" name="openning" placeholder="00:00" required>
+                    <input hidden type="time"   min="00:00" max="23:59" class="form-control" name="openning" placeholder="00:00" value="00:00">
 
                     </div>
                 </div>  
                 <div class="form-group row">
-                    <label for="inputHorario" class="col-sm-2 col-form-label"><strong>Closing hour:</strong></label>
+                    <!--<label for="inputHorario" class="col-sm-2 col-form-label"><strong>Closing hour:</strong></label>-->
                     <div class="col-sm-10">
-                    <input type="time"   min="00:00" max="23:59" class="form-control" name="closing" placeholder="23:59" required>
+                    <input hidden type="time"   min="00:00" max="23:59" class="form-control" name="closing" placeholder="23:59" value="23:59">
                     
                     </div>
                 </div>
@@ -82,8 +82,8 @@
                             <li><strong>Name:  </strong><?php echo $cinema->getName() ?></li>
                             <li><strong>Street:  </strong><?php echo $cinema->getAddress() ?></li>
                             <li><strong>St. Number:  </strong><?php echo $cinema->getNumber() ?></li>
-                            <li><strong>Opening hour:  </strong><?php echo $cinema->getOpenning() ?></li>
-                            <li><strong>Closing hour:  </strong><?php echo $cinema->getClosing() ?></li>
+                            <!--<li><strong>Opening hour:  </strong><?php echo $cinema->getOpenning() ?></li>-->
+                            <!--<li><strong>Closing hour:  </strong><?php echo $cinema->getClosing() ?></li>-->
                             
                             <li class="liStyleNone liStylePadding-l-70">
                                 <div class="btn-group" role="group" aria-label="Basic example">    
