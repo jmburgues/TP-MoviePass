@@ -242,8 +242,8 @@
                 // Content
                 $mail->isHTML(true);                                  // Set email format to HTML
                 $mail->Subject = 'Succes purchase information';
-                $mail->Body    = 'Congratulations on joining Movie Pass! ' .$name; 
-                $mail->AltBody = 'Congratulations on joining Movie Pass! ' .$name; 
+                $mail->Body    = 'Congratulations on joining Movie Pass ' . $name . '!'; 
+                $mail->AltBody = 'Congratulations on joining Movie Pass ' . $name . '!'; 
                 $mail->send();
                 echo 'Message has been sent';
             } catch (Exception $e) {

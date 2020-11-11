@@ -24,7 +24,7 @@
     use Models\Ticket as Ticket;   
     use Models\Show as Show;   
     use Models\User as User;   
-    
+
 
     
   //  use Endroid\QrCode\QrCode;
@@ -204,7 +204,7 @@
                 $mail->Port       = 587;                                     // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
             
                 //Recipients
-                $mail->setFrom(MAIL_USR.'@'.MAIL_DOMAIN, 'Mailer');
+                $mail->setFrom(MAIL_USR.'@'.MAIL_DOMAIN, 'Movie Pass');
             //  $mail->addAddress($user->getEmail(), $user->getUserName());             // Add a recipient
                 $mail->addAddress('briascojazmin@gmail.com', $user->getUserName());     // Add a recipient
                 $mail->addReplyTo('info@TheMoviePass.com', 'Information');
