@@ -115,7 +115,8 @@
                     }
                 }
                 $totalCost = $costPerTicket * $ticketAmount;
-                $showToString = "STARTS AT: ".$showSelected->getStart()." ENDS AT: ".$showSelected->getEnd();
+                
+                $showToString = "STARTS AT: ". substr($showSelected->getStart(), 0, -3)." ENDS AT: ". substr($showSelected->getEnd(), 0, -3);
                 include VIEWS_PATH.'confirmPurchase.php';
             } 
 
@@ -167,12 +168,14 @@
                         $ticket->setQRCode($qr);            
                         $this->DAOTicket->add($ticket);
                 }
-                
+
+                $currentQr = $ticket->getQRCode();            
+                $currentTransaction = $transaction;
                 $this->sendMail($name, $costPerTicket, $totalCost, $ticketAmount, $showData, $qr);
                 //AGREGARLE LA DIRECCION Y LA SALA DEL CINE
                 $userName = $_SESSION['loggedUser'];
 
-                header("location:".FRONT_ROOT);
+                include VIEWS_PATH.'ticketInformation.php';
 
             } 
 

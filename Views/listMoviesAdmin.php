@@ -18,8 +18,10 @@
         
         <?php } 
             if(!$moviesDB){ ?>
+             <div class= "container">    
                 <div class="card card-body ">
                     <?php echo "No movies loaded yet"?>  
+                </div>
                 </div>
         <?php } 
             } ?>  

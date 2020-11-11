@@ -18,7 +18,7 @@
               foreach ($moviesForShows as $show) {
                   ?>
               <option value="<?php echo $show->getIdShow(); ?>"  >
-              <?php echo "ROOM: " , $show->getRoom()->getName(),  " DATE "  , $show->getDate(), " START " , $show->getStart(), " END " , $show->getEnd() ?>
+              <?php echo $show->getRoom()->getCinema()->getName(), ", room: " , $show->getRoom()->getName(), ", DATE  "  , $show->getDate(), ", SHOW TIME: " ,substr($show->getStart(), 0, -3), " - " , substr($show->getEnd(), 0, -3)?>
               </option> 
                   <?php
               }
