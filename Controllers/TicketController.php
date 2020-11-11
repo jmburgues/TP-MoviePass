@@ -24,9 +24,7 @@
     use Models\Ticket as Ticket;   
     use Models\Show as Show;   
     use Models\User as User;   
-
-    use \Exception as Exception;
-
+    
 
     
   //  use Endroid\QrCode\QrCode;

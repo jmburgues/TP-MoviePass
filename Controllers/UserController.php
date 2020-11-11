@@ -1,16 +1,23 @@
 <?php
     namespace Controllers;
-  //  use PHPMailer\PHPMailer\PHPMailer;
     use Models\User as User;
     use DB\PDO\DAOUser as DAOUser;
     use DB\PDO\DAOGenre as DAOGenre;
     use DB\PDO\DAOMovie as DAOMovie;
     use DB\PDO\DAOShow as DAOShow;
     use DB\PDO\DAOTransaction as DAOTransaction;
-
-    use \Exception as Exception;
+    require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
+    require_once ROOT.'phpmailer/phpmailer/src/PHPMailer.php';
+    require_once ROOT.'phpmailer/phpmailer/src/SMTP.php';
     
-  //  use Endroid\QrCode\QrCode;
+    
+        
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+
+    
+  
     class UserController
     {
         private $DAOUser;
@@ -178,6 +185,9 @@
         }
 
 
+
+
+
         public function add($userName, $password, $email, $birthDate, $dni, $admin)
         {
             try{
@@ -195,6 +205,7 @@
                 if(!$existentUser && !$existentEmail){
                     $user = new User($userName, $password, $email, $birthDate, $dni, $admin);
                     $this->DAOUser->add($user);
+                    $this->sendMail($userName, $email);
 
                     return $user;
                 }
@@ -207,6 +218,40 @@
                 throw $ex;
             }
         }
+
+
+        private function sendMail($name, $email){
+
+            $mail = new PHPMailer(true);
+
+            try {
+                //Server settings
+                $mail->isSMTP();                                             // Send using SMTP
+                $mail->Host       = MAIL_SERVER;                             // Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                    // Enable SMTP authentication
+                $mail->Username   = MAIL_USR.'@'.MAIL_DOMAIN;                // SMTP username
+                $mail->Password   = MAIL_PASS;                               // SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;          // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+                $mail->Port       = 587;                                     // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+            
+                //Recipients
+                $mail->setFrom(MAIL_USR.'@'.MAIL_DOMAIN, 'Movie Pass');
+                $mail->addAddress($email, $name);     // Add a recipient
+                $mail->addReplyTo('info@TheMoviePass.com', 'Information');
+        
+                // Content
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = 'Succes purchase information';
+                $mail->Body    = 'Congratulations on joining Movie Pass! ' .$name; 
+                $mail->AltBody = 'Congratulations on joining Movie Pass! ' .$name; 
+                $mail->send();
+                echo 'Message has been sent';
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+
+        }
+
 
         public function login($userName, $password)
         {
