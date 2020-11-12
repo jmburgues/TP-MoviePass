@@ -209,7 +209,7 @@
                 //Recipients
                 $mail->setFrom(MAIL_USR.'@'.MAIL_DOMAIN, 'Movie Pass');
             //  $mail->addAddress($user->getEmail(), $user->getUserName());             // Add a recipient
-                $mail->addAddress('briascojazmin@gmail.com', $user->getUserName());     // Add a recipient
+                $mail->addAddress($user->getEmail(), $user->getUserName());     // Add a recipient
                 $mail->addReplyTo('info@TheMoviePass.com', 'Information');
             
                 // Attachments
