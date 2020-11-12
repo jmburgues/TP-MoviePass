@@ -27,38 +27,29 @@ class MovieController
         $this->DAOCinema = new DAOCinema();
         $this->JSONMovie = new JSONMovie();
       }
-      
 
-    //Botón de la visa de agregar películas a la base de datos. Agregar más películas de la API
-    public function addToSelectMoviesView($page = 1){
+    // Muestra peliculas de la API (Json) que no se encuentren en la base de datos (PDO)
+    public function listAPIMovies($page = 1,$message = null){
       try {
-        $this->JSONMovie->addMoreLatestMovies();
-        $movies = $this->JSONMovie->getAll();
-        #usort($movies, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
+        $movies = array();
+        $apiMovies = $this->JSONMovie->getAll();
+
+        foreach($apiMovies as $oneMovie){
+          if($this->DAOMovie->getById($oneMovie->getMovieID()) == null){
+            array_push($movies,$oneMovie);
+          }
+        }
+
+        usort($movies, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
+
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-        include(VIEWS_PATH.'selectMoviesView.php');
+        include(VIEWS_PATH.'APIMoviesList.php');
       } 
 
       catch (Exception $ex){
         $arrayOfErrors [] = $ex->getMessage();
         ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        include(VIEWS_PATH.'selectMoviesView.php');
-      }
-    }
-
-    //Muestra las películas del JSON que pueden ser cargadas en la base de datos.
-    public function selectMoviesView($page = 1){
-      try {
-        $movies = $this->JSONMovie->getAll();
-        #usort($movies, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
-        ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-        include(VIEWS_PATH.'selectMoviesView.php');
-      } 
-
-      catch (Exception $ex){
-        $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        include(VIEWS_PATH.'selectMoviesView.php');
+        include(VIEWS_PATH.'APIMoviesList.php');
       }
     }
 
@@ -74,41 +65,30 @@ class MovieController
       catch (Exception $ex){
         $arrayOfErrors [] = $ex->getMessage();
         ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        include(VIEWS_PATH.'selectMoviesView.php');
+        include(VIEWS_PATH.'APIMoviesList.php');
       }
     }
 
     //Muestra el listado de las películas en la base de datos
     //Recibe un id de la movie seleccionada y valida el id con la DB
-    public function selectIdMovie($idMovie, $page = 1){
+    public function addSelectedMovie($idMovie){
       try {
-        $movies = $this->JSONMovie->getAll();
-        $movieToAdd = null;
-        foreach ($movies as $movie) {
-            if ($movie->getMovieID() == $idMovie) {
-                $movieToAdd = $movie;
-            }
-        }
-        $moviesBDD = $this->DAOMovie->getAll();
+        $existentMovie_onDB = $this->DAOMovie->getById($idMovie);
 
-        if (!($this->DAOMovie->getById($idMovie))) {
-            $this->DAOMovie->add($movieToAdd);
+        if (!$existentMovie_onDB) {
+            $this->DAOMovie->add($this->JSONMovie->GetById($idMovie));
             $message = "Movie added to database";
         } else {
-            $message = "Movie already on database";
-            
+            $message = "Movie already on database"; 
         }
-        $moviesBDD = $this->DAOMovie->getAll();
-        usort($moviesBDD, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
-
-        ViewController::navView($genreList=null,$moviesYearList=null,null,null);        
-        include(VIEWS_PATH.'listMoviesBDD.php');
+        $page = 1;
+        $this->listAPIMovies($page,$message);
       } 
 
       catch (Exception $ex){
         $arrayOfErrors [] = $ex->getMessage();
         ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        include(VIEWS_PATH.'listMoviesBDD.php');
+        $this->listAPIMovies();
       }
     }
  

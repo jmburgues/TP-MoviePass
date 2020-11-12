@@ -9,8 +9,7 @@
 
         <div class="col mt-5">       
             <form action="<?php echo FRONT_ROOT?>Show/showShows" method="POST">
-                <input type ="submit" class="btn btn-primary bg-danger text-black mt-5 col-md-7 offset-md-3 " value="Manage Shows" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
-                </input>
+                <input type ="submit" class="btn btn-primary bg-danger text-black mt-5 col-md-7 offset-md-3 " value="Manage Shows" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> </input>
             </form>
         </div>
         <div class="w-100"></div>
@@ -23,9 +22,8 @@
         </div>
 
         <div class="col mt-5"> 
-            <form action="<?php echo FRONT_ROOT?>Movie/selectMoviesView" method="POST">
-                <input type ="submit" class="btn btn-primary bg-danger  text-black mt-5 col-md-7 offset-md-3  " value="Add Movie" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
-                </input>
+            <form action="<?php echo FRONT_ROOT?>Movie/listAPIMovies" method="POST">
+                <input type ="submit" class="btn btn-primary bg-danger  text-black mt-5 col-md-7 offset-md-3  " value="Add Movies" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"></input>
             </form>
         </div>
     </div>

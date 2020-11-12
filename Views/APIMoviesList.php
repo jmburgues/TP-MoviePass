@@ -1,30 +1,33 @@
 <?php
+
+    if (isset($message)){
+      echo "<script type='text/javascript'>alert('$message');</script>";
+    }
+
     $total = count($movies);
     $articlePerPage = 5;
     $pages = ($total / $articlePerPage );
     $pages = ceil($pages);
     $init = ($page-1)*$articlePerPage;
-    ?>
+?>
 
 <div class="text-center mt-5 mb-3">
-    <h3 class="text-white">Select the movies for Data Base:</h3>
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView'"> Go Back </button>
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="<?php ?>" onclick="window.location.href='<?php echo FRONT_ROOT?>Movie/addToSelectMoviesView'"> Add more Movies </button> 
+    <h3 class="text-white">Select the movie you woud like to add:</h3>
+    <div class="text-center">
+          <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="history.back(-1)"> Go Back </button> 
+ 
+    </div>
 </div>
 
 <div class="container text-center" id="maxWidth1600">
   
   <div class="row row-cols-5">
   
-      <?php for($i = $init; $i < $init+5; $i++ ){
-          if (isset($movies[$i])) { ?>
+    <?php for($i = $init; $i < $init+5; $i++ ){
+        if (isset($movies[$i])) { ?>
   
-  <div class="col">
-    <div class="card" id="cardsStyle">
-
-
-
-    
+    <div class="col">
+      <div class="card" id="cardsStyle">
 
       <?php if ($movies[$i]->getPoster()){
         ?>
@@ -38,15 +41,13 @@
       
       ?>
 
-
-
       <div class="card-body  ">
       <div class ="centerImageHome">
       <h4 class="card-title  mb-2 text-center"><?php echo $movies[$i]->getTitle()?></h4>   
       </div>
-      <form class="form-inline my-2 my-lg-2 " action="<?php echo FRONT_ROOT?>Movie/selectIdMovie/<?php echo $movies[$i]->getMovieID(); ?>" method=GET>
-            <button type="submit" value="<?php echo $movies[$i]->getMovieID();?>"  class=" marginl30 btn btn-secondary bg-danger text-black mb-2"> Add Movie </button>
-        </form>
+      <form class="form-inline my-2 my-lg-2 " action="<?php echo FRONT_ROOT?>Movie/addSelectedMovie/<?php echo $movies[$i]->getMovieID(); ?>" method=GET>
+        <button type="submit" value="<?php echo $movies[$i]->getMovieID();?>"  class=" marginl30 btn btn-secondary bg-danger text-black mb-2"> Add Movie </button>
+      </form>
       <p>
       <?php
           if ($movies[$i]->getDescription()) {
@@ -81,13 +82,13 @@
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center mt-3">
-    <li class="page-item <?php echo $page <= 1 ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Movie/selectMoviesView/<?php echo $page-1 ?>">Previous</a></li>
+    <li class="page-item <?php echo $page <= 1 ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Movie/listAPIMovies/<?php echo $page-1 ?>">Previous</a></li>
     
     <?php for($i=0; $i<$pages; $i++) {?>
-      <li class="page-item <?php echo $page == $i+1 ? "active" : ""?>"><a class="page-link"  href="<?php echo  FRONT_ROOT?>Movie/selectMoviesView/<?php echo $i+1?>"> <?php echo $i+1?></a></li>
+      <li class="page-item <?php echo $page == $i+1 ? "active" : ""?>"><a class="page-link"  href="<?php echo  FRONT_ROOT?>Movie/listAPIMovies/<?php echo $i+1?>"> <?php echo $i+1?></a></li>
     <?php }?>
 
-    <li class="page-item <?php echo $page >= $pages ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Movie/selectMoviesView/<?php echo $page+1 ?>">Next</a></li>
+    <li class="page-item <?php echo $page >= $pages ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Movie/listAPIMovies/<?php echo $page+1 ?>">Next</a></li>
   </ul>
 </nav>
 
