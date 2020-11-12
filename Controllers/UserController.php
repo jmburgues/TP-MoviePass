@@ -184,41 +184,26 @@
             }
         }
 
-
-
-
-
-        public function add($userName, $password, $email, $birthDate, $dni, $admin)
+        private function add($userName, $password, $email, $birthDate, $dni, $admin)
         {
             try{
-                $existentUser = false;
-                $existentEmail = false;
-
-                $userList = $this->DAOUser->getAll(); // buscar ese usuario en particular o email en particular
-
-                foreach($userList as $oneUser){
-                    if($oneUser->getUserName() == $userName)
-                        $existentUser = true;
-                    if($oneUser->getEmail() == $email)
-                        $existentEmail = true;
-                }
+               
+                $newUserObject = null;
+                $existentUser = $this->DAOUser->getByUserName($userName);
+                $existentEmail = $this->DAOUser->getByEmail($email);
+                
                 if(!$existentUser && !$existentEmail){
-                    $user = new User($userName, $password, $email, $birthDate, $dni, $admin);
-                    $this->DAOUser->add($user);
-                    $this->sendMail($userName, $email);
-
-                    return $user;
-                }
-                else{
-                    return false;
+                    $newUserObject = new User($userName, $password, $email, $birthDate, $dni, $admin);
+                    $this->DAOUser->add($newUserObject);
+                    $this->sendMail($userName, $email);   
                 }
             } 
 
             catch (Exception $ex){
                 throw $ex;
             }
+            return $newUserObject;
         }
-
 
         private function sendMail($name, $email){
 

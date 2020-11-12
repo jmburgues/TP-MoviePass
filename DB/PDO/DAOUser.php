@@ -80,6 +80,22 @@
       
     }
 
+    public function getByEmail($email){
+      try{
+        $query = "SELECT * FROM ".$this->tableName." where email = :email";
+        $parameters['email'] = $email;
+        $this->connection = Connection::GetInstance();
+        $resultSet = $this->connection->Execute($query,$parameters);
+        
+        return $this->parseToObject($resultSet);
+      }
+
+      catch(Exception $ex){
+        throw $ex;
+      }
+      
+    }
+
     public function parseToObject($value) {
 			$value = is_array($value) ? $value : [];
 			$resp = array_map(function($p){
