@@ -11,15 +11,16 @@
 </script>
 
 <div class="text-center mt-5 mb-3">
-    <h3 class="text-white text-uppercase">Hi <?php echo $userName ?> !</h3>
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>index.php'"> Go Back </button> 
+    <h3 class="text-white">Personal profile:</h3> <h3 class="text-white text-uppercase"><?php echo $userName ?></h3>
 </div>  
 
-<div class="text-center mt-5 mb-3">
-    <h3 class="text-white ">Cart:</h3>
+<div class="text-left mt-5 mb-3" style="margin-top:0px;">
+    <h3 class="text-white">Shopping History:</h3>
         </div>
         <?php
-
+        if($transaction == null){
+            echo "<h5 class=\"text-white text-left\">No transactions yet, take a look at our latest movies!</h5>";
+        }
         foreach($transaction as $t => $value ){
             ?>
 

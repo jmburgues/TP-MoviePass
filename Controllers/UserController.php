@@ -195,7 +195,7 @@
                 if(!$existentUser && !$existentEmail){
                     $newUserObject = new User($userName, $password, $email, $birthDate, $dni, $admin);
                     $this->DAOUser->add($newUserObject);
-                    $this->sendMail($userName, $email);   
+                    $this->sendWelcomeEmail($userName, $email);   
                 }
             } 
 
@@ -205,7 +205,7 @@
             return $newUserObject;
         }
 
-        private function sendMail($name, $email){
+        private function sendWelcomeEmail($name, $email){
 
             $mail = new PHPMailer(true);
 
@@ -226,9 +226,9 @@
         
                 // Content
                 $mail->isHTML(true);                                  // Set email format to HTML
-                $mail->Subject = 'Succes purchase information';
-                $mail->Body    = 'Congratulations on joining Movie Pass! ' .$name; 
-                $mail->AltBody = 'Congratulations on joining Movie Pass! ' .$name; 
+                $mail->Subject = 'Welcome '.$name.' to MoviePass!';
+                $mail->Body    = 'Congratulations on joining Movie Pass! '; 
+                $mail->AltBody = 'Congratulations on joining Movie Pass! '; 
                 $mail->send();
                 echo 'Message has been sent';
             } catch (Exception $e) {
