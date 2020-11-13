@@ -1,4 +1,6 @@
 
+
+
 <div class="text-center mt-5 mb-3">
         <h3 class="text-white">Manage Sales:</h3>
         <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView'"> Go Back </button> 
@@ -19,6 +21,8 @@
     Check between dates
   </button>
 </p>
+
+
 
 <div class="collapse" id="betweenDates">
     <div class="text-center mt-5 mb-3">
@@ -45,12 +49,14 @@
             </form>
         </div>
     </div>
-
 </div>
+
+
+
 
 <!------------------------>
 <?php if(isset($ticketByShow)){ ?>
-<p class="p-ml-10">
+<p class="text-center">
   <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#existentShow" aria-expanded="false" aria-controls="collapseExample">
         Total sales per Shows
   </button>
@@ -60,41 +66,48 @@
     <div class="text-center mt-5 mb-3">
         <h3 class="text-white"> Sales per Shows:</h3>
     </div>
+    
+
+    <div class="container mt-5 mb-5" >
+    <table class="table" style="background-color:white;">
+    <thead class="thead-dark">
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Tickets sold</th>
+        <th scope="col">Total income</th>
+        <th scope="col">Total unsold</th>
+        </tr>
+    </thead>
+    </div>
     <?php
-        if (isset($ticketByShow)) {    
+        if (isset($ticketByShow)) {
             foreach ($ticketByShow as $notShow) {
                 ?>                
-                <div class="container  mt-5 mb-5">       
-                    <div class="card card-body  border-dark ">
-                        
-                        <ul>
-                            <li><strong>Name:  </strong><?php echo $notShow['nameShow']?></li>
-                            <li><strong>Date:  </strong><?php echo $notShow['dateShow']?></li>
-                            <li><strong>Tickets sold:  </strong><?php echo $notShow['ticketAmount'] ?></li>
-                            <li><strong>Total income:  </strong><?php echo $notShow['ticketSold'] ?></li>
-                            <li><strong>Total unsold:  </strong><?php echo $notShow['unsoldTickets'] ?></li>
-                        </ul>  
-    <!--card-->     </div>
-    <!--container--></div>
-                    <?php
-                }
-                ?>
-                    <?php
-                }
-                if(!$ticketByShow){
-                    ?>
-                    <div class="container mt-5 mb-5">   
-                        <div class="card card-body ">
-                            <?php echo "No tickets per shows sold yet"?>  
-                        </div>
-                    </div>
-                <?php
-                }   }?>
+                <tbody>
+                <tr>
+                    <td><?php echo $notShow['nameShow']?></td>
+                    <td><?php echo $notShow['dateShow']?></td>
+                    <td><?php echo $notShow['ticketAmount'] ?></td>
+                    <td><?php echo $notShow['ticketSold'] ?></td>
+                    <td><?php echo $notShow['unsoldTickets'] ?></td>
+                </tr>
+            <?php
+            } 
+        }
+    }
+        ?>
+</tbody>
+</table>
+
+</div>
+
+
 </div>
 
 <!------------------------>
-<p class="p-ml-10">
-  <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#existentCinema" aria-expanded="false" aria-controls="collapseExample">
+<p class="text-center">
+  <button class="btn btn-primary bg-danger text-black mt-3 " type="button" data-toggle="collapse" data-target="#existentCinema" aria-expanded="false" aria-controls="collapseExample">
         Total sales per Cinema
   </button>
 </p>
@@ -103,21 +116,30 @@
     <div class="text-center mt-5 mb-3">
         <h3 class="text-white"> Sales per Cinema:</h3>
     </div>
+
+    <div class="container mt-5 mb-5" >
+    <table class="table" style="background-color:white;">
+    <thead class="thead-dark">
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Tickets sold</th>
+        <th scope="col">Total income</th>
+        <th scope="col">Total unsold</th>
+        </tr>
+    </thead>
+    </div>
+
     <?php
         if (isset($ticketByCinema)) {    
             foreach ($ticketByCinema as $notCinema) {
-                ?>                
-                <div class="container  mt-5 mb-5">       
-                    <div class="card card-body  border-dark ">
-                        
-                        <ul>
-                            <li><strong>Name:  </strong><?php echo $notCinema['nameCinema']?></li>
-                            <li><strong>Tickets sold:  </strong><?php echo $notCinema['ticketAmount'] ?></li>
-                            <li><strong>Total income:  </strong><?php echo $notCinema['ticketSold'] ?></li>
-                            <li><strong>Total unsold:  </strong><?php echo  $notCinema['unsoldTickets'] ?></li>
-                        </ul>  
-    <!--card-->     </div>
-    <!--container--></div>
+                ?>          
+                <tbody>      
+                    <tr>
+                        <td><?php echo $notCinema['nameCinema']?></td>
+                        <td><?php echo $notCinema['ticketAmount'] ?></td>
+                        <td><?php echo $notCinema['ticketSold'] ?></td>
+                        <td><?php echo  $notCinema['unsoldTickets'] ?></td>
+                    </tr>
                     <?php
                 }
                 ?>
@@ -132,10 +154,14 @@
                     </div>
                 <?php
                 }   ?>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 
 <!------------------------>
-<p class="p-ml-10">
+<p class="text-center">
   <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#existentRoom" aria-expanded="false" aria-controls="collapseExample">
         Total sales per Room
   </button>
@@ -145,22 +171,32 @@
     <div class="text-center mt-5 mb-3">
         <h3 class="text-white"> Sales per Room:</h3>
     </div>
+
+    <div class="container mt-5 mb-5" >
+    <table class="table" style="background-color:white;">
+    <thead class="thead-dark">
+        <tr>
+        <th scope="col">Name Cinema</th>
+        <th scope="col">Name Room</th>
+        <th scope="col">Tickets sold</th>
+        <th scope="col">Total income</th> 
+        <th scope="col">Total unsold</th>
+        </tr>
+    </thead>
+    </div>
+
     <?php
         if (isset($ticketByRoom)) {    
             foreach ($ticketByRoom as $notRoom) {
                 ?>                
-                <div class="container  mt-5 mb-5">       
-                    <div class="card card-body  border-dark ">
-                        
-                        <ul>
-                            <li><strong>Name cinema:  </strong><?php echo $notRoom['nameCinema']?></li>
-                            <li><strong>Name room:  </strong><?php echo $notRoom['nameRoom']?></li>
-                            <li><strong>Tickets sold:  </strong><?php echo $notRoom['ticketAmount'] ?></li>
-                            <li><strong>Total income:  </strong><?php echo $notRoom['ticketSold'] ?></li>
-                            <li><strong>Total unsold:  </strong><?php echo  $notRoom['unsoldTickets'] ?></li>
-                        </ul>  
-    <!--card-->     </div>
-    <!--container--></div>
+                <tbody>      
+                    <tr>
+                        <td><?php echo $notRoom['nameCinema']?></td>
+                        <td><?php echo $notRoom['nameRoom']?></td>
+                        <td><?php echo $notRoom['ticketAmount'] ?></td>
+                        <td><?php echo $notRoom['ticketSold'] ?></td>
+                        <td><?php echo  $notRoom['unsoldTickets'] ?></td>
+                    </tr>
                     <?php
                 }
                 ?>
@@ -175,4 +211,8 @@
                     </div>
                 <?php
                 }   ?>
+  </tbody>
+        </table>
+    </div>
+
 </div>
