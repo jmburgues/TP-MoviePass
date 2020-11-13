@@ -61,11 +61,29 @@
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
 
-            return $this->parseToObject($resultSet);
+            return $this->toArray($this->parseToObject($resultSet));
             }
-            catch(Exception $ex){
+        catch(Exception $ex){
             throw $ex;
+        }
+    } 
+
+    public function getAllTransactionsBetweenDates($firstDate, $lastDate){
+        try{
+            $query = "SELECT * FROM ".$this->tableNameTransactions." 
+            WHERE ".$this->tableNameTransactions.".transacctionDate BETWEEN \"".$firstDate."\" AND \"".$lastDate."\"";
+
+            #$parameters['firstDate'] = $firstDate;
+            #$parameters['lastDate'] = $lastDate;
+            
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query);
+
+            return $this->toArray($this->parseToObject($resultSet));
             }
+        catch(Exception $ex){
+            throw $ex;
+        }
     } 
 
     //Retorna la tabla de usuarios, transacciones y tickets según el nmbre de un usuario.
@@ -141,6 +159,13 @@
         } else {
             return count($resp) > 1 ? $resp : $resp['0'];
         }
+    }
+
+    private function toArray($value){
+        if(is_array($value))
+            return $value;
+        else
+            return array($value);
     }
 }
 

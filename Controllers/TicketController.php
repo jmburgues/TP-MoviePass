@@ -10,7 +10,7 @@
     
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
-    use PHPMailer\PHPMailer\Exception;
+    use PHPMailer\PHPMailer\Exception as MailException;
 
     use DB\PDO\DAOMovie as DAOMovie;
     use DB\PDO\DAOShow as DAOShow;
@@ -128,7 +128,7 @@
 
         public function confirmTicket($costPerTicket, $totalCost, $ticketAmount, $creditNumber, $name, $cvc,  $expirationDate, $expirationYear, $idShow, $cardBank)
         {
-            try{
+            #try{
                 ViewController::navView($genreList = null, $moviesYearList = null, null, null);
 
                 $showCardLast = str_replace(range(0,9), "*", substr($creditNumber, 0, -4)) .  substr($creditNumber, -4);
@@ -174,13 +174,13 @@
 
                 header("location:".FRONT_ROOT);
 
-            } 
+            #} 
 
-            catch (Exception $ex){
-                $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                ViewController::homeView($movies,$page,$title);
-            }
+            #catch (Exception $ex){
+             #   $arrayOfErrors [] = $ex->getMessage();
+            #    ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+
+            #}
         }
 
 
@@ -206,7 +206,7 @@
                 //Recipients
                 $mail->setFrom(MAIL_USR.'@'.MAIL_DOMAIN, 'Mailer');
             //  $mail->addAddress($user->getEmail(), $user->getUserName());             // Add a recipient
-                $mail->addAddress('briascojazmin@gmail.com', $user->getUserName());     // Add a recipient
+                $mail->addAddress('lautarobarretogimenez@gmail.com', $user->getUserName());     // Add a recipient
                 $mail->addReplyTo('info@TheMoviePass.com', 'Information');
             
                 // Attachments
@@ -228,7 +228,7 @@
             
                 $mail->send();
                 echo 'Message has been sent';
-            } catch (Exception $e) {
+            } catch (MailException $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
 

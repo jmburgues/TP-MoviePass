@@ -152,7 +152,80 @@
             throw $ex;
         }
     }
+
+    #select ifnull(sum(rooms.capacity), 0) as unsold from shows inner join rooms on shows.idRoom = rooms.idRoom 
+    #where shows.idRoom = 3 and shows.dateSelected BETWEEN '2020-11-10' AND '2020-11-12'
+
     
+    public function getCapacityByRoom($idRoom){
+        try{
+            $query = "SELECT IFNULL(SUM(".$this->tableNameRooms.".capacity),0) as unsold FROM ".$this->tableNameShows." 
+            inner join ".$this->tableNameRooms." on ".$this->tableNameShows.".idRoom = ".$this->tableNameRooms.".idRoom 
+            where ".$this->tableNameShows.".idRoom = :idRoom";
+            $parameters['idRoom'] = $idRoom;
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query,$parameters);
+            return $resultSet[0]["unsold"];
+        }
+        catch(Exception $ex){
+            throw $ex;
+        }
+    }
+    
+
+    public function getCapacityByRoomBetween($idRoom, $firstDate, $lastDate){
+        try{
+            $query = "SELECT IFNULL(SUM(".$this->tableNameRooms.".capacity),0) as unsold FROM ".$this->tableNameShows." 
+            inner join ".$this->tableNameRooms." on ".$this->tableNameShows.".idRoom = ".$this->tableNameRooms.".idRoom 
+            where ".$this->tableNameShows.".idRoom = :idRoom AND ".$this->tableNameShows.".dateselected BETWEEN \"".$firstDate."\" AND \"".$lastDate."\"";
+            $parameters['idRoom'] = $idRoom;
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query,$parameters);
+            
+            return $resultSet[0]["unsold"];
+        }
+        catch(Exception $ex){
+            throw $ex;
+        }
+    }
+
+        #select sum(rooms.capacity) as unsold from shows inner join rooms on shows.idRoom = rooms.idRoom 
+        #inner join cinemas on rooms.idCinema = cinemas.idCinema where rooms.idCinema = 2
+
+    public function getCapacityByCinema($idCinema){
+        try{
+                $query = "SELECT IFNULL(SUM(".$this->tableNameRooms.".capacity),0) as unsold FROM ".$this->tableNameShows." 
+                inner join ".$this->tableNameRooms." on ".$this->tableNameShows.".idRoom = ".$this->tableNameRooms.".idRoom 
+                inner join ".$this->tableNameCinemas." on ".$this->tableNameRooms.".idCinema = ".$this->tableNameCinemas.".idCinema 
+                where ".$this->tableNameRooms.".idCinema = :idCinema";
+                $parameters['idCinema'] = $idCinema;
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query,$parameters);
+                return $resultSet[0]["unsold"];
+            }
+            catch(Exception $ex){
+                throw $ex;
+            }
+        }
+    
+
+    public function getCapacityByCinemaBetween($idCinema, $firstDate, $lastDate){
+        try{
+            $query = "SELECT IFNULL(SUM(".$this->tableNameRooms.".capacity),0) as unsold FROM ".$this->tableNameShows." 
+            inner join ".$this->tableNameRooms." on ".$this->tableNameShows.".idRoom = ".$this->tableNameRooms.".idRoom 
+            inner join ".$this->tableNameCinemas." on ".$this->tableNameRooms.".idCinema = ".$this->tableNameCinemas.".idCinema 
+            where ".$this->tableNameRooms.".idCinema = :idCinema AND ".$this->tableNameShows.".dateselected BETWEEN \"".$firstDate."\" AND \"".$lastDate."\"";
+            $parameters['idCinema'] = $idCinema;
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query,$parameters);
+            
+            return $resultSet[0]["unsold"];
+        }
+        catch(Exception $ex){
+            throw $ex;
+        }
+    }
+
     //Retorna el nombre del cine dependiendo el show
     public function getCinemaNameFromShows($idShow){
         try {

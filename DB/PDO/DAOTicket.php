@@ -51,31 +51,25 @@
             }
         }
 
-    //Retorna todos los tickets en la tabla
-    public function getAllTickets(){
-        
-        try{
-            $query = "SELECT * FROM ".$this->tableNameTicket;
-            $this->connection = Connection::GetInstance();
-            $resultSet = $this->connection->Execute($query);
-        
-            return $resultSet;
-            }
-            catch(Exception $ex){
-            throw $ex;
-            }
-    }
+        //Retorna todos los tickets en la tabla
+        public function getAllTickets(){
+            
+            try{
+                $query = "SELECT * FROM ".$this->tableNameTicket;
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query);
+            
+                return $resultSet;
+                }
+                catch(Exception $ex){
+                throw $ex;
+                }
+        }
 
-/*SELECT TICKETS .* 
-	FROM
-		TICKETS INNER JOIN SHOWS ON TICKETS.idShow = SHOWS.idShow
-		INNER JOIN ROOMS ON SHOWS.idRoom = ROOMS.idRoom
-		INNER JOIN CINEMAS ON ROOMS.idCinema = CINEMAS.idCinema
-	WHERE 
-        TICKETS.idShow = 1; */
+
         
-    public function getTicketsByShow($idShow){
-        try{
+        public function getTicketsByShow($idShow){
+            try{
                 $query = "SELECT ". $this->tableNameTicket .".* 
                 FROM ". $this->tableNameTicket ." INNER JOIN ". 
                 $this->tableNameShow . " ON ". $this->tableNameTicket .".idShow =  ". $this->tableNameShow .".idSHow".
@@ -95,33 +89,144 @@
             }
         }
 
-
-    public function parseToObject($value) {
-        $value = is_array($value) ? $value : [];
-        $resp = array_map(function($p){
+        public function getTicketsByCinema($idCinema){
+            try{
+                $query = "SELECT ". $this->tableNameTicket .".* FROM ". $this->tableNameTicket ." INNER JOIN ". 
+                $this->tableNameShow . " ON ". $this->tableNameTicket .".idShow =  ". $this->tableNameShow .".idSHow".
+                " INNER JOIN ". $this->tableNameRoom ." ON ". $this->tableNameShow .".idRoom = " . $this->tableNameRoom .".idRoom".
+                " INNER JOIN ". $this->tableNameCinema ." ON ". $this->tableNameRoom .".idCinema = ". $this->tableNameCinema .".idCinema
+                WHERE ". $this->tableNameRoom .".idCinema = :idCinema
+                GROUP BY ". $this->tableNameTicket .".idTransaction;";
             
-            $DAOShow = new DAOShow();
-            $show = $DAOShow->getById($p['idShow']);
-
-            $DAOTransaction = new DAOTransaction();
-            $transaction = $DAOTransaction->getById($p['idTransaction']);
-        
-            return new Ticket ($show, $transaction, $p['qrCode'], $p['idTicket']);
-        }, $value);
-        
-        if(empty($resp)){
-        return $resp;
+                $parameters['idCinema'] = $idCinema;
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query,$parameters);
+                
+                return $this->toArray($this->parseToObject($resultSet));
+            }
+            catch(Exception $ex){
+                throw $ex;
+            }
         }
-        else {
-        return count($resp) > 1 ? $resp : $resp['0'];
-        }
-    }
 
-    private function toArray($value){
-        if(is_array($value))
-            return $value;
-        else
-            return array($value);
+        public function getTicketsByRoom($idRoom){
+            try{
+                $query = "SELECT ". $this->tableNameTicket .".* FROM ". $this->tableNameTicket ." INNER JOIN ". 
+                $this->tableNameShow . " ON ". $this->tableNameTicket .".idShow =  ". $this->tableNameShow .".idSHow".
+                " INNER JOIN ". $this->tableNameRoom ." ON ". $this->tableNameShow .".idRoom = " . $this->tableNameRoom .".idRoom".
+                " INNER JOIN ". $this->tableNameCinema ." ON ". $this->tableNameRoom .".idCinema = ". $this->tableNameCinema .".idCinema
+                WHERE ". $this->tableNameRoom .".idRoom = :idRoom
+                GROUP BY ". $this->tableNameTicket .".idTransaction;";
+            
+                $parameters['idRoom'] = $idRoom;
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query,$parameters);
+                
+                return $this->toArray($this->parseToObject($resultSet));
+            }
+            catch(Exception $ex){
+                throw $ex;
+            }
+        }
+
+        #los que usan between
+
+        public function getTicketsByShowBetween($idShow, $firstDate, $lastDate){
+            try{
+                $query = "SELECT ". $this->tableNameTicket .".* 
+                FROM ". $this->tableNameTicket ." INNER JOIN ". 
+                $this->tableNameShow . " ON ". $this->tableNameTicket .".idShow =  ". $this->tableNameShow .".idSHow".
+                " INNER JOIN ". $this->tableNameRoom ." ON ". $this->tableNameShow .".idRoom = " . $this->tableNameRoom .".idRoom".
+                " INNER JOIN ". $this->tableNameCinema ." ON ". $this->tableNameRoom .".idCinema = ". $this->tableNameCinema .".idCinema 
+                WHERE ". $this->tableNameTicket .".idShow = :idShow AND ".$this->tableNameShow.".dateSelected BETWEEN :firstDate AND :lastDate 
+                GROUP BY ". $this->tableNameTicket .".idTransaction;";
+            
+                $parameters['idShow'] = $idShow;
+                $parameters['firstDate'] = $firstDate;
+                $parameters['lastDate'] = $lastDate;
+                
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query,$parameters);
+                
+                return $this->toArray($this->parseToObject($resultSet));
+            }
+            catch(Exception $ex){
+                throw $ex;
+            }
+        }
+
+        public function getTicketsByCinemaBetween($idCinema, $firstDate, $lastDate){
+            try{
+                $query = "SELECT ". $this->tableNameTicket .".* FROM ". $this->tableNameTicket ." INNER JOIN ". 
+                $this->tableNameShow . " ON ". $this->tableNameTicket .".idShow =  ". $this->tableNameShow .".idSHow".
+                " INNER JOIN ". $this->tableNameRoom ." ON ". $this->tableNameShow .".idRoom = " . $this->tableNameRoom .".idRoom".
+                " INNER JOIN ". $this->tableNameCinema ." ON ". $this->tableNameRoom .".idCinema = ". $this->tableNameCinema .".idCinema 
+                WHERE ". $this->tableNameCinema .".idCinema = :idCinema AND ".$this->tableNameShow.".dateSelected BETWEEN :firstDate AND :lastDate 
+                GROUP BY ". $this->tableNameTicket .".idTransaction;";
+            
+                $parameters['idCinema'] = $idCinema;
+                $parameters['firstDate'] = $firstDate;
+                $parameters['lastDate'] = $lastDate;
+
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query,$parameters);
+                
+                return $this->toArray($this->parseToObject($resultSet));
+            }
+            catch(Exception $ex){
+                throw $ex;
+            }
+        }
+
+        public function getTicketsByRoomBetween($idRoom, $firstDate, $lastDate){
+            try{
+                $query = "SELECT ". $this->tableNameTicket .".* FROM ". $this->tableNameTicket ." INNER JOIN ". 
+                $this->tableNameShow . " ON ". $this->tableNameTicket .".idShow =  ". $this->tableNameShow .".idSHow".
+                " INNER JOIN ". $this->tableNameRoom ." ON ". $this->tableNameShow .".idRoom = " . $this->tableNameRoom .".idRoom".
+                " INNER JOIN ". $this->tableNameCinema ." ON ". $this->tableNameRoom .".idCinema = ". $this->tableNameCinema .".idCinema 
+                WHERE ". $this->tableNameRoom .".idRoom = :idRoom AND ".$this->tableNameShow.".dateSelected BETWEEN :firstDate AND :lastDate 
+                GROUP BY ". $this->tableNameTicket .".idTransaction;";
+            
+                $parameters['idRoom'] = $idRoom;
+                $parameters['firstDate'] = $firstDate;
+                $parameters['lastDate'] = $lastDate;
+                $this->connection = Connection::GetInstance();
+                $resultSet = $this->connection->Execute($query,$parameters);
+                
+                return $this->toArray($this->parseToObject($resultSet));
+            }
+            catch(Exception $ex){
+                throw $ex;
+            }
+        }
+
+
+        public function parseToObject($value) {
+            $value = is_array($value) ? $value : [];
+            $resp = array_map(function($p){
+                
+                $DAOShow = new DAOShow();
+                $show = $DAOShow->getById($p['idShow']);
+
+                $DAOTransaction = new DAOTransaction();
+                $transaction = $DAOTransaction->getById($p['idTransaction']);
+            
+                return new Ticket ($show, $transaction, $p['qrCode'], $p['idTicket']);
+            }, $value);
+            
+            if(empty($resp)){
+                return $resp;
+            }
+            else {
+                return count($resp) > 1 ? $resp : $resp['0'];
+            }
+        }
+
+        private function toArray($value){
+            if(is_array($value))
+                return $value;
+            else
+                return array($value);
         }
 
 
