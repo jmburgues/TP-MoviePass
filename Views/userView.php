@@ -11,34 +11,44 @@
 </script>
 
 <div class="text-center mt-5 mb-3">
-    <h3 class="text-white">Personal profile:</h3> <h3 class="text-white text-uppercase"><?php echo $userName ?></h3>
+    <h3 class="text-white text-uppercase">Hi <?php echo $userName ?> !</h3>
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>index.php'"> Go Home </button> 
 </div>  
 
-<div class="text-left mt-5 mb-3" style="margin-top:0px;">
-    <h3 class="text-white">Shopping History:</h3>
-        </div>
-        <?php
-        if($transaction == null){
-            echo "<h5 class=\"text-white text-left\">No transactions yet, take a look at our latest movies!</h5>";
+
+       <?php
+        if (isset($transaction)) {?>
+            <h3 class="text-white text-center">Cart:</h3> <?php
+            foreach ($transaction as $t => $value) {
+                ?>
+            <div class="container  mt-5 mb-5" id="seleccion">       
+                <div class="card card-body  border-dark ">
+                    <ul>
+                        <li><strong>Name:  </strong><?php echo $value['username'] ?></li>
+                        <li><strong>Date purchase:  </strong><?php echo $value['transacctionDate'] ?></li>
+                        <li><strong>Tickets amount:  </strong><?php echo $value['ticketAmount'] ?></li>
+                        <li><strong>Cost per ticket:  </strong><?php echo $value['costPerTicket'] ?></li>
+                        <li><strong>Total Cost:  </strong><?php echo $value['costPerTicket'] * $value['ticketAmount'] ?></li>
+                        <li><strong>Qr:  </strong></li>
+                        <li class="liStyleNone aDropCards"><?php echo $value['qrCode'] ?></li>
+                        <a href="javascript:imprSelec('seleccion')" >Print</a>
+                    </ul>   
+                </div>  
+            </div>
+
+            <?php
+            }
         }
-        foreach($transaction as $t => $value ){
-            ?>
-
-        <div class="container  mt-5 mb-5" id="seleccion">       
+    if ($transaction == null){
+        ?>
+        <h3 class="text-white ">Cart:</h3>   
+        <div class="container  mt-5 mb-5" id="seleccion">    
+            
             <div class="card card-body  border-dark ">
-                <ul>
-                    <li><strong>Name:  </strong><?php echo $value['username'] ?></li>
-                    <li><strong>Date purchase:  </strong><?php echo $value['transacctionDate'] ?></li>
-                    <li><strong>Tickets amount:  </strong><?php echo $value['ticketAmount'] ?></li>
-                    <li><strong>Cost per ticket:  </strong><?php echo $value['costPerTicket'] ?></li>
-                    <li><strong>Total Cost:  </strong><?php echo $value['costPerTicket'] * $value['ticketAmount'] ?></li>
-                    <li><strong>Qr:  </strong></li>
-                    <li class="liStyleNone aDropCards"><?php echo $value['qrCode'] ?></li>
-                    <a href="javascript:imprSelec('seleccion')" >Print</a>
-                </ul>   
-            </div>  
-        </div>
-
-        <?php
-}
-?>
+                <?php echo "No tickets loaded yet"?>  
+                </div>  
+            </div>
+            <img style="height:200px; margin-left:45%;"  src="<?php echo FRONT_ROOT ?>/Views/img/carrito.png">
+    <?php
+    } 
+    ?>

@@ -1,4 +1,4 @@
-<div class="text-center mt-5 mb-3">
+<div class="text-center mt-5 mb-5">
     <h2 class="text-white">Purchase</h2>
 </div>  
 
@@ -19,7 +19,7 @@
             <li><strong>Total cost: </strong> <?php print_r($totalCost);?><?php ?></li>
         </ul> 
 
-        <div style="height:100px;">
+        <div style="height:100px; margin-top:-10px">
         <h4 class="text-center">Confirm Purchase</h4>
         <p class="text-center" ><strong>Credit Card</strong></p>
         
@@ -32,6 +32,7 @@
         <input hidden type="number" value= <?php echo $costPerTicket?> class="form-control" name="costPerTicket" >
         <input hidden type="number" value= <?php echo $totalCost?> class="form-control" name="totalCost" >
         <input hidden type="number" value= <?php echo $ticketAmount?> class="form-control" name="ticketAmount" >
+        <div style="margin-left:40px">
         <div readolny class="form-group font-weight-bold pt-2" >
         <label for="cardNumber">Card </label>
         <input readonly type="text" placeholder= <?php echo $cardBank?> class="form-control" name="cardNumber" required
@@ -49,9 +50,9 @@
     </div>
 </td>   
 <td>
-    
-    
-    <div class="form-group font-weight-bold pt-2">
+    <div>
+    <div style="margin-left:60px; margin-top:-40px">
+    <div class="form-group font-weight-bold pt-2" >
         <label for="cvv">CVC</label>
         <span class="text-muted"> security code behind the card</span>
         <input type="number" min="100" max="999" placeholder= "123" class="form-control" name="cvv" required>
@@ -82,7 +83,7 @@
             <option value="2026"> 2026</option>
         </select>
     </div>
-
+</div>
 </div>
 <input type="hidden" class="form-control" name="show" value=<?php echo $idShow ?> >
 <input type="hidden" class="form-control" name="card" value=<?php echo $cardBank ?> >
@@ -91,7 +92,7 @@
 </table>
 
 <div class="text-center">
-    <input type="submit" class="btn btn-primary bg-danger text-white col-md-3" value="Confirm"></input>
+    <input type="submit" class="btn btn-primary bg-danger text-white  mt-2 col-md-3" value="Confirm"></input>
 </div>
 </form>
       </div>

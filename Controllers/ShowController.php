@@ -153,6 +153,7 @@
         $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
         $dateToInsertEnd = $this->addInterval($start, ($selectedMovie->getDuration() +15 ));
 
+        $ends = substr($dateToInsertEnd, -9, -3);
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include VIEWS_PATH.'listCinemasAdmin.php';
       } 

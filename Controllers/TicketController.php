@@ -24,7 +24,7 @@
     use Models\Ticket as Ticket;   
     use Models\Show as Show;   
     use Models\User as User;   
-    
+
 
     
   //  use Endroid\QrCode\QrCode;
@@ -115,7 +115,8 @@
                     }
                 }
                 $totalCost = $costPerTicket * $ticketAmount;
-                $showToString = "STARTS AT: ".$showSelected->getStart()." ENDS AT: ".$showSelected->getEnd();
+                
+                $showToString = "STARTS AT: ". substr($showSelected->getStart(), 0, -3)." ENDS AT: ". substr($showSelected->getEnd(), 0, -3);
                 include VIEWS_PATH.'confirmPurchase.php';
             } 
 
@@ -167,12 +168,14 @@
                         $ticket->setQRCode($qr);            
                         $this->DAOTicket->add($ticket);
                 }
-                
+
+                $currentQr = $ticket->getQRCode();            
+                $currentTransaction = $transaction;
                 $this->sendMail($name, $costPerTicket, $totalCost, $ticketAmount, $showData, $qr);
                 //AGREGARLE LA DIRECCION Y LA SALA DEL CINE
                 $userName = $_SESSION['loggedUser'];
 
-                header("location:".FRONT_ROOT);
+                include VIEWS_PATH.'ticketInformation.php';
 
             #} 
 
@@ -204,9 +207,9 @@
                 $mail->Port       = 587;                                     // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
             
                 //Recipients
-                $mail->setFrom(MAIL_USR.'@'.MAIL_DOMAIN, 'Mailer');
+                $mail->setFrom(MAIL_USR.'@'.MAIL_DOMAIN, 'Movie Pass');
             //  $mail->addAddress($user->getEmail(), $user->getUserName());             // Add a recipient
-                $mail->addAddress('lautarobarretogimenez@gmail.com', $user->getUserName());     // Add a recipient
+                $mail->addAddress($user->getEmail(), $user->getUserName());     // Add a recipient
                 $mail->addReplyTo('info@TheMoviePass.com', 'Information');
             
                 // Attachments

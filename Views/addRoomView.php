@@ -125,7 +125,7 @@
         <?php }
         ?> <?php if(!$rooms){
             ?>
-            <div class="container mt-5">   
+            <div class="container mt-5 mb-4">   
                 <div class="card card-body ">
                     <?php echo "No room loaded yet"?>  
                 </div>

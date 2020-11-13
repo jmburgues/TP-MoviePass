@@ -9,7 +9,7 @@
         <ul>
             <li><strong>Date: </strong><?php echo $date ?></li>
             <li><strong>Starting hour:</strong> <?php echo $start ?></li>
-            <li><strong>Closing hour:</strong> <?php echo $dateToInsertEnd ?></li>
+            <li><strong>Ending hour:</strong> <?php echo $ends ?></li>
             <li><strong>Movie title: </strong><?php echo $selectedMovie->getTitle() ?></li>
         </ul>
     </div>
@@ -19,8 +19,9 @@
     <h3 class="text-white">Select Room :</h3>
 </div>
         <?php
-        foreach ($rooms as $room) {
-            ?>                
+        if (isset($rooms)) {
+            foreach ($rooms as $room) {
+                ?>                
             <form action="<?php echo FRONT_ROOT?>Show/addCurrentShow" method="POST" class= " mt-5 mb-5">
             <div class="container  mt-5">           
                 <div class="card card-body ">
@@ -35,12 +36,21 @@
                         <li class="liStyleNone"><strong>Room Name:</strong> <?php echo $room->getName() ?></li>
                         <li class="liStyleNone"><strong>Room Capacity:</strong> <?php echo $room->getCapacity() ?></li>
                         <li class="liStyleNone"><strong>Room Price:</strong> <?php echo $room->getPrice() ?></li>
-                        <li class="liStyleNone"><strong>Room Cinema: </strong><?php echo $room->getCinema()->getId() //var($this->DAORoom->getByCinema($room->getCinema()->getId())[0]->getName())  ?></li>
+                        <li class="liStyleNone"><strong>Room Cinema: </strong><?php echo $room->getCinema()->getId() //var($this->DAORoom->getByCinema($room->getCinema()->getId())[0]->getName())?></li>
 
                     </ul>  
                 </div>
             </div>
             </form>
+        <?php
+            }
+        }
+        if($rooms == null){?>
+            <div class= "container">    
+                <div class="card card-body ">
+                    <?php echo "No rooms loaded yet"?>  
+                </div>
+                </div>
         <?php
         }
         ?>
