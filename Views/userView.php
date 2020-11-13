@@ -41,7 +41,7 @@
         }
     if ($transaction == null){
         ?>
-        <h3 class="text-white ">Cart:</h3>   
+  
         <div class="container  mt-5 mb-5" id="seleccion">    
             
             <div class="card card-body  border-dark ">

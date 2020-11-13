@@ -227,7 +227,7 @@
                 $mail->AltBody = 'Thank you for your purchase ' .$name. '! Purchase details
                 Ticket cost: '.$costPerTicket.'Quantity bought: '.$ticketAmount.'Total import: '.$totalCost.'
                 Show details: 
-                Cinema: '.$showData->getRoom()->getCinema()->getName().'Address: '.$showData->getRoom()->getCinema()->getAddress().'Room: '.$showData->getRoom()->getName().'Movie: '.$showData->getMovie()->getTitle().'Starts: '.$showData->getStart().'End: '.$showData->getEnd().' '.$qr;
+                Cinema: '.$showData->getRoom()->getCinema()->getName().'Address: '.$showData->getRoom()->getCinema()->getAddress(). ' '.$showData->getRoom()->getCinema()->getNumber().'Room: '.$showData->getRoom()->getName().'Movie: '.$showData->getMovie()->getTitle().'Starts: '.$showData->getStart().'End: '.$showData->getEnd().' '.$qr;
             
                 $mail->send();
                 echo 'Message has been sent';
