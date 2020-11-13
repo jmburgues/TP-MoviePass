@@ -8,13 +8,16 @@
 <br>
 
 <div class="container  mt-5 mb-5" id="seleccion">       
-    <div class="card card-body  border-dark ">
+    <div class="card card-body  border-dark  ">
         <ul>
-            <li><strong>Total income:  </strong><?php echo $totalCostSold ?></li>
-            <li><strong>Total ticket sold:  </strong><?php echo $totalTicketsAmount ?></li>
+            <li class="liStyleNone"><strong>Total income:  </strong><?php echo $totalCostSold ?></li>
+            <li class="liStyleNone"><strong>Total ticket sold:  </strong><?php echo $totalTicketsAmount ?></li>
         </ul>   
     </div>  
 </div>
+
+
+
 
 <p class="text-center mt-5 mb-3">
   <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#betweenDates" aria-expanded="false" aria-controls="collapseExample">

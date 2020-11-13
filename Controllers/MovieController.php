@@ -177,5 +177,19 @@ class MovieController
   }
   
 
+  public function addToSelectMoviesView($page = 1){
+    try {
+      $this->JSONMovie->addMoreLatestMovies();
+      $this->listAPIMovies();
+    } 
+
+    catch (Exception $ex){
+      $arrayOfErrors [] = $ex->getMessage();
+      ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+      $this->listAPIMovies();
+    }
+  }
+
+
 }
 ?>

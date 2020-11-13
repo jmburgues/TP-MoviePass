@@ -826,7 +826,7 @@
                 "name": "Horror"
             }
         ],
-        "poster": "\/irkse1FMm9dWemwlxKJ7RINT9Iy.jpg",
+        "poster": null,
         "releaseDate": "2020-09-02",
         "description": "Successful author Veronica finds herself trapped in a horrifying reality and must uncover the mind-bending mystery before it's too late.",
         "movieID": 627290
@@ -1608,5 +1608,158 @@
         "releaseDate": "2020-07-10",
         "description": "The 47-year old Al Capone, after 10 years in prison, starts suffering from dementia and comes to be haunted by his violent past.",
         "movieID": 429422
+    },
+    {
+        "duration": 96,
+        "title": "The Pale Door",
+        "genre": [
+            {
+                "id": 27,
+                "name": "Horror"
+            },
+            {
+                "id": 37,
+                "name": "Western"
+            }
+        ],
+        "poster": "\/jkAZb9jteax1XRnEFlCU9Oer1YJ.jpg",
+        "releaseDate": "2020-08-21",
+        "description": "The Dalton gang escape to a nearby town after a train robbery goes south, but they are met by a coven of witches with sinister plans for the unsuspecting outlaws.",
+        "movieID": 610201
+    },
+    {
+        "duration": 98,
+        "title": "White Snake",
+        "genre": [
+            {
+                "id": 10749,
+                "name": "Romance"
+            },
+            {
+                "id": 16,
+                "name": "Animation"
+            },
+            {
+                "id": 14,
+                "name": "Fantasy"
+            }
+        ],
+        "poster": "\/gyDV5LppSJtas1YIE3aVhhG1t5D.jpg",
+        "releaseDate": "2019-01-11",
+        "description": "One day a young woman named Blanca is saved by Xuan, a snake catcher from a nearby village. She has lost her memory, and together they go on a journey to discover her real identity, developing deeper feelings for one another along the way. But as they learn more about her past, they uncover a darker plot of supernatural forces vying for power, with the fate of the world hanging in the balance.",
+        "movieID": 573699
+    },
+    {
+        "duration": 137,
+        "title": "The Empty Man",
+        "genre": [
+            {
+                "id": 80,
+                "name": "Crime"
+            },
+            {
+                "id": 18,
+                "name": "Drama"
+            },
+            {
+                "id": 27,
+                "name": "Horror"
+            }
+        ],
+        "poster": "\/gBRM1EgfslcxcZCSf6Vp89VYCmP.jpg",
+        "releaseDate": "2020-10-22",
+        "description": "After a group of teens from a small Midwestern town begin to mysteriously disappear, the locals believe it is the work of an urban legend known as The Empty Man. As a retired cop investigates and struggles to make sense of the stories, he discovers a secretive group and their attempts to summon a horrific, mystical entity, and soon his life\u2014and the lives of those close to him\u2014are in grave danger.",
+        "movieID": 516632
+    },
+    {
+        "duration": 141,
+        "title": "Laxmii",
+        "genre": [
+            {
+                "id": 27,
+                "name": "Horror"
+            },
+            {
+                "id": 35,
+                "name": "Comedy"
+            }
+        ],
+        "poster": "\/9sZ1UGVxOCs4yDd5NoACRkK0oXn.jpg",
+        "releaseDate": "2020-11-09",
+        "description": "Aasif's belief in logic and science shatters when he gets possessed by a transgender's ghost.",
+        "movieID": 603673
+    },
+    {
+        "duration": 95,
+        "title": "The Dark and the Wicked",
+        "genre": [
+            {
+                "id": 27,
+                "name": "Horror"
+            }
+        ],
+        "poster": "\/y63Sa7F2YFQPDSNQpS45p1iwTJ1.jpg",
+        "releaseDate": "2020-10-29",
+        "description": "On a secluded farm in a nondescript rural town, a man is slowly dying. His family gathers to mourn, and soon a darkness grows, marked by waking nightmares and a growing sense that something evil is taking over the family.",
+        "movieID": 680593
+    },
+    {
+        "duration": 0,
+        "title": "Alone",
+        "genre": [
+            {
+                "id": 27,
+                "name": "Horror"
+            },
+            {
+                "id": 53,
+                "name": "Thriller"
+            }
+        ],
+        "poster": "\/lkXD1W3pC64KXfZjHhHydd7DvNy.jpg",
+        "releaseDate": "2020-11-18",
+        "description": "When an outbreak hits, Aidan barricades himself inside his apartment and starts rationing food. His complex is overrun by infected Screamers, and with the world falling apart into chaos, he is left completely alone fighting for his life.",
+        "movieID": 661950
+    },
+    {
+        "duration": 115,
+        "title": "Hillbilly Elegy",
+        "genre": [
+            {
+                "id": 18,
+                "name": "Drama"
+            }
+        ],
+        "poster": "\/aA0D6DKIfLtXYNy94Qq2IW5NiGR.jpg",
+        "releaseDate": "2020-11-11",
+        "description": "An urgent phone call pulls a Yale Law student back to his Ohio hometown, where he reflects on three generations of family history and his own future.",
+        "movieID": 592984
+    },
+    {
+        "duration": 0,
+        "title": "Becs\u00fasz\u00f3 szerelem",
+        "genre": [],
+        "poster": "\/bQIWPqg1ULrCjFbFAhNTf44stRK.jpg",
+        "releaseDate": "2020-11-12",
+        "description": "A hardcore soccer ultra, Gyula, and his wife, Mariann, long for a baby. But it turns out that Gyula is sterile and when their plans to adopt also go up in smoke, Mariann does a deal behind her husband's back: they will take in the soon to be born child of a young Roma woman. The ensuing state of affairs turns all of their lives upside down. While Gyula has to continually hide the truth from his racist friends, surprises await him in his private life, and when Cupid's arrow strikes him from the most unexpected direction, he is faced with both comical situations and acute moral dilemmas.",
+        "movieID": 738041
+    },
+    {
+        "duration": 95,
+        "title": "Peace",
+        "genre": [
+            {
+                "id": 10752,
+                "name": "War"
+            },
+            {
+                "id": 53,
+                "name": "Thriller"
+            }
+        ],
+        "poster": "\/x2QWnrvAGanD80sk3RxLKLcdpgr.jpg",
+        "releaseDate": "2020-11-10",
+        "description": "Four American soldiers in WW2, after witnessing the vicious murder of an innocent civilian at the hands of their platoon Sergeant, are sent on a reconnaissance\/suicide mission led by a local partisan.",
+        "movieID": 717042
     }
 ]
