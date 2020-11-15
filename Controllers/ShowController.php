@@ -135,18 +135,10 @@
     //Muestra la información hasta el momento de la función y elige la sala
     public function selectMovie($date, $start, $movieId){
       try{
-        echo "<pre>";
-        var_dump($date);
-        echo "</pre>";
-        echo "<br>";
-        echo "<pre>";
-        var_dump($start);
-        echo "</pre>";
-        echo "<br>";
         #Validacion de que en un dia que ya se esta dando una pelicula en una funcion solo puede darse en ese mismo cine y sala
         $aux = $this->DAOShow->getByDateAndMovieId($date, $movieId);
         if ($aux == null){
-          $rooms = $this->DAORoom->getAll(); 
+          $rooms = $this->DAORoom->getActiveRooms(); 
         }else{
           #Se que no esta del todo bien pero hay un error que no estaria encontrando
           $rooms = array($aux[0]->getRoom());
@@ -158,14 +150,6 @@
 
         $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
         $dateToInsertEnd = $this->addInterval($date." ".$start, ($selectedMovie->getDuration() +15 ));
-        echo "<pre>";
-        var_dump($dateToInsert);
-        echo "</pre>";
-        echo "<br>";
-        echo "<pre>";
-        var_dump($dateToInsertEnd);
-        echo "</pre>";
-        echo "<br>";
         $ends = substr($dateToInsertEnd, -9, -3);
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include VIEWS_PATH.'listCinemasAdmin.php';

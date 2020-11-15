@@ -122,7 +122,7 @@
         public function getActiveRooms(){
           try{
             $query = "SELECT * FROM ".$this->tableNameRooms. " WHERE isActive = :active";
-            $parameters['active'] = true;
+            $parameters['active'] = 1;
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query,$parameters);
             $activeRooms = $this->toArray($this->parseToObject($resultSet));
@@ -137,7 +137,7 @@
         public function getActiveRoomsByCinema($IDCinema){
           try{
             $query = "SELECT * FROM ".$this->tableNameRooms. " WHERE isActive = :active AND idCinema = :IDCinema";
-            $parameters['active'] = true;
+            $parameters['active'] = 1;
             $parameters['IDCinema'] = $IDCinema;
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query,$parameters);
