@@ -1,3 +1,9 @@
+<?php
+   if(!empty($arrayOfErrors)){
+	  $arrayOfErrors = implode('\n',$arrayOfErrors);
+      echo "<script type='text/javascript'>alert('$arrayOfErrors');</script>" ;
+  }?>
+
 <!--Boton HOME-->
 <nav class="navbar navbar-expand-lg p-0 navClass" src="<?php echo FRONT_ROOT ?>/Views/img/nav.png" >
 	<ul class="navbar-nav mr-auto  mt-1 mt-lg-0" >
@@ -92,12 +98,7 @@
 	</ul>      
 
 
-<?php
 
-   if(!empty($arrayOfErrors)){
-      $arrayOfErrors = implode('\n',$arrayOfErrors);
-      echo "<script>alert('$arrayOfErrors');</script>" ;
-  }?>
 
 
 </nav>

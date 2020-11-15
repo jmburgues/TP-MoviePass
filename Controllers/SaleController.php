@@ -39,7 +39,7 @@
 
     //getAll de transacciones, muestra todas las transacciones. 
     public function showSales($firstDate="", $lastDate=""){
-      #try {
+      try {
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         #LADO SIN BETWEEN#######################################################################################################################
         if ((empty($firstDate)) && (empty($lastDate))){
@@ -125,12 +125,11 @@
           }
         #LADO CON BETWEEN#######################################################################################################################
         }elseif ((!empty($firstDate)) && (!empty($lastDate))) {
-
-          $firstDate = new DateTime($firstDate);
-          $firstDate = $firstDate->format('Y-m-d');
-          $lastDate = new DateTime($lastDate);
-          $lastDate = $lastDate->format('Y-m-d');
           if ($firstDate < $lastDate){
+            $firstDate = new DateTime($firstDate);
+            $firstDate = $firstDate->format('Y-m-d');
+            $lastDate = new DateTime($lastDate);
+            $lastDate = $lastDate->format('Y-m-d');
             $transactions = $this->DAOTransaction->getAllTransactionsBetweenDates($firstDate,$lastDate);
             $totalTicketsAmount = 0;
             $totalCostSold = 0;
@@ -187,20 +186,24 @@
               $ticketByRoom[$i]['unsoldTickets'] = $unsoldTickets;
               $i++;
             }
-          }else {
-            #throw new Exception("intervalo invalido", 1);
+          } else {
+            $msg = "intervalo invalido: Fin del intervalo anterior al inicio";
+            throw new Exception($msg);
           }
+        } else {
+          $msg = "intervalo invalido: Falta una fecha";
+          throw new Exception($msg);
         }
+      include VIEWS_PATH.'adminSales.php';
+    }
         
-        include VIEWS_PATH.'adminSales.php';
-      #}
-      /*  
       catch (Exception $ex){
-        $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        include VIEWS_PATH.'adminSales.php';
+        #$arrayOfErrors = array($ex->getMessage());
+        echo "<script type='text/javascript'>alert('$msg');</script>" ;
+        #ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+        $this->showSales();
       }
-      */
+      
     }
 
     //getAll de tickets, muestra todas las tickets. 

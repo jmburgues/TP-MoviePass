@@ -128,7 +128,7 @@
                   $this->DAOCinema->modify($cinema);
                   $message = "The cinema is now active again.";
                 }else{
-                  $message = "The cinema is already exist.";
+                  $message = "The cinema already exists.";
                 }
               }
             }

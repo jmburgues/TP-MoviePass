@@ -37,7 +37,7 @@
             <div class="form-group row ">
                 <label for="inputName" class="col-sm-1 col-form-label"><strong>Date:</strong></label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control" name="date" value=<?php echo $currentShow->getDate() ?> required>
+                    <input type="date" class="form-control" name="date" min="<?php echo $oneDayAhead->format("Y-m-d");?>" value=<?php echo $currentShow->getDate() ?> required>
                 </div>
             </div>
             <div class="form-group row">
