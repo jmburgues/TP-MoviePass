@@ -18,31 +18,34 @@ class HomeController
         public function Index($message = 1)
         {
             try{
-                $movieIdsShow = new DAOShow();
-                $shows = array();
-                
-                //Get de la cartelera, trae los shows isActive = 1
-                $movieIds = $movieIdsShow->getBillBoard();
-                if (is_array($movieIds)){
-                    $shows = $movieIds;
-                }else{
-                    $shows[0] = $movieIds;
-                }
 
                 $genreList = $this->DAOGenre->getGenresListFromShows();
                 $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
                 
                 ViewController::navView($genreList,$moviesYearList,null,null); 
                 
+                $DAOShow = new DAOShow();
+                $shows = array();
+                
+                //Get de la cartelera, trae los shows isActive = 1
+                $billboardMovieIDs = $DAOShow->getBillBoard();
+
+                if (is_array($billboardMovieIDs)){
+                    $shows = $billboardMovieIDs;
+                }else{
+                    $shows[0] = $billboardMovieIDs;
+                }
+
                 $movies = array();
                 #pasar luego a una QUERY del DAO
-                foreach ($movieIds as $key => $value) {
+                foreach ($billboardMovieIDs as $key => $value) {
                     array_push($movies, $this->DAOMovie->getById($value['idMovie']));
                 }
                 $page = $message;
                 $title = "LATEST MOVIES IN PROJECTION";
                 
                 ViewController::homeView($movies,$page,$title);
+            
             }catch(Exception $ex)
             {
                 $arrayOfErrors [] = $ex->getMessage();
