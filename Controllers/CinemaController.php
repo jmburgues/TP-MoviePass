@@ -5,8 +5,9 @@
   use DB\PDO\DAOMovie as DAOMovie;
   use Models\Cinema as Cinema;
   use \Exception as Exception;
+  use PDOException;
 
-  class CinemaController{
+class CinemaController{
     private $DAOCinema;
     private $DAOMovie;
     
@@ -27,15 +28,12 @@
           $cinemas[0] = $aux;
         }
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
+        include VIEWS_PATH.'adminCinemas.php';
       } 
 
-      catch (Exception $ex){
+      catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-      }
-
-      finally{
-        include VIEWS_PATH.'adminCinemas.php';
+        ViewController::errorView($arrayOfErrors);
       }
     }
 
@@ -48,15 +46,13 @@
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
           include VIEWS_PATH.'cine-modify.php';
         } 
-
-        catch (Exception $ex){
+        catch (PDOException $ex){
           $arrayOfErrors [] = $ex->getMessage();
-          ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-          $this->showCinemas();
+          ViewController::errorView($arrayOfErrors);
         }
       }
         
-  //Cambia el valor boolean de los cines isActive
+    //Cambia el valor boolean de los cines isActive
     public function deleteCinema($idCinema){
       try {
         $this->DAOCinema->removeCinema($idCinema);
@@ -67,15 +63,12 @@
         } else{
           $cinemas[0] = $aux;
         }        
+        $this->showCinemas();
       } 
 
-      catch (Exception $ex){
+      catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-      }
-
-      finally{
-        $this->showCinemas();
+        ViewController::errorView($arrayOfErrors);
       }
     }
 
@@ -97,10 +90,9 @@
             }  
           }
         $this->showCinemas();  
-      } catch (Exception $ex) {
+      } catch (PDOException $ex) {
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        $this->showCinemas();
+        ViewController::errorView($arrayOfErrors);
       }
     }
 
@@ -138,16 +130,12 @@
             
               }
         }
-        
-        throw New Exception ($message);  
-        $this->showCinemas();
-      } 
-
-      catch (Exception $ex){
-        $arrayOfErrors = array($ex->getMessage());
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        $this->showCinemas();
+      }
+      catch (PDOException $ex) {
+      $arrayOfErrors [] = $ex->getMessage();
+      ViewController::errorView($arrayOfErrors);
       }
     }
-  }
+  } 
+
 ?>

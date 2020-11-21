@@ -4,6 +4,7 @@
     use DB\PDO\DAOShow as DAOShow;
     use DB\PDO\DAOGenre as DAOGenre;
     use \Exception as Exception;
+use PDOException;
 
 class HomeController
     {
@@ -42,15 +43,14 @@ class HomeController
                     array_push($movies, $this->DAOMovie->getById($value['idMovie']));
                 }
                 $page = $message;
-                $title = "LATEST MOVIES IN PROJECTION";
+                $title = "LATEST MOVIES";
                 
                 ViewController::homeView($movies,$page,$title);
             
-            }catch(Exception $ex)
+            }catch(PDOException $ex)
             {
                 $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                ViewController::homeView($movies,$page,$title);
+                ViewController::errorView($arrayOfErrors);
             }
         }        
     }

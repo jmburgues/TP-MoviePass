@@ -28,6 +28,10 @@
             require_once(VIEWS_PATH.'userView.php');
         }
 
+        public static function errorView($arrayOfErrors){
+            require_once(VIEWS_PATH.'error.php');
+        }
+
     }
 
 

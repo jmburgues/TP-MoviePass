@@ -2,8 +2,11 @@
     namespace Config;
 
     use Config\Request as Request;
+use Controllers\ViewController;
+use ErrorException;
+use Exception;
 
-    class Router
+class Router
     {
         public static function Route(Request $request)
         {
@@ -14,13 +17,17 @@
             $methodParameters = $request->getparameters();          
 
             $controllerClassName = "Controllers\\". $controllerName;            
-
-            $controller = new $controllerClassName;
             
-            if(!isset($methodParameters))            
-                call_user_func(array($controller, $methodName));
-            else
-                call_user_func_array(array($controller, $methodName), $methodParameters);
+            if(class_exists($controllerClassName)){
+                $controller = new $controllerClassName;
+                if(!isset($methodParameters))            
+                    call_user_func(array($controller, $methodName));
+                else
+                    call_user_func_array(array($controller, $methodName), $methodParameters);
+            }
+            else{
+                ViewController::errorView("Class doesn't exists");
+            }
         }
     }
 ?>

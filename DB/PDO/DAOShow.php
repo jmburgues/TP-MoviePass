@@ -53,7 +53,7 @@
             $resultSet = $this->connection->Execute($query);
             return $this->toArray($this->parseToObject($resultSet));
             }
-            catch(Exception $ex){
+         catch(Exception $ex){
             throw $ex;
             }
         }

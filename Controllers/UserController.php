@@ -6,7 +6,9 @@
     use DB\PDO\DAOMovie as DAOMovie;
     use DB\PDO\DAOShow as DAOShow;
     use DB\PDO\DAOTransaction as DAOTransaction;
-    require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
+use PDOException;
+
+require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
     require_once ROOT.'phpmailer/phpmailer/src/PHPMailer.php';
     require_once ROOT.'phpmailer/phpmailer/src/SMTP.php';
     
@@ -87,13 +89,12 @@
             }
         }
         
-    
-
         public function showLoginForm()
         {
             ViewController::navView($genreList = null,$moviesYearList = null, null, null);
             include VIEWS_PATH.'login-view.php';
         }
+
         public function frontLogin($userName, $pass)
         {
             try{
@@ -135,7 +136,8 @@
                 }
             } 
 
-            catch (Exception $ex){
+            catch (PDOException $ex){
+                echo "ENTROOOOOOO";
                 $arrayOfErrors [] = $ex->getMessage();
                 ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
                 ViewController::homeView($movies,$page,$title);
