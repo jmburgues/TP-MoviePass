@@ -2,11 +2,11 @@
     namespace Config;
 
     use Config\Request as Request;
-use Controllers\ViewController;
-use ErrorException;
-use Exception;
+    use Controllers\ViewController;
+    use ErrorException;
+    use Exception;
 
-class Router
+    class Router
     {
         public static function Route(Request $request)
         {
@@ -18,13 +18,19 @@ class Router
 
             $controllerClassName = "Controllers\\". $controllerName;            
         
-            $controller = new $controllerClassName;
+            $classPath = ucwords(str_replace("\\", "/", ROOT.$controllerClassName).".php");
 
-            if(!isset($methodParameters))            
-                call_user_func(array($controller, $methodName));
-            else
-                call_user_func_array(array($controller, $methodName), $methodParameters);
+            if(file_exists($classPath)){
+                $controller = new $controllerClassName;
 
+                if(!isset($methodParameters))            
+                    call_user_func(array($controller, $methodName));
+                else
+                    call_user_func_array(array($controller, $methodName), $methodParameters);
+            }
+            else{
+                ViewController::errorView("ERROR 404: Invalid URL.");
+            }
         }
     }
 ?>
