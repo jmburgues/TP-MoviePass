@@ -3,8 +3,7 @@
     use DB\PDO\DAOMovie as DAOMovie;
     use DB\PDO\DAOShow as DAOShow;
     use DB\PDO\DAOGenre as DAOGenre;
-    use \Exception as Exception;
-use PDOException;
+    use PDOException;
 
 class HomeController
     {

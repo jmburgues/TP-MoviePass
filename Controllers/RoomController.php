@@ -4,8 +4,7 @@
     use DB\PDO\DAORoom as DAORoom;
     use DB\PDO\DAOCinema as DAOCinema;
     use Models\Room as Room;
-    use Models\Cinema as Cinema;
-    use \Exception as Exception;
+    use PDOException as Exception;
 
 
     class RoomController{

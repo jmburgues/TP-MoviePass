@@ -2,14 +2,11 @@
 
 namespace Controllers;
 
-use \DateTime as DateTime;
-use Models\Movie as Movie;
-use Models\Genre as Genre;
 use DB\PDO\DAOMovie as DAOMovie;
 use DB\PDO\DAOGenre as DAOGenre;
 use DB\PDO\DAOCinema as DAOCinema;
 use DB\JSON\DAOMovie as JSONMovie;
-use \Exception as Exception;
+use PDOException;
 
 class MovieController
 {
@@ -45,11 +42,9 @@ class MovieController
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include(VIEWS_PATH.'APIMoviesList.php');
       } 
-
-      catch (Exception $ex){
+      catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        include(VIEWS_PATH.'APIMoviesList.php');
+        ViewController::errorView($arrayOfErrors);
       }
     }
 
@@ -61,11 +56,9 @@ class MovieController
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include(VIEWS_PATH.'listMoviesBDD.php');
       } 
-
-      catch (Exception $ex){
+      catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        include(VIEWS_PATH.'APIMoviesList.php');
+        ViewController::errorView($arrayOfErrors);
       }
     }
 
@@ -85,13 +78,11 @@ class MovieController
         $this->listAPIMovies($page,$message);
       } 
 
-      catch (Exception $ex){
+      catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        $this->listAPIMovies();
+        ViewController::errorView($arrayOfErrors);
       }
     }
- 
 
   function listByGenre($genreId){
     try {
@@ -119,77 +110,73 @@ class MovieController
 
     } 
 
-    catch (Exception $ex){
+    catch (PDOException $ex){
       $arrayOfErrors [] = $ex->getMessage();
-      ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-      ViewController::homeView($movies,$page,$title);
+      ViewController::errorView($arrayOfErrors);
     }
   }
 
-  #se usa siquiera?
-  public function selectMovie($selectedId){
-    try {
-      $cinemas = $this->DAOCinema->getActiveCinemas();  
-      $movies=$this->DAOMovie->getAll();
-      $listAdminMovies = null;
-      foreach($movies as $movie){
-        if($movie->getMovieId() == $selectedId){
-          $listAdminMovies = $movie;
-        }
-      } 
-      ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-      include(VIEWS_PATH.'listMoviesAdmin.php');
-    } 
-
-    catch (Exception $ex){
-      $arrayOfErrors [] = $ex->getMessage();
-      ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-      ViewController::homeView($movies,$page,$title);
-    }
-  }
-  
-  #se usa siquiera?
-  public function selectRoom($selectedCinemaId, $selectedMovieId){
-    try {
-      $cinemas = $this->DAOCinema->getActiveCinemas();  
-      $movies=$this->DAOMovie->getAll();
-      $currentCinema = null;
-      $currentMovie = null;
-      foreach($cinemas as $cinema){
-        if($cinema->getId() == $selectedCinemaId){
-          $currentCinema = $cinema;
-        }
-      }
-      foreach($movies as $movie){
-        if($movie->getMovieID() == $selectedMovieId){
-          $currentMovie = $movie;
-        }
-      }
-      ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-      include(VIEWS_PATH.'listRoomsAdmin.php');
-    } 
-
-    catch (Exception $ex){
-      $arrayOfErrors [] = $ex->getMessage();
-      ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-      ViewController::homeView($movies,$page,$title);
-    }
-  }
-  
-
-  public function addToSelectMoviesView($page = 1){
+  public function addMoreMovies($page = 1){
     try {
       $this->JSONMovie->addMoreLatestMovies();
       $this->listAPIMovies();
     } 
 
-    catch (Exception $ex){
+    catch (PDOException $ex){
       $arrayOfErrors [] = $ex->getMessage();
-      ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-      $this->listAPIMovies();
+      ViewController::errorView($arrayOfErrors);
     }
   }
 
+  # ------- COMENTADO PARA SER BORRADO --------------
 
+  // public function selectMovie($selectedId){
+  //   try {
+  //     $cinemas = $this->DAOCinema->getActiveCinemas();  
+  //     $movies=$this->DAOMovie->getAll();
+  //     $listAdminMovies = null;
+  //     foreach($movies as $movie){
+  //       if($movie->getMovieId() == $selectedId){
+  //         $listAdminMovies = $movie;
+  //       }
+  //     } 
+  //     ViewController::navView($genreList=null,$moviesYearList=null,null,null);
+  //     include(VIEWS_PATH.'listMoviesAdmin.php');
+  //   } 
+
+  //   catch (Exception $ex){
+  //     $arrayOfErrors [] = $ex->getMessage();
+  //     ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+  //     ViewController::homeView($movies,$page,$title);
+  //   }
+  // }
+  
+  // public function selectRoom($selectedCinemaId, $selectedMovieId){
+  //   try {
+  //     $cinemas = $this->DAOCinema->getActiveCinemas();  
+  //     $movies=$this->DAOMovie->getAll();
+  //     $currentCinema = null;
+  //     $currentMovie = null;
+  //     foreach($cinemas as $cinema){
+  //       if($cinema->getId() == $selectedCinemaId){
+  //         $currentCinema = $cinema;
+  //       }
+  //     }
+  //     foreach($movies as $movie){
+  //       if($movie->getMovieID() == $selectedMovieId){
+  //         $currentMovie = $movie;
+  //       }
+  //     }
+  //     ViewController::navView($genreList=null,$moviesYearList=null,null,null);
+  //     include(VIEWS_PATH.'listRoomsAdmin.php');
+  //   } 
+
+  //   catch (Exception $ex){
+  //     $arrayOfErrors [] = $ex->getMessage();
+  //     ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+  //     ViewController::homeView($movies,$page,$title);
+  //   }
+  // }
+  
 }
 ?>

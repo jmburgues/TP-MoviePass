@@ -4,7 +4,6 @@
   use DB\PDO\DAOCinema as DAOCinema;
   use DB\PDO\DAOMovie as DAOMovie;
   use Models\Cinema as Cinema;
-  use \Exception as Exception;
   use PDOException;
 
 class CinemaController{
