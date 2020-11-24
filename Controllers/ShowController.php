@@ -10,7 +10,7 @@
     use DB\PDO\DAOCinema as DAOCinema;
     use DB\PDO\DAOGenre as DAOGenre;
     use Models\Show as Show;    
-    use \Exception as Exception;
+    use PDOException;
 
     class ShowController{
         private $DAOMovie;
@@ -41,11 +41,9 @@
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include VIEWS_PATH.'adminShows.php';
       } 
-
-      catch (Exception $ex){
+      catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        ViewController::adminView();
+        ViewController::errorView($arrayOfErrors);
       }
     }
 
@@ -56,27 +54,25 @@
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include VIEWS_PATH.'listMoviesAdmin.php';
       } 
-
-      catch (Exception $ex){
+      catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        $this->showShows();
+        ViewController::errorView($arrayOfErrors);
       }
     }
 
-    public function addCurrentShow($date, $start, $end, $selectedMovieId, $roomId){
+    public function manageShows($date, $start, $end, $selectedMovieId, $roomId){
       try{
-        $newShow = new Show($date,$start, $end,$this->DAORoom->getById($roomId), $this->DAOMovie->getById($selectedMovieId),0);
-        
+        $newShow = new Show($date,$start, $end,$this->DAORoom->getById($roomId), $this->DAOMovie->getById($selectedMovieId),0);    
         $startAux = new DateTime ($start);
         $endAux = new DateTime ($end);
 
-        #$rooms = $this->DAORoom->getAll(); 
-        #$movies=$this->DAOMovie->getAll();
-        
         $flag = 0; 
         
         $lookingForShows = $this->DAOShow->getActiveShows();
+
+        /*
+        **  ESTO ESTA MAL, CAMBIAR EL FOREACH POR UN QUERY AL PDO.
+        */
 
         foreach ($lookingForShows as $show) {
             if ($newShow->getDate() == $show->getDate()) {
@@ -99,18 +95,15 @@
                 $this->DAOShow->add($newShow);
             } else {
                 $message = "Horario ocupado";
-                throw new Exception($message);  
             }        
         $shows=$this->DAOShow->getAll();
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         $this->showShows();
 
       } 
-
-      catch (Exception $ex){
+      catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        $this->showShows();
+        ViewController::errorView($arrayOfErrors);
       }
     }
 
@@ -123,12 +116,10 @@
         ViewController::homeView($movies,1,"Year: ".$year);
         
       } 
-      catch (Exception $ex){
+      catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        ViewController::homeView($movies,$page,$title);
-      }
-      
+        ViewController::errorView($arrayOfErrors);
+      }      
     }
 
     //Método luego de seleccionar la película para el show
@@ -154,11 +145,9 @@
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include VIEWS_PATH.'listCinemasAdmin.php';
       } 
-
-      catch (Exception $ex){
+      catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        $this->showShows();
+        ViewController::errorView($arrayOfErrors);
       }
     }
 
@@ -174,11 +163,9 @@
 
         ViewController::homeView($movies,1,"Genre: ".$genreName);
       } 
-
-      catch (Exception $ex){
+      catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        ViewController::homeView($movies,$page,$title);
+        ViewController::errorView($arrayOfErrors);
       }
     }
 
@@ -193,14 +180,12 @@
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         include VIEWS_PATH.'show-modify.php';
       } 
-
-      catch (Exception $ex){
+      catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        $this->showShows();
+        ViewController::errorView($arrayOfErrors);
       }
     }
-#33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+
     public function modifyShow($idShow, $idRoom, $idMovie, $date, $start){
       try{
         //Calculo el nuevo fin de la funcion
@@ -240,9 +225,7 @@
             $msg = 'Esa pelicula se esta trasmitiendo en otra sala o cine este dia';
           }
         }
-        
-       // var_dump($modifyShow);
-        
+          
         if (isset($msg)){
           throw new Exception($msg);
         }else{
@@ -251,16 +234,12 @@
         
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         $this->showShows();
-
       } 
-
-      catch (Exception $ex){
+      catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-        $this->showShows();
+        ViewController::errorView($arrayOfErrors);
       }
     }
-#33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
 
     public function validateActiveShows(){
       $CurrentActiveShows = $this->DAOShow->getActiveShows();
@@ -282,12 +261,9 @@
       try {
         $this->DAOShow->removeShowFromActive($idShow);
       } 
-      catch (Exception $ex){
+      catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();
-        ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-      }
-      finally{
-        $this->showShows();
+        ViewController::errorView($arrayOfErrors);
       }
     }
 
