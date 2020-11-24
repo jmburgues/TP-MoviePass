@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 
 require "Config/Autoload.php";
 require "Config/Config.php";
+require "Config/Passwords.php";
 
 use Config\Autoload as Autoload;
 use Config\Router 	as Router;
