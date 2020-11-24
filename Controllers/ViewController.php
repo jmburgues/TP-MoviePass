@@ -14,13 +14,17 @@
         }
 
         public static function adminView(){
-                
-            require_once(VIEWS_PATH.'adminView.php');
+            if(isset($_SESSION['role']) && ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'owner'))
+                require_once(VIEWS_PATH.'adminView.php');
+            else
+                ViewController::errorView("ERROR 403: Forbidden access.");
         }
 
         public static function ownerView($users){
-                
-            require_once(VIEWS_PATH.'ownerView.php');
+            if(isset($_SESSION['role']) && $_SESSION['role'] == 'owner')
+                require_once(VIEWS_PATH.'ownerView.php');
+            else
+                ViewController::errorView("ERROR 403: Forbidden access.");
         }
 
         public static function userView($userName){
