@@ -6,7 +6,7 @@
     use DB\PDO\DAOMovie as DAOMovie;
     use DB\PDO\DAOShow as DAOShow;
     use DB\PDO\DAOTransaction as DAOTransaction;
-use PDOException;
+    use PDOException;
 
 require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
     require_once ROOT.'phpmailer/phpmailer/src/PHPMailer.php';
@@ -61,12 +61,11 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
                 ViewController::navView($genreList = null, $moviesYearList = null, null, null);
                 $users=$this->DAOUser->getAll();
                 ViewController::ownerView($users);
-            } 
-
-            catch (Exception $ex){
+            }
+            catch(PDOException $ex)
+            {
                 $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                ViewController::homeView($movies,$page,$title);
+                ViewController::errorView($arrayOfErrors);
             }
             
         }
@@ -82,10 +81,10 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
                 include VIEWS_PATH.'userView.php';
             } 
 
-            catch (Exception $ex){
+            catch(PDOException $ex)
+            {
                 $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                ViewController::homeView($movies,$page,$title);
+                ViewController::errorView($arrayOfErrors);
             }
         }
         
@@ -136,11 +135,10 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
                 }
             } 
 
-            catch (PDOException $ex){
-                echo "ENTROOOOOOO";
+            catch(PDOException $ex)
+            {
                 $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                ViewController::homeView($movies,$page,$title);
+                ViewController::errorView($arrayOfErrors);
             }
         }
 
@@ -179,10 +177,10 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
                 }
             } 
 
-            catch (Exception $ex){
+            catch(PDOException $ex)
+            {
                 $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                ViewController::homeView($movies,$page,$title);
+                ViewController::errorView($arrayOfErrors);
             }
         }
 
@@ -201,8 +199,10 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
                 }
             } 
 
-            catch (Exception $ex){
-                throw $ex;
+            catch(PDOException $ex)
+            {
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::errorView($arrayOfErrors);
             }
             return $newUserObject;
         }
@@ -268,10 +268,10 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
                 ViewController::ownerView($users);
             } 
 
-            catch (Exception $ex){
+            catch(PDOException $ex)
+            {
                 $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                ViewController::ownerView($users);
+                ViewController::errorView($arrayOfErrors);
             }
         }
 

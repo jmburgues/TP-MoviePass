@@ -22,13 +22,10 @@ class HomeController
                 $genreList = $this->DAOGenre->getGenresListFromShows();
                 $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
                 
-                ViewController::navView($genreList,$moviesYearList,null,null); 
-                
                 $DAOShow = new DAOShow();
-                $shows = array();
+                $shows = array();     
                 
-                //Get de la cartelera, trae los shows isActive = 1
-                $billboardMovieIDs = $DAOShow->getBillBoard();
+                $billboardMovieIDs = $DAOShow->getBillBoard(); //Get de la cartelera, trae los shows isActive = 1
 
                 if (is_array($billboardMovieIDs)){
                     $shows = $billboardMovieIDs;
@@ -44,7 +41,9 @@ class HomeController
                 $page = $message;
                 $title = "LATEST MOVIES";
                 
+                ViewController::navView($genreList,$moviesYearList,null,null); 
                 ViewController::homeView($movies,$page,$title);
+                
             
             }catch(PDOException $ex)
             {

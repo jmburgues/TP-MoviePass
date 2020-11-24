@@ -127,12 +127,13 @@ class CinemaController{
                 $this->DAOCinema->add($cinema);
                 $message = "Cinema successfully added";
             
-              }
+            }
         }
+        $this->showCinemas();
       }
       catch (PDOException $ex) {
-      $arrayOfErrors [] = $ex->getMessage();
-      ViewController::errorView($arrayOfErrors);
+        $arrayOfErrors [] = $ex->getMessage();
+        ViewController::errorView($arrayOfErrors);
       }
     }
   } 

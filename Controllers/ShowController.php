@@ -263,23 +263,17 @@
 #33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
 
     public function validateActiveShows(){
-      try {
-        $CurrentActiveShows = $this->DAOShow->getActiveShows();
-        
-        $dateTimeNow = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
-          foreach ($CurrentActiveShows as $CurrentActiveShow){
-            $dateTimeShow = new DateTime($CurrentActiveShow->getDate().' '.$CurrentActiveShow->getStart());
-            if ($CurrentActiveShow->getSpectators() == $CurrentActiveShow->getRoom()->getCapacity()){
-              $this->DAOShow->removeShowFromActive($CurrentActiveShow->getIdShow());
-            }
-            if ($dateTimeShow < $dateTimeNow){
-              $this->DAOShow->removeShowFromActive($CurrentActiveShow->getIdShow());
+      $CurrentActiveShows = $this->DAOShow->getActiveShows();
+      
+      $dateTimeNow = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
+        foreach ($CurrentActiveShows as $CurrentActiveShow){
+          $dateTimeShow = new DateTime($CurrentActiveShow->getDate().' '.$CurrentActiveShow->getStart());
+          if ($CurrentActiveShow->getSpectators() == $CurrentActiveShow->getRoom()->getCapacity()){
+            $this->DAOShow->removeShowFromActive($CurrentActiveShow->getIdShow());
           }
+          if ($dateTimeShow < $dateTimeNow){
+            $this->DAOShow->removeShowFromActive($CurrentActiveShow->getIdShow());
         }
-      }
-
-      catch (Exception $ex){
-        throw $ex;
       }
     }
 
