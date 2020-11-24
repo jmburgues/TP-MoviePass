@@ -1,10 +1,7 @@
-
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-<div class="panel panel-primary" id="result_panel">
-    <div class="panel-heading "><h3 class="panel-title">Manage user administrative role:</h3>
-    </div>
-    <div class="panel-body">      
-        <table class="panelOwner">
+<div class="container mt-5 mb-5">   
+    <div class="card card-body m-1 ">
+        <h4>Manage user's administrative role:</h4>
+<table class="panelOwner">
         <tr>
                 <th>USER</th>
                 <th>ACTION</th>
@@ -26,14 +23,12 @@
                 </td>
             </tr>
                 <?php }else{?>
-                <td>
-                <strong><?php echo $user->getUserName();?></strong>
-            </td>
+                <td> <strong><?php echo $user->getUserName();?></strong>  </td>
             <?php
                             }
                                         }
              ?>
             
-        </table>
+        </table></div>
     </div>
 </div>
