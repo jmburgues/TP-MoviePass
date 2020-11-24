@@ -30,8 +30,10 @@
         return $this->connection->ExecuteNonQuery($query, $parameters);
       }
 
-      catch(Exception $ex){
-        throw $ex;
+      catch(PDOException $ex)
+      {
+          $arrayOfErrors [] = $ex->getMessage();
+          ViewController::errorView($arrayOfErrors);
       }
     }
 
@@ -47,8 +49,10 @@
         return $this->connection ->ExecuteNonQuery($query,$parameters);
       }
 
-      catch(Exception $ex){
-          throw $ex;
+      catch(PDOException $ex)
+      {
+          $arrayOfErrors [] = $ex->getMessage();
+          ViewController::errorView($arrayOfErrors);
       }
 
     }
@@ -71,9 +75,10 @@
         $this->connection = Connection::GetInstance(); 
         return $this->connection->ExecuteNonQuery($query, $parameters);
       }
-      catch(Exception $ex)
+      catch(PDOException $ex)
       {
-        throw $ex;
+          $arrayOfErrors [] = $ex->getMessage();
+          ViewController::errorView($arrayOfErrors);
       }
     }
 
@@ -88,8 +93,10 @@
         return $this->toArray($this->parseToObject($resultSet));
       }
 
-      catch(Exception $ex){
-        throw $ex;
+      catch(PDOException $ex)
+      {
+          $arrayOfErrors [] = $ex->getMessage();
+          ViewController::errorView($arrayOfErrors);
       }
     }
 
@@ -105,8 +112,10 @@
           $placeCinema = $this->parseToObject($resultSet);
           return $placeCinema;
         }
-        catch(Exception $ex){
-          throw $ex;
+        catch(PDOException $ex)
+        {
+            $arrayOfErrors [] = $ex->getMessage();
+            ViewController::errorView($arrayOfErrors);
         }
     }
 
@@ -120,26 +129,23 @@
         $activeCinemas = $this->toArray($this->parseToObject($resultSet));
         return $activeCinemas;
       }
-      catch(Exception $ex){
-        throw $ex;
+      catch(PDOException $ex)
+      {
+          $arrayOfErrors [] = $ex->getMessage();
+          ViewController::errorView($arrayOfErrors);
       }
     }
 
     //SELECT * FROM CINEMAS WHERE id
     public function getById($id){
-      try{
-        $query= "SELECT * FROM ".$this->tableName." WHERE idCinema = :id;";
-        $parameters['id'] = $id;
+      $query= "SELECT * FROM ".$this->tableName." WHERE idCinema = :id;";
+      $parameters['id'] = $id;
 
-        $this->connection = Connection::GetInstance();
+      $this->connection = Connection::GetInstance();
 
-        $resultSet = $this->connection->Execute($query,$parameters);
+      $resultSet = $this->connection->Execute($query,$parameters);
 
-        return $this->parseToObject($resultSet);
-      }
-      catch(Exception $ex){
-          throw $ex;
-      }
+      return $this->parseToObject($resultSet);
     }
 
     protected function parseToObject($value) {

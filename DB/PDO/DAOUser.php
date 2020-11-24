@@ -11,57 +11,38 @@
     private $tableName ='USERS';
 
     public function add(User $user){
-      try{
-        $query = "INSERT INTO ".$this->tableName." (username,pass,email,birthdate,dni,userRole)
-        values(:userName, :password, :email,:birthDate, :dni, :userRole);";
+      $query = "INSERT INTO ".$this->tableName." (username,pass,email,birthdate,dni,userRole)
+      values(:userName, :password, :email,:birthDate, :dni, :userRole);";
 
-        $parameters['userName'] = $user->getUserName();
-        $parameters['password'] = $user->getPassword();
-        $parameters['email'] = $user->getEmail();
-        $parameters['birthDate'] = $user->getBirthDate();
-        $parameters['dni'] = $user->getDNI();
-        $parameters['userRole'] = $user->getRole();
+      $parameters['userName'] = $user->getUserName();
+      $parameters['password'] = $user->getPassword();
+      $parameters['email'] = $user->getEmail();
+      $parameters['birthDate'] = $user->getBirthDate();
+      $parameters['dni'] = $user->getDNI();
+      $parameters['userRole'] = $user->getRole();
 
-        $this->connection = Connection::GetInstance();
+      $this->connection = Connection::GetInstance();
 
-        return $this->connection->ExecuteNonQuery($query, $parameters);
-      }
-
-      catch(Exception $ex){
-        throw $ex;
-      }
+      return $this->connection->ExecuteNonQuery($query, $parameters);
     }
 
     public function changeRole($userName,$userRole){
-      try{
-        $query = "UPDATE ".$this->tableName." SET userRole = :userRole WHERE userName = :userName;";
+      $query = "UPDATE ".$this->tableName." SET userRole = :userRole WHERE userName = :userName;";
 
-        $parameters['userName'] = $userName;
-        $parameters['userRole'] = $userRole;
+      $parameters['userName'] = $userName;
+      $parameters['userRole'] = $userRole;
 
-        $this->connection = Connection::GetInstance();
+      $this->connection = Connection::GetInstance();
 
-        return $this->connection->ExecuteNonQuery($query, $parameters);
-      }
-
-      catch(Exception $ex){
-        throw $ex;
-      }
+      return $this->connection->ExecuteNonQuery($query, $parameters);
     }
 
     public function getAll(){
-      try{
-        $query = "SELECT * FROM ".$this->tableName;
-        $this->connection = Connection::GetInstance();
-        $resultSet = $this->connection->Execute($query);
-        
-        return $this->toArray($this->parseToObject($resultSet));
-      }
-
-      catch(Exception $ex){
-        throw $ex;
-      }
-
+      $query = "SELECT * FROM ".$this->tableName;
+      $this->connection = Connection::GetInstance();
+      $resultSet = $this->connection->Execute($query);
+      
+      return $this->toArray($this->parseToObject($resultSet));
     }
 
     public function getByUserName($name){

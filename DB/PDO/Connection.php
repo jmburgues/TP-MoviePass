@@ -2,7 +2,8 @@
   namespace DB\PDO;
   
   use \PDO as PDO;
-  use \Exception as Exception;
+  use PDOException;
+  use Controllers\ViewController as ViewController;
 
   class Connection{
     private $pdo = null;
@@ -14,8 +15,10 @@
         $this->pdo = new PDO("mysql:host=".DB_HOST."; dbname=".DB_NAME, DB_USER, DB_PASS);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       }
-      catch(Exception $ex){
-        throw $ex;
+      catch(PDOException $ex)
+      {
+          $arrayOfErrors [] = $ex->getMessage();
+          ViewController::errorView($arrayOfErrors);
       }
     }
 
@@ -32,8 +35,10 @@
         $this->pdoStatement->execute();
         return $this->pdoStatement->fetchAll();
       }
-      catch(Exception $ex){
-        throw $ex;
+      catch(PDOException $ex)
+      {
+          $arrayOfErrors [] = $ex->getMessage();
+          ViewController::errorView($arrayOfErrors);
       }
     }
       
@@ -44,8 +49,10 @@
         $this->pdoStatement->execute();
         return $this->pdoStatement->rowCount();
       }
-      catch(Exception $ex){
-        throw $ex;
+      catch(PDOException $ex)
+      {
+          $arrayOfErrors [] = $ex->getMessage();
+          ViewController::errorView($arrayOfErrors);
       }
     }
       
@@ -53,8 +60,10 @@
       try{
         $this->pdoStatement = $this->pdo->prepare($query);
       }
-      catch(Exception $ex){
-        throw $ex;
+      catch(PDOException $ex)
+      {
+          $arrayOfErrors [] = $ex->getMessage();
+          ViewController::errorView($arrayOfErrors);
       }
     }
       
