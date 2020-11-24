@@ -32,10 +32,8 @@ define('POSTER_WIDTH_ORIGINAL', "original/");
 
 /* DATABASE CONSTANTS */
 
-define("DB_HOST", "127.0.0.1");
-define("DB_NAME", "MOVIEPASSDB");
-define("DB_USER", "root");
-define("DB_PASS", "");
-
+define("DB_HOST", "bnjcqyikcuwpbcrt6swg-mysql.services.clever-cloud.com");
+define("DB_NAME", "bnjcqyikcuwpbcrt6swg");
+define("DB_USER", "udtersuq8vbpzdhd");
 ?>
 
