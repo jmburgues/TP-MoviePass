@@ -46,35 +46,21 @@
     }
 
     public function getByUserName($name){
-      try{
-        $query = "SELECT * FROM ".$this->tableName." where username = :name";
-        $parameters['name'] = $name;
-        $this->connection = Connection::GetInstance();
-        $resultSet = $this->connection->Execute($query,$parameters);
-        
-        return $this->parseToObject($resultSet);
-      }
-
-      catch(Exception $ex){
-        throw $ex;
-      }
+      $query = "SELECT * FROM ".$this->tableName." where username = :name";
+      $parameters['name'] = $name;
+      $this->connection = Connection::GetInstance();
+      $resultSet = $this->connection->Execute($query,$parameters);
       
+      return $this->parseToObject($resultSet);
     }
 
     public function getByEmail($email){
-      try{
-        $query = "SELECT * FROM ".$this->tableName." where email = :email";
-        $parameters['email'] = $email;
-        $this->connection = Connection::GetInstance();
-        $resultSet = $this->connection->Execute($query,$parameters);
-        
-        return $this->parseToObject($resultSet);
-      }
-
-      catch(Exception $ex){
-        throw $ex;
-      }
+      $query = "SELECT * FROM ".$this->tableName." where email = :email";
+      $parameters['email'] = $email;
+      $this->connection = Connection::GetInstance();
+      $resultSet = $this->connection->Execute($query,$parameters);
       
+      return $this->parseToObject($resultSet);    
     }
 
     public function parseToObject($value) {

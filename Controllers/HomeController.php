@@ -9,10 +9,12 @@ class HomeController
     {
         private $DAOMovie;
         private $DAOGenre;
+        private $DAOShow;
 
         public function __construct(){
             $this->DAOMovie = new DAOMovie();
             $this->DAOGenre = new DAOGenre();
+            $this->DAOShow = new DAOShow();
         }
     
         public function Index($message = 1)
@@ -21,35 +23,32 @@ class HomeController
 
                 $genreList = $this->DAOGenre->getGenresListFromShows();
                 $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
-                
-                $DAOShow = new DAOShow();
-                $shows = array();     
-                
-                $billboardMovieIDs = $DAOShow->getBillBoard(); //Get de la cartelera, trae los shows isActive = 1
+                $billboardMovieIDs = $this->DAOShow->getBillBoard(); //Get de la cartelera, trae los shows isActive = 1
 
-                if (is_array($billboardMovieIDs)){
-                    $shows = $billboardMovieIDs;
-                }else{
-                    $shows[0] = $billboardMovieIDs;
-                }
-
-                $movies = array();
-                #pasar luego a una QUERY del DAO
-                foreach ($billboardMovieIDs as $key => $value) {
-                    array_push($movies, $this->DAOMovie->getById($value['idMovie']));
-                }
-                $page = $message;
-                $title = "LATEST MOVIES";
-                
-                ViewController::navView($genreList,$moviesYearList,null,null); 
-                ViewController::homeView($movies,$page,$title);
-                
-            
             }catch(PDOException $ex)
             {
                 $arrayOfErrors [] = $ex->getMessage();
                 ViewController::errorView($arrayOfErrors);
             }
+            var_dump($ex);
+            $shows = array();     
+            
+            if (is_array($billboardMovieIDs)){
+                $shows = $billboardMovieIDs;
+            }else{
+                $shows[0] = $billboardMovieIDs;
+            }
+
+            $movies = array();
+            #pasar luego a una QUERY del DAO
+            foreach ($billboardMovieIDs as $key => $value) {
+                array_push($movies, $this->DAOMovie->getById($value['idMovie']));
+            }
+            $page = $message;
+            $title = "LATEST MOVIES";
+            
+            ViewController::navView($genreList,$moviesYearList,null,null); 
+            ViewController::homeView($movies,$page,$title);
         }        
     }
 ?>
