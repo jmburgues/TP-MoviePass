@@ -4,7 +4,7 @@
     class ViewController{
 
         public static function homeView($movies,$page,$title){
-            
+            $title = "Enjoy latest movies.";
             require_once(VIEWS_PATH.'home.php');
         }
 

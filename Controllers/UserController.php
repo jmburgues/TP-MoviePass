@@ -299,8 +299,6 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
             $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
             
             ViewController::navView($genreList,$moviesYearList,null,null); // falta implementar SESSION
-
-            ViewController::navView($genreList,$moviesYearList,null,null);
             
             $movieIds = $this->DAOShow->getBillBoard();
             if (is_array($movieIds)){
@@ -316,7 +314,7 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
             }
 
             $page = 1;
-            $title = "LATEST MOVIES IN PROJECTION";
+            $title = "LATEST MOVIES";
             
             ViewController::homeView($movies,$page,$title);
         }
