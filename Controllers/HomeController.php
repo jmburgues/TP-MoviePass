@@ -30,7 +30,7 @@ class HomeController
                 $arrayOfErrors [] = $ex->getMessage();
                 ViewController::errorView($arrayOfErrors);
             }
-            var_dump($ex);
+            
             $shows = array();     
             
             if (is_array($billboardMovieIDs)){

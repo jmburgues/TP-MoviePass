@@ -230,7 +230,6 @@
                 Cinema: '.$showData->getRoom()->getCinema()->getName().'Address: '.$showData->getRoom()->getCinema()->getAddress(). ' '.$showData->getRoom()->getCinema()->getNumber().'Room: '.$showData->getRoom()->getName().'Movie: '.$showData->getMovie()->getTitle().'Starts: '.$showData->getStart().'End: '.$showData->getEnd().' '.$qr;
             
                 $mail->send();
-                echo 'Message has been sent';
             } catch (MailException $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }

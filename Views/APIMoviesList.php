@@ -12,10 +12,9 @@
 ?>
 
 <div class="text-center mt-5 mb-3">
-  <h3 class="text-white">Select the movies you want to keep:</h3>
+  <h3 class="text-white">Add movies to database:</h3>
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="history.back(-1)"> Go Back </button> 
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="<?php ?>" onclick="window.location.href='<?php echo FRONT_ROOT?>Movie/addMoreMovies'"> Add more Movies </button> 
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="<?php ?>" onclick="window.location.href='<?php echo FRONT_ROOT?>Movie/selectMoviesFromBDD'"> Saved Movies </button> 
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="<?php ?>" onclick="window.location.href='<?php echo FRONT_ROOT?>Movie/selectMoviesFromBDD'"> View Movies Database </button> 
 </div>
 
 <div class="container text-center" id="maxWidth1600">

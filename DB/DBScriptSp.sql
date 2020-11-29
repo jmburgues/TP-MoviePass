@@ -1,4 +1,7 @@
-USE MOVIEPASSDB;
+
+#CREATE DATABASE MOVIEPASSDB;
+#DROP DATABASE MOVIEPASSDB;
+#USE MOVIEPASSDB;
 
 CREATE TABLE IF NOT EXISTS CINEMAS(
 idCinema int auto_increment,
@@ -73,7 +76,6 @@ userRole varchar(10) default 'user',
 CONSTRAINT pk_username primary key (username)
 );
 
-
 CREATE TABLE IF NOT EXISTS TRANSACTIONS(
 idTransaction int auto_increment,
 username varchar(100),
@@ -94,85 +96,19 @@ CONSTRAINT fk_idShowTicket foreign key (idShow) references SHOWS(idShow),
 CONSTRAINT fk_idTransaction foreign key (idTransaction) references TRANSACTIONS(idTransaction)
 );
 
-DROP PROCEDURE IF EXISTS p_add_transaction;
-DELIMITER $$
+INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('admin','1234','admin@MoviePass.com','1988-01-01',34322111,'admin');
+INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('owner','1234','owner@MoviePass.com','1987-01-01',33322111,'owner');
+INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('Juan','1234','juancito@hotmail.com','1987-01-01',32322111,'user');
+INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('user','1234','user@hotmail.com','1986-01-01',31322111,'user');
 
-CREATE PROCEDURE p_add_transaction (username VARCHAR(20), datetrans DateTime, OUT p_idTransaction INT)
+INSERT INTO CINEMAS (cinemaName,adress,adressNumber,openning,closing,isActive) VALUES ('Ambassador','Cordoba',2400,18:00:00,03:00:00,true);
+INSERT INTO CINEMAS (cinemaName,adress,adressNumber,openning,closing,isActive) VALUES ('Cine Del Paseo','Diagonal Pueyrredon',3058,13:00:00,24:00:00,true);
+
+
+DELIMITER $$
+CREATE PROCEDURE p_add_transaction (username VARCHAR(20), datetrans DateTime, ticketAmount int, costPerTicket int, OUT p_idTransaction INT)
 BEGIN
-	INSERT INTO TRANSACTIONS (username, transacctionDate) VALUES (username, datetrans);
+	INSERT INTO TRANSACTIONS (username, transacctionDate, ticketAmount, costPerTicket) VALUES (username, datetrans, ticketAmount, costPerTicket);
 	SET p_idTransaction = LAST_INSERT_ID();
 END;
 $$
-
-############################################################################
-
-cantidad de tickets por su costo de determinado cine (el valor de los tickets cambia según las salas del cine)
-Traer todos los tickets de un cine, sala, show.
-
-#SHOW
-SELECT TICKETS .* 
-	FROM
-		TICKETS INNER JOIN SHOWS ON TICKETS.idShow = SHOWS.idShow
-		INNER JOIN ROOMS ON SHOWS.idRoom = ROOMS.idRoom
-		INNER JOIN CINEMAS ON ROOMS.idCinema = CINEMAS.idCinema
-	WHERE 
-		TICKETS.idShow = 1
-	GROUP BY 
-		TICKETS.idTransaction
-    ;
-        
-#CINEMA
-SELECT TICKETS .* 
-	FROM
-		TICKETS INNER JOIN SHOWS ON TICKETS.idShow = SHOWS.idShow
-		INNER JOIN ROOMS ON SHOWS.idRoom = ROOMS.idRoom
-		INNER JOIN CINEMAS ON ROOMS.idCinema = CINEMAS.idCinema
-	WHERE 
-		CINEMAS.idCinema = 1;
-        
-		
-#ROOM
-SELECT TICKETS .* , ROOMS.idRoom  
-	FROM
-		TICKETS INNER JOIN SHOWS ON TICKETS.idShow = SHOWS.idShow
-		INNER JOIN ROOMS ON SHOWS.idRoom = ROOMS.idRoom
-		INNER JOIN CINEMAS ON ROOMS.idCinema = CINEMAS.idCinema
-	WHERE 
-		ROOMS.idRoom = 1;
-
-############################################################################
-		
-
-#DATE
-
-############################################################################
-
-#SHOW
-SELECT TICKETS .* 
-	FROM
-		TICKETS INNER JOIN SHOWS ON TICKETS.idShow = SHOWS.idShow
-		INNER JOIN ROOMS ON SHOWS.idRoom = ROOMS.idRoom
-		INNER JOIN CINEMAS ON ROOMS.idCinema = CINEMAS.idCinema
-	WHERE 
-		TICKETS.idShow = 1 AND SHOWS.dateSelected BETWEEN :firstDate AND :lastDate;
-        
-#CINEMA
-SELECT TICKETS .* 
-	FROM
-		TICKETS INNER JOIN SHOWS ON TICKETS.idShow = SHOWS.idShow
-		INNER JOIN ROOMS ON SHOWS.idRoom = ROOMS.idRoom
-		INNER JOIN CINEMAS ON ROOMS.idCinema = CINEMAS.idCinema
-	WHERE 
-		CINEMAS.idCinema = 1 AND SHOWS.dateSelected BETWEEN :firstDate AND :lastDate;
-        
-		
-#ROOM
-SELECT TICKETS .* , ROOMS.idRoom  
-	FROM
-		TICKETS INNER JOIN SHOWS ON TICKETS.idShow = SHOWS.idShow
-		INNER JOIN ROOMS ON SHOWS.idRoom = ROOMS.idRoom
-		INNER JOIN CINEMAS ON ROOMS.idCinema = CINEMAS.idCinema
-	WHERE 
-		ROOMS.idRoom = 1 AND SHOWS.dateSelected BETWEEN :firstDate AND :lastDate;
-
-############################################################################

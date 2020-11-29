@@ -12,12 +12,12 @@
   <!--Primer vista al entrar a la página-->
   <!--Jumbotron-->
   <div >
-    <img class ="styleImageJumHome"  src="https://i.ibb.co/84W4VgT/Logo-Black.png">
+    <img height="155" width="200" style="display: block; margin-left: auto; margin-right: auto;" src="https://i.ibb.co/84W4VgT/Logo-Black.png">
   </div>
 
   <div>
     <hr class=" mt-2 mb-4 bg-danger text-dark">
-    <h1 class="text-muted text-center" ><?php echo $title;?><h1>
+    <h3 class="text-muted text-center" ><?php echo $title;?><h3>
     <hr class=" mt-4 mb-1 bg-danger text-dark">
   </div>
     
