@@ -16,20 +16,6 @@
         $this->DAOCinema = new DAOCinema();
     }
 
-    public function showRooms(){
-        try {
-            $rooms = $this->DAORoom->getAll();
-            ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-            include VIEWS_PATH.'addRoomView.php';
-        } 
-
-        catch (Exception $ex){
-            $arrayOfErrors [] = $ex->getMessage();
-            ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-            ViewController::adminView();
-        }
-    }
-
     //Redirige a la vista para agregar una nueva sala
     public function addRoomView($idCinema){
         try {
