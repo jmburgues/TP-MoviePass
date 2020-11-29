@@ -1,28 +1,52 @@
+<style>
+.container {
+  height: 100px;
+  position: relative;
+  border-bottom: 1px solid #DC3B3B;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+</style>
+
+<!-- background -->
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
-<div class="text-center mt-5 mb-3">
-    <h3 class="text-white">Manage <?php echo $cinema->getName()?>'s Rooms:</h3>
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas'"> Go Back </button> 
+
+<!-- Page Title -->
+<div style="margin-top:10px;">
+    <hr class=" mt-2 mb-4 bg-danger text-dark">
+    <h3 class="text-center" style="color:white;" >Manage <?php echo $cinema->getName()?>'s rooms:<h3>
+    <hr class=" mt-4 mb-1 bg-danger text-dark">
 </div>
-
-<!-- COLLAPSE CARD EXISTENT ROOM -->
-
-<p class="p-ml-10">
-    <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#new" aria-expanded="false" aria-controls="collapseExample">
+<!-- New Cinema button -->
+<div class="container">
+  <div class="center">
+  <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas/'"> Go Back </button> 
+    <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newRoom" aria-expanded="false" aria-controls="collapseExample">
         Add new room
     </button>
-</p>
+  </div>
+</div>
 
-<div class="collapse" id="new">
+<!-- New Cinema collapse -->
 
+<div class="collapse" id="newRoom">
     <div class="text-center mt-5 mb-3">
         <h3 class="text-white">New room:</h3>
     </div>
-    <div class="container mt-5  mb-3" >   
-    <div class="card card-body ">
-        <form  action="<?php echo FRONT_ROOT ?>Room/addRoom" method="POST">
-            <input type="hidden" class="form-control" name="id" value=<?php echo $idCinema?> >
-            <div class="form-group row ">
+    <div class="container mt-2  mb-3" >   
+        <div class="card card-body ">
+            <form  action="<?php echo FRONT_ROOT ?>Room/addRoom" method="POST">
+                <input type="hidden" class="form-control" name="id" value=<?php echo $idCinema?> >
+                <div class="form-group row ">
                 <label for="inputName" class="col-sm-2 col-form-label"><strong>Name</strong></label>
+                
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="name" placeholder="Name" required>
                 </div>
@@ -58,80 +82,50 @@
     </div>
 </div>
 
-<!-- COLLAPSE CARD NEW ROOM -->
+<!-- Table with cinema modal buttons -->
+<table style="margin-left: auto; margin-right: auto; border:1px solid black;">
+    <tr>
+        <?php 
+        if(empty($rooms)){ ?>
+            <h4 class="text-center" style="color:grey;">no rooms added</h4>";
+        <?php }else{?>
+        <td>
+            <?php foreach($rooms as $oneRoom) { ?>
+        
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal-<?php echo $oneRoom->getId();?>">
+            <?php echo $oneRoom->getName();?>
+            </button>
 
-<p class="p-ml-10">
-    <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#existent" aria-expanded="false" aria-controls="collapseExample">
-        Show existent rooms
-    </button>
-</p>
-
-<div class="collapse" id="existent">
-
-    <div class="text-center mt-5 mb-3">
-        <h3 class="text-white">Existent Rooms:</h3>    
-    </div>
-
-    <?php 
-        if(is_array($rooms)){
-        foreach ($rooms as $room) {
-            ?>
-            <div class="container mt-5  mb-3">   
-                <div class="card card-body ">
-                <ul>
-                    <li><strong>Name: </strong><?php echo $room->getName() ?></li>
-                    <li><strong>Capacity:</strong> <?php echo $room->getCapacity() ?></li>
-                    <li><strong>Ticket price:</strong> <?php echo $room->getPrice() ?></li>
-                    <li><strong>Type:</strong> <?php echo $room->getRoomType() ?></li>
-                    <li><strong>Cinema:</strong> <?php echo $room->getCinema()->getName() ?></li>
-                    <li class="liStyleNone">
-                    <div class="btn-group" role="group" aria-label="Basic example">     
-                        <form action="<?php echo FRONT_ROOT?>Room/modifyRoomView" method="POST">
-                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getId()?>"   name="idRoomM">Modify</button> 
-                        </form>
-                        <form action="<?php echo FRONT_ROOT?>Room/deleteRoom" method="POST">
-                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getId()?>"   name="idRoomD">Delete</button> 
-                        </form>
-                        </div>
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal-<?php echo $oneRoom->getId();?>">
+                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
                 
-                    </li>         
-                </ul>
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title"><?php echo $cinema->getName()."'s ".$oneRoom->getName()?></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                    <ul>
+                    <li><strong>Capacity:</strong> <?php echo $oneRoom->getCapacity() ?></li>
+                    <li><strong>Ticket price:</strong> <?php echo $oneRoom->getPrice() ?></li>
+                    <li><strong>Type:</strong> <?php echo $oneRoom->getRoomType() ?></li>   
+                    </ul>
+                    </div>
+                    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" value="modify" onclick="window.location.href='<?php echo FRONT_ROOT?>Room/modifyRoomView/<?php echo $oneRoom->getId()?>'"> Modify </button>
+                        <button type="submit" class="btn btn-secondary" value="delete" onclick="window.location.href='<?php echo FRONT_ROOT?>Room/deleteRoom/<?php echo $oneRoom->getId()?>'"> Delete </button>
+                    </div>
+                    
+                </div>
                 </div>
             </div>
-    <?php } }
-        else{
-            $room = $rooms;
-            ?>
-            <div class="container mt-5  mb-3">   
-                <div class="card card-body ">
-                <ul>
-                    <li><strong>Room Name: </strong><?php echo $room->getName() ?></li>
-                    <li><strong>Room capacity:</strong> <?php echo $room->getCapacity() ?></li>
-                    <li><strong>Room price:</strong> <?php echo $room->getPrice() ?></li>
-                    <li><strong>Nombre cinema: </strong><?php $room->getCinema()->getName() ?></li>
-                    <li class="liStyleNone">
-            <!--     <div class="btn-group" role="group" aria-label="Basic example">     
-                        <form action="<?php echo FRONT_ROOT?>Room/modifyRoomView" method="POST">
-                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getId()?>"   name="idRoomM">Modify</button> 
-                        </form>
-                        <form action="<?php echo FRONT_ROOT?>Room/deleteRoom" method="POST">
-                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getId()?>"   name="idRoomD">Delete</button> 
-                        </form>
-                        </div>
-                -->
-                    </li>         
-                </ul>
-                </div>
-                </div>
-        <?php }
-        ?> <?php if(!$rooms){
-            ?>
-            <div class="container mt-5 mb-4">   
-                <div class="card card-body ">
-                    <?php echo "No room loaded yet"?>  
-                </div>
-            </div>
-        <?php
-        }   ?>
-    
-
+        <?php } }?>
+        </td>
+    </tr>
+</table>
