@@ -17,14 +17,14 @@
     }
 
     //Redirige a la vista para agregar una nueva sala
-    public function addRoomView($idCinema){
+    public function manageRooms($idCinema){
         try {
             $rooms = array();
             $rooms = $this->DAORoom->getActiveRoomsByCinema($idCinema);
             $cinema = $this->DAOCinema->getById($idCinema);
             ViewController::navView($genreList=null,$moviesYearList=null,null,null);
             $cinemaName = $cinema->getName();
-            include VIEWS_PATH.'addRoomView.php';
+            include VIEWS_PATH.'manageRooms.php';
         } 
 
         catch (Exception $ex){
@@ -62,13 +62,13 @@
                     $this->DAORoom->modify($modifyRoom);
                 }  
             }
-            $this->addRoomView($IDCinema);
+            $this->manageRooms($IDCinema);
         } 
 
         catch (Exception $ex){
             $arrayOfErrors [] = $ex->getMessage();
             ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-            $this->addRoomView($IDCinema);
+            $this->manageRooms($IDCinema);
         }
     }
 
@@ -111,13 +111,13 @@
             $rooms = $this->DAORoom->getByCinema($idCinema);
             $cinema = $this->DAOCinema->getById($idCinema);
             ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-            include VIEWS_PATH.'addRoomView.php';
+            include VIEWS_PATH.'manageRooms.php';
         } 
 
         catch (Exception $ex){
             $arrayOfErrors [] = $ex->getMessage();
             ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-            $this->addRoomView($idCinema);
+            $this->manageRooms($idCinema);
         }
     }
 
@@ -126,13 +126,13 @@
             $this->DAORoom->removeRoom($idRoom);
             
             ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-            $this->addRoomView($this->DAORoom->getById($idRoom)->getCinema()->getId());
+            $this->manageRooms($this->DAORoom->getById($idRoom)->getCinema()->getId());
         } 
 
         catch (Exception $ex){
             $arrayOfErrors [] = $ex->getMessage();
             ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-            $this->addRoomView($this->DAORoom->getById($idRoom)->getCinema()->getId());
+            $this->manageRooms($this->DAORoom->getById($idRoom)->getCinema()->getId());
         }
     }
 

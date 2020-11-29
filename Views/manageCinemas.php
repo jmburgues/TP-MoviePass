@@ -117,7 +117,7 @@
                     
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Room/addRoomView/<?php echo $oneCinema->getId()?>'"> Rooms </button>
+                    <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Room/manageRooms/<?php echo $oneCinema->getId()?>'"> Rooms </button>
                     <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/modifyCinemaForm/<?php echo $oneCinema->getId()?>'"> Modify </button>
                     <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/deleteCinema/<?php echo $oneCinema->getId()?>'"> Delete </button>
                     </div>
