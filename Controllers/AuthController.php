@@ -14,11 +14,8 @@ namespace Controllers;
                 else if($accessRole == 'admin' && ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'owner')){
                     $auth = true;
                 }
-                else{
-                    ViewController::errorView("ERROR 403: Access denied.");
-                }
             }
-            else{
+            if(!$auth){
                 ViewController::errorView("ERROR 403: Access denied.");
             }
             return $auth;            
