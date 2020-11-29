@@ -42,11 +42,15 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="inputNumber" class="col-sm-2 col-form-label">Room Type</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="roomType" value=<?php echo $currentRoom->getRoomType() ?> required>
+                <label for="inputDireccion" class="col-sm-2 col-form-label">Room Type</label>         
+                <div class="col-sm-10">
+                    <select name="roomType" id="roomType">
+                        <option value="2DMovie">2D Movie</option>
+                        <option value="3DMoovie">3D Movie</option>
+                        <option value="Atmos">ATMOS</option>
+                    </select> 
+                </div>
             </div>
-        </div>
         <!--<button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button> -->
         <button type="submit" name="idRoom" class="btn btn-secondary bg-danger text-black col-2  float-right" value="<?php echo $currentRoom->getId()?>" >Send</button>
     </form>
