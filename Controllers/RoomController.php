@@ -18,125 +18,127 @@
 
     //Redirige a la vista para agregar una nueva sala
     public function manageRooms($idCinema){
-        try {
-            $rooms = array();
-            $rooms = $this->DAORoom->getActiveRoomsByCinema($idCinema);
-            $cinema = $this->DAOCinema->getById($idCinema);
-            ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-            $cinemaName = $cinema->getName();
-            include VIEWS_PATH.'manageRooms.php';
-        } 
+        if(AuthController::validate('admin')){
+            try {
+                $rooms = array();
+                $rooms = $this->DAORoom->getActiveRoomsByCinema($idCinema);
+                $cinema = $this->DAOCinema->getById($idCinema);
 
-        catch (Exception $ex){
-            $arrayOfErrors [] = $ex->getMessage();
-            ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-            ViewController::adminView();
+                ViewController::navView($genreList=null,$moviesYearList=null,null,null);
+                include VIEWS_PATH.'manageRooms.php';
+            } 
+            catch (Exception $ex){
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+                ViewController::adminView();
+            }
         }
     }
 
     //Redirige a la vista para modificar la sala
     public function modifyRoomView($idRoom){
-        try {
-            $currentRoom = $this->DAORoom->getById($idRoom);
-            $rooms = $this->DAORoom->getActiveRooms();
-            ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-            include VIEWS_PATH.'room-modify.php';
-        } 
-
-        catch (Exception $ex){
-            $arrayOfErrors [] = $ex->getMessage();
-            ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-            ViewController::adminView();
+        if(AuthController::validate('admin')){
+            try {
+                $currentRoom = $this->DAORoom->getById($idRoom);
+                $rooms = $this->DAORoom->getActiveRooms();
+                ViewController::navView($genreList=null,$moviesYearList=null,null,null);
+                include VIEWS_PATH.'room-modify.php';
+            } 
+            catch (Exception $ex){
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+                ViewController::adminView();
+            }
         }
     }
 
     //Recibe los nuevos valores
     public function modifyRoom($roomID, $IDCinema, $active, $name, $capacity, $price, $roomType){
-        try {
-            $roomsList = $this->DAORoom->getActiveRooms();
+        if(AuthController::validate('admin')){
+            try {
+                $roomsList = $this->DAORoom->getActiveRooms();
 
-            $cinema = $this->DAOCinema->getById($IDCinema);
-            $modifyRoom = new Room($name, $capacity, $cinema, $price, $roomType, $active, $roomID);
-            foreach($roomsList as $rooms){
-                if ($rooms->getId() == $roomID) {
-                    $this->DAORoom->modify($modifyRoom);
-                }  
+                $cinema = $this->DAOCinema->getById($IDCinema);
+                $modifyRoom = new Room($name, $capacity, $cinema, $price, $roomType, $active, $roomID);
+                foreach($roomsList as $rooms){
+                    if ($rooms->getId() == $roomID) {
+                        $this->DAORoom->modify($modifyRoom);
+                    }  
+                }
+                $this->manageRooms($IDCinema);
+            } 
+            catch (Exception $ex){
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+                $this->manageRooms($IDCinema);
             }
-            $this->manageRooms($IDCinema);
-        } 
-
-        catch (Exception $ex){
-            $arrayOfErrors [] = $ex->getMessage();
-            ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-            $this->manageRooms($IDCinema);
         }
     }
 
     //Crea una nueva sala
     public function addRoom($idCinema, $name, $capacity, $price, $roomType){
-        try {
-            if ($name != "") {
-                $cinema = $this->DAOCinema->getById($idCinema);
-                $room = new Room($name, $capacity, $cinema, $price,$roomType, 1 );
-                $listRoom = $this->DAORoom->getAll();
-                $roomExist = false;
-                $message ="";
-                foreach ($listRoom as $list) {
-                    if ($list->getCinema()->getId() == $idCinema){
-                        if ($list->getName() == $name) {
-                            if($list->getActive() == true){
-                                $message = "The room already exists.";
-                                $roomExist=true;
-                            } else {
-                                $room->setActive(true);
-                                $room->setRoomID($list->getId());
-                                $this->DAORoom->modify($room);
-                                $message = "The room is active again.";
-                                $roomExist=true;
+        if(AuthController::validate('admin')){
+            try {
+                if ($name != "") {
+                    $cinema = $this->DAOCinema->getById($idCinema);
+                    $room = new Room($name, $capacity, $cinema, $price,$roomType, 1 );
+                    $listRoom = $this->DAORoom->getAll();
+                    $roomExist = false;
+                    $message ="";
+                    foreach ($listRoom as $list) {
+                        if ($list->getCinema()->getId() == $idCinema){
+                            if ($list->getName() == $name) {
+                                if($list->getActive() == true){
+                                    $message = "The room already exists.";
+                                    $roomExist=true;
+                                } else {
+                                    $room->setActive(true);
+                                    $room->setRoomID($list->getId());
+                                    $this->DAORoom->modify($room);
+                                    $message = "The room is active again.";
+                                    $roomExist=true;
+                                }
                             }
                         }
                     }
+                    if ($roomExist == false) { 
+                        $this->DAORoom->add($room);
+                        $message = "Room successfully added";
+                    }
                 }
-                if ($roomExist == false) { 
-                    $this->DAORoom->add($room);
-                    $message = "Room successfully added";
-                }
+                if(isset($message)){
+                    #echo "<script type='text/javascript'>alert('$message');</script>";
+                    throw new Exception($message);
+                }  
+                $rooms = $this->DAORoom->getByCinema($idCinema);
+                $cinema = $this->DAOCinema->getById($idCinema);
+                ViewController::navView($genreList=null,$moviesYearList=null,null,null);
+                include VIEWS_PATH.'manageRooms.php';
+            } 
+            catch (Exception $ex){
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+                $this->manageRooms($idCinema);
             }
-            if(isset($message)){
-                #echo "<script type='text/javascript'>alert('$message');</script>";
-                throw new Exception($message);
-            }  
-            
-            
-            $rooms = $this->DAORoom->getByCinema($idCinema);
-            $cinema = $this->DAOCinema->getById($idCinema);
-            ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-            include VIEWS_PATH.'manageRooms.php';
-        } 
-
-        catch (Exception $ex){
-            $arrayOfErrors [] = $ex->getMessage();
-            ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-            $this->manageRooms($idCinema);
         }
     }
 
     public function deleteRoom($idRoom){
-        try {
-            $this->DAORoom->removeRoom($idRoom);
-            
-            ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-            $this->manageRooms($this->DAORoom->getById($idRoom)->getCinema()->getId());
-        } 
+        if(AuthController::validate('admin')){
+            try {
+                $this->DAORoom->removeRoom($idRoom);
+                
+                ViewController::navView($genreList=null,$moviesYearList=null,null,null);
+                $this->manageRooms($this->DAORoom->getById($idRoom)->getCinema()->getId());
+            } 
 
-        catch (Exception $ex){
-            $arrayOfErrors [] = $ex->getMessage();
-            ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-            $this->manageRooms($this->DAORoom->getById($idRoom)->getCinema()->getId());
+            catch (Exception $ex){
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
+                $this->manageRooms($this->DAORoom->getById($idRoom)->getCinema()->getId());
+            }
         }
     }
 
-
 }
-
-    ?>
+?>

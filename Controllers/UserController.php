@@ -8,18 +8,14 @@
     use DB\PDO\DAOTransaction as DAOTransaction;
     use PDOException;
 
-require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
+    require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
     require_once ROOT.'phpmailer/phpmailer/src/PHPMailer.php';
     require_once ROOT.'phpmailer/phpmailer/src/SMTP.php';
-    
-    
-        
+            
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 
-    
-  
     class UserController
     {
         private $DAOUser;
@@ -37,7 +33,6 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
             $this->DAOTransaction = new DAOTransaction();
         }
         
-
         public function register()
         {
             ViewController::navView($genreList = null, $moviesYearList = null, null, null);
@@ -46,46 +41,49 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
 
         public function adminView()
         {   
-            $genreList = null;
-            $moviesYearList = null; // el adminView no espera contenido para filtrar
+            if(AuthController::validate('admin')){
+                $genreList = null;
+                $moviesYearList = null; // el adminView no espera contenido para filtrar
 
-            ViewController::navView($genreList,$moviesYearList,null,null); // falta implementar SESSION
-            
-            ViewController::adminView();
-
+                ViewController::navView($genreList,$moviesYearList,null,null); // falta implementar SESSION
+                
+                ViewController::adminView();
+            }
         }
 
         public function ownerView()
         {
-            try {
-                ViewController::navView($genreList = null, $moviesYearList = null, null, null);
-                $users=$this->DAOUser->getAll();
-                ViewController::ownerView($users);
-            }
-            catch(PDOException $ex)
-            {
-                $arrayOfErrors [] = $ex->getMessage();
-                ViewController::errorView($arrayOfErrors);
-            }
-            
+            if(AuthController::validate('owner')){
+                try {
+                    ViewController::navView($genreList = null, $moviesYearList = null, null, null);
+                    $users=$this->DAOUser->getAll();
+                    ViewController::ownerView($users);
+                }
+                catch(PDOException $ex)
+                {
+                    $arrayOfErrors [] = $ex->getMessage();
+                    ViewController::errorView($arrayOfErrors);
+                }
+            }    
         }
         
-
         public function userView()
         {
-            try{
-                ViewController::navView($genreList = null, $moviesYearList = null, null, null);
-                $userName = $_SESSION['loggedUser'];
-                $user = $this->DAOUser->getByUserName($userName);
-                $transaction = $this->DAOTransaction->getTransactionsByUser($user);
-                include VIEWS_PATH.'userView.php';
-            } 
+            if(AuthController::validate('user')){
+                try{
+                    ViewController::navView($genreList = null, $moviesYearList = null, null, null);
+                    $userName = $_SESSION['loggedUser'];
+                    $user = $this->DAOUser->getByUserName($userName);
+                    $transaction = $this->DAOTransaction->getTransactionsByUser($user);
+                    include VIEWS_PATH.'userView.php';
+                } 
 
-            catch(PDOException $ex)
-            {
-                $arrayOfErrors [] = $ex->getMessage();
-                ViewController::errorView($arrayOfErrors);
-            }
+                catch(PDOException $ex)
+                {
+                    $arrayOfErrors [] = $ex->getMessage();
+                    ViewController::errorView($arrayOfErrors);
+                }
+             }
         }
         
         public function showLoginForm()
@@ -134,7 +132,6 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
                     include_once VIEWS_PATH . 'login-view.php';
                 }
             } 
-
             catch(PDOException $ex)
             {
                 $arrayOfErrors [] = $ex->getMessage();
@@ -145,8 +142,7 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
         public function frontRegister($userName,$password,$email,$birthDate,$dni)
         {
             try{
-                $role = "user";
-                $newUser = $this->add($userName,$password,$email,$birthDate,$dni,$role);
+                $newUser = $this->add($userName,$password,$email,$birthDate,$dni);
                 
                 if($newUser){
                     
@@ -176,7 +172,6 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
                     include VIEWS_PATH.'register-view.php';
                 }
             } 
-
             catch(PDOException $ex)
             {
                 $arrayOfErrors [] = $ex->getMessage();
@@ -184,21 +179,19 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
             }
         }
 
-        private function add($userName, $password, $email, $birthDate, $dni, $admin)
+        private function add($userName, $password, $email, $birthDate, $dni)
         {
-            try{
-               
+            try{             
                 $newUserObject = null;
                 $existentUser = $this->DAOUser->getByUserName($userName);
                 $existentEmail = $this->DAOUser->getByEmail($email);
                 
                 if(!$existentUser && !$existentEmail){
-                    $newUserObject = new User($userName, $password, $email, $birthDate, $dni, $admin);
+                    $newUserObject = new User($userName, $password, $email, $birthDate, $dni, 'user');
                     $this->DAOUser->add($newUserObject);
                     $this->sendWelcomeEmail($userName, $email);   
                 }
             } 
-
             catch(PDOException $ex)
             {
                 $arrayOfErrors [] = $ex->getMessage();
@@ -238,9 +231,7 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
                 $arrayOfErrors [] = $mail->ErrorInfo;
                 ViewController::errorView($arrayOfErrors);
             }
-
         }
-
 
         public function login($userName, $password)
         {
@@ -254,26 +245,27 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
         }
 
         public function changeRole($userName){
-            try{
-                $oneUserObj = $this->DAOUser->getByUserName($userName);
-                
-                if($oneUserObj->getRole() == 'admin'){
-                    $this->DAOUser->changeRole($userName,'user');
-                }
-                elseif($oneUserObj->getRole() == 'user'){
-                    $this->DAOUser->changeRole($userName,'admin');   
-                }
+            if(AuthController::validate('owner')){
+                try{
+                    $oneUserObj = $this->DAOUser->getByUserName($userName);
+                    
+                    if($oneUserObj->getRole() == 'admin'){
+                        $this->DAOUser->changeRole($userName,'user');
+                    }
+                    elseif($oneUserObj->getRole() == 'user'){
+                        $this->DAOUser->changeRole($userName,'admin');   
+                    }
 
-                ViewController::navView($genreList = null, $moviesYearList = null,null,null);
-                
-                $users = $this->DAOUser->getAll();
-                ViewController::ownerView($users);
-            } 
-
-            catch(PDOException $ex)
-            {
-                $arrayOfErrors [] = $ex->getMessage();
-                ViewController::errorView($arrayOfErrors);
+                    ViewController::navView($genreList = null, $moviesYearList = null,null,null);
+                    
+                    $users = $this->DAOUser->getAll();
+                    ViewController::ownerView($users);
+                } 
+                catch(PDOException $ex)
+                {
+                    $arrayOfErrors [] = $ex->getMessage();
+                    ViewController::errorView($arrayOfErrors);
+                }
             }
         }
 
@@ -329,7 +321,6 @@ require_once ROOT.'phpmailer/phpmailer/src/Exception.php';
                 }
             }
             return FALSE;
-        }
-        
+        }      
     }
 ?>

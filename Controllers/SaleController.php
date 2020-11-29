@@ -39,6 +39,7 @@
 
     //getAll de transacciones, muestra todas las transacciones. 
     public function showSales($firstDate="", $lastDate=""){
+      if(AuthController::validate('admin')){
       try {
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
         #LADO SIN BETWEEN#######################################################################################################################
@@ -213,4 +214,5 @@
       return $tickets;
     }
   }
+}
 ?>

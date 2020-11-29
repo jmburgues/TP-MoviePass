@@ -30,7 +30,6 @@
   //  use Endroid\QrCode\QrCode;
     class TicketController
     {
-
         private $DAOMovie;
         private $DAOShow;
         private $DAOUser;
@@ -39,7 +38,6 @@
         private $DAOTicket;
 
         public function __construct(){
-
             $this->DAOMovie = new DAOMovie();
             $this->DAOShow = new DAOShow();
             $this->DAORoom = new DAORoom();
@@ -58,7 +56,6 @@
                 $moviesForShows = $this->DAOShow->getShowFromMovieRoom($movieId);
                 include VIEWS_PATH.'purchase-view.php';
             } 
-
             catch (Exception $ex){
                 $arrayOfErrors [] = $ex->getMessage();
                 ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
@@ -176,18 +173,7 @@
                 $userName = $_SESSION['loggedUser'];
 
                 include VIEWS_PATH.'ticketInformation.php';
-
-            #} 
-
-            #catch (Exception $ex){
-             #   $arrayOfErrors [] = $ex->getMessage();
-            #    ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-
-            #}
         }
-
-
-
 
         private function sendMail($name, $costPerTicket, $totalCost, $ticketAmount, Show $showData, $qr){
             $userName = $_SESSION['loggedUser'];

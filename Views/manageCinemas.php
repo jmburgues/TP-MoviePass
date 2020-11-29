@@ -27,7 +27,8 @@
 <!-- New Cinema button -->
 <div class="container">
   <div class="center">
-    <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newCinema" aria-expanded="false" aria-controls="collapseExample">
+  <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView/'"> Go Back </button>   
+  <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newCinema" aria-expanded="false" aria-controls="collapseExample">
         Add new cinema
     </button>
   </div>
@@ -61,16 +62,16 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <!--<label for="inputHorario" class="col-sm-2 col-form-label"><strong>Openning hour:</strong></label>-->
+                    <label for="inputHorario" class="col-sm-2 col-form-label"><strong>Openning hour:</strong></label>
                     <div class="col-sm-10">
-                    <input hidden type="time"   min="00:00" max="23:59" class="form-control" name="openning" placeholder="00:00" value="00:00">
+                    <input type="time"   min="00:00" max="23:59" class="form-control" name="openning" placeholder="00:00" value="00:00">
 
                     </div>
                 </div>  
                 <div class="form-group row">
-                    <!--<label for="inputHorario" class="col-sm-2 col-form-label"><strong>Closing hour:</strong></label>-->
+                    <label for="inputHorario" class="col-sm-2 col-form-label"><strong>Closing hour:</strong></label>
                     <div class="col-sm-10">
-                    <input hidden type="time"   min="00:00" max="23:59" class="form-control" name="closing" placeholder="23:59" value="23:59">
+                    <input type="time"   min="00:00" max="23:59" class="form-control" name="closing" placeholder="23:59" value="23:59">
                     
                     </div>
                 </div>
@@ -102,7 +103,7 @@
                 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                    <h4 class="modal-title"><?php echo $oneCinema->getName();?></h4>
+                    <h4 class="modal-title"><?php echo $oneCinema->getName()." cinema";?></h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     
