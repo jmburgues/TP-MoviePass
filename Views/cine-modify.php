@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
 <div class="text-center mt-5 mb-3">
         <h3 class="text-white">Cinema to modify :</h3>
         <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/showCinemas'"> Go Back </button> 

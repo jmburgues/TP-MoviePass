@@ -11,7 +11,7 @@
 
   <!--Primer vista al entrar a la página-->
   <!--Jumbotron-->
-  <div >
+  <div>
     <img height="155" width="200" style="display: block; margin-left: auto; margin-right: auto;" src="https://i.ibb.co/84W4VgT/Logo-Black.png">
   </div>
 

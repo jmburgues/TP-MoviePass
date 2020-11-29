@@ -10,7 +10,8 @@
     $pages = ceil($pages);
     $init = ($page-1)*$articlePerPage;
 ?>
-
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
+<div class = "adminBackground">
 <div class="text-center mt-5 mb-3">
   <h3 class="text-white">Add movies to database:</h3>
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="history.back(-1)"> Go Back </button> 

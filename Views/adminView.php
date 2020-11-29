@@ -1,11 +1,4 @@
-<style>
-body{
-    background-image: url('https://img.wallpapersafari.com/desktop/1366/768/46/81/215NeC.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
-</style>
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
 <div style="margin-top:10px;">
     <hr class=" mt-2 mb-4 bg-danger text-dark">
     <h3 class="text-center" style="color:white;" >Administrative Tools<h3>
