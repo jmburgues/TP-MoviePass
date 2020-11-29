@@ -31,7 +31,7 @@
         $parameters['start'] = $show->getStart();
         $parameters['end'] = $show->getEnd();
         $parameters['spectators'] = 0;
-        $parameters['idRoom'] = $show->getRoom()->getRoomID();
+        $parameters['idRoom'] = $show->getRoom()->getId();
         $parameters['idMovie'] = $show->getMovie()->getMovieID();
         
         $this->connection = Connection::GetInstance();
@@ -74,7 +74,7 @@
         $parameters['start'] = $show->getStart();
         $parameters['end'] = $show->getEnd();
         $parameters['spectators'] = 0;
-        $parameters['idRoom'] = $show->getRoom()->getRoomID();
+        $parameters['idRoom'] = $show->getRoom()->getId();
         $parameters['idMovie'] = $show->getMovie()->getMovieID();
         $parameters['active'] = 1;
         $parameters['idShow'] = $show->getIdShow();

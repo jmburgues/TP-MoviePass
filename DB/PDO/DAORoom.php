@@ -57,7 +57,7 @@
       price = :price , roomType = :roomType, isActive = :active 
       WHERE idRoom = :id;";
       
-      $parameters['id'] = $room->getRoomID();
+      $parameters['id'] = $room->getId();
       $parameters['name'] = $room->getName();
       $parameters['capacity'] = $room->getCapacity();
       $parameters['IDCinema'] = $room->getCinema()->getId();

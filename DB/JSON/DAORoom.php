@@ -10,7 +10,7 @@ class DAORoom{
     public function add(Room $room){
         $this->retrieveData();
         $room->setRoomId($this->generateID());
-       // $exist = $this->GetById($room->getRoomID());
+       // $exist = $this->GetById($room->getId());
        // if (!isset($exist)) {
         array_push($this->roomList, $room);
         $this->saveData();
@@ -49,7 +49,7 @@ class DAORoom{
         $this->RetrieveData();
         $toDelete = null;
         foreach($this->roomList as $list){
-            if($list->getRoomID() == $idRoom){
+            if($list->getId() == $idRoom){
                 unset($this->roomList, $list);
             }
         } 
@@ -59,7 +59,7 @@ class DAORoom{
     public function SaveData(){
         $arrayToEncode = array();
         foreach ($this->roomList as $room) {
-            $valuesArray["ID"] = $room->getRoomID();
+            $valuesArray["ID"] = $room->getId();
             $valuesArray["name"] = $room->getName();
             $valuesArray["capacity"] = $room->getCapacity();
             $valuesArray["IDCinema"] = $room->getCinema()->getId();
@@ -73,7 +73,7 @@ class DAORoom{
   public function GetById($id){
     $this->RetrieveData();
     foreach ($this->roomList as $room){
-      if ($room->getRoomID() == $id) {
+      if ($room->getId() == $id) {
         return $room;
       }
     }

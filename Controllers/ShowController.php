@@ -76,7 +76,7 @@
 
         foreach ($lookingForShows as $show) {
             if ($newShow->getDate() == $show->getDate()) {
-                if ($show->getRoom()->getRoomID() == $roomId) {
+                if ($show->getRoom()->getId() == $roomId) {
                     $extremoInferior = new DateTime($show->getDate().' '.$show->getStart());
                     if ($startAux->format('Y-m-d') == $endAux->format('Y-m-d')){
                       $extremoSuperior = new DateTime($show->getDate().' '.$show->getEnd());
@@ -205,7 +205,7 @@
         $showsList = $this->DAOShow->getActiveShows();
         foreach ($showsList as $show) {
           if ($modifyShow->getDate() == $show->getDate()) {
-            if ($show->getRoom()->getRoomID() == $idRoom) {
+            if ($show->getRoom()->getId() == $idRoom) {
               $extremoInferior = new DateTime($show->getDate().' '.$show->getStart());
               if ($startAux->format('Y-m-d') == $endAux->format('Y-m-d')){
                 $extremoSuperior = new DateTime($show->getDate().' '.$show->getEnd());
@@ -221,7 +221,7 @@
         
         $aux = $this->DAOShow->getByDateAndMovieId($date, $idMovie);
         if ($aux != null){
-          if (($aux[0]->getRoom()->getRoomID() != $idRoom) && ($aux[0]->getIdShow() != $idShow)){
+          if (($aux[0]->getRoom()->getId() != $idRoom) && ($aux[0]->getIdShow() != $idShow)){
             $msg = 'Esa pelicula se esta trasmitiendo en otra sala o cine este dia';
           }
         }

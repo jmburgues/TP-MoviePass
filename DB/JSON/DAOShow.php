@@ -62,7 +62,7 @@ class DAOShow{
             $valuesArray["idShow"] = $show->getIdShow();
             $valuesArray["date"] = $show->getDate();
             $valuesArray["hour"] = $show->getHour();
-            $valuesArray["idRoom"] = $show->getRoom()->getRoomID();
+            $valuesArray["idRoom"] = $show->getRoom()->getId();
             $valuesArray["spectators"] = $show->getSpectators();
             array_push($arrayToEncode, $valuesArray);
         }

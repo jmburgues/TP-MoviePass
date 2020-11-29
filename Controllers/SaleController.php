@@ -108,9 +108,9 @@
           foreach ($rooms as $room) {
             $ticketAmount = 0;
             $ticketSold = 0;
-            $unsoldTickets = $this->DAOShow->getCapacityByRoom($room->getRoomID());
+            $unsoldTickets = $this->DAOShow->getCapacityByRoom($room->getId());
               
-            foreach ($this->DAOTicket->getTicketsByRoom($room->getRoomID()) as $corn) {
+            foreach ($this->DAOTicket->getTicketsByRoom($room->getId()) as $corn) {
               $ticketAmount += $corn->getTransaction()->getTicketAmount();
               $ticketSold += ($corn->getTransaction()->getCostPerTicket()) * $ticketAmount;
               $unsoldTickets -= $ticketAmount;
@@ -171,9 +171,9 @@
             foreach ($rooms as $room) {
               $ticketAmount = 0;
               $ticketSold = 0;
-              $unsoldTickets = $this->DAOShow->getCapacityByRoomBetween($room->getRoomID(),$firstDate,$lastDate);
+              $unsoldTickets = $this->DAOShow->getCapacityByRoomBetween($room->getId(),$firstDate,$lastDate);
                 
-              foreach ($this->DAOTicket->getTicketsByRoomBetween($room->getRoomID(),$firstDate,$lastDate) as $corn) {
+              foreach ($this->DAOTicket->getTicketsByRoomBetween($room->getId(),$firstDate,$lastDate) as $corn) {
                 $ticketAmount += $corn->getTransaction()->getTicketAmount();
                 $ticketSold += ($corn->getTransaction()->getCostPerTicket()) * $ticketAmount;
                 $unsoldTickets -= $ticketAmount;

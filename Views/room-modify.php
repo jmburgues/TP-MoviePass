@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
 <div class="text-center mt-5 mb-3">
     <h3 class="text-white">Modify Room :</h3>
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/showCinemas'"> Go Back </button> 
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas'"> Go Back </button> 
 </div>
 
 
@@ -10,7 +10,7 @@
     <form  action="<?php echo FRONT_ROOT ?>Room/modifyRoom" method="POST">
         <div class="form-group row"> 
             <div class="col-sm-10">
-                <input type="hidden" class="form-control" name="roomID" value=<?php echo $currentRoom->getRoomID() ?> >
+                <input type="hidden" class="form-control" name="roomID" value=<?php echo $currentRoom->getId() ?> >
             </div>
         </div>
         <div class="form-group row"> 
@@ -48,7 +48,7 @@
             </div>
         </div>
         <!--<button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button> -->
-        <button type="submit" name="idRoom" class="btn btn-secondary bg-danger text-black col-2  float-right" value="<?php echo $currentRoom->getRoomID()?>" >Send</button>
+        <button type="submit" name="idRoom" class="btn btn-secondary bg-danger text-black col-2  float-right" value="<?php echo $currentRoom->getId()?>" >Send</button>
     </form>
     </div>
     </div>

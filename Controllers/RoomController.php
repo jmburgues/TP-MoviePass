@@ -72,7 +72,7 @@
             $cinema = $this->DAOCinema->getById($IDCinema);
             $modifyRoom = new Room($name, $capacity, $cinema, $price, $roomType, $active, $roomID);
             foreach($roomsList as $rooms){
-                if ($rooms->getRoomID() == $roomID) {
+                if ($rooms->getId() == $roomID) {
                     $this->DAORoom->modify($modifyRoom);
                 }  
             }
@@ -103,7 +103,7 @@
                                 $roomExist=true;
                             } else {
                                 $room->setActive(true);
-                                $room->setRoomID($list->getRoomID());
+                                $room->setRoomID($list->getId());
                                 $this->DAORoom->modify($room);
                                 $message = "The room is active again.";
                                 $roomExist=true;

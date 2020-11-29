@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
 <div class="text-center mt-5 mb-3">
     <h3 class="text-center text-white">Modify Show :</h3>
@@ -19,7 +18,7 @@
                         <select class="custom-select"  name="idRoom" id="idRoom">
                         <?php foreach($rooms as $room){
                         ?>
-                        <option <?php if($room->getRoomID() == $currentShow->getRoom()->getRoomID()) echo "selected" ?> value="<?php echo $room->getRoomID()?>"><?php echo $room->getName()?></option> 
+                        <option <?php if($room->getId() == $currentShow->getRoom()->getId()) echo "selected" ?> value="<?php echo $room->getId()?>"><?php echo $room->getName()?></option> 
                         <?php } ?>    
                         </select>
                     </div>

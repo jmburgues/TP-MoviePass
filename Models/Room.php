@@ -23,7 +23,7 @@ class Room
         $this->ID = $ID;
     }
 
-    public function getRoomID()
+    public function getId()
     {
         return $this->ID;
     }
