@@ -7,7 +7,7 @@
 <div class="container ">
     <div class="row mt-2">
         <div class="col mt-5">
-            <form action="<?php echo FRONT_ROOT?>Cinema/showCinemas" method="POST">
+            <form action="<?php echo FRONT_ROOT?>Cinema/manageCinemas" method="POST">
                 
                 <input type="submit" class="btn btn-primary btn-lg btn-block bg-danger" value="Manage Cinemas" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
                 </input>

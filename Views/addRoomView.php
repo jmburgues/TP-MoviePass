@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
 <div class="text-center mt-5 mb-3">
     <h3 class="text-white">Manage <?php echo $cinema->getName()?>'s Rooms:</h3>
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/showCinemas'"> Go Back </button> 
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas'"> Go Back </button> 
 </div>
 
 <!-- COLLAPSE CARD EXISTENT ROOM -->
@@ -87,10 +87,10 @@
                     <li class="liStyleNone">
                     <div class="btn-group" role="group" aria-label="Basic example">     
                         <form action="<?php echo FRONT_ROOT?>Room/modifyRoomView" method="POST">
-                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getRoomID()?>"   name="idRoomM">Modify</button> 
+                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getId()?>"   name="idRoomM">Modify</button> 
                         </form>
                         <form action="<?php echo FRONT_ROOT?>Room/deleteRoom" method="POST">
-                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getRoomID()?>"   name="idRoomD">Delete</button> 
+                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getId()?>"   name="idRoomD">Delete</button> 
                         </form>
                         </div>
                 
@@ -112,10 +112,10 @@
                     <li class="liStyleNone">
             <!--     <div class="btn-group" role="group" aria-label="Basic example">     
                         <form action="<?php echo FRONT_ROOT?>Room/modifyRoomView" method="POST">
-                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getRoomID()?>"   name="idRoomM">Modify</button> 
+                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getId()?>"   name="idRoomM">Modify</button> 
                         </form>
                         <form action="<?php echo FRONT_ROOT?>Room/deleteRoom" method="POST">
-                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getRoomID()?>"   name="idRoomD">Delete</button> 
+                            <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $room->getId()?>"   name="idRoomD">Delete</button> 
                         </form>
                         </div>
                 -->

@@ -88,7 +88,7 @@
                             
                             <li class="liStyleNone liStylePadding-l-70">
                                 <div class="btn-group" role="group" aria-label="Basic example">    
-                                    <form action="<?php echo FRONT_ROOT?>Cinema/modifyCinemaView" method="POST">
+                                    <form action="<?php echo FRONT_ROOT?>Cinema/modifyCinemaForm" method="POST">
                                         <button type="submit" class="btn btn-secondary bg-danger text-black" value="<?php echo $cinema->getId()?>"   name="idCinemaM">Modify</button> 
                                     </form>
                                     <form action="<?php echo FRONT_ROOT?>Cinema/deleteCinema" method="POST">

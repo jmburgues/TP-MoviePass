@@ -17,17 +17,17 @@ class CinemaController{
 
 
     //Primer método luego del botón Cines, retorna los cines activos
-    public function showCinemas(){
+    public function manageCinemas(){
       try {
-        $cinemas = array();
+        $cinema = array();
         $aux = $this->DAOCinema->getActiveCinemas();
         if (is_array($aux)){
-          $cinemas = $aux;
+          $cinema = $aux;
         } else{
-          $cinemas[0] = $aux;
+          $cinema[0] = $aux;
         }
         ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-        include VIEWS_PATH.'adminCinemas.php';
+        include VIEWS_PATH.'manageCinemas.php';
       } 
 
       catch (PDOException $ex){
@@ -37,7 +37,7 @@ class CinemaController{
     }
 
     //Dirige a la vista cine-modify mostrando el cine con los datos anteriores
-    public function modifyCinemaView($idCinema){
+    public function modifyCinemaForm($idCinema){
       try {
           $currentCinema = $this->DAOCinema->placeholderCinemaDAO($idCinema);
           $cinemas = $this->DAOCinema->getActiveCinemas();  
@@ -62,7 +62,7 @@ class CinemaController{
         } else{
           $cinemas[0] = $aux;
         }        
-        $this->showCinemas();
+        $this->manageCinemas();
       } 
 
       catch (PDOException $ex){
@@ -88,7 +88,7 @@ class CinemaController{
               $this->DAOCinema->modify($newCinema);
             }  
           }
-        $this->showCinemas();  
+        $this->manageCinemas();  
       } catch (PDOException $ex) {
         $arrayOfErrors [] = $ex->getMessage();
         ViewController::errorView($arrayOfErrors);
@@ -129,7 +129,7 @@ class CinemaController{
             
             }
         }
-        $this->showCinemas();
+        $this->manageCinemas();
       }
       catch (PDOException $ex) {
         $arrayOfErrors [] = $ex->getMessage();
