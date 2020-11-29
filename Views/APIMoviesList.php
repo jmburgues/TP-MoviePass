@@ -1,5 +1,5 @@
-`<?php
-
+<!-- Pagination backend -->
+<?php
     if (isset($message)){
       echo "<script type='text/javascript'>alert('$message');</script>";
     }
@@ -10,14 +10,40 @@
     $pages = ceil($pages);
     $init = ($page-1)*$articlePerPage;
 ?>
-<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
-<div class = "adminBackground">
-<div class="text-center mt-5 mb-3">
-  <h3 class="text-white">Add movies to database:</h3>
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="history.back(-1)"> Go Back </button> 
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="<?php ?>" onclick="window.location.href='<?php echo FRONT_ROOT?>Movie/selectMoviesFromBDD'"> View Movies Database </button> 
+
+<style>
+.container {
+  height: 40px;
+  position: relative;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+</style>
+
+<!-- Page Title -->
+<div style="margin-top:10px;">
+    <hr class=" mt-2 mb-4 bg-danger text-dark">
+    <h3 class="text-center" style="color:white;" >Select new movies:<h3>
+    <hr class=" mt-4 mb-1 bg-danger text-dark">
 </div>
 
+<!-- Navigation buttons -->
+
+<div class="container">
+  <div class="center">
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="history.back(-1)"> Go Back </button> 
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="<?php ?>" onclick="window.location.href='<?php echo FRONT_ROOT?>Movie/selectMoviesFromBDD'"> View Movies Database </button> 
+  </div>
+</div>
+
+<!-- CARDS -->
 <div class="container text-center" id="maxWidth1600">
   
   <div class="row row-cols-5">
@@ -75,9 +101,7 @@
  <?php } ?>
 </div>
 
-<!-- 
-  MODIFICAR LAS REFERENCIAS EN LOS BOTONES DEL PAGINADO, USAR EL HOME VIEW ENVIANDO $movies PAGINA Y TITULO.
- -->
+<!-- Pagination -->
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center mt-3">
