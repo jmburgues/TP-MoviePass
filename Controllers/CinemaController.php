@@ -40,8 +40,8 @@ class CinemaController{
     public function modifyCinemaForm($idCinema){
       try {
           $currentCinema = $this->DAOCinema->placeholderCinemaDAO($idCinema);
-          $cinemas = $this->DAOCinema->getActiveCinemas();  
-          $movies=$this->DAOMovie->getAll();
+          // $cinemas = $this->DAOCinema->getActiveCinemas();  
+          // $movies=$this->DAOMovie->getAll();
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
           include VIEWS_PATH.'cine-modify.php';
         } 
