@@ -28,7 +28,7 @@
         }
         
     //Redirige a vista adminShows donde se listan las funciones y el addShow
-    public function showShows($message = ''){
+    public function manageShows($message = ''){
       if(AuthController::validate('admin')){
         try{
           $this->validateActiveShows();
@@ -54,7 +54,7 @@
         try{
           $moviesDB = $this->DAOMovie->getAll();
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-          include VIEWS_PATH.'listMoviesAdmin.php';
+          include VIEWS_PATH.'listMoviesForShows.php';
         } 
         catch (PDOException $ex){
           $arrayOfErrors [] = $ex->getMessage();
@@ -63,7 +63,7 @@
       }
     }
 
-    public function manageShows($date, $start, $end, $selectedMovieId, $roomId){
+    public function createNewShow($date, $start, $end, $selectedMovieId, $roomId){
       if(AuthController::validate('admin')){
         try{
           $newShow = new Show($date,$start, $end,$this->DAORoom->getById($roomId), $this->DAOMovie->getById($selectedMovieId),0);    
@@ -102,7 +102,7 @@
               }        
           $shows=$this->DAOShow->getAll();
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-          $this->showShows();
+          $this->manageShows();
 
         } 
         catch (PDOException $ex){
@@ -129,18 +129,26 @@
 
     //Método luego de seleccionar la película para el show
     //Muestra la información hasta el momento de la función y elige la sala
-    public function selectMovie($date, $start, $movieId){
+    public function selectRoomForShow($date, $start, $movieId){
       if(AuthController::validate('admin')){
         try{
           #Validacion de que en un dia que ya se esta dando una pelicula en una funcion solo puede darse en ese mismo cine y sala
-          $aux = $this->DAOShow->getByDateAndMovieId($date, $movieId);
-          if ($aux == null){
-            $rooms = $this->DAORoom->getActiveRooms(); 
-          }else{
-            #Se que no esta del todo bien pero hay un error que no estaria encontrando
-            $rooms = array($aux[0]->getRoom());
+          $showInSameDate = $this->DAOShow->getByDateAndMovieId($date, $movieId);
+
+/*
+          Recibo un dia, hora y pelicula
+          verifico si para ese dia y pelicula existe un show
+          si existe, me traigo la sala del show. Unica sala que se puede agregar
+          si no existe, me traigo todas las salas abiertas a esa hora
+*/        $rooms = array();
+
+          if($showInSameDate){
+            $rooms = array_shift($showInSameDate)->getRoom();
           }
-          #==============================#
+          else{
+            array_push($rooms,$this->DAORoom->getActiveRooms());
+          }
+
           $selectedMovie=$this->DAOMovie->getById($movieId);
           //se toma la película y se calcula la duración para devolver el final de la función + los 15 minutos 
           $dateToInsert = new DateTime($date." ".$start.'M');
@@ -148,8 +156,9 @@
           $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
           $dateToInsertEnd = $this->addInterval($date." ".$start, ($selectedMovie->getDuration() +15 ));
           $ends = substr($dateToInsertEnd, -9, -3);
+          
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-          include VIEWS_PATH.'listCinemasAdmin.php';
+          include VIEWS_PATH.'selectRoomForShow.php';
         } 
         catch (PDOException $ex){
           $arrayOfErrors [] = $ex->getMessage();
@@ -243,7 +252,7 @@
           }
           
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-          $this->showShows();
+          $this->manageShows();
         } 
         catch (PDOException $ex){
           $arrayOfErrors [] = $ex->getMessage();

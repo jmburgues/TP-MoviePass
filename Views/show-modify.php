@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
 <div class="text-center mt-5 mb-3">
     <h3 class="text-center text-white">Modify Show :</h3>
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/showShows'"> Back</button>
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/manageShows'"> Back</button>
 </div>
 
 <div class="container mt-5 mb-5">   

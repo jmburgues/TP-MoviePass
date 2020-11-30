@@ -15,7 +15,7 @@
         </div>
 
         <div class="col mt-5">       
-            <form action="<?php echo FRONT_ROOT?>Show/showShows" method="POST">
+            <form action="<?php echo FRONT_ROOT?>Show/manageShows" method="POST">
                 <input type ="submit" class="btn btn-primary btn-lg btn-block bg-danger" value="Manage Shows" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> </input>
             </form>
         </div>

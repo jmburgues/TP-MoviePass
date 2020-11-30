@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
 <div class="text-center mt-5 mb-3">
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/showShows'"> Go to Shows List </button>
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/manageShows'"> Go to Shows List </button>
 </div>
 
 <div class="container mt-5 mb-5">   
@@ -23,7 +23,7 @@
         if (isset($rooms)) {
             foreach ($rooms as $room) {
                 ?>                
-            <form action="<?php echo FRONT_ROOT?>Show/manageShows" method="POST" class= " mt-5 mb-5">
+            <form action="<?php echo FRONT_ROOT?>Show/createNewShow" method="POST" class= " mt-5 mb-5">
             <div class="container  mt-5">           
                 <div class="card card-body ">
                     
