@@ -27,10 +27,9 @@
                 ViewController::navView($genreList=null,$moviesYearList=null,null,null);
                 include VIEWS_PATH.'manageRooms.php';
             } 
-            catch (Exception $ex){
-                $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                ViewController::adminView();
+            catch (PDOException $ex){
+              $arrayOfErrors [] = $ex->getMessage();
+              ViewController::errorView($arrayOfErrors);
             }
         }
     }
@@ -44,10 +43,9 @@
                 ViewController::navView($genreList=null,$moviesYearList=null,null,null);
                 include VIEWS_PATH.'room-modify.php';
             } 
-            catch (Exception $ex){
-                $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                ViewController::adminView();
+            catch (PDOException $ex){
+              $arrayOfErrors [] = $ex->getMessage();
+              ViewController::errorView($arrayOfErrors);
             }
         }
     }
@@ -67,10 +65,9 @@
                 }
                 $this->manageRooms($IDCinema);
             } 
-            catch (Exception $ex){
-                $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                $this->manageRooms($IDCinema);
+            catch (PDOException $ex){
+              $arrayOfErrors [] = $ex->getMessage();
+              ViewController::errorView($arrayOfErrors);
             }
         }
     }
@@ -115,10 +112,9 @@
                 ViewController::navView($genreList=null,$moviesYearList=null,null,null);
                 include VIEWS_PATH.'manageRooms.php';
             } 
-            catch (Exception $ex){
-                $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                $this->manageRooms($idCinema);
+            catch (PDOException $ex){
+              $arrayOfErrors [] = $ex->getMessage();
+              ViewController::errorView($arrayOfErrors);
             }
         }
     }
@@ -131,11 +127,9 @@
                 ViewController::navView($genreList=null,$moviesYearList=null,null,null);
                 $this->manageRooms($this->DAORoom->getById($idRoom)->getCinema()->getId());
             } 
-
-            catch (Exception $ex){
-                $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                $this->manageRooms($this->DAORoom->getById($idRoom)->getCinema()->getId());
+            catch (PDOException $ex){
+              $arrayOfErrors [] = $ex->getMessage();
+              ViewController::errorView($arrayOfErrors);
             }
         }
     }

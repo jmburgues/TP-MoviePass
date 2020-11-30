@@ -222,11 +222,9 @@
 
         }
 
-        
         public function generateQR($text){
             $data = "http://api.qrserver.com/v1/create-qr-code/?data=".$text."&size=250x250";
             return "<img src= ".$data."  alt='' title='' />";
             
         }
-    
     }
