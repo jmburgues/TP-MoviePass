@@ -98,7 +98,7 @@
     //Retorna un arrelgo de strings con los años de todas las películas según los shows
     //INNER JOIN MOVIES + SHOWS
     public function getArrayOfYearsFromShows(){
-      $query = "SELECT MOVIES.* FROM ".$this->tableNameMovies." INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameMovies.".idMovie=".$this->tableNameShows.".idMovie";
+      $query = "SELECT MOVIES.* FROM ".$this->tableNameMovies." INNER JOIN ".$this->tableNameShows." ON ".$this->tableNameMovies.".idMovie=".$this->tableNameShows.".idMovie WHERE ".$this->tableNameShows.".isActive = 1";
       $this->connection = Connection::GetInstance();
       $resultSet = $this->connection->Execute($query);
       $moviesList = $this->toArray($this->parseToObject($resultSet));

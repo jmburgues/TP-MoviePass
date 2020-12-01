@@ -58,11 +58,12 @@
         
     //Devuelve el idMovie sin repetir de los shows. Muestra en el home sin repetir la cartelera.
     public function getBillBoard(){
-            $query = "SELECT DISTINCT idMovie FROM ".$this->tableNameShows;
+            $query = "SELECT DISTINCT idMovie FROM ".$this->tableNameShows." WHERE isActive = 1";
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
             return ($resultSet);
     }
+
 
     public function modify(Show $show)    {
         $query = "UPDATE ".$this->tableNameShows." 
