@@ -105,7 +105,6 @@
                 }
                 if(isset($message)){
                     #echo "<script type='text/javascript'>alert('$message');</script>";
-                    throw new Exception($message);
                 }  
                 $rooms = $this->DAORoom->getByCinema($idCinema);
                 $cinema = $this->DAOCinema->getById($idCinema);
