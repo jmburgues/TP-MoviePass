@@ -64,110 +64,100 @@
 
 <!-- Table with aviable Cinema and Rooms -->
 
-<table class="table table-dark">
+<table class="table table-dark" style="width: 100%">
+    <colgroup>
+       <col span="1" style="width: 15%;">
+       <col span="1" style="width: 15%;">
+       <col span="1" style="width: 70%;">
+    </colgroup>
     <thead>
         <tr>
-            <th scope="col">CINEMA</td>
-            <th scope="col">ROOM</td>
-            <th scope="col">SHOWS</td>
+            <th style="text-align:center;" scope="col">CINEMA</td>
+            <th style="text-align:center;" scope="col">ROOM</td>
+            <th style="text-align:center;" scope="col">SHOWS</td>
         </tr>
     </thead>
 
     <tbody>
-    <tr>
-      <?php $firstCinema = array_shift($cinemas);
-            $firstRoom = array_shift($rooms);
-            $firstShow = array_shift($shows); ?>
-
-      <td rowspan="<?php count($cinemas)+1;?>"><?php echo $oneCinema->getName()?></td>
-
-      <!--  ################## A CONTINUAR ####################
-                TENGO QUE SACAR EL PRIMER CINE, EL PRIMER ROOM Y EL PRIMER SHOW (QUE CORRESPONDA AL PRIEMR CINE)
-                Y MOSTRARLOS EN LA PRIMER <TR>
-                EL RESTO SE HACE CON FOREACH
-       -->
-      <td> </td>
-      <!-- PRIMER SALA DEL CINE -->
-    </tr>
-
-    <tr>
-
-    <!-- TODO EL FOREACH -->
-
-    </tr>
 
     <?php foreach($cinemas as $oneCinema){ ?>
-        
-            <td rowspan="<?php count($cinemas);?>"><?php echo $oneCinema->getName()?></td>
+        <tr> 
+        <!-- TENGO QUE CONTAR LAS ROOMS QUE PERTENECEN AL CINEMA EN EL QUE ESTOY -->
             
-            <?php foreach ($rooms as $oneRoom){ 
-                    if($oneRoom->getCinema()->getId() == $oneCinema->getId()){ ?>
-
-
-            <td scope="row"><?php echo $oneRoom->getName()?></td>
-                
-                
-                <?php 
-                if(empty($shows)) {
-                    echo "<td><h4> No active shows </h4></td>";
+            <?php
+            $value = 1;
+            foreach ($rooms as $oneRoom){ 
+                if($oneRoom->getCinema()->getId() == $oneCinema->getId()){ 
+                    $value++;
                 }
-                else{
-                    foreach ($shows as $oneShow){
-                        if($oneShow->getId() == $oneRoom->getId()) { ?>
-
-                <td>
-                        <!-- BEGINS Table with Show modal buttons -->
-                        <table style="margin-left: auto; margin-right: auto; border:1px solid black;">
-                            <tr>
-                                <td>                
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal-<?php echo $aShow->getId();?>">
-                                    <?php echo $oneShow->getName();?>
-                                    </button>
-
-                                    <!-- The Modal -->
-                                    <div class="modal fade" id="myModal-<?php echo $oneShow->getId();?>">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                        
-                                            <!-- Modal Header -->
-                                            <div class="modal-header">
-                                            <h4 class="modal-title"><?php echo "Date: ".$oneShow->getDate();?></h4>
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            </div>
-                                            
-                                            <!-- Modal body -->
-                                            <div class="modal-body">
-                                            <ul>
-                                                <li><strong>Starting hour:</strong> <?php echo $show->getStart() ?></li>
-                                                <li><strong>Ending hour:</strong> <?php echo $show->getEnd() ?></li>
-                                                <li><strong>Spectators:</strong> <?php echo $show->getSpectators()?></li>
-                                                <li><strong>Movie:</strong> <?php echo $show->getMovie()->getTitle();?></li>  
-                                            </ul>
-                                            </div>
-                                            
-                                            <!-- Modal footer -->
-                                            <div class="modal-footer">
-                                            <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/modifyCinemaForm/<?php echo $oneCinema->getId()?>'"> Modify </button>
-                                            <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/deleteCinema/<?php echo $oneCinema->getId()?>'"> Delete </button>
-                                            </div>
-                                            
-                                        </div>
-                                        </div>
-                                    </div>    
-                                </td>
-                            </tr>
-                        </table>
-                        <!-- END Table with Show modal buttons -->
-                </td>
-                        <?php }
-                            } 
-                        } 
-                } 
             } ?>
-             
+            <td style="text-align:center;" rowspan="<?php echo $value?>"><?php echo $oneCinema->getName()?></td>
+            <td hidden></td>              
+            <td hidden></td>
         </tr>
+            
+        <?php foreach ($rooms as $oneRoom){ 
+                if($oneRoom->getCinema()->getId() == $oneCinema->getId()){ ?>
 
-    <?php 
+        <tr>
+            <td stye="text-align:center;" scope="row"><?php echo $oneRoom->getName()?></td>
+                            
+            <?php 
+            if(empty($shows)) {
+                echo "<td><p> No active shows </h4></p>";
+            }
+            else{
+                foreach ($shows as $oneShow){
+                    if($oneShow->getRoom()->getId() == $oneRoom->getId()) { ?>
+
+            <td style="display:inline-block">
+            
+                <!-- BEGINS Table with Show modal buttons -->
+ 
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal-<?php echo $oneShow->getIdShow();?>">
+                        <?php echo $oneShow->getDate().": ".$oneShow->getMovie()->getTitle();?>
+                        </button>
+
+                        <!-- The Modal -->
+                        <div class="modal fade" id="myModal-<?php echo $oneShow->getIdShow();?>">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                            
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title text-dark"><?php echo "Date: ".$oneShow->getDate();?></h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                
+                                <!-- Modal body -->
+                                <div class="modal-body text-dark"">
+                                    <ul>
+                                        <li><strong>Starting hour:</strong> <?php echo $oneShow->getStart() ?></li>
+                                        <li><strong>Ending hour:</strong> <?php echo $oneShow->getEnd() ?></li>
+                                        <li><strong>Spectators:</strong> <?php echo $oneShow->getSpectators()?></li>
+                                        <li><strong>Movie:</strong> <?php echo $oneShow->getMovie()->getTitle();?></li>  
+                                    </ul>
+                                </div>
+                                
+                                <!-- Modal footer -->
+                                <div class="modal-footer text-dark"">
+                                    <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/modifyShowView/<?php echo $oneShow->getIdShow()?>'"> Modify </button>
+                                    <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/deleteShow/<?php echo $oneShow->getIdShow()?>'"> Delete </button>
+                                </div>
+                                
+                            </div>
+                            </div>
+                        </div>    
+
+                <!-- END Table with Show modal buttons -->
+                
+            </td>
+                    <?php }
+                        } 
+                    } ?>    
+        </tr>
+            <?php }
+            } 
         } ?>
     </tbody>
 

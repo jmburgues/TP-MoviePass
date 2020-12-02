@@ -49,7 +49,7 @@
 
    //SELECT * FROM SHOWS WHERE idActive = 1
     public function getActiveShows(){
-        $query = "SELECT * FROM ".$this->tableNameShows." WHERE isActive = 1";
+        $query = "SELECT * FROM ".$this->tableNameShows." WHERE isActive = 1 ORDER BY ".$this->tableNameShows.".startsAt DESC";
         //$parameters['active'] = true;
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query);
