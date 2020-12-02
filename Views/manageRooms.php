@@ -27,7 +27,7 @@
 <!-- New Cinema button -->
 <div class="container">
   <div class="center">
-  <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas/'"> Go Back </button> 
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas/'"> Go Back </button> 
     <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newRoom" aria-expanded="false" aria-controls="collapseExample">
         Add new room
     </button>
@@ -45,40 +45,40 @@
             <form  action="<?php echo FRONT_ROOT ?>Room/addRoom" method="POST">
                 <input type="hidden" class="form-control" name="id" value=<?php echo $idCinema?> >
                 <div class="form-group row ">
-                <label for="inputName" class="col-sm-2 col-form-label"><strong>Name</strong></label>
-                
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="name" placeholder="Name" required>
+                    <label for="inputName" class="col-sm-2 col-form-label"><strong>Name</strong></label>
+                    
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" placeholder="Name" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Capacity</strong></label>
-                <div class="col-sm-10">
-                    <input type="number" class="form-control" name="capacity" placeholder="Capacity" required>
+                <div class="form-group row">
+                    <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Capacity</strong></label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="capacity" placeholder="Capacity" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Price</strong></label>
-                <div class="col-sm-10">
-                    <input type="number" class="form-control" name="price" placeholder="Price" required>
+                <div class="form-group row">
+                    <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Price</strong></label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="price" placeholder="Price" required>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row">
-                <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Room Type</strong></label>         
-                <div class="col-sm-10">
-                    <select name="roomType" id="roomType">
-                        <option value="2DMovie">2D Movie</option>
-                        <option value="3DMoovie">3D Movie</option>
-                        <option value="Atmos">ATMOS</option>
-                    </select> 
+                <div class="form-group row">
+                    <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Room Type</strong></label>         
+                    <div class="col-sm-10">
+                        <select name="roomType" id="roomType">
+                            <option value="2DMovie">2D Movie</option>
+                            <option value="3DMoovie">3D Movie</option>
+                            <option value="Atmos">ATMOS</option>
+                        </select> 
+                    </div>
                 </div>
-            </div>
-            <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>
-        </form>
-    </div>
+                <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>
+            </form>
+        </div>
     </div>
 </div>
 

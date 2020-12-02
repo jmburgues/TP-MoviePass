@@ -1,60 +1,84 @@
-<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
-<div class="text-center mt-5 mb-3">
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/manageShows'"> Go to Shows List </button>
-</div>
+<style>
+.container {
+  height: 100px;
+  position: relative;
+  border-bottom: 1px solid #DC3B3B;
+}
 
-<div class="container mt-5 mb-5">   
-    <div class="card card-body m-1">
-    <h3 class="text-center">Show info :</h3>
-        <hr>
-        <ul>
-            <li><strong>Date: </strong><?php echo $date ?></li>
-            <li><strong>Starting hour:</strong> <?php echo $start ?></li>
-            <li><strong>Ending hour:</strong> <?php echo $ends ?></li>
-            <li><strong>Movie title: </strong><?php echo $selectedMovie->getTitle() ?></li>
-        </ul>
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+</style>
+
+<!-- background -->
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
+
+<!-- Page Title -->
+<div style="margin-top:10px;">
+    <hr class=" mt-2 mb-4 bg-danger text-dark">
+    <h3 class="text-center" style="color:white;" >Select Room:<h3>
+    <hr class=" mt-4 mb-1 bg-danger text-dark">
+</div>
+<!-- Go back button -->
+
+<!-- SHOW CARD -->
+
+<div class="card mb-3" style="max-width: 400px; margin: auto;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="https://image.tmdb.org/t/p/w400/.<?php echo $selectedMovie->getPoster()?>" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Show details:</h5>           
+                <ul>
+                    <li><strong>Film:  </strong><?php print_r($selectedMovie->getTitle()); ?></li>
+                    <li><strong>Date: </strong><?php echo $date ?></li>
+                    <li><strong>Starting hour: </strong><?php print_r($start);?> <?php ?></li>
+                    <li><strong>Ending hour: </strong> <?php print_r($ends);?><?php ?></li>
+                </ul> 
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="text-center mt-5 mb-3">
-    <h3 class="text-white">Select Room :</h3>
-</div>
-        <?php
-        if (isset($rooms)) {
-            foreach ($rooms as $room) {
-                ?>                
-            <form action="<?php echo FRONT_ROOT?>Show/createNewShow" method="POST" class= " mt-5 mb-5">
-            <div class="container  mt-5">           
-                <div class="card card-body ">
-                    
-                        <input type="hidden"  value="<?php echo $date?>" name="date" ></input>     
-                        <input type="hidden"  value="<?php echo $dateToInsert?>" name="dateToInsert" ></input>   
-                        <input type="hidden"  value="<?php echo $dateToInsertEnd?>" name="dateToInsertEnd" ></input>    
-                        <input type="hidden"  value="<?php echo $selectedMovie->getMovieID() ?>" name="selectedMovieId" ></input>     
-                        <button class="font-weight-bold text-center text-uppercase mb-2 bg-danger col-md-2 offset-md-5 text-white buttonList"  type="submit" value="<?php echo $room->getRoomId()?>" name="roomId" >Add to: <?php echo $room->getName()?></button>
-                        <hr class="marginTop2">
-                    <ul>
-                        <li class="liStyleNone"><strong>Room Name:</strong> <?php echo $room->getName() ?></li>
-                        <li class="liStyleNone"><strong>Room Capacity:</strong> <?php echo $room->getCapacity() ?></li>
-                        <li class="liStyleNone"><strong>Room Price:</strong> <?php echo $room->getPrice() ?></li>
-                        <li class="liStyleNone"><strong>Room Cinema: </strong><?php echo $room->getCinema()->getName() //var($this->DAORoom->getByCinema($room->getCinema()->getId())[0]->getName())?></li>
+<!-- CINEMA AND ROOMS TABLE -->
+<table class="table table-dark table-hover">
+        <tr>
+            <th style="text-align:center" scope="col">CINEMA</td>
+            <th style="text-align:center" scope="col">ROOMS</td>
+        </tr>
+        <!-- FORM PARA ENVIAR EL ROOM -->
+        <form action="<?php echo FRONT_ROOT?>Show/createNewShow" method="POST" class= " mt-5 mb-5">
+            <input type="hidden"  value="<?php echo $date?>" name="date" ></input>     
+            <input type="hidden"  value="<?php echo $dateToInsert?>" name="dateToInsert" ></input>   
+            <input type="hidden"  value="<?php echo $dateToInsertEnd?>" name="dateToInsertEnd" ></input>    
+            <input type="hidden"  value="<?php echo $selectedMovie->getMovieID() ?>" name="selectedMovieId" ></input>     
+        
+        <?php foreach ($cinemas as $oneCinema){ ?>
+        <tr>
+            <td style="text-align:center" ><?php echo $oneCinema->getName()?></td>
+            <td style="text-align:center">
+                <?php foreach ($rooms as $oneRoom) {
+                    if($oneRoom->getCinema()->getId() == $oneCinema->getId()){ ?>
+                        
+                        <button type="submit" value="<?php echo $oneRoom->getId()?>" name="roomId" ><?php echo $oneRoom->getName()?></button>
 
-                    </ul>  
-                </div>
-            </div>
-            </form>
-        <?php
-            }
-        }
-        if($rooms == null){?>
-            <div class= "container">    
-                <div class="card card-body ">
-                    <?php echo "No rooms loaded yet"?>  
-                </div>
-                </div>
-        <?php
-        }
-        ?>
+                    <?php }
+                    } ?>
+            </td>
+        </tr>
+            <?php } ?>
+        
+        </form>
+</table>
+
+
 
 
 

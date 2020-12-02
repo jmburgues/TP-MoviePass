@@ -27,7 +27,7 @@
             $this->DAOGenre = new DAOGenre();    
         }
         
-    //Redirige a vista adminShows donde se listan las funciones y el addShow
+    //Redirige a vista manageShows donde se listan las funciones y el addShow
     public function manageShows($message = ''){
       if(AuthController::validate('admin')){
         try{
@@ -36,10 +36,11 @@
           $today = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
           $oneDayAhead = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
           $oneDayAhead->add(new DateInterval('P1D'));
-          $shows = $this->DAOShow->getAll();
-          $activeShows = $this->DAOShow->getActiveShows();
+          $shows = $this->DAOShow->getActiveShows();
+          $cinemas = $this->DAOCinema->getActiveCinemas();
+          $rooms = $this->DAORoom->getActiveRooms();
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-          include VIEWS_PATH.'adminShows.php';
+          include VIEWS_PATH.'manageShows.php';
         } 
         catch (PDOException $ex){
           $arrayOfErrors [] = $ex->getMessage();
@@ -132,27 +133,25 @@
     public function selectRoomForShow($date, $start, $movieId){
       if(AuthController::validate('admin')){
         try{
+          $cinemas = $this->DAOCinema->getActiveCinemas();
           #Validacion de que en un dia que ya se esta dando una pelicula en una funcion solo puede darse en ese mismo cine y sala
           $showInSameDate = $this->DAOShow->getByDateAndMovieId($date, $movieId);
-
 /*
           Recibo un dia, hora y pelicula
           verifico si para ese dia y pelicula existe un show
           si existe, me traigo la sala del show. Unica sala que se puede agregar
           si no existe, me traigo todas las salas abiertas a esa hora
-*/        $rooms = array();
-
+*/
           if($showInSameDate){
             $rooms = array_shift($showInSameDate)->getRoom();
           }
           else{
-            array_push($rooms,$this->DAORoom->getActiveRooms());
+            $rooms = $this->DAORoom->getActiveRooms();
           }
-
+          
           $selectedMovie=$this->DAOMovie->getById($movieId);
           //se toma la película y se calcula la duración para devolver el final de la función + los 15 minutos 
           $dateToInsert = new DateTime($date." ".$start.'M');
-
           $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
           $dateToInsertEnd = $this->addInterval($date." ".$start, ($selectedMovie->getDuration() +15 ));
           $ends = substr($dateToInsertEnd, -9, -3);
