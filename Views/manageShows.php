@@ -112,7 +112,7 @@
             
                 <!-- BEGINS Table with Show modal buttons -->
  
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal-<?php echo $oneShow->getIdShow();?>">
+                        <button type="button" data-toggle="modal" data-target="#myModal-<?php echo $oneShow->getIdShow();?>">
                         <?php echo $oneShow->getDate().": ".$oneShow->getMovie()->getTitle();?>
                         </button>
 
@@ -146,9 +146,7 @@
                             </div>
                             </div>
                         </div>    
-
-                <!-- END Table with Show modal buttons -->
-                
+                <!-- END Table with Show modal buttons -->       
             </td>
                     <?php }
                         } 
@@ -160,51 +158,3 @@
     </tbody>
 
 </table>
-
-
-<!-- ################ MODELO DE TABLA QUE FUNCIONA
-
-                MODELO DE TABLA QUE FUNCIONA:
-
-<table>
-
-    <tr>
-    <td>CINE</td>
-    <td>SALAS</td>
-    <td>SHOWS</td>
-    </tr>
-    
-    <tr>
-        <td rowspan="3">1</td>
-        <td>S1</td>
-        <td>D1</td>
-    </tr>
-    
-    <tr>
-        <td>S2</td>
-        <td>D2</td>
-    </tr>
-
-    <tr>
-        <td>S3</td>
-        <td>D3</td>
-    </tr>
-
-    <tr>
-        <td rowspan="3">2</td>
-        <td>S1</td>
-        <td>D1</td>
-    </tr>
-
-    <tr>
-        <td>S2</td>
-        <td>D2</td>
-    </tr>
-
-    <tr>
-        <td>S3</td>
-        <td>D3</td>
-    </tr>
-
-</table>
- -->
