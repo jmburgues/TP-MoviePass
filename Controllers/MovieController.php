@@ -51,7 +51,7 @@ class MovieController
     }
 
     //Devuelve las palículas cargadas en la base de datos. Paginación.
-    public function selectMoviesFromBDD($page = 1){
+    public function viewDataBaseMovies($page = 1){
       if(AuthController::validate('admin')){
         try {
           $moviesBDD = $this->DAOMovie->getAll();

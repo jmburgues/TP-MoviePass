@@ -39,7 +39,7 @@
 <div class="container">
   <div class="center">
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="history.back(-1)"> Go Back </button> 
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="<?php ?>" onclick="window.location.href='<?php echo FRONT_ROOT?>Movie/selectMoviesFromBDD'"> View Movies Database </button> 
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="<?php ?>" onclick="window.location.href='<?php echo FRONT_ROOT?>Movie/viewDataBaseMovies'"> View Movies Database </button> 
   </div>
 </div>
 
