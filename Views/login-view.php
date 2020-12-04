@@ -8,11 +8,11 @@
     <form action="<?php echo FRONT_ROOT;?>User/frontLogin" method=POST>
       <div class="form-group">
         <label for="userName">User</label>
-        <input type="text" name="userName" id="userName" class="form-control" required>
+        <input type="text" maxlength="20" name="userName" id="userName" class="form-control" required>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="form-control" required>
+        <input type="password" maxlength="40" name="password" id="password" class="form-control" required>
       </div>
       <div>
         <?php if(isset($error)) echo "<p style=\"color:red; text-align:center;\">".$error."</p><br>";?>
