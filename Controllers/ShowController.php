@@ -101,7 +101,7 @@
               } else {
                   $message = "Horario ocupado";
               }        
-          $shows=$this->DAOShow->getAll();
+          // $shows=$this->DAOShow->getAll();
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
           $this->manageShows();
 

@@ -67,14 +67,14 @@
       ?>
 
       <div class="card-body  ">
-      <div class ="centerImageHome">
-      <h4 class="card-title  mb-2 text-center"><?php echo $movies[$i]->getTitle()?></h4>   
-      </div>
-      <form class="form-inline my-2 my-lg-2 " action="<?php echo FRONT_ROOT?>Movie/addSelectedMovie/<?php echo $movies[$i]->getMovieID(); ?>" method=GET>
-        <button type="submit" value="<?php echo $movies[$i]->getMovieID();?>"  class=" marginl30 btn btn-secondary bg-danger text-black mb-2"> Add Movie </button>
-      </form>
-      <p>
-      <?php
+        <div class ="centerImageHome">
+          <h4 class="card-title  mb-2 text-center"><?php echo $movies[$i]->getTitle()?></h4>   
+        </div>
+        <form class="form-inline my-2 my-lg-2 " action="<?php echo FRONT_ROOT?>Movie/addSelectedMovie/<?php echo $movies[$i]->getMovieID(); ?>" method=GET>
+          <button type="submit" value="<?php echo $movies[$i]->getMovieID();?>"  class=" marginl30 btn btn-secondary bg-danger text-black mb-2"> Add Movie </button>
+        </form>
+        <p>
+          <?php
           if ($movies[$i]->getDescription()) {
               if (strlen($movies[$i]->getDescription()) < 100) {
                   echo $movies[$i]->getDescription();
@@ -84,9 +84,9 @@
           } else {
               echo $movies[$i]->getTitle();
           } ?>
-      </p>
-    </div> 
-    <?php if ($movies[$i]->getDescription() && strlen($movies[$i]->getDescription()) >= 155) {?>
+        </p>
+      </div> 
+      <?php if ($movies[$i]->getDescription() && strlen($movies[$i]->getDescription()) >= 155) {?>
       <div class="dropdown show"  >
         <a class="btn dropdown-toggle card-text aDropCards"  href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <small class="text-muted" >Leer más</small>
@@ -114,10 +114,4 @@
     <li class="page-item <?php echo $page >= $pages ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Movie/listAPIMovies/<?php echo $page+1 ?>">Next</a></li>
   </ul>
 </nav>
-
-<hr class=" mt-4 mb-1 bg-danger text-dark">
-
-
-
-
 
