@@ -38,7 +38,7 @@
     }
 
     //getAll de transacciones, muestra todas las transacciones. 
-    public function showSales($firstDate="", $lastDate=""){
+    public function statistics($firstDate="", $lastDate=""){
       if(AuthController::validate('admin')){
         try {
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
@@ -195,7 +195,7 @@
             $msg = "intervalo invalido: Falta una fecha";
             throw new Exception($msg);
           }
-        include VIEWS_PATH.'adminSales.php';
+        include VIEWS_PATH.'salesStatistics.php';
       } 
       catch (PDOException $ex){
         $arrayOfErrors [] = $ex->getMessage();

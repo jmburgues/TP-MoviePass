@@ -22,9 +22,8 @@
         <div class="w-100"></div>
 
         <div class="col mt-5"> 
-            <form action="<?php echo FRONT_ROOT?>Sale/showSales" method="POST">
-                <input type ="submit" class="btn btn-primary btn-lg btn-block bg-danger" value="Manage Sales" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
-                </input>
+            <form action="<?php echo FRONT_ROOT?>Sale/statistics" method="POST">
+                <input type ="submit" class="btn btn-primary btn-lg btn-block bg-danger" value="Sales Statistics" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"></input>
             </form>
         </div>
 

@@ -33,7 +33,7 @@
     </div>
     <div class="container mt-5"  >   
         <div class="card card-body border-dark ">
-            <form  action="<?php echo FRONT_ROOT ?>Sale/showSales" method="POST">
+            <form  action="<?php echo FRONT_ROOT ?>Sale/statistics" method="POST">
                 <div class="form-group row">
                     <label for="inputHorario" class="col-sm-2 col-form-label"><strong>First date:</strong></label>
                     <div class="col-sm-10">
