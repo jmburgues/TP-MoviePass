@@ -57,7 +57,7 @@ class MovieController
           $moviesBDD = $this->DAOMovie->getAll();
           usort($moviesBDD, function($a, $b) {return strcmp($a->getTitle(), $b->getTitle());});
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-          include(VIEWS_PATH.'listMoviesBDD.php');
+          include(VIEWS_PATH.'viewDataBaseMovies.php');
         } 
         catch (PDOException $ex){
           $arrayOfErrors [] = $ex->getMessage();
