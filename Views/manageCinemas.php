@@ -18,6 +18,14 @@
 <!-- background -->
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
 
+<!-- Message Popup -->
+
+<?php 
+if (isset($message)){
+      echo "<script type='text/javascript'>alert('$message');</script>";
+    }
+?>
+
 <!-- Page Title -->
 <div style="margin-top:10px;">
     <hr class=" mt-2 mb-4 bg-danger text-dark">
