@@ -8,15 +8,15 @@
     <form action="<?php echo FRONT_ROOT;?>User/frontRegister" method=POST>
       <div class="form-group">
         <label for="userName">Username</label>
-        <input type="userName" name="userName" id="userName" class="form-control" required>
+        <input type="userName" maxlength="20" name="userName" id="userName" class="form-control" required>
       </div>
       <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control" required>
+            <input type="password" maxlength="40" name="password" id="password" class="form-control" required>
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" class="form-control" required>
+        <input type="email" maxlength="40" name="email" id="email" class="form-control" required>
       </div>
       <div class="form-group">
         <label for="birthDate">Birth Date</label>
