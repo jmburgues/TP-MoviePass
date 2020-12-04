@@ -3,21 +3,23 @@
   
   use DB\PDO\DAOCinema as DAOCinema;
   use DB\PDO\DAOMovie as DAOMovie;
+  use DB\PDO\DAORoom as DAORoom;
   use Models\Cinema as Cinema;
   use PDOException;
 
 class CinemaController{
     private $DAOCinema;
     private $DAOMovie;
+    private $DAORoom;
     
     public function __construct(){
       $this->DAOCinema = new DAOCinema;
       $this->DAOMovie = new DAOMovie;
+      $this->DAORoom = new DAORoom;
     }
 
-
     //Primer método luego del botón Cines, retorna los cines activos
-    public function manageCinemas(){
+    public function manageCinemas($message = NULL){
       if(AuthController::validate('admin')){
         try {
           $cinema = array();
@@ -57,15 +59,16 @@ class CinemaController{
     public function deleteCinema($idCinema){
       if(AuthController::validate('admin')){
         try {
-          $this->DAOCinema->removeCinema($idCinema);
-          $cinemas = array();
-          $aux = $this->DAOCinema->getActiveCinemas();
-          if (is_array($aux)){
-            $cinemas = $aux;
-          } else{
-            $cinemas[0] = $aux;
-          }        
-          $this->manageCinemas();
+          $activeRooms = $this->DAORoom->getActiveRoomsByCinema($idCinema);
+          if(!$activeRooms) {
+            $this->DAOCinema->removeCinema($idCinema);
+            $message = "Cinema deleted.";
+          }
+          else{
+            $message = "Unable to delete. There are active rooms in the selected cinema.";
+          }
+            
+            $this->manageCinemas($message);
         } 
         catch (PDOException $ex){
           $arrayOfErrors [] = $ex->getMessage();
