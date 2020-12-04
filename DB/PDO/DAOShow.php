@@ -56,9 +56,9 @@
         return $this->toArray($this->parseToObject($resultSet));
     }
         
-    //Devuelve el idMovie sin repetir de los shows. Muestra en el home sin repetir la cartelera.
+    //Devuelve los idMovie sin repetir de shows,rooms y cinemas que se encuentren activos.
     public function getBillBoard(){
-            $query = "SELECT DISTINCT idMovie FROM ".$this->tableNameShows." WHERE isActive = 1";
+            $query = "SELECT DISTINCT idMovie FROM ".$this->tableNameShows." S INNER JOIN ".$this->tableNameRooms." R ON S.idRoom = R.idRoom INNER JOIN ".$this->tableNameCinemas." C ON R.idCinema = C.idCinema WHERE S.isActive = 1 AND R.isActive = 1 AND C.isActive = 1;";
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query);
             return ($resultSet);
