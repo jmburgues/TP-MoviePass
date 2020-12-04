@@ -1,9 +1,33 @@
-<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
-<div class="text-center mt-5 mb-3">
-    <h3 class="text-white">Select the movie for the show :</h3>
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/manageShows'"> Go to Shows List </button> 
-</div>  
+<style>
+.container {
+  height: 40px;
+  position: relative;
+}
 
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+</style>
+
+<!-- Page Title -->
+<div style="margin-top:10px;">
+    <hr class=" mt-2 mb-4 bg-danger text-dark">
+    <h3 class="text-center" style="color:white;" >Select movie:<h3>
+    <hr class=" mt-4 mb-1 bg-danger text-dark">
+</div>
+
+<!-- Navigation buttons -->
+
+<div class="container">
+  <div class="center">
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="history.back(-1)"> Go Back </button> 
+  </div>
+</div>
 
 <?php if (isset($moviesDB)) {
         foreach ($moviesDB as $movie) { ?>      

@@ -29,10 +29,8 @@
 <!-- New Show button -->
 <div class="container">
   <div class="center">
-  <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView/'"> Go Back </button>   
-  <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newShow" aria-expanded="false" aria-controls="collapseExample">
-        Add new show
-    </button>
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView/'"> Go Back </button>   
+    <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newShow" aria-expanded="false" aria-controls="collapseExample">Add new show</button>
   </div>
 </div>
 
@@ -40,7 +38,7 @@
 
 <div class="collapse" id="newShow">
     <div class="text-center mt-5 mb-3">
-        <h3 class="text-white">Add new Show:</h3>
+        <h4 class="text-white">Add new Show:</h3>
     </div>
     <div class="container mt-5"  >   
         <div class="card card-body border-dark ">
@@ -142,7 +140,7 @@
                                 <!-- Modal footer -->
                                 <div class="modal-footer text-dark"">
                                     <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/modifyShowView/<?php echo $oneShow->getIdShow()?>'"> Modify </button>
-                                    <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/deleteShow/<?php echo $oneShow->getIdShow()?>'"> Delete </button>
+                                    <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/removeShow/<?php echo $oneShow->getIdShow()?>'"> Delete </button>
                                 </div>
                                 
                             </div>

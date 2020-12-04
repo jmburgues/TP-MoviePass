@@ -280,7 +280,8 @@
         #Podria agregar alguna comprobacion ? yo creo que no ya se hace en el view.
         try {
           $this->DAOShow->removeShowFromActive($idShow);
-        } 
+          $this->manageShows();
+        }
         catch (PDOException $ex){
           $arrayOfErrors [] = $ex->getMessage();
           ViewController::errorView($arrayOfErrors);

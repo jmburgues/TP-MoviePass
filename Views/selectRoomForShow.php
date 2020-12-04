@@ -26,6 +26,12 @@
 </div>
 <!-- Go back button -->
 
+<div style="height: 100px; position: relative;">
+  <div class="center">
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="history.back(-1)"> Go Back </button> 
+  </div>
+</div>
+
 <!-- SHOW CARD -->
 
 <div class="card mb-3" style="max-width: 400px; margin: auto;">
