@@ -14,6 +14,10 @@
   transform: translate(-50%, -50%);
 }
 </style>
+<!-- Movie already being broadcasted alert -->
+<?php if(!is_array($rooms)){
+     echo "<script type='text/javascript'>alert('SAME DAY RESTRICTION: Displaying only one aviable room: ".$rooms->getName().".');</script>";
+} ?>
 
 <!-- background -->
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
@@ -70,13 +74,24 @@
         <tr>
             <td style="text-align:center" ><?php echo $oneCinema->getName()?></td>
             <td style="text-align:center">
-                <?php foreach ($rooms as $oneRoom) {
-                    if($oneRoom->getCinema()->getId() == $oneCinema->getId()){ ?>
+                <?php 
+                if(is_array($rooms)){
+                    foreach ($rooms as $oneRoom) {
+                        if($oneRoom->getCinema()->getId() == $oneCinema->getId()){ ?>
                         
-                        <button type="submit" value="<?php echo $oneRoom->getId()?>" name="roomId" ><?php echo $oneRoom->getName()?></button>
+                            <button type="submit" value="<?php echo $oneRoom->getId()?>" name="roomId" ><?php echo $oneRoom->getName()?></button>
 
                     <?php }
-                    } ?>
+                    }
+                 }
+                 else{
+                    if($rooms->getCinema()->getId() == $oneCinema->getId()){ ?>
+                        
+                        <button type="submit" value="<?php echo $rooms->getId()?>" name="roomId" ><?php echo $rooms->getName()?></button>
+
+                <?php }
+
+                 } ?>
             </td>
         </tr>
             <?php } ?>
