@@ -1,4 +1,3 @@
-
 #CREATE DATABASE MOVIEPASSDB;
 #DROP DATABASE MOVIEPASSDB;
 #USE MOVIEPASSDB;
@@ -30,10 +29,10 @@ CONSTRAINT chq_capacity CHECK (capacity > 0 AND capacity < 500)
 CREATE TABLE IF NOT EXISTS MOVIES(
 idMovie int not null unique,
 duration int not null,
-title varchar(50) not null,
-poster varchar(100), 
+title varchar(200) not null,
+poster varchar(200), 
 releaseDate Date,
-movieDescription varchar(400),
+movieDescription varchar(1000),
 CONSTRAINT pk_idMovie primary key (idMovie)
 );
 
@@ -104,11 +103,3 @@ INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('user','12
 INSERT INTO CINEMAS (cinemaName,adress,adressNumber,openning,closing,isActive) VALUES ('Ambassador','Cordoba',2400,18:00:00,03:00:00,true);
 INSERT INTO CINEMAS (cinemaName,adress,adressNumber,openning,closing,isActive) VALUES ('Cine Del Paseo','Diagonal Pueyrredon',3058,13:00:00,24:00:00,true);
 
-
-DELIMITER $$
-CREATE PROCEDURE p_add_transaction (username VARCHAR(20), datetrans DateTime, ticketAmount int, costPerTicket int, OUT p_idTransaction INT)
-BEGIN
-	INSERT INTO TRANSACTIONS (username, transacctionDate, ticketAmount, costPerTicket) VALUES (username, datetrans, ticketAmount, costPerTicket);
-	SET p_idTransaction = LAST_INSERT_ID();
-END;
-$$
