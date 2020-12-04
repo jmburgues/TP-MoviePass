@@ -147,10 +147,10 @@
             
                 $this->DAOTransaction->p_add_transaction($transaction);
                 
-                $idTransaction = $this->DAOTransaction->call();      
-                
-                $transaction->setIdTransaction($idTransaction);
+                $idTransaction = $this->DAOTransaction->call($transaction->getDate(),$transaction->getUser()->getUserName());      
 
+                $transaction->setIdTransaction($idTransaction);
+                
                 $dataForQR = str_replace(' ', '%20', $dataForQR);
                 $qr = $this->generateQR($dataForQR);            
                 

@@ -22,12 +22,12 @@
 
     //Inserta una transacción en la tabla por medio de procedure  para obtener el ID
     public function p_add_transaction($transaction){
-        $query = "CALL p_add_transaction (". ":username" .",". ":dateTransaction" ."," . ":ticketAmount" .",". ":costPerTicket" ."," ." @out);";
+        // $query = "CALL p_add_transaction (". ":username" .",". ":dateTransaction" ."," . ":ticketAmount" .",". ":costPerTicket" ."," ." @out);";
+        $query = "INSERT INTO ".$this->tableNameTransactions." (username, transacctionDate, ticketAmount, costPerTicket) VALUES (:username, :dateTransaction, :ticketAmount, :costPerTicket);";
         $parameters['username'] = $transaction->getUser()->getUserName();
         $parameters['dateTransaction'] = $transaction->getDate();
         $parameters['ticketAmount'] = $transaction->getTicketAmount();
         $parameters['costPerTicket'] = $transaction->getCostPerTicket();
-    
 
         $this->connection = Connection::GetInstance();
         $response = $this->connection->ExecuteNonQuery($query, $parameters);
@@ -35,11 +35,13 @@
         }
 
     //Retorna el último ID agregado de transaction
-    public function call(){
-        $query = "SELECT @out;";
-        
+    public function call($transacctionDate,$username){
+        $query = "SELECT idTransaction FROM ".$this->tableNameTransactions." WHERE transacctionDate = :transDate && username =:username;";
+        $parameters['transDate'] = $transacctionDate;
+        $parameters['username'] = $username;
+
         $this->connection = Connection::GetInstance();
-        $response = $this->connection->execute($query);
+        $response = $this->connection->Execute($query, $parameters);
         return $response[0][0];
     }
 
