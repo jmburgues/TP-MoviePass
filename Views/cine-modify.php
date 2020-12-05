@@ -19,19 +19,19 @@
             <div class="form-group row ">
                 <label for="inputName" class="col-sm-2 col-form-label"><strong>Name</strong></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="name" value="<?php echo $currentCinema->getName() ?>" required>
+                    <input type="text" class="form-control" maxlength="29" name="name" value="<?php echo $currentCinema->getName() ?>" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Address</strong></label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="address" value="<?php echo $currentCinema->getAddress() ?>" required>
+                    <input type="text" class="form-control" maxlength="49" name="address" value="<?php echo $currentCinema->getAddress() ?>" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputNumber" class="col-sm-2 col-form-label"><strong>Number</strong></label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" name="number" value="<?php echo $currentCinema->getNumber() ?>" required>
+                    <input type="number" class="form-control" min="0" max="99999" name="number" value="<?php echo $currentCinema->getNumber() ?>" required>
                 </div>
             </div>
             <div class="form-group row">

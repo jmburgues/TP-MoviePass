@@ -38,7 +38,7 @@
 			<div class="dropdown">
 				<form class="form-inline my-2  my-lg-2 " action="<?php echo FRONT_ROOT?>Show/getMoviesByDate" method=POST?>
 					<button class="btn btn-secondary btn-dark dropdown-toggle" id="marginRight10" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <?php if($moviesYearList==null) { ?> disabled <?php } ?>>
-						Years
+						Year
 					</button>
 					
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

@@ -2,7 +2,6 @@
 .container {
   height: 100px;
   position: relative;
-  border-bottom: 1px solid #DC3B3B;
 }
 
 .center {
@@ -29,15 +28,15 @@
 <!-- New Show button -->
 <div class="container">
   <div class="center">
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView/'"> Go Back </button>   
-    <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newShow" aria-expanded="false" aria-controls="collapseExample">Add new show</button>
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-1" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView/'"> Go Back </button>   
+    <button class="btn btn-primary bg-danger text-black mt-1" type="button" data-toggle="collapse" data-target="#newShow" aria-expanded="false" aria-controls="collapseExample">Add new show</button>
   </div>
 </div>
 
 <!-- New Show collapse -->
 
 <div class="collapse" id="newShow">
-    <div class="text-center mt-5 mb-3">
+    <div class="text-center mt-2 mb-2">
         <h4 class="text-white">Add new Show:</h3>
     </div>
     <div class="container mt-5"  >   

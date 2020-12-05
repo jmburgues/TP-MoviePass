@@ -103,9 +103,6 @@
                         $message = "Room successfully added";
                     }
                 }
-                if(isset($message)){
-                    #echo "<script type='text/javascript'>alert('$message');</script>";
-                }  
                 $rooms = $this->DAORoom->getByCinema($idCinema);
                 $cinema = $this->DAOCinema->getById($idCinema);
                 ViewController::navView($genreList=null,$moviesYearList=null,null,null);

@@ -205,6 +205,11 @@
       }
     }
 
+    public function newStatistics(){
+      $cinemas = $this->DAOCinema->getAll();
+      $rooms = $this->DAORoom->getAll();
+    }
+
     //getAll de tickets, muestra todas las tickets. 
     public function getTickets(){
       ViewController::navView($genreList=null,$moviesYearList=null,null,null);

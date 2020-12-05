@@ -2,7 +2,6 @@
 .container {
   height: 100px;
   position: relative;
-  border-bottom: 1px solid #DC3B3B;
 }
 
 .center {
@@ -37,7 +36,7 @@
 <!-- New Cinema collapse -->
 
 <div class="collapse" id="newRoom">
-    <div class="text-center mt-5 mb-3">
+    <div class="text-center mt-2 mb-3">
         <h3 class="text-white">New room:</h3>
     </div>
     <div class="container mt-2  mb-3" >   
@@ -48,21 +47,21 @@
                     <label for="inputName" class="col-sm-2 col-form-label"><strong>Name</strong></label>
                     
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" placeholder="Name" required>
+                        <input type="text" maxlength="49" class="form-control" name="name" placeholder="Name" required>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Capacity</strong></label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="capacity" placeholder="Capacity" required>
+                        <input type="number" class="form-control" min="0" max="9999" name="capacity" placeholder="Capacity" required>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Price</strong></label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="price" placeholder="Price" required>
+                        <input type="number" class="form-control" min="0" max="9999" name="price" placeholder="Price" required>
                     </div>
                 </div>
 

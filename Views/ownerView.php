@@ -1,4 +1,10 @@
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
+<div style="margin-top:10px;">
+    <hr class=" mt-2 mb-4 bg-danger text-dark">
+    <h3 class="text-center" style="color:white;" >Product Owner's Tools:<h3>
+    <hr class=" mt-4 mb-1 bg-danger text-dark">
+</div>
+
 <div class="container mt-5 mb-5">   
     <div class="card card-body m-5 ">
         <h4 style="display: block; margin-left: auto; margin-right: auto;">Manage user's administrative role:</h4>
