@@ -221,11 +221,10 @@
         
                 // Content
                 $mail->isHTML(true);                                  // Set email format to HTML
-                $mail->Subject = 'Succes register';
-                $mail->Body    = 'Congratulations on joining Movie Pass ' . $name . '!'; 
+                $mail->Subject = 'Welcome to MoviePass!';
+                $mail->Body    = 'We are glad you have join us, ' . $name .  '. Hope you enjoy our latest movie collection! <br> The MoviePass team. '; 
                 $mail->AltBody = 'Congratulations on joining Movie Pass ' . $name . '!'; 
                 $mail->send();
-                echo 'Message has been sent';
             } catch (Exception $e) {
                 $arrayOfErrors [] = $ex->getMessage();
                 $arrayOfErrors [] = $mail->ErrorInfo;

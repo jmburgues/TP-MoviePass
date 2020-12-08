@@ -1,5 +1,13 @@
-<div class = "backgroundBlack">
+<style>
+  body{
+      background-image: url('<?php echo FRONT_ROOT?>/Views/img/homeBgNew.jpeg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+  }
+  
 
+</style>
   <?php
     $total = count($movies);
     $articlePerPage = 5;
@@ -12,12 +20,12 @@
   <!--Primer vista al entrar a la página-->
   <!--Jumbotron-->
   <div>
-    <img height="155" width="200" style="display: block; margin-left: auto; margin-right: auto;" src="https://i.ibb.co/84W4VgT/Logo-Black.png">
+    <img height="155" width="200" style="display: block; margin-left: auto; margin-right: auto;" src="<?php echo FRONT_ROOT?>/Views/img/MoviePass-noBgW.png">
   </div>
 
   <div>
     <hr class=" mt-2 mb-4 bg-danger text-dark">
-    <h3 class="text-muted text-center" ><?php echo $title;?><h3>
+    <h3 class="text-white text-center" ><?php echo $title;?><h3>
     <hr class=" mt-4 mb-1 bg-danger text-dark">
   </div>
     
@@ -86,7 +94,7 @@
   </div>
   
   <?php if ($movies != null) { ?>
-  <div class ="backgroundBlack marginTop100" >
+  <div class ="marginTop100" >
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center mt-3">
       <li class="page-item <?php echo $page <= 1 ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Home/Index/<?php echo $page-1 ?>">Previous</a></li>

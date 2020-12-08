@@ -5,12 +5,12 @@
 <div class="container border p-4 col-md-6 form loginCard" >
   <div class="mt-3">
     <div class="form-group">
-      <label for="idRoom" ><strong>Movie</strong></label>
+      <label for="idRoom" ><strong>Movie:</strong></label>
       <input readonly type="text" class="form-control font-weight-bold"  placeholder="<?php echo $selectedMovie->getTitle()?>" name="movie">
     </div>
     <form  action="<?php echo FRONT_ROOT ?>Ticket/getMinMax" method="POST"  name="show" id="show" >
       <div class="form-group" >
-        <label ><strong>Function</strong></label>
+        <label ><strong>Show:</strong></label>
         <select class="custom-select" name="idShow" id="idShow" >
           <?php 
               foreach ($moviesForShows as $show) {
@@ -22,7 +22,7 @@
               }
             ?>
                     <?php if($moviesForShows ==null){
-                    ?> <option value="Out stock">Out stock </option> 
+                    ?> <option value="Out stock">Sold out!</option> 
                     <?php
                     }  ?>
                     

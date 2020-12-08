@@ -24,7 +24,7 @@
       </div>
       <div class="form-group">
         <label for="dni">DNI</label>
-        <input type="number" name="dni" id="dni" class="form-control" required>
+        <input type="number" min=1000000 max=99999999 name="dni" id="dni" class="form-control" required>
       </div>
       <div>
         <?php if(isset($error)) echo "<p style=\"color:red; text-align:center;\">".$error."</p><br>";?>
