@@ -1,14 +1,17 @@
-<div class="text-center mt-5 mb-3">
+<!-- background -->
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/userStyle.css">
+
+<div class="text-center mt-5 mb-1">
     <h3 class="text-white">Select show:</h3>
 </div>
 
-<div class="container border p-4 col-md-6 form loginCard" >
-  <div class="mt-3">
+<div class="container border p-4 col-md-6 form loginCard" style="margin-top:20px;">
+  <div class="mt-1">
     <div class="form-group">
       <label for="idRoom" ><strong>Movie:</strong></label>
       <input readonly type="text" class="form-control font-weight-bold"  placeholder="<?php echo $selectedMovie->getTitle()?>" name="movie">
     </div>
-    <form  action="<?php echo FRONT_ROOT ?>Ticket/getMinMax" method="POST"  name="show" id="show" >
+    <form  action="<?php echo FRONT_ROOT ?>Ticket/payment" method="POST"  name="show" id="show" >
       <div class="form-group" >
         <label ><strong>Show:</strong></label>
         <select class="custom-select" name="idShow" id="idShow" >

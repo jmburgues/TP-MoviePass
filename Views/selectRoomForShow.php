@@ -32,7 +32,7 @@
 
 <div style="height: 100px; position: relative;">
   <div class="center">
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="history.back(-1)"> Go Back </button> 
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-1" value="back" onclick="history.back(-1)"> Go Back </button> 
   </div>
 </div>
 
@@ -78,8 +78,13 @@
                 if(is_array($rooms)){
                     foreach ($rooms as $oneRoom) {
                         if($oneRoom->getCinema()->getId() == $oneCinema->getId()){ ?>
-                        
-                            <button type="submit" value="<?php echo $oneRoom->getId()?>" name="roomId" ><?php echo $oneRoom->getName()?></button>
+                            
+                            <button 
+                                type="submit" value="<?php echo $oneRoom->getId()?>" name="roomId" 
+                                <?php if($start <= $oneCinema->getOpenning()) { echo "disabled"; } ?> >
+                                <?php echo $oneRoom->getName()?>
+                                <?php if($start <= $oneCinema->getOpenning()) { echo "<i>(closed)</i>"; } ?>
+                            </button>
 
                     <?php }
                     }

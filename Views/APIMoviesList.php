@@ -27,6 +27,10 @@
 }
 </style>
 
+<!-- background -->
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
+
+
 <!-- Page Title -->
 <div style="margin-top:10px;">
     <hr class=" mt-2 mb-4 bg-danger text-dark">
@@ -38,7 +42,7 @@
 
 <div class="container">
   <div class="center">
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="history.back(-1)"> Go Back </button> 
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView'"> Go Back </button> 
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="<?php ?>" onclick="window.location.href='<?php echo FRONT_ROOT?>Movie/viewDataBaseMovies'"> View Movies Database </button> 
   </div>
 </div>
@@ -56,11 +60,11 @@
 
       <?php if ($movies[$i]->getPoster()){
         ?>
-        <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $movies[$i]->getPoster()?>">
+        <img style="height:380px; width:300 px;" class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $movies[$i]->getPoster()?>">
       <?php
       } 
       if($movies[$i]->getPoster() == null){
-        ?><img id="notFoundImageCard" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+        ?><img style="height:380px; width:300 px;" id="notFoundImageCard" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
       <?php
       }
       
@@ -68,7 +72,11 @@
 
       <div class="card-body  ">
         <div class ="centerImageHome">
-          <h4 class="card-title  mb-2 text-center"><?php echo $movies[$i]->getTitle()?></h4>   
+          <?php if(strlen($movies[$i]->getTitle()<40)){ ?>
+           <h4 class="card-title  mb-2 text-center"><?php echo $movies[$i]->getTitle();?></h4>
+          <?php } else { ?>
+            <h5 class="card-title  mb-2 text-center"><?php echo $movies[$i]->getTitle();?></h5>
+          <?php } ?>  
         </div>
         <form class="form-inline my-2 my-lg-2 " action="<?php echo FRONT_ROOT?>Movie/addSelectedMovie/<?php echo $movies[$i]->getMovieID(); ?>" method=GET>
           <button type="submit" value="<?php echo $movies[$i]->getMovieID();?>"  class=" marginl30 btn btn-secondary bg-danger text-black mb-2"> Add Movie </button>

@@ -1,8 +1,10 @@
-</script>
+<!-- background -->
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/userStyle.css">
+
 <div class="text-center mt-5 mb-3">
     <h3 class="text-white">Tickets & Payment:</h3>
 </div>  
-<div class="container border p-4 col-md-6 form loginCard" >
+<div class="container border p-4 col-md-6 form loginCard" style="margin-top: 20px;" >
     <div class="mt-3">
         <form  action="<?php echo FRONT_ROOT ?>Ticket/addTicket" method="POST">
             <input type="hidden" class="form-control" name="show" value=<?php echo $idShow?> >

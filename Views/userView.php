@@ -1,3 +1,5 @@
+<!-- background -->
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/userStyle.css">
 
 <script language="Javascript">
 	function imprSelec(nombre) {

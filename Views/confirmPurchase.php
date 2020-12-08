@@ -1,9 +1,11 @@
+<!-- background -->
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/userStyle.css">
+
 <div class="text-center mt-5 mb-5">
     <h2 class="text-white">Purchase</h2>
 </div>  
 
-
-<div class="card mb-3" style="max-width: 1200px; margin: auto;">
+<div class="card mb-3" style="max-width: 1200px; margin: auto; margin-top:20px;">
   <div class="row no-gutters">
     <div class="col-md-4">
       <img src="https://image.tmdb.org/t/p/w400/.<?php echo $movieForShows[0]->getPoster()?>" class="card-img" alt="...">

@@ -64,12 +64,12 @@
         }
         
         //Invocado desde purchase-view, recibe el id del show.
-        public function getMinMax($idShow){
+        public function payment($idShow){
             try{
                 ViewController::navView($genreList = null, $moviesYearList = null, null, null);
                 $min = 1;
                 $max = $this->DAOShow->getById($idShow)->getRoom()->getCapacity() - $this->DAOShow->getById($idShow)->getSpectators();
-                include VIEWS_PATH.'numberTickets.php';
+                include VIEWS_PATH.'payment.php';
             } 
 
             catch (Exception $ex){

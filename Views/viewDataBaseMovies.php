@@ -66,8 +66,12 @@
   
     <div class="card-body">
     <div class="centerImageHome" >
-      <h4 class="card-title  mb-2 text-center"><?php echo $moviesBDD[$i]->getTitle()?></h4>   
-      </div>
+      <?php if(strlen($moviesBDD[$i]->getTitle()<40)){ ?>
+        <h4 class="card-title  mb-2 text-center"><?php echo $moviesBDD[$i]->getTitle();?></h4>
+      <?php } else { ?>
+        <h5 class="card-title  mb-2 text-center"><?php echo $moviesBDD[$i]->getTitle();?></h5>
+      <?php } ?>  
+    </div>
       <p>
       <?php
           if ($moviesBDD[$i]->getDescription()) {
@@ -75,13 +79,14 @@
                   echo $moviesBDD[$i]->getDescription();
               } else {
                   echo substr($moviesBDD[$i]->getDescription(), 0, 100);
+                  echo "...";
               }
           } else {
               echo $moviesBDD[$i]->getTitle();
           } ?>
       </p>
     </div> 
-    <?php if ($moviesBDD[$i]->getDescription() && strlen($moviesBDD[$i]->getDescription()) >= 155) {?>
+    <?php if ($moviesBDD[$i]->getDescription() && strlen($moviesBDD[$i]->getDescription()) >= 100) {?>
       <div class="dropdown show"  >
         <a class="btn dropdown-toggle card-text aDropCards" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <small class="text-muted" >Leer más</small>

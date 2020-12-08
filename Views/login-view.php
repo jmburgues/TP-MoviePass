@@ -1,3 +1,6 @@
+<!-- background -->
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/userStyle.css">
+
 <div class="text-center mt-5 mb-3">
     <h3 class="text-white">Welcome back!</h3>
 </div>  
@@ -8,11 +11,11 @@
     <form action="<?php echo FRONT_ROOT;?>User/frontLogin" method=POST>
       <div class="form-group">
         <label for="userName">User</label>
-        <input type="text" maxlength="20" name="userName" id="userName" class="form-control" required>
+        <input type="text" maxlength="20" name="userName" placeholder="username" id="userName" class="form-control" required>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" maxlength="40" name="password" id="password" class="form-control" required>
+        <input type="password" maxlength="40" name="password" placeholder="********" id="password" class="form-control" required>
       </div>
       <div>
         <?php if(isset($error)) echo "<p style=\"color:red; text-align:center;\">".$error."</p><br>";?>

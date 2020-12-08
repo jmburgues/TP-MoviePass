@@ -14,6 +14,10 @@
 }
 </style>
 
+<!-- background -->
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
+
+
 <!-- Page Title -->
 <div style="margin-top:10px;">
     <hr class=" mt-2 mb-4 bg-danger text-dark">

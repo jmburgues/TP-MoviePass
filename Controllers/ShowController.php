@@ -134,6 +134,13 @@
       if(AuthController::validate('admin')){
         try{
           $cinemas = $this->DAOCinema->getActiveCinemas();
+          // $cinemas = array();
+          // // agrega solo los cinemas abiertos para la hora de inicio
+          // foreach($allCinemas as $oneCinema){
+          //   if($oneCinema->getOpenning() <= $start){
+          //     array_push($cinemas,$oneCinema);
+          //   }  
+          // }
           #Validacion de que en un dia que ya se esta dando una pelicula en una funcion solo puede darse en ese mismo cine y sala
           $showInSameDate = $this->DAOShow->getByDateAndMovieId($date, $movieId);
 /*

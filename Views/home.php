@@ -1,13 +1,6 @@
-<style>
-  body{
-      background-image: url('<?php echo FRONT_ROOT?>/Views/img/homeBgNew.jpeg');
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: cover;
-  }
-  
+<!-- background -->
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/userStyle.css">
 
-</style>
   <?php
     $total = count($movies);
     $articlePerPage = 5;
@@ -32,7 +25,6 @@
   <div class="container text-center"  id="maxWidth1600" >
     
     <div class="row row-cols-5">
-    
 
         <?php for($i = $init; $i < $init+5; $i++ ){
             if (isset($movies[$i])) { ?>
@@ -54,8 +46,12 @@
           
       <div class="card-body  ">
       <div class="centerImageHome">
-        <h4 class="card-title  mb-2 text-center"><?php echo $movies[$i]->getTitle()?></h4>   
-        </div>                    
+        <?php if(strlen($movies[$i]->getTitle()<40)){ ?>
+          <h4 class="card-title  mb-2 text-center"><?php echo $movies[$i]->getTitle();?></h4>
+        <?php } else { ?>
+          <h5 class="card-title  mb-2 text-center"><?php echo $movies[$i]->getTitle();?></h5>
+        <?php } ?>  
+      </div>                    
 
           <?php if(!isset($_SESSION['loggedUser'])){ ?> 
             <form action="<?php echo FRONT_ROOT?>User/showLoginForm" method="POST" >
@@ -65,23 +61,24 @@
             <button value="<?php echo $movies[$i]->getMovieID()?>" name="movieId" class="btn btn-secondary bg-danger text-black mb-2"  type="submit">Buy Tickets</button>   
             </form>
 
-        <p>
+        <p style=text-align:justify;>
         <?php
             if ($movies[$i]->getDescription()) {
-                if (strlen($movies[$i]->getDescription()) < 100) {
+                if (strlen($movies[$i]->getDescription()) < 150) {
                     echo $movies[$i]->getDescription();
                 } else {
-                    echo substr($movies[$i]->getDescription(), 0, 100);
+                    echo substr($movies[$i]->getDescription(), 0, 150);
+                    echo "...";
                 }
             } else {
                 echo $movies[$i]->getTitle();
             } ?>
         </p>
       </div> 
-      <?php if ($movies[$i]->getDescription() && strlen($movies[$i]->getDescription()) >= 155) {?>
+      <?php if ($movies[$i]->getDescription() && strlen($movies[$i]->getDescription()) >= 150) {?>
         <div class="dropdown show"  >
           <a class="btn dropdown-toggle card-text aDropCards" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <small class="text-muted" >Leer más</small>
+            <small class="text-muted" >Read more</small>
           </a>
           <div class="dropdown-menu dropdown-menu-right p-2 dropDownCard" id="dropDownCard" aria-labelledby="dropdownMenuLink">
             <strong> <?php echo $movies[$i]->getDescription(); ?> </strong>
