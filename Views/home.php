@@ -56,7 +56,7 @@
           <?php if(!isset($_SESSION['loggedUser'])){ ?> 
             <form action="<?php echo FRONT_ROOT?>User/showLoginForm" method="POST" >
             <?php }else{ ?>
-            <form action="<?php echo FRONT_ROOT?>Ticket/showPurchase" method="POST" >
+            <form action="<?php echo FRONT_ROOT?>Ticket/selectShow" method="POST" >
             <?php } ?>
             <button value="<?php echo $movies[$i]->getMovieID()?>" name="movieId" class="btn btn-secondary bg-danger text-black mb-2"  type="submit">Buy Tickets</button>   
             </form>

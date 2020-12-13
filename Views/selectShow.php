@@ -11,7 +11,7 @@
       <label for="idRoom" ><strong>Movie:</strong></label>
       <input readonly type="text" class="form-control font-weight-bold"  placeholder="<?php echo $selectedMovie->getTitle()?>" name="movie">
     </div>
-    <form  action="<?php echo FRONT_ROOT ?>Ticket/payment" method="POST"  name="show" id="show" >
+    <form  action="<?php echo FRONT_ROOT ?>Ticket/selectAmmount" method="POST"  name="show" id="show" >
       <div class="form-group" >
         <label ><strong>Show:</strong></label>
         <select class="custom-select" name="idShow" id="idShow" >

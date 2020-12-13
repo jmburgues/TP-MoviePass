@@ -47,14 +47,14 @@
         }
 
         //Invoca la primer vista donde el usuario completa el form con los datos para la entrada
-        public function showPurchase($movieId)
+        public function selectShow($movieId)
         {
             try {
                 ViewController::navView($genreList = null, $moviesYearList = null, null, null);
                 $userName = $_SESSION['loggedUser'];
                 $selectedMovie = $this->DAOMovie->getById($movieId);
                 $moviesForShows = $this->DAOShow->getShowFromMovieRoom($movieId);
-                include VIEWS_PATH.'purchase-view.php';
+                include VIEWS_PATH.'selectShow.php';
             } 
             catch (Exception $ex){
                 $arrayOfErrors [] = $ex->getMessage();
@@ -64,12 +64,12 @@
         }
         
         //Invocado desde purchase-view, recibe el id del show.
-        public function payment($idShow){
+        public function selectAmmount($idShow){
             try{
                 ViewController::navView($genreList = null, $moviesYearList = null, null, null);
                 $min = 1;
                 $max = $this->DAOShow->getById($idShow)->getRoom()->getCapacity() - $this->DAOShow->getById($idShow)->getSpectators();
-                include VIEWS_PATH.'payment.php';
+                include VIEWS_PATH.'selectAmmount.php';
             } 
 
             catch (Exception $ex){
@@ -84,7 +84,7 @@
         //Crea la transacción correspondiente y el ticket 
         //Redirige a vista de compra con credito, habiendo elegido anteriormente la tarjeta.
         //Envía a la vista el costo de las entradas
-        public function addTicket($idShow, $ticketAmount, $cardBank)
+        public function payment($idShow, $ticketAmount, $cardBank)
         {
             try{
                 ViewController::navView($genreList = null, $moviesYearList = null, null, null);
@@ -114,7 +114,7 @@
                 $totalCost = $costPerTicket * $ticketAmount;
                 
                 $showToString = "STARTS AT: ". substr($showSelected->getStart(), 0, -3)." ENDS AT: ". substr($showSelected->getEnd(), 0, -3);
-                include VIEWS_PATH.'confirmPurchase.php';
+                include VIEWS_PATH.'payment.php';
             } 
 
             catch (Exception $ex){

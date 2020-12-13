@@ -156,7 +156,7 @@
               $rooms = $this->sameDayRestriction($rooms,$date,$movieId);
             }
             else{
-              $message = "All rooms are full in at that time.";
+              $message = "All rooms are full at given time.";
             }
           } 
           else{
@@ -363,9 +363,11 @@
       $endDateTime = new DateTime($endingHour);
       $startDateTime = new DateTime($startingHour);
 
-      if($endDateTime < $startDateTime){
+      
+      if($endDateTime < $startDateTime){ // condicion nuevo dia
         $endDateTime->add(new DateInterval('P1D'));
       }
+      
 
       $endDateTime = $endDateTime->format('Y-m-d H:i:s');
       $startDateTime = $startDateTime->format('Y-m-d H:i:s');
@@ -375,6 +377,9 @@
           array_push($filteredRooms,$oneRoom);
         }
       }
+
+      var_dump($startDateTime,$endDateTime);
+      
       return $filteredRooms;
     }
 
