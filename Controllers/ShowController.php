@@ -133,35 +133,39 @@
     public function selectRoomForShow($date, $start, $movieId){
       if(AuthController::validate('admin')){
         try{
-          $cinemas = $this->DAOCinema->getActiveCinemas();
-          // $cinemas = array();
-          // // agrega solo los cinemas abiertos para la hora de inicio
-          // foreach($allCinemas as $oneCinema){
-          //   if($oneCinema->getOpenning() <= $start){
-          //     array_push($cinemas,$oneCinema);
-          //   }  
-          // }
-          #Validacion de que en un dia que ya se esta dando una pelicula en una funcion solo puede darse en ese mismo cine y sala
-          $showInSameDate = $this->DAOShow->getByDateAndMovieId($date, $movieId);
-/*
-          Recibo un dia, hora y pelicula
-          verifico si para ese dia y pelicula existe un show
-          si existe, me traigo la sala del show. Unica sala que se puede agregar
-          si no existe, me traigo todas las salas abiertas a esa hora
-*/
-          if($showInSameDate){
-            $rooms = array_shift($showInSameDate)->getRoom();
-          }
-          else{
-            $rooms = $this->DAORoom->getActiveRooms();
-          }
-          
+
           $selectedMovie=$this->DAOMovie->getById($movieId);
-          //se toma la película y se calcula la duración para devolver el final de la función + los 15 minutos 
           $dateToInsert = new DateTime($date." ".$start.'M');
           $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
           $dateToInsertEnd = $this->addInterval($date." ".$start, ($selectedMovie->getDuration() +15 ));
           $ends = substr($dateToInsertEnd, -9, -3);
+
+          $cinemas = $this->DAOCinema->getActiveCinemas();
+
+            //traigo las salas activas de los cinemas abiertos a la hora de inicio de la pelicula      
+          $message = null;
+         $rooms = $this->DAORoom->getActiveRooms();
+          // $rooms = $this->getOpenRooms($this->DAOCinema->getOpenCinemas($start));
+
+          if($rooms){
+            //valido que exista una franja horaria disponible para proyectar la pelicula
+            $rooms = $this->getRoomsWithAviableTime($rooms,$date,$start,$ends);
+            
+            if($rooms){
+               //valido que la pelicula no se este proyectando en otra sala el mismo dia.
+              $rooms = $this->sameDayRestriction($rooms,$date,$movieId);
+            }
+            else{
+              $message = "All rooms are full in at that time.";
+            }
+          } 
+          else{
+            $message = "No open cinemas.";
+          } 
+
+
+          //se toma la película y se calcula la duración para devolver el final de la función + los 15 minutos 
+
           
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
           include VIEWS_PATH.'selectRoomForShow.php';
@@ -172,8 +176,9 @@
         }
       }
     }
+    
 
-    function listByGenre($genreId){
+    public function listByGenre($genreId){
       try{
         $genreList = $this->DAOGenre->getGenresListFromShows(); 
         $moviesYearList = $this->DAOMovie->getArrayOfYearsFromShows();
@@ -267,21 +272,6 @@
       }
     }
 
-    public function validateActiveShows(){
-      $CurrentActiveShows = $this->DAOShow->getActiveShows();
-      
-      $dateTimeNow = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
-        foreach ($CurrentActiveShows as $CurrentActiveShow){
-          $dateTimeShow = new DateTime($CurrentActiveShow->getDate().' '.$CurrentActiveShow->getStart());
-          if ($CurrentActiveShow->getSpectators() == $CurrentActiveShow->getRoom()->getCapacity()){
-            $this->DAOShow->removeShowFromActive($CurrentActiveShow->getIdShow());
-          }
-          if ($dateTimeShow < $dateTimeNow){
-            $this->DAOShow->removeShowFromActive($CurrentActiveShow->getIdShow());
-        }
-      }
-    }
-
     public function removeShow ($idShow){
       if(AuthController::validate('admin')){
         #Podria agregar alguna comprobacion ? yo creo que no ya se hace en el view.
@@ -302,5 +292,91 @@
       $dateToInsertEnd->add($interval);
       return $dateToInsertEnd->format('Y-m-d H:i:s');
     }
+
+
+/*
+**
+** INTERNAL USE FUNCTIONS
+**
+*/
+    private function validateActiveShows(){
+      $CurrentActiveShows = $this->DAOShow->getActiveShows();
+      
+      $dateTimeNow = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
+        foreach ($CurrentActiveShows as $CurrentActiveShow){
+          $dateTimeShow = new DateTime($CurrentActiveShow->getDate().' '.$CurrentActiveShow->getStart());
+          
+          /* Quita de activeShows los shows SoldOut. */
+          
+          // if ($CurrentActiveShow->getSpectators() == $CurrentActiveShow->getRoom()->getCapacity()){
+          //   $this->DAOShow->removeShowFromActive($CurrentActiveShow->getIdShow());
+          // }
+
+          /* Quita de activeShows los shows de fechas pasadas */
+          if ($dateTimeShow < $dateTimeNow){
+            $this->DAOShow->removeShowFromActive($CurrentActiveShow->getIdShow());
+        }
+      }
+    }
+
+    private function getOpenRooms($cinemas){
+      
+      $rooms = array();
+      
+      foreach($cinemas as $oneCinema){
+        $oneCinemaRooms = $this->DAORoom->getActiveRoomsByCinema($oneCinema->getId());
+        foreach($oneCinemaRooms as $oneRoom){
+          array_push($rooms,$oneRoom);
+        }
+      }
+
+      return $rooms;
+    }
+
+    private function sameDayRestriction($rooms,$date,$movieId){
+      /*
+      Recibo un dia, hora y pelicula
+      verifico si para ese dia y pelicula existe un show
+      si existe, me traigo la sala del show. Unica sala que se puede agregar
+      si no existe, me traigo todas las salas abiertas a esa hora
+      */
+      $showInSameDate = $this->DAOShow->getByDateAndMovieId($date, $movieId);
+
+      if($showInSameDate){
+        
+        $onlyAviableRoom = array_shift($showInSameDate)->getRoom();
+        if(!in_array($onlyAviableRoom,$rooms)){
+          $rooms = null;
+        }
+      }
+
+      return $rooms;
+    }
+
+    private function getRoomsWithAviableTime($rooms,$date,$startingHour,$endingHour){
+      
+      
+      $filteredRooms = array();
+      $startingHour = $date . " " .$startingHour.":00";
+      $endingHour = $date." ".$endingHour.":00";
+
+      $endDateTime = new DateTime($endingHour);
+      $startDateTime = new DateTime($startingHour);
+
+      if($endDateTime < $startDateTime){
+        $endDateTime->add(new DateInterval('P1D'));
+      }
+
+      $endDateTime = $endDateTime->format('Y-m-d H:i:s');
+      $startDateTime = $startDateTime->format('Y-m-d H:i:s');
+
+      foreach($rooms as $oneRoom){
+        if(empty($this->DAOShow->getShowsInTimeLapse($oneRoom->getId(),$date,$startDateTime,$endDateTime))){
+          array_push($filteredRooms,$oneRoom);
+        }
+      }
+      return $filteredRooms;
+    }
+
   }
 ?>

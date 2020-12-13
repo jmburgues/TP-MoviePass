@@ -102,9 +102,19 @@
     }
 
     public function getByDateAndMovieId($date, $idMovie){
-        $query = "SELECT * FROM ".$this->tableNameShows." where dateSelected = :date and idMovie = :idMovie";
+        $query = "SELECT * FROM ".$this->tableNameShows." where dateSelected = :date and idMovie = :idMovie AND isActive = true;";
         $parameters['date'] = $date;
         $parameters['idMovie'] = $idMovie;
+        $this->connection = Connection::GetInstance();
+        $resultSet = $this->connection->Execute($query,$parameters);
+        
+        return $this->toArray($this->parseToObject($resultSet));
+    }
+
+    public function getShowsByRoomAndDate($roomID, $date){
+        $query = "SELECT * FROM ".$this->tableNameShows." where dateSelected = :date and idRoom = :idRoom";
+        $parameters['date'] = $date;
+        $parameters['idRoom'] = $roomID;
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query,$parameters);
         
@@ -184,6 +194,18 @@
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query, $parameters);
         return $resultSet;
+    }
+
+    public function getShowsInTimeLapse($roomId,$date,$startingHour,$endingHour){
+        $query = "SELECT ". $this->tableNameShows .".* FROM ". $this->tableNameShows ." WHERE idRoom = :roomId AND dateSelected = :date AND endsAt >= :startingHour AND startsAt <= :endingHour;";
+        $parameters['roomId'] = $roomId;
+        $parameters['date'] = $date;
+        $parameters['startingHour'] = $startingHour;
+        $parameters['endingHour'] = $endingHour;
+        $this->connection = Connection::GetInstance();
+        $resultSet = $this->connection->Execute($query, $parameters);
+        return $this->toArray($this->parseToObject($resultSet));
+
     }
     
     protected function parseToObject($value) {

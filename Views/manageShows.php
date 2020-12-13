@@ -131,7 +131,8 @@
                                     <ul>
                                         <li><strong>Starting hour:</strong> <?php echo $oneShow->getStart() ?></li>
                                         <li><strong>Ending hour:</strong> <?php echo $oneShow->getEnd() ?></li>
-                                        <li><strong>Spectators:</strong> <?php echo $oneShow->getSpectators()?></li>
+                                        <?php $ticketsSold = $oneShow->getSpectators(); $capacity = $oneShow->getRoom()->getCapacity(); ?>
+                                        <li><strong>Tickets sold:</strong> <?php echo $ticketsSold?> / <?php echo $capacity?> <?php if($ticketsSold == $capacity) echo "<i><b> SOLD OUT!</b></i>"?></li>
                                         <li><strong>Movie:</strong> <?php echo $oneShow->getMovie()->getTitle();?></li>  
                                     </ul>
                                 </div>

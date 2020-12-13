@@ -15,8 +15,8 @@
 }
 </style>
 <!-- Movie already being broadcasted alert -->
-<?php if(!is_array($rooms)){
-     echo "<script type='text/javascript'>alert('SAME DAY RESTRICTION: Displaying only one aviable room: ".$rooms->getName().".');</script>";
+<?php if(!empty($rooms) && !is_array($rooms)){
+     echo "<script type='text/javascript'>alert('TITLE ALREADY BEING PROJECTED THIS DAY: Displaying only one aviable room: ".$rooms->getName().".');</script>";
 } ?>
 
 <!-- background -->
@@ -74,7 +74,8 @@
         <tr>
             <td style="text-align:center" ><?php echo $oneCinema->getName()?></td>
             <td style="text-align:center">
-                <?php 
+                <?php $cinemaFlag = false;
+            if(!empty($rooms)){
                 if(is_array($rooms)){
                     foreach ($rooms as $oneRoom) {
                         if($oneRoom->getCinema()->getId() == $oneCinema->getId()){ ?>
@@ -86,8 +87,13 @@
                                 <?php if($start <= $oneCinema->getOpenning()) { echo "<i>(closed)</i>"; } ?>
                             </button>
 
-                    <?php }
+                    <?php $cinemaFlag = true;
+                         }
                     }
+                    if($cinemaFlag == false){ ?>
+                        <p><i> No rooms aviable </i></p>
+                        
+                    <?php }
                  }
                  else{
                     if($rooms->getCinema()->getId() == $oneCinema->getId()){ ?>
@@ -96,7 +102,12 @@
 
                 <?php }
 
-                 } ?>
+                 }
+            }
+            else{ ?>
+            <p><i> No rooms aviable <i></p>
+
+            <?php }    ?>
             </td>
         </tr>
             <?php } ?>

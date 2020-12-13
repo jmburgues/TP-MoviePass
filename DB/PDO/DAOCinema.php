@@ -136,6 +136,23 @@
       }
     }
 
+    public function getOpenCinemas($start){
+      try{
+        $query = "SELECT * FROM ".$this->tableName. " WHERE isActive = :active AND openning <= :starting;";
+        $parameters['active'] = true;
+        $parameters['starting'] = $start;
+        $this->connection = Connection::GetInstance();
+        $resultSet = $this->connection->Execute($query,$parameters);
+        $activeCinemas = $this->toArray($this->parseToObject($resultSet));
+        return $activeCinemas;
+      }
+      catch(PDOException $ex)
+      {
+          $arrayOfErrors [] = $ex->getMessage();
+          ViewController::errorView($arrayOfErrors);
+      }
+    }
+
     //SELECT * FROM CINEMAS WHERE id
     public function getById($id){
       $query= "SELECT * FROM ".$this->tableName." WHERE idCinema = :id;";

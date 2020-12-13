@@ -14,11 +14,11 @@
       <div class="card-body">
         <h5 class="card-title">Purchase details:</h5>
         <ul>
-            <li><strong>Film:  </strong><?php print_r($movieForShows[0]->getTitle()); ?></li>
+            <li><strong>Movie:  </strong><?php print_r($movieForShows[0]->getTitle()); ?></li>
             <li><strong>Show:  </strong><?php print_r($showToString); ?></li>
             <li><strong>Tickets:  </strong><?php print_r($ticketAmount);?></li>
-            <li><strong>Cost per ticket: </strong><?php print_r($costPerTicket);?> <?php ?></li>
-            <li><strong>Total cost: </strong> <?php print_r($totalCost);?><?php ?></li>
+            <li><strong>Price per ticket: $</strong><?php print_r($costPerTicket);?> <?php ?></li>
+            <li><strong>Total cost: $</strong> <?php print_r($totalCost);?><?php ?></li>
         </ul> 
 
         <div style="height:100px; margin-top:-10px">
