@@ -17,7 +17,7 @@
                     }
                 ?>
                 
-            type="number" min = "<?php echo $min ?>" max ="<?php echo $max ?>" class="form-control"  placeholder="Number of Tickets" name="tickets" required>
+            type="number" min = "<?php echo $min ?>" max ="<?php echo $max ?>" class="form-control"  placeholder="<?=$max?> tickets aviable" name="tickets" required>
             </div>
             
             <label for="ticket" class="mt-2" ><strong>Select a payment method</strong></label>

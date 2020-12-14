@@ -14,7 +14,7 @@
       <div class="card-body">
         <ul>
             <li><strong>Movie:  </strong><?php print_r($movieForShows[0]->getTitle()); ?></li>
-            <li><strong>Show:  </strong><?php print_r($showToString); ?></li>
+            <li><strong>Show date:</strong> <?=$showSelected->getDate();?> <strong>Starts at:</strong> <?= $showSelected->getStart();?> <strong>Ends At:</strong> <?=$showSelected->getEnd();?></li>
             <li><strong>Tickets:  </strong><?php print_r($ticketAmount);?></li>
             <li><strong>Price per ticket: $</strong><?php print_r($costPerTicket);?> <?php ?></li>
             <li><strong>Total cost: $</strong> <?php print_r($totalCost);?><?php ?></li>

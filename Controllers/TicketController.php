@@ -23,11 +23,10 @@
     use Models\Transaction as Transaction;   
     use Models\Ticket as Ticket;   
     use Models\Show as Show;   
-    use Models\User as User;   
+    use Models\User as User;
+use PDOException;
 
-
-    
-  //  use Endroid\QrCode\QrCode;
+//  use Endroid\QrCode\QrCode;
     class TicketController
     {
         private $DAOMovie;
@@ -56,10 +55,9 @@
                 $moviesForShows = $this->DAOShow->getShowFromMovieRoom($movieId);
                 include VIEWS_PATH.'selectShow.php';
             } 
-            catch (Exception $ex){
+            catch (PDOException $ex){
                 $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                ViewController::homeView($movies,$page,$title);
+                ViewController::errorView($arrayOfErrors);
             }
         }
         
@@ -71,11 +69,9 @@
                 $max = $this->DAOShow->getById($idShow)->getRoom()->getCapacity() - $this->DAOShow->getById($idShow)->getSpectators();
                 include VIEWS_PATH.'selectAmmount.php';
             } 
-
-            catch (Exception $ex){
+            catch (PDOException $ex){
                 $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                ViewController::homeView($movies,$page,$title);
+                ViewController::errorView($arrayOfErrors);
             }
         }
 
@@ -116,12 +112,10 @@
                 $showToString = "STARTS AT: ". substr($showSelected->getStart(), 0, -3)." ENDS AT: ". substr($showSelected->getEnd(), 0, -3);
                 include VIEWS_PATH.'payment.php';
             } 
-
-            catch (Exception $ex){
+            catch (PDOException $ex){
                 $arrayOfErrors [] = $ex->getMessage();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,$arrayOfErrors);
-                ViewController::homeView($movies,$page,$title);
-            }
+                ViewController::errorView($arrayOfErrors);
+              }
         }
 
         public function confirmTicket($costPerTicket, $totalCost, $ticketAmount, $creditNumber, $name, $cvc,  $expirationDate, $expirationYear, $idShow, $cardBank)
@@ -129,53 +123,63 @@
             #try{
                 ViewController::navView($genreList = null, $moviesYearList = null, null, null);
 
+                $show = $this->DAOShow->getById($idShow);
+                $user = $this->DAOUser->getByUserName($_SESSION['loggedUser']);              
+
+                $currentTime = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
+                $currentTime = $currentTime->format('Y-m-d H:i:s');
+                
+                $transaction = $this->generateNewTransaction($user, $currentTime, $costPerTicket, $ticketAmount);
+
+                $tickets = $this->generateTickets($show,$transaction,$ticketAmount,$idShow);       
+                        
                 $showCardLast = str_replace(range(0,9), "*", substr($creditNumber, 0, -4)) .  substr($creditNumber, -4);
-
                 $nameString = str_replace(' ', '', $name);
-                
                 $movieFromShow = $this->DAOMovie->getMovieFromShowByIdShow($idShow);
-                $showData = $this->DAOShow->getById($idShow);
-
-                $dataForQR = "N ".$nameString." M ".$movieFromShow[0]->getTitle()." S ".$showData->getStart()." E ".$showData->getEnd()." D ".$showData->getDate()." R ".$showData->getRoom()->getName()." T ".$ticketAmount;
-
-                $d = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
-                $time = $d->format('Y-m-d H:i:s');
-                $transaction = new Transaction($this->DAOUser->getByUserName($_SESSION['loggedUser']));
-                $transaction->setDate($time);
-                $transaction->setCostPerTicket($costPerTicket);
-                $transaction->setTicketAmount($ticketAmount);
-            
-                $this->DAOTransaction->p_add_transaction($transaction);
                 
-                $idTransaction = $this->DAOTransaction->call($transaction->getDate(),$transaction->getUser()->getUserName());      
-
-                $transaction->setIdTransaction($idTransaction);
                 
-                $dataForQR = str_replace(' ', '%20', $dataForQR);
-                $qr = $this->generateQR($dataForQR);            
-                
-                if($ticketAmount != 1){
-                    for ($i=0; $i < $ticketAmount ; $i++) { 
-                        $ticket = new Ticket($showData,$transaction);
-                        $ticket->setQRCode($qr);            
-                        $this->DAOTicket->add($ticket);
-                    }
-                }else{
-                        $ticket = new Ticket($showData,$transaction);
-                        $ticket->setQRCode($qr);            
-                        $this->DAOTicket->add($ticket);
-                }
-
-                $currentQr = $ticket->getQRCode();            
-                $currentTransaction = $transaction;
-                $this->sendMail($name, $costPerTicket, $totalCost, $ticketAmount, $showData, $qr);
+                $this->sendMail($name, $costPerTicket, $totalCost, $ticketAmount, $show,$tickets);
                 //AGREGARLE LA DIRECCION Y LA SALA DEL CINE
-                $userName = $_SESSION['loggedUser'];
 
                 include VIEWS_PATH.'ticketInformation.php';
         }
 
-        private function sendMail($name, $costPerTicket, $totalCost, $ticketAmount, Show $showData, $qr){
+        private function generateNewTransaction($user,$currentTime,$costPerTicket,$ticketAmount){
+
+            $transaction = new Transaction($user);
+            $transaction->setDate($currentTime);
+            $transaction->setCostPerTicket($costPerTicket);
+            $transaction->setTicketAmount($ticketAmount);
+        
+            $this->DAOTransaction->p_add_transaction($transaction);
+            
+            $idTransaction = $this->DAOTransaction->call($transaction->getDate(),$transaction->getUser()->getUserName());      
+
+            $transaction->setIdTransaction($idTransaction);
+
+            return $transaction;
+        }
+
+        private function generateTickets($show,$transaction,$ticketAmount,$idShow){
+
+            $tickets = array();
+
+            for($i=0;$i<$ticketAmount;$i++){
+                
+                $qrData = $transaction->getIdTransaction().$idShow.$i.uniqid();
+                
+                $newTicket = new Ticket($show,$transaction);
+                $newTicket->setQRCode($this->generateQR($qrData));            
+                
+                $this->DAOTicket->add($newTicket);
+
+                array_push($tickets,$newTicket);
+            }
+
+            return $tickets;            
+        }
+
+        private function sendMail($name, $costPerTicket, $totalCost, $ticketAmount, Show $showData, $tickets){
             $userName = $_SESSION['loggedUser'];
             $user = $this->DAOUser->getByUserName($userName);            
 
@@ -199,8 +203,15 @@
                 $mail->addReplyTo('info@TheMoviePass.com', 'Information');
             
                 // Attachments
-            // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+                $i = 1;
+                foreach($tickets as $oneTicket){
+                    $attachmentUrl =  $oneTicket->getQRCode();
+                    $tempFile = tempnam(sys_get_temp_dir(), 'QRTicket-'.$i.'-'.$oneTicket->getIdTicket()).'.png';  
+                    file_put_contents($tempFile, file_get_contents($attachmentUrl));
+
+                    $mail->addAttachment($tempFile);         // Add attachments
+                    $i++;
+                }
             
                 // Content
                 $mail->isHTML(true);                                  // Set email format to HTML
@@ -208,13 +219,15 @@
                 $mail->Body    = 'Thank you for your purchase ' .$name. '! <br><br> <h2>Purchase details</h2> <br> 
                 <ul><li>Ticket cost: '.$costPerTicket.'</li><li>Quantity bought: '.$ticketAmount.'</li><li>Total import: '.$totalCost.'</li></ul>
                 <h3>Show details: </h3><br>
-                <ul><li>Cinema: '.$showData->getRoom()->getCinema()->getName().'</li><li>Address: '.$showData->getRoom()->getCinema()->getAddress().'</li><li>Room: '.$showData->getRoom()->getName().'</li><li>Movie: '.$showData->getMovie()->getTitle().'</li><li>Starts: '.$showData->getStart().'</li><li>End: '.$showData->getEnd().'</li></ul><br>'.$qr;
+                <ul><li>Cinema: '.$showData->getRoom()->getCinema()->getName().'</li><li>Address: '.$showData->getRoom()->getCinema()->getAddress().'</li><li>Room: '.$showData->getRoom()->getName().'</li><li>Movie: '.$showData->getMovie()->getTitle().'</li><li>Starts: '.$showData->getStart().'</li><li>End: '.$showData->getEnd().'</li></ul><br>';
                 
                 $mail->AltBody = 'Thank you for your purchase ' .$name. '! Purchase details
                 Ticket cost: '.$costPerTicket.'Quantity bought: '.$ticketAmount.'Total import: '.$totalCost.'
                 Show details: 
-                Cinema: '.$showData->getRoom()->getCinema()->getName().'Address: '.$showData->getRoom()->getCinema()->getAddress(). ' '.$showData->getRoom()->getCinema()->getNumber().'Room: '.$showData->getRoom()->getName().'Movie: '.$showData->getMovie()->getTitle().'Starts: '.$showData->getStart().'End: '.$showData->getEnd().' '.$qr;
-            
+                Cinema: '.$showData->getRoom()->getCinema()->getName().'Address: '.$showData->getRoom()->getCinema()->getAddress(). ' '.$showData->getRoom()->getCinema()->getNumber().'Room: '.$showData->getRoom()->getName().'Movie: '.$showData->getMovie()->getTitle().'Starts: '.$showData->getStart().'End: '.$showData->getEnd();
+                
+
+
                 $mail->send();
             } catch (MailException $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -222,9 +235,9 @@
 
         }
 
-        public function generateQR($text){
+        private function generateQR($text){
             $data = "http://api.qrserver.com/v1/create-qr-code/?data=".$text."&size=250x250";
-            return "<img src= ".$data."  alt='' title='' />";
-            
+            // return "<img src= ".$data."  alt='' title='' />";
+            return $data;            
         }
     }

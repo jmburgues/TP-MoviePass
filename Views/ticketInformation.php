@@ -13,26 +13,27 @@
 </script>
 
 <div class="text-center mt-5 mb-3">
-    <h3 class="text-white text-uppercase">Congratulations <?php echo $userName ?>!</h3>
+    <h3 class="text-white">Congratulations on your purchase <?php echo $user->getUserName(); ?>!</h3>
+    <h6 class="text-white">Your tickets have been sent to <?=$user->getEmail();?></h6>
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>index.php'"> Go Home </button> 
 </div>  
-<?php       
-        if (isset($currentTransaction)) {           
-                ?>
-                <h3 class="text-white text-center">Ticket details:</h3>
+<?php  if(!empty($transaction) && !empty($tickets)){
+        $i = 1;
+        foreach($tickets as $oneTicket) { ?>
+                <h3 class="text-white text-center">Ticket <?=$i?>/<?=$ticketAmount?>:</h3>
             <div class="container  mt-5 mb-5" id="seleccion">       
                 <div class="card card-body  border-dark ">
                     <ul>
-                    <li><strong>Name:  </strong><?php echo $currentTransaction->getUser()->getUserName() ?></li>
-                        <li><strong>Date purchase:  </strong><?php echo $currentTransaction->getDate() ?></li>
-                        <li><strong>Tickets amount:  </strong><?php echo $currentTransaction->getTicketAmount() ?></li>
-                        <li><strong>Cost per ticket:  </strong><?php echo $currentTransaction->getCostPerTicket() ?></li>
-                        <li><strong>Total Cost:  </strong><?php echo $currentTransaction->getCostPerTicket() * $currentTransaction->getTicketAmount() ?></li>
-                        <li><strong>Qr:  </strong></li>
-                        <li class="liStyleNone aDropCards"><?php echo $currentQr ?></li>
+                    <li><strong>USER:  </strong><?php echo $transaction->getUser()->getUserName() ?></li>
+                        <li><strong>SHOW:  </strong>Title: <?=$oneTicket->getShow()->getMovie()->getTitle();?>, date: <?=$oneTicket->getShow()->getDate()?> at <?=$oneTicket->getShow()->getStart()?> hours.</li>
+                        <li><strong>QR CODE:  </strong></li>
+                        <li class="liStyleNone aDropCards"><img src="<?php echo $oneTicket->getQRCode()?>"/></li>
                         <a href="javascript:imprSelec('seleccion')" >Print</a>
                     </ul>   
                 </div>  
             </div>
             <?php
+            $i++;
         }
+    }
+    ?>
