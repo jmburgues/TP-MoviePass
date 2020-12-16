@@ -154,6 +154,17 @@
             return $this->toArray($this->parseToObject($resultSet));
         }
 
+        public function getTicketsByTransaction($idTransaction){
+            $query = "SELECT ". $this->tableNameTicket .".* FROM ". $this->tableNameTicket ." INNER JOIN ". 
+            $this->tableNameTransaction . " ON ". $this->tableNameTicket .".idTransaction =  ". $this->tableNameTransaction .".idTransaction WHERE ".$this->tableNameTransaction.".idTransaction = :idTransaction;";
+        
+            $parameters['idTransaction'] = $idTransaction;
+
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query,$parameters);
+            
+            return $this->toArray($this->parseToObject($resultSet));
+        }
 
         public function parseToObject($value) {
             $value = is_array($value) ? $value : [];

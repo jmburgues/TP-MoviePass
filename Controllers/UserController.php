@@ -5,6 +5,7 @@
     use DB\PDO\DAOGenre as DAOGenre;
     use DB\PDO\DAOMovie as DAOMovie;
     use DB\PDO\DAOShow as DAOShow;
+    use DB\PDO\DAOTicket as DAOTicket;
     use DB\PDO\DAOTransaction as DAOTransaction;
     use PDOException;
 
@@ -22,6 +23,7 @@
         private $DAOGenre;
         private $DAOMovie;
         private $DAOShow;
+        private $DAOTicket;
         private $DAOTransaction;
 
         public function __construct()
@@ -30,6 +32,7 @@
             $this->DAOGenre = new DAOGenre();
             $this->DAOMovie = new DAOMovie();
             $this->DAOShow = new DAOShow();
+            $this->DAOTicket = new DAOTicket();
             $this->DAOTransaction = new DAOTransaction();
         }
         
@@ -75,6 +78,10 @@
                     $userName = $_SESSION['loggedUser'];
                     $user = $this->DAOUser->getByUserName($userName);
                     $transaction = $this->DAOTransaction->getTransactionsByUser($user);
+                    $ticketsPerTT = array();
+                    foreach($transaction as $oneTransaction){
+                        $ticketsPerTT[$oneTransaction->getIdTransaction()] = $this->DAOTicket->getTicketsByTransaction($oneTransaction->getIdTransaction());
+                    }
                     include VIEWS_PATH.'userView.php';
                 } 
 

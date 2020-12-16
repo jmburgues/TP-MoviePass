@@ -70,11 +70,11 @@
 
     //Retorna la tabla de usuarios, transacciones y tickets según el nmbre de un usuario.
     public function getTransactionsByUser($user){
-        $query = "SELECT * FROM ".$this->tableNameUsers ." INNER JOIN ". $this->tableNameTransactions ." ON ". $this->tableNameUsers .".username = ". $this->tableNameTransactions .".username INNER JOIN ". $this->tableNameTickets ." ON ". $this->tableNameTransactions .".idTransaction = ". $this->tableNameTickets .".idTransaction WHERE " .$this->tableNameUsers .".username = :name GROUP BY " . $this->tableNameTransactions .".idTransaction;";
+        $query = "SELECT * FROM ".$this->tableNameUsers ." INNER JOIN ". $this->tableNameTransactions ." ON ". $this->tableNameUsers .".username = ". $this->tableNameTransactions .".username INNER JOIN ". $this->tableNameTickets ." ON ". $this->tableNameTransactions .".idTransaction = ". $this->tableNameTickets .".idTransaction WHERE " .$this->tableNameUsers .".username = :name GROUP BY " . $this->tableNameTransactions .".idTransaction ORDER BY ".$this->tableNameTransactions.".transacctionDate DESC;";
         $parameters['name'] = $user->getUserName();
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query, $parameters);
-        return $resultSet;
+        return $this->parseToObject($resultSet);
     } 
     
     public function getById($id){

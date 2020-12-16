@@ -21,19 +21,48 @@
        <?php
         if (isset($transaction)) {?>
             <h3 class="text-white text-center">Shopping history:</h3> <?php
-            foreach ($transaction as $t => $value) {
+            foreach ($transaction as $oneTransaction) {
                 ?>
             <div class="container  mt-5 mb-5" id="seleccion">       
                 <div class="card card-body  border-dark ">
                     <ul>
-                        <li><strong>Name:  </strong><?php echo $value['username'] ?></li>
-                        <li><strong>Date purchase:  </strong><?php echo $value['transacctionDate'] ?></li>
-                        <li><strong>Tickets amount:  </strong><?php echo $value['ticketAmount'] ?></li>
-                        <li><strong>Cost per ticket:  </strong><?php echo $value['costPerTicket'] ?></li>
-                        <li><strong>Total Cost:  </strong><?php echo $value['costPerTicket'] * $value['ticketAmount'] ?></li>
+                        <li><strong>Name:  </strong><?php echo $oneTransaction->getUser()->getUserName()?></li>
+                        <li><strong>Date purchase:  </strong><?php echo $oneTransaction->getDate() ?></li>
+                        <li><strong>Tickets amount:  </strong><?php echo $oneTransaction->getTicketAmount() ?></li>
+                        <li><strong>Cost per ticket:  </strong><?php echo $oneTransaction->getCostPerTicket() ?></li>
+                        <li><strong>Total Cost:  </strong><?php echo $oneTransaction->getCostPerTicket() * $oneTransaction->getTicketAmount() ?></li>
                         <li><strong>Qr:  </strong></li>
-                        <li class="liStyleNone aDropCards"><?php echo $value['qrCode'] ?></li>
-                        <a href="javascript:imprSelec('seleccion')" >Print</a>
+                        <?php $i = 1;
+                        
+                        $tickets = $ticketsPerTT[$oneTransaction->getIdTransaction()];   
+
+                        foreach($tickets as $oneTT){ ?>
+                            
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-<?=$oneTT->getIdTicket()?>">
+                              Ticket <?=$i?>
+                            </button>
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal-<?=$oneTT->getIdTicket()?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">QR Code:</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                
+                                   <img src="<?=$oneTT->getQRCode()?>">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        <? $i++;
+                             } ?>
+
                     </ul>   
                 </div>  
             </div>
