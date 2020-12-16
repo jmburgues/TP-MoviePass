@@ -56,7 +56,7 @@
 
     //SELECT * FROM MOVIES
     public function getAll(){
-      $query = "SELECT * FROM ".$this->tableNameMovies;
+      $query = "SELECT * FROM ".$this->tableNameMovies." ORDER BY title ASC";
       $this->connection = Connection::GetInstance();
       $resultSet = $this->connection->Execute($query);
       

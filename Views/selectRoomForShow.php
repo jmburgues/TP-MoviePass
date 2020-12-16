@@ -72,7 +72,7 @@
         
         <?php foreach ($cinemas as $oneCinema){ ?>
         <tr>
-            <td style="text-align:center" ><?php echo $oneCinema->getName()?></td>
+            <td style="text-align:center" ><?php echo $oneCinema->getName()."<br><i>(".$oneCinema->getOpenning()." - ".$oneCinema->getClosing()." hrs)</i>"?></td>
             <td style="text-align:center">
                 <?php $cinemaFlag = false;
             if(!empty($rooms)){

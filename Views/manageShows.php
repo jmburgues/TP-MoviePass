@@ -29,14 +29,14 @@
 <div class="container">
   <div class="center">
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-1" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView/'"> Go Back </button>   
-    <button class="btn btn-primary bg-danger text-black mt-1" type="button" data-toggle="collapse" data-target="#newShow" aria-expanded="false" aria-controls="collapseExample">Add new show</button>
+    <button class="btn btn-primary bg-danger text-black mt-1" type="button" data-toggle="collapse" data-target="#newShow" aria-expanded="false" aria-controls="collapse">Add new show</button>
   </div>
 </div>
 
 <!-- New Show collapse -->
 
 <div class="collapse" id="newShow">
-    <div class="text-center mt-2 mb-2">
+    <div class="text-center mt-2 mb-1">
         <h4 class="text-white">Add new Show:</h3>
     </div>
     <div class="container mt-5"  >   
@@ -55,12 +55,16 @@
                 <button type="submit" class="btn btn-secondary bg-danger text-black col-2 mt-2" style="margin-left:80%"  >Send</button>
             </form>  
         </div>
-    </div>
-
+   </div>
+   <p class="text-center mt-5 mb-3">
+  <br><br>
+</p>
 </div>
 
-<!-- Table with aviable Cinema and Rooms -->
 
+
+<!-- Table with aviable Cinema and Rooms -->
+<div>
 <table class="table table-dark" style="width: 100%">
     <colgroup>
        <col span="1" style="width: 15%;">
@@ -88,7 +92,7 @@
                     $value++;
                 }
             } ?>
-            <td style="text-align:center;" rowspan="<?php echo $value?>"><?php echo $oneCinema->getName()?></td>
+            <td style="text-align:center;" rowspan="<?php echo $value?>"><?php echo $oneCinema->getName()."<br><i>(".$oneCinema->getOpenning()." - ".$oneCinema->getClosing()." hrs)</i>";?></td>
             <td hidden></td>              
             <td hidden></td>
         </tr>
@@ -158,3 +162,4 @@
     </tbody>
 
 </table>
+    </div>

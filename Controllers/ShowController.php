@@ -71,38 +71,38 @@
           $startAux = new DateTime ($start);
           $endAux = new DateTime ($end);
 
-          $flag = 0; 
+          // $flag = 0; 
           
-          $lookingForShows = $this->DAOShow->getActiveShows();
+          // $lookingForShows = $this->DAOShow->getActiveShows();
 
-          /*
-          **  ESTO ESTA MAL, CAMBIAR EL FOREACH POR UN QUERY AL PDO.
-          */
+          // /*
+          // **  ESTO ESTA MAL, CAMBIAR EL FOREACH POR UN QUERY AL PDO.
+          // */
 
-          foreach ($lookingForShows as $show) {
-              if ($newShow->getDate() == $show->getDate()) {
-                  if ($show->getRoom()->getId() == $roomId) {
-                      $extremoInferior = new DateTime($show->getDate().' '.$show->getStart());
-                      if ($startAux->format('Y-m-d') == $endAux->format('Y-m-d')){
-                        $extremoSuperior = new DateTime($show->getDate().' '.$show->getEnd());
-                      }else{
-                        $extremoSuperior = new DateTime($endAux->format('Y-m-d').' '.$show->getEnd());
-                      }
-                      $inicio = new DateTime($start);
-                      $fin = new DateTime($end);
-                      if (!($inicio>=$extremoSuperior) && !($fin<=$extremoInferior)) {
-                          $flag = 1;
-                      }
-                  }
-              }
-          }    
-              if ($flag != 1) {
+          // foreach ($lookingForShows as $show) {
+          //     if ($newShow->getDate() == $show->getDate()) {
+          //         if ($show->getRoom()->getId() == $roomId) {
+          //             $extremoInferior = new DateTime($show->getDate().' '.$show->getStart());
+          //             if ($startAux->format('Y-m-d') == $endAux->format('Y-m-d')){
+          //               $extremoSuperior = new DateTime($show->getDate().' '.$show->getEnd());
+          //             }else{
+          //               $extremoSuperior = new DateTime($endAux->format('Y-m-d').' '.$show->getEnd());
+          //             }
+          //             $inicio = new DateTime($start);
+          //             $fin = new DateTime($end);
+          //             if (!($inicio>=$extremoSuperior) && !($fin<=$extremoInferior)) {
+          //                 $flag = 1;
+          //             }
+          //         }
+          //     }
+          // }    
+          //     if ($flag != 1) {
                   $this->DAOShow->add($newShow);
-              } else {
-                  $message = "Horario ocupado";
-              }        
+              // } else {
+              //     $message = "Horario ocupado";
+              // }        
           // $shows=$this->DAOShow->getAll();
-          ViewController::navView($genreList=null,$moviesYearList=null,null,null);
+          // ViewController::navView($genreList=null,$moviesYearList=null,null,null);
           $this->manageShows();
 
         } 
@@ -144,8 +144,8 @@
 
             //traigo las salas activas de los cinemas abiertos a la hora de inicio de la pelicula      
           $message = null;
-         $rooms = $this->DAORoom->getActiveRooms();
-          // $rooms = $this->getOpenRooms($this->DAOCinema->getOpenCinemas($start));
+         //$rooms = $this->DAORoom->getActiveRooms();
+          $rooms = $this->getOpenRooms($this->DAOCinema->getOpenCinemas($start));
 
           if($rooms){
             //valido que exista una franja horaria disponible para proyectar la pelicula
@@ -243,7 +243,7 @@
                   $extremoSuperior = new DateTime($endAux->format('Y-m-d').' '.$show->getEnd());
                 }
                 if (!($startAux>=$extremoSuperior) && !($endAux<=$extremoInferior)) {
-                  $msg = 'Horario ocupado';
+                  $msg = 'Schedule is full';
                 }
               }
             }
@@ -332,31 +332,6 @@
 
       return $rooms;
     }
-
-    private function sameDayRestriction($rooms,$date,$movieId){
-      /*
-      Recibo un dia, hora y pelicula
-      verifico si para ese dia y pelicula existe un show
-      si existe, me traigo la sala del show. Unica sala que se puede agregar
-      si no existe, me traigo todas las salas abiertas a esa hora
-      */
-      $showInSameDate = $this->DAOShow->getByDateAndMovieId($date, $movieId);
-
-      if($showInSameDate){
-        
-        $onlyAviableRoom = array_shift($showInSameDate)->getRoom();
-
-        if(!in_array($onlyAviableRoom,$rooms,true)){
-          $onlyAviableRoom = null;
-        }
-        else{
-          $rooms = $onlyAviableRoom;
-        }
-      }
-
-      return $rooms;
-    }
-
     private function getRoomsWithAviableTime($rooms,$date,$startingHour,$endingHour){    
       $filteredRooms = array();
 
@@ -389,5 +364,28 @@
       return $filteredRooms;
     }
 
+    private function sameDayRestriction($rooms,$date,$movieId){
+      /*
+      Recibo un dia, hora y pelicula
+      verifico si para ese dia y pelicula existe un show
+      si existe, me traigo la sala del show. Unica sala que se puede agregar
+      si no existe, me traigo todas las salas abiertas a esa hora
+      */
+      $showInSameDate = $this->DAOShow->getByDateAndMovieId($date, $movieId);
+
+      if($showInSameDate){ // si existe un show en el mismo dia...
+
+        $onlyAviableRoom = array_shift($showInSameDate)->getRoom();
+
+        if(!in_array($onlyAviableRoom,$rooms)){ // Si la sala de ese show NO esta entre las que quiero mostrar
+          $rooms = null;
+        }
+        else{
+          $rooms = $onlyAviableRoom;
+        }
+      }
+
+      return $rooms;
+    }
   }
 ?>

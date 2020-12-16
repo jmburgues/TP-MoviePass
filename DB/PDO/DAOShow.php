@@ -197,7 +197,9 @@
     }
 
     public function getShowsInTimeLapse($roomId,$date,$startingHour,$endingHour){
-        $query = "SELECT ". $this->tableNameShows .".* FROM ". $this->tableNameShows ." WHERE idRoom = :roomId AND dateSelected = :date AND endsAt >= :startingHour AND startsAt <= :endingHour;";
+        
+        $query = "SELECT ". $this->tableNameShows .".* FROM ". $this->tableNameShows ." WHERE idRoom = :roomId AND dateSelected = :date AND endsAt >= :startingHour AND startsAt <= :endingHour AND isActive = :isActive;";
+        $parameters['isActive'] = true;
         $parameters['roomId'] = $roomId;
         $parameters['date'] = $date;
         $parameters['startingHour'] = $startingHour;
