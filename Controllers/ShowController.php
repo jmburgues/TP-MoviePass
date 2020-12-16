@@ -252,7 +252,7 @@
           $aux = $this->DAOShow->getByDateAndMovieId($date, $idMovie);
           if ($aux != null){
             if (($aux[0]->getRoom()->getId() != $idRoom) && ($aux[0]->getIdShow() != $idShow)){
-              $msg = 'Esa pelicula se esta trasmitiendo en otra sala o cine este dia';
+              $msg = 'Same day restricction.';
             }
           }
             
@@ -345,29 +345,37 @@
       if($showInSameDate){
         
         $onlyAviableRoom = array_shift($showInSameDate)->getRoom();
-        if(!in_array($onlyAviableRoom,$rooms)){
-          $rooms = null;
+
+        if(!in_array($onlyAviableRoom,$rooms,true)){
+          $onlyAviableRoom = null;
+        }
+        else{
+          $rooms = $onlyAviableRoom;
         }
       }
 
       return $rooms;
     }
 
-    private function getRoomsWithAviableTime($rooms,$date,$startingHour,$endingHour){
-      
-      
+    private function getRoomsWithAviableTime($rooms,$date,$startingHour,$endingHour){    
       $filteredRooms = array();
+
+      // agrego dia y segundos al horario (para igualar formato al de la base de datos)
       $startingHour = $date . " " .$startingHour.":00";
       $endingHour = $date." ".$endingHour.":00";
-
+    
+      // convierto a formato DateTime 
       $endDateTime = new DateTime($endingHour);
       $startDateTime = new DateTime($startingHour);
-
-      
+    
+      // si la hora fin es menor a hora inicio, agrego un dia a la fecha fin.
       if($endDateTime < $startDateTime){ // condicion nuevo dia
         $endDateTime->add(new DateInterval('P1D'));
       }
-      
+    
+      // agrego 15 minutos a hora final, resto 15 min a inicio (para cumplir restriccion de 15 mins entre funciones)
+      $startDateTime->sub(new DateInterval('PT' . 15 . 'M'));
+      $endDateTime->add(new DateInterval('PT' . 15 . 'M'));
 
       $endDateTime = $endDateTime->format('Y-m-d H:i:s');
       $startDateTime = $startDateTime->format('Y-m-d H:i:s');
@@ -377,9 +385,7 @@
           array_push($filteredRooms,$oneRoom);
         }
       }
-
-      var_dump($startDateTime,$endDateTime);
-      
+     
       return $filteredRooms;
     }
 
