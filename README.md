@@ -1,5 +1,4 @@
 # TP-MoviePass
-Trabajo Práctico Final para las materias Metodologia de la Investigación y Laboratorio IV (UTN MdP)
 
 Trabajo práctico integrador
 Metodología de Sistemas I y Laboratorio IV, año 2020
