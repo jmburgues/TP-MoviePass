@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>Views/css/adminStyle.css">
 <div style="margin-top:10px;">
     <hr class=" mt-2 mb-4 bg-danger text-dark">
     <h3 class="text-center" style="color:white;" >Product Owner's Tools:<h3>
