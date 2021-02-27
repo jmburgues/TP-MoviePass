@@ -3,7 +3,7 @@
 /* PATH CONSTANTS */
 
 define("ROOT", dirname(__DIR__) . "/"); 
-define("FRONT_ROOT", "/TP-MoviePass/");
+define("FRONT_ROOT", "/");
 define("VIEWS_PATH", ROOT."Views/");
 define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "css/");
 define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js/");
