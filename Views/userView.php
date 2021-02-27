@@ -39,6 +39,9 @@ if(isset($transaction)) { ?>
                 
                 $tickets = $ticketsPerTT[$oneTransaction->getIdTransaction()];   
 
+                if(!is_array($tickets)){
+                  $ticket = array($tickets);
+                }
                 foreach($tickets as $oneTT){ ?>
                     
                     <!-- Button trigger modal -->
