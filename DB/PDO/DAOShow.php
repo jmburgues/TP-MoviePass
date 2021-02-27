@@ -181,7 +181,7 @@
 
     //Retorna los shows en donde se esté dando la película y las salas con al menos 1 espacio disponible
     public function getShowFromMovieRoom($idMovie){
-            $query = "SELECT ". $this->tableNameShows .".* FROM ". $this->tableNameShows ." INNER JOIN " . $this->tableNameRooms ." ON " . $this->tableNameShows .".idRoom = ".$this->tableNameRooms .".idRoom WHERE " . $this->tableNameShows . ".idMovie = :idMovie AND " . $this->tableNameShows .".isActive = 1 AND " . $this->tableNameShows .".spectators < .". $this->tableNameRooms .".capacity;";
+            $query = "SELECT ". $this->tableNameShows .".* FROM ". $this->tableNameShows ." INNER JOIN " . $this->tableNameRooms ." ON " . $this->tableNameShows .".idRoom = ".$this->tableNameRooms .".idRoom WHERE " . $this->tableNameShows . ".idMovie = :idMovie AND " . $this->tableNameShows .".isActive = 1 AND " . $this->tableNameShows .".spectators < ". $this->tableNameRooms .".capacity;";
             $parameters['idMovie'] = $idMovie;
             $this->connection = Connection::GetInstance();
             $resultSet = $this->connection->Execute($query, $parameters);
