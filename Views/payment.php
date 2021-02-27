@@ -1,7 +1,7 @@
 <!-- background -->
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/userStyle.css">
-
-<div class="text-center mt-5 mb-5">
+<br>
+<div class="text-center mt-4 mb-5">
     <h2 class="text-white">Payment:</h2>
 </div>  
 
@@ -20,12 +20,12 @@
             <li><strong>Total cost: $</strong> <?php print_r($totalCost);?><?php ?></li>
         </ul> 
 
-        <div style="height:100px; margin-top:-10px">
-        <h4 class="text-center">Credit Card:</h4>
+        <div style="height:100px;" class="mt-4"><hr>
+        <h4 class="text-center"><strong>Credit Card:</strong></h4>
 
         <form action="<?php echo FRONT_ROOT ?>Ticket/confirmTicket" method="POST">
        
-        <table style="text-align:center;">
+        <table style="text-align:center;" class="mt-4">
             <tr>
                 <td>
 
@@ -92,7 +92,7 @@
 </table>
 
 <div class="text-center">
-    <input type="submit" class="btn btn-primary bg-danger text-white  mt-2 col-md-3" value="Confirm"></input>
+    <input type="submit" class="btn btn-primary bg-danger text-white  mt-4 col-md-3" value="Confirm"></input>
 </div>
 </form>
       </div>

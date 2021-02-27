@@ -95,11 +95,29 @@ CONSTRAINT fk_idShowTicket foreign key (idShow) references SHOWS(idShow),
 CONSTRAINT fk_idTransaction foreign key (idTransaction) references TRANSACTIONS(idTransaction)
 );
 
+#Adding users
 INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('admin','1234','admin@MoviePass.com','1988-01-01',34322111,'admin');
 INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('owner','1234','owner@MoviePass.com','1987-01-01',33322111,'owner');
+INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('Jaz','1234','briascojazmin@gmail.com','1987-01-01',32322111,'owner');
 INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('Juan','1234','juancito@hotmail.com','1987-01-01',32322111,'user');
 INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('user','1234','user@hotmail.com','1986-01-01',31322111,'user');
 
-INSERT INTO CINEMAS (cinemaName,adress,adressNumber,openning,closing,isActive) VALUES ('Ambassador','Cordoba',2400,18:00:00,03:00:00,true);
-INSERT INTO CINEMAS (cinemaName,adress,adressNumber,openning,closing,isActive) VALUES ('Cine Del Paseo','Diagonal Pueyrredon',3058,13:00:00,24:00:00,true);
+#Adding cinemas
+INSERT INTO CINEMAS(cinemaName, adress, adressNumber, openning, closing, isActive) VALUES ('Ambassador','Cordoba',2400, 18-00-00,03-00-00,true);
+INSERT INTO CINEMAS(cinemaName, adress, adressNumber, openning, closing, isActive) VALUES ('Cine Del Paseo','Diagonal Pueyrredon',3058,13-00-00,24-00-00,true);
+
+#Adding rooms
+INSERT INTO ROOMS(roomName, capacity, idCinema, price, isActive, roomType) VALUES('A', 100, 1, 200, 1, '3D');
+INSERT INTO ROOMS(roomName, capacity, idCinema, price, isActive) VALUES('B', 200, 1, 180, 1);
+INSERT INTO ROOMS(roomName, capacity, idCinema, price, isActive) VALUES('C', 150, 2, 150, 1);
+INSERT INTO ROOMS(roomName, capacity, idCinema, price, isActive, roomType) VALUES('D', 80, 2, 100, 1, '3D');
+INSERT INTO ROOMS(roomName, capacity, idCinema, price, isActive, roomType) VALUES('E', 120, 2, 130, 1, '4D');
+
+#Adding shows
+INSERT INTO SHOWS(dateSelected, startsAt, endsAt, spectators, idRoom, idMovie, isActive) VALUES ('2021-03-01 00:00:00', '2021-04-01 15:00:00', '2021-04-01 17:14:00', '0', '1', '694', '1');
+INSERT INTO SHOWS(dateSelected, startsAt, endsAt, spectators, idRoom, idMovie, isActive) VALUES ('2021-03-01 00:00:00', '2021-04-10 16:00:00', '2021-04-11 18:10:00', '0', '2', '496243', '1');
+INSERT INTO SHOWS(dateSelected, startsAt, endsAt, spectators, idRoom, idMovie, isActive) VALUES ('2021-03-01 00:00:00', '2021-04-15 17:00:00', '2021-04-15 19:30:00', '0', '3', '613504', '1');
+INSERT INTO SHOWS(dateSelected, startsAt, endsAt, spectators, idRoom, idMovie, isActive) VALUES ('2021-03-01 00:00:00', '2021-04-20 13:00:00', '2021-04-20 15:10:00', '0', '4', '667141', '1');
+
+
 

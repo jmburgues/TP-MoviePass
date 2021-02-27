@@ -137,7 +137,6 @@ use PDOException;
                 $nameString = str_replace(' ', '', $name);
                 $movieFromShow = $this->DAOMovie->getMovieFromShowByIdShow($idShow);
                 
-                
                 $this->sendMail($name, $costPerTicket, $totalCost, $ticketAmount, $show,$tickets);
                 //AGREGARLE LA DIRECCION Y LA SALA DEL CINE
 
@@ -180,11 +179,14 @@ use PDOException;
         }
 
         private function sendMail($name, $costPerTicket, $totalCost, $ticketAmount, Show $showData, $tickets){
+            
             $userName = $_SESSION['loggedUser'];
             $user = $this->DAOUser->getByUserName($userName);            
 
             $mail = new PHPMailer(true);
-
+            echo '<pre>';
+            var_dump($mail);
+            echo '</pre>';
             try {
                 //Server settings
                 //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                     // Enable verbose debug output

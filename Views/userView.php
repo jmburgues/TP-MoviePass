@@ -11,10 +11,10 @@
 	  ventimp.close();
 	}
 </script>
-
+<hr><hr>
 <div class="text-center mt-5 mb-3">
     <h3 class="text-white text-uppercase"><?php echo $userName ?>'s profile:</h3>
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>index.php'"> Go Back </button> 
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-4 mb-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>index.php'"> Go Back </button> 
 </div>  
 
 
@@ -23,8 +23,8 @@
             <h3 class="text-white text-center">Shopping history:</h3> <?php
             foreach ($transaction as $oneTransaction) {
                 ?>
-            <div class="container  mt-5 mb-5" id="seleccion">       
-                <div class="card card-body  border-dark ">
+            <div class="container mt-5 mb-5" id="seleccion">       
+                <div class="card card-body border-dark ">
                     <ul>
                         <li><strong>Name:  </strong><?php echo $oneTransaction->getUser()->getUserName()?></li>
                         <li><strong>Date purchase:  </strong><?php echo $oneTransaction->getDate() ?></li>
@@ -72,14 +72,14 @@
         }
     if ($transaction == null){
         ?>
-  
+  <br>
         <div class="container  mt-5 mb-5" id="seleccion">    
             
             <div class="card card-body  border-dark ">
                 <?php echo "No tickets loaded yet"?>  
                 </div>  
-            </div>
-            <img style="height:200px; margin-left:45%;"  src="<?php echo FRONT_ROOT ?>/Views/img/carrito.png">
+            </div>  
+            <img style="height:200px; margin-left:45%;" class="mt-5" src="<?php echo FRONT_ROOT ?>/Views/img/carrito.png">
     <?php
     } 
     ?>

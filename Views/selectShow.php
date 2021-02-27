@@ -1,11 +1,11 @@
 <!-- background -->
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/userStyle.css">
-
-<div class="text-center mt-5 mb-1">
+<br>
+<div class="text-center mt-5 ">
     <h3 class="text-white">Select show:</h3>
 </div>
 
-<div class="container border p-4 col-md-6 form loginCard" style="margin-top:20px;">
+<div class="container border p-4 col-md-6 form loginCard" >
   <div class="mt-1">
     <div class="form-group">
       <label for="idRoom" ><strong>Movie:</strong></label>
@@ -13,7 +13,7 @@
     </div>
     <form  action="<?php echo FRONT_ROOT ?>Ticket/selectAmmount" method="POST"  name="show" id="show" >
       <div class="form-group" >
-        <label ><strong>Show:</strong></label>
+        <label class="mt-4" ><strong>Show:</strong></label>
         <select class="custom-select" name="idShow" id="idShow" >
           <?php 
               foreach ($moviesForShows as $show) {
@@ -29,15 +29,12 @@
                     <?php
                     }  ?>
                     
+
           </select>
         </div>
         <br>
-        <div style="float: right; padding:10px;">
-          <input type="submit" class="btn btn-secondary bg-danger text-black mt-3" <?php echo $moviesForShows!=null ? " " : "disabled" ?>  class=" btn btn-primary bg-danger text-white mt-3 col-md-3" value="Next"></input>
-        </div>
+          <input type="submit" class="btn btn-secondary bg-danger text-black mt-3 col-md-3 float-right" <?php echo $moviesForShows!=null ? " " : "disabled" ?>  class=" btn btn-primary bg-danger text-white mt-3 col-md-3" value="Next"></input>
     </form>
-    <div style="float: left; padding:10px;">
-        <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>index.php'"> Previous </button> 
-    </div>
+        <button type="submit" class="btn btn-secondary bg-danger text-black mt-3 col-md-3 " value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>index.php'"> Previous </button> 
   </div>
 </div>

@@ -64,10 +64,10 @@
         <p style=text-align:justify;>
         <?php
             if ($movies[$i]->getDescription()) {
-                if (strlen($movies[$i]->getDescription()) < 150) {
+                if (strlen($movies[$i]->getDescription()) < 100) {
                     echo $movies[$i]->getDescription();
                 } else {
-                    echo substr($movies[$i]->getDescription(), 0, 150);
+                    echo substr($movies[$i]->getDescription(), 0, 100);
                     echo "...";
                 }
             } else {
@@ -75,7 +75,7 @@
             } ?>
         </p>
       </div> 
-      <?php if ($movies[$i]->getDescription() && strlen($movies[$i]->getDescription()) >= 150) {?>
+      <?php if ($movies[$i]->getDescription() && strlen($movies[$i]->getDescription()) >= 100) {?>
         <div class="dropdown show"  >
           <a class="btn dropdown-toggle card-text aDropCards" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <small class="text-muted" >Read more</small>
@@ -93,14 +93,14 @@
   <?php if ($movies != null) { ?>
   <div class ="marginTop100" >
   <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center mt-3">
-      <li class="page-item <?php echo $page <= 1 ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Home/Index/<?php echo $page-1 ?>">Previous</a></li>
+    <ul class="pagination justify-content-center mt-3 ">
+      <li class="page-item border-0 <?php echo $page <= 1 ? "disabled" : "" ?>"><a class="page-link text-dark btn btn-danger " href="<?php echo FRONT_ROOT?>Home/Index/<?php echo $page-1 ?>">Previous</a></li>
       
       <?php for($i=0; $i<$pages; $i++) {?>
-        <li class="page-item <?php echo $page == $i+1 ? "active" : ""?>"><a class="page-link"  href="<?php echo  FRONT_ROOT?>Home/Index/<?php echo $i+1?>"> <?php echo $i+1?></a></li>
+        <li class="page-item border-0 <?php echo $page == $i+1 ? "active" : ""?>"><a style="background-color: <?php echo $page == $i+1 ? "red" : ""?>" class="page-link text-dark btn btn-danger" href="<?php echo  FRONT_ROOT?>Home/Index/<?php echo $i+1?>"> <?php echo $i+1?></a></li>
       <?php }?>
 
-      <li class="page-item <?php echo $page >= $pages ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Home/Index/<?php echo $page+1 ?>">Next</a></li>
+      <li class="page-item border-0 <?php echo $page >= $pages ? "disabled " : "" ?>"><a class="page-link text-dark btn btn-danger" href="<?php echo FRONT_ROOT?>Home/Index/<?php echo $page+1 ?>">Next</a></li>
     </ul>
   </nav>
 

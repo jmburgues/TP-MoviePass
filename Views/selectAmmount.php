@@ -1,10 +1,10 @@
 <!-- background -->
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/userStyle.css">
-
-<div class="text-center mt-5 mb-3">
+<br>
+<div class="text-center mt-5 mb-5">
     <h3 class="text-white">Tickets & Payment:</h3>
 </div>  
-<div class="container border p-4 col-md-6 form loginCard" style="margin-top: 20px;" >
+<div class="container border p-4 col-md-6 form loginCard mt-3" >
     <div class="mt-3">
         <form  action="<?php echo FRONT_ROOT ?>Ticket/payment" method="POST">
             <input type="hidden" class="form-control" name="show" value=<?php echo $idShow?> >
@@ -20,7 +20,7 @@
             type="number" min = "<?php echo $min ?>" max ="<?php echo $max ?>" class="form-control"  placeholder="<?=$max?> tickets aviable" name="tickets" required>
             </div>
             
-            <label for="ticket" class="mt-2" ><strong>Select a payment method</strong></label>
+            <label for="ticket" class="mt-3" ><strong>Select a payment method</strong></label>
             <div class="custom-control custom-radio mt-1">
                         <input type="radio" value="Visa" id="customRadio1" name="customRadio" class="custom-control-input" required>
                         <img id= "imgCardType" src="<?php echo FRONT_ROOT ?>/Views/img/visa.png">
@@ -36,11 +36,7 @@
                         <img id= "imgCardType" src="<?php echo FRONT_ROOT ?>/Views/img/american.svg">
                         <label class="custom-control-label  mt-4" for="customRadio3">American Express</label>
                     </div>
-                    
-        <div style="float: right; padding:10px;">
-            <input type="submit" class="btn btn-primary bg-danger text-white mt-3" value="Next"></input>
-        </div>
+
+            <input type="submit" class="btn btn-primary bg-danger text-white mt-5 col-md-3  col-2  float-right" value="Next"></input>
         </form>
-        <div style="float: left; padding:10px;">
-        <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="history.back(-1)"> Previous </button> 
-    </div>
+        <button type="submit" class="btn btn-secondary bg-danger text-black mt-5 col-md-3" value="back" onclick="history.back(-1)"> Previous </button> 
