@@ -5,7 +5,7 @@
     <h3 class="text-white">Welcome new user!</h3>
 </div>  
 
-<div class="container border p-4 col-md-4 form loginCard" style="margin-top:0px;>
+<div class="container border p-4 col-md-4 form loginCard" style="margin-top:0px;">
   <div class="abs-center">
     <form action="<?php echo FRONT_ROOT;?>User/frontRegister" method=POST>
       <div class="form-group">
