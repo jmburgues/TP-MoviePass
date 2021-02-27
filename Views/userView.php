@@ -21,9 +21,6 @@
 if(isset($transaction)) { ?>
     <h3 class="text-white text-center">Shopping history:</h3> 
     <?php
-    if(!is_array($transaction)){
-      $transaction = array($transaction);
-    }
       foreach ($transaction as $oneTransaction) {
     ?>
     <div class="container  mt-5 mb-5" id="seleccion">       

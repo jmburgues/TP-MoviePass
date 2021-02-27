@@ -79,9 +79,12 @@
                     $user = $this->DAOUser->getByUserName($userName);
                     $transaction = $this->DAOTransaction->getTransactionsByUser($user);
                     $ticketsPerTT = array();
+                    if(!is_array($transaction)){
+                        $transaction = array($transaction);
+                    }
                     foreach($transaction as $oneTransaction){
                         $ticketsPerTT[$oneTransaction->getIdTransaction()] = $this->DAOTicket->getTicketsByTransaction($oneTransaction->getIdTransaction());
-                    }
+                    }   
                     include VIEWS_PATH.'userView.php';
                 } 
 
