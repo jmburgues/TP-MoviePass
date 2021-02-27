@@ -233,7 +233,7 @@
                 $mail->AltBody = 'Congratulations on joining Movie Pass ' . $name . '!'; 
                 $mail->send();
             } catch (Exception $e) {
-                $arrayOfErrors [] = $ex->getMessage();
+                $arrayOfErrors [] = $e->getMessage();
                 $arrayOfErrors [] = $mail->ErrorInfo;
                 ViewController::errorView($arrayOfErrors);
             }
