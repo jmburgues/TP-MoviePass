@@ -1,6 +1,6 @@
 <div class = "backgroundBlack">
 <div style="text-align:center">
-    <img width="700" height="700" id="notFoundImageCard" src="IMG_NOMOVIEIMG">
+    <img width="700" height="700" id="notFoundImageCard" src="<?=IMG_NOMOVIEIMG?>">
     <pre style="font-size:40px">Ooops!! Something went wrong...</pre>
     <pre style="font-size:20px"><pre>
     <?php if(is_array($arrayOfErrors)) { 

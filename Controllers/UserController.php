@@ -82,9 +82,6 @@
                     foreach($transaction as $oneTransaction){
                         $ticketsPerTT[$oneTransaction->getIdTransaction()] = $this->DAOTicket->getTicketsByTransaction($oneTransaction->getIdTransaction());
                     }
-                    echo "<pre>";
-                    var_dump($transaction);
-                    echo "</pre>";
                     include VIEWS_PATH.'userView.php';
                 } 
 

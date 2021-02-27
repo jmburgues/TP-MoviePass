@@ -18,10 +18,14 @@
 </div>  
 
 <?php
-if (isset($transaction)) {?>
-    <h3 class="text-white text-center">Shopping history:</h3> <?php
-    foreach ($transaction as $oneTransaction) {
-        ?>
+if(isset($transaction)) { ?>
+    <h3 class="text-white text-center">Shopping history:</h3> 
+    <?php
+    if(!isarray($transaction)){
+      $transaction = array($transaction);
+    }
+      foreach ($transaction as $oneTransaction) {
+    ?>
     <div class="container  mt-5 mb-5" id="seleccion">       
         <div class="card card-body  border-dark ">
             <ul>
@@ -74,8 +78,8 @@ if ($transaction == null){
 
 <div class="container  mt-5 mb-5" id="seleccion">       
     <div class="card card-body  border-dark ">
-      <?php echo "No tickets loaded yet";?>  
+      <p><?php echo "No tickets loaded yet";?></p>
     </div>  
 </div>
-<img style="height:200px; margin-left:45%;"  src="<?=IMG_CART?>">
-<?php } ?>
+<img style="height:200px; margin-left:45%;"  src="<?=IMG_CART?>" alt="Empy Cart">
+<?php }  ?>
