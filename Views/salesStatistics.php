@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>Views/css/adminStyle.css">
 
 <div class="text-center mt-5 mb-3">
         <h3 class="text-white">Sale statistics:</h3>

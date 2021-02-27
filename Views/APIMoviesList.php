@@ -28,7 +28,7 @@
 </style>
 
 <!-- background -->
-<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>Views/css/adminStyle.css">
 
 
 <!-- Page Title -->

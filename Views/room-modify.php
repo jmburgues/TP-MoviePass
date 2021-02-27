@@ -17,7 +17,7 @@
 <?php  if(!empty($message)) echo "<script type='text/javascript'>alert('$message');</script>";?>
 
 <!-- background -->
-<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>Views/css/adminStyle.css">
 
 <!-- Page Title -->
 <div style="margin-top:10px;">

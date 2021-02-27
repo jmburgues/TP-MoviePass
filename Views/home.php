@@ -1,5 +1,5 @@
 <!-- background -->
-<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/userStyle.css">
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>Views/css/userStyle.css">
 
   <?php
     $total = count($movies);

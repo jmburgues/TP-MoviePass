@@ -1,5 +1,5 @@
 <!-- background -->
-<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/userStyle.css">
+<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>Views/css/userStyle.css">
 
 <div class="text-center mt-5 mb-3">
     <h3 class="text-white">Tickets & Payment:</h3>
