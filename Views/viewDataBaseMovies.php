@@ -54,7 +54,7 @@
 
 <?php
   if($moviesBDD[$i]->getPoster() == null){
-        ?><img id="notFoundImageCardDB" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+        ?><img id="notFoundImageCardDB" src="<?=IMG_NOMOVIEIMG?>">
       <?php
       }else{
         ?>

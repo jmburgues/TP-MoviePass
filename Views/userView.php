@@ -79,7 +79,7 @@
                 <?php echo "No tickets loaded yet"?>  
                 </div>  
             </div>
-            <img style="height:200px; margin-left:45%;"  src="<?php echo FRONT_ROOT ?>/Views/img/carrito.png">
+            <img style="height:200px; margin-left:45%;"  src="<?=IMG_CART?>">
     <?php
     } 
     ?>

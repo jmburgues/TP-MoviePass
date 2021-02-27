@@ -5,7 +5,7 @@
   }?>
 
 <!--Boton HOME-->
-<nav class="navbar navbar-expand-lg p-0 navClass" src="<?php echo FRONT_ROOT ?>/Views/img/nav.png" >
+<nav class="navbar navbar-expand-lg p-0 navClass" src="<?=IMG_NAVBCKG?>" >
 	<ul class="navbar-nav mr-auto  mt-1 mt-lg-0" >
 		<li class="nav-item active" >
 			<strong><a class="nav-link text-white"  href="/TP-MoviePass">Home</a></strong>  

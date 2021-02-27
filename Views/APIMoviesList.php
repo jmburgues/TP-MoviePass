@@ -64,7 +64,7 @@
       <?php
       } 
       if($movies[$i]->getPoster() == null){
-        ?><img style="height:380px; width:300 px;" id="notFoundImageCard" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+        ?><img style="height:380px; width:300 px; mix-blend-mode: multiply;" id="notFoundImageCard" src="IMG_NOMOVIES">
       <?php
       }
       

@@ -13,7 +13,7 @@
   <!--Primer vista al entrar a la página-->
   <!--Jumbotron-->
   <div>
-    <img height="155" width="200" style="display: block; margin-left: auto; margin-right: auto;" src="<?php echo FRONT_ROOT?>/Views/img/MoviePass-noBgW.png">
+    <img height="155" width="200" style="display: block; margin-left: auto; margin-right: auto;" src="<?=IMG_NOBG?>">
   </div>
 
   <div>
@@ -34,7 +34,7 @@
 
 <?php
   if($movies[$i]->getPoster() == null){
-        ?><img id="notFoundImageCard" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+        ?><img id="notFoundImageCard" src="<?=IMG_NOMOVIEIMG?>">
       <?php
       }else{
         ?>
@@ -107,7 +107,7 @@
   <hr class=" mt-4 mb-1 bg-danger text-dark">
   </div >
   <?php }else{
-    ?><img id="noMovieImg" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">   <?php
+    ?><img id="noMovieImg" src="<?=IMG_NOMOVIEIMG?>">   <?php
     ?><p class="text-white text-center font-weight-bold fontWeight">NO LOADED MOVIES YET</p>
     <p class="text-muted text-center"> <?php echo "PLEASE TRY AGAIN LATER"?><p><?php
   } ?>

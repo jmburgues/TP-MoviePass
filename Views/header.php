@@ -6,7 +6,7 @@
 
      <!--CSS-->
      <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>Views/css/style.css">
-     <link rel="icon" href="<?php echo FRONT_ROOT ?>/Views/img/Logo.bmp"/>
+     <link rel="icon" href="<?=IMG_ICONLOGO?>"/>
 
      <!--BOOTSTRAP-->
      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

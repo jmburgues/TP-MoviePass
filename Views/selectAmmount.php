@@ -23,17 +23,17 @@
             <label for="ticket" class="mt-2" ><strong>Select a payment method</strong></label>
             <div class="custom-control custom-radio mt-1">
                         <input type="radio" value="Visa" id="customRadio1" name="customRadio" class="custom-control-input" required>
-                        <img id= "imgCardType" src="<?php echo FRONT_ROOT ?>/Views/img/visa.png">
+                        <img id= "imgCardType" src="<?=IMG_VISA?>">
                         <label class="custom-control-label mt-4" for="customRadio1">Visa</label>
                     </div>
                     <div class="custom-control custom-radio">
                         <input type="radio" value="Master" id="customRadio2" name="customRadio" class="custom-control-input" required>
-                        <img id= "imgCardType" src="<?php echo FRONT_ROOT ?>/Views/img/master.svg">
+                        <img id= "imgCardType" src="<?=IMG_MASTER?>">
                         <label class="custom-control-label  mt-4" for="customRadio2">Mastercard</label>
                     </div>
                     <div class="custom-control custom-radio">
                         <input type="radio" value="American" id="customRadio3" name="customRadio" class="custom-control-input" required>
-                        <img id= "imgCardType" src="<?php echo FRONT_ROOT ?>/Views/img/american.svg">
+                        <img id= "imgCardType" src="<?=IMG_AMERICAN?>">
                         <label class="custom-control-label  mt-4" for="customRadio3">American Express</label>
                     </div>
                     
