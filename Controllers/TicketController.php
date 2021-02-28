@@ -193,7 +193,7 @@ use PDOException;
                 $mail->SMTPAuth   = true;                                    // Enable SMTP authentication
                 $mail->Username   = MAIL_USR.'@'.MAIL_DOMAIN;                // SMTP username
                 $mail->Password   = MAIL_PASS;                               // SMTP password
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;          // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;          // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
                 $mail->Port       = 587;                                     // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
             
                 //Recipients
