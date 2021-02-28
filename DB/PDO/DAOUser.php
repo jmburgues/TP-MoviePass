@@ -63,6 +63,15 @@
       return $this->parseToObject($resultSet);    
     }
 
+    public function getByDni($dni){
+      $query = "SELECT * FROM ".$this->tableName." where dni = :dni";
+      $parameters['dni'] = $dni;
+      $this->connection = Connection::GetInstance();
+      $resultSet = $this->connection->Execute($query,$parameters);
+      
+      return $this->parseToObject($resultSet);    
+    }
+
     public function parseToObject($value) {
 			$value = is_array($value) ? $value : [];
 			$resp = array_map(function($p){

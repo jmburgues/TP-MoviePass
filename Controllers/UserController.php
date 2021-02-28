@@ -175,6 +175,7 @@
                     ViewController::homeView($movies,$page,$title);
                 }
                 else{
+                    ViewController::navView($genreList = null, $moviesYearList = null, null, null);
                     $error = "Username or Email already exists!";
                     include VIEWS_PATH.'register-view.php';
                 }
@@ -208,7 +209,6 @@
         }
 
         private function sendWelcomeEmail($name, $email){
-            echo $email;
             $mail = new PHPMailer(true);
 
             try {
@@ -225,7 +225,7 @@
                 $mail->setFrom(MAIL_USR.'@'.MAIL_DOMAIN, 'Movie Pass');
                 $mail->addAddress($email, $name);     // Add a recipient
                 $mail->addReplyTo('info@TheMoviePass.com', 'Information');
-                echo $email;
+                
                 // Content
                 $mail->isHTML(true);                                  // Set email format to HTML
                 $mail->Subject = 'Welcome to MoviePass!';
@@ -233,10 +233,12 @@
                 $mail->AltBody = 'Congratulations on joining Movie Pass ' . $name . '!'; 
                 $mail->send();
             } catch (Exception $e) {
-                $arrayOfErrors [] = $ex->getMessage();
+                $arrayOfErrors [] = $e->getMessage();
                 $arrayOfErrors [] = $mail->ErrorInfo;
+                ViewController::navView(null,null,null,null);
                 ViewController::errorView($arrayOfErrors);
             }
+            exit;
         }
 
         public function login($userName, $password)
