@@ -94,7 +94,7 @@ if (isset($message)){
     <tr>
         <?php 
         if(empty($cinema)){ ?>
-            <h4 class="text-center" style="color:grey;">no cinemas added</h4>";
+            <h4 class="text-center" style="color:grey;">No cinemas added</h4>";
         <?php }else{?>
         <td>
             <?php foreach($cinema as $oneCinema) { ?>
@@ -118,8 +118,8 @@ if (isset($message)){
                     <div class="modal-body">
                     <ul>
                         <li><strong>Street: </strong><?php echo $oneCinema->getAddress(); echo " ".$oneCinema->getNumber(); ?></li>
-                        <li><strong>Opening hour:  </strong><?php echo $oneCinema->getOpenning(); ?></li>
-                        <li><strong>Closing hour:  </strong><?php echo $oneCinema->getClosing(); ?></li>    
+                        <li><strong>Opening hour:  </strong><?php echo substr($oneCinema->getOpenning(), 0, -3); ?></li>
+                        <li><strong>Closing hour:  </strong><?php echo substr($oneCinema->getClosing(), 0, -3); ?></li>    
                     </ul>
                     </div>
                     

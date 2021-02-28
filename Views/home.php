@@ -109,6 +109,6 @@
   <?php }else{
     ?><img id="noMovieImg" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">   <?php
     ?><p class="text-white text-center font-weight-bold fontWeight">NO LOADED MOVIES YET</p>
-    <p class="text-muted text-center"> <?php echo "PLEASE TRY AGAIN LATER"?><p><?php
+    <p class="text-muted text-center mb-5"> <?php echo "PLEASE TRY AGAIN LATER"?><p><?php
   } ?>
 </div >

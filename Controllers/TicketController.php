@@ -184,9 +184,6 @@ use PDOException;
             $user = $this->DAOUser->getByUserName($userName);            
 
             $mail = new PHPMailer(true);
-            echo '<pre>';
-            var_dump($mail);
-            echo '</pre>';
             try {
                 //Server settings
                 //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                     // Enable verbose debug output

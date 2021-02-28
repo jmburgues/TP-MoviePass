@@ -26,7 +26,7 @@
     <hr class=" mt-4 mb-1 bg-danger text-dark">
 </div>
 <!-- New Show button -->
-<div class="container">
+<div class="container mb-3">
   <div class="center">
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-1" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView/'"> Go Back </button>   
     <button class="btn btn-primary bg-danger text-black mt-1" type="button" data-toggle="collapse" data-target="#newShow" aria-expanded="false" aria-controls="collapse">Add new show</button>
@@ -64,8 +64,8 @@
 
 
 <!-- Table with aviable Cinema and Rooms -->
-<div>
-<table class="table table-dark" style="width: 100%">
+<div class="container-fluid">
+<table class="table table-dark align-self-center">
     <colgroup>
        <col span="1" style="width: 15%;">
        <col span="1" style="width: 15%;">
@@ -81,84 +81,98 @@
 
     <tbody>
 
-    <?php foreach($cinemas as $oneCinema){ ?>
-        <tr> 
-        <!-- TENGO QUE CONTAR LAS ROOMS QUE PERTENECEN AL CINEMA EN EL QUE ESTOY -->
-            
-            <?php
-            $value = 1;
-            foreach ($rooms as $oneRoom){ 
-                if($oneRoom->getCinema()->getId() == $oneCinema->getId()){ 
-                    $value++;
+    <?php 
+        if ($cinemas) {
+            foreach ($cinemas as $oneCinema) { ?>
+            <tr> 
+            <!-- TENGO QUE CONTAR LAS ROOMS QUE PERTENECEN AL CINEMA EN EL QUE ESTOY -->
+                
+                <?php
+                $value = 1;
+                foreach ($rooms as $oneRoom) {
+                    if ($oneRoom->getCinema()->getId() == $oneCinema->getId()) {
+                        $value++;
+                    }
+                } ?>
+                <td style="text-align:center;" rowspan="<?php echo $value?>"><?php echo $oneCinema->getName()."<br><i>(".substr($oneCinema->getOpenning(), 0, -3)." - ".substr($oneCinema->getClosing(), 0, -3)." hrs)</i>";?></td>
+                <td hidden></td>              
+                <td hidden></td>
+            </tr>
+                
+            <?php foreach ($rooms as $oneRoom) {
+                    if ($oneRoom->getCinema()->getId() == $oneCinema->getId()) { ?>
+
+            <tr>
+                <td stye="text-align:center;" scope="row"><?php echo $oneRoom->getName()?></td>
+                                
+                <?php
+                if (empty($shows)) {
+                    echo "<td><p> No active shows </h4></p>";
+                } else {
+                    foreach ($shows as $oneShow) {
+                        if ($oneShow->getRoom()->getId() == $oneRoom->getId()) { ?>
+
+                <td style="display:inline-block">
+                
+                    <!-- BEGINS Table with Show modal buttons -->
+    
+                            <button type="button" data-toggle="modal" data-target="#myModal-<?php echo $oneShow->getIdShow();?>">
+                            <?php echo $oneShow->getDate().": ".$oneShow->getMovie()->getTitle();?>
+                            </button>
+
+                            <!-- The Modal -->
+                            <div class="modal fade" id="myModal-<?php echo $oneShow->getIdShow();?>">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title text-dark"><?php echo "Date: ".$oneShow->getDate();?></h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    
+                                    <!-- Modal body -->
+                                    <div class="modal-body text-dark">
+                                        <ul>
+                                            <li><strong>Starting hour:</strong> <?php echo substr($oneShow->getStart(), 0, -3) ?></li>
+                                            <li><strong>Ending hour:</strong> <?php echo substr($oneShow->getEnd(), 0, -3) ?></li>
+                                            <?php $ticketsSold = $oneShow->getSpectators(); $capacity = $oneShow->getRoom()->getCapacity(); ?>
+                                            <li><strong>Tickets sold:</strong> <?php echo $ticketsSold?> / <?php echo $capacity?> <?php if ($ticketsSold == $capacity) {
+                            echo "<i><b> SOLD OUT!</b></i>";
+                        }?></li>
+                                            <li><strong>Movie:</strong> <?php echo $oneShow->getMovie()->getTitle();?></li>  
+                                        </ul>
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer text-dark"">
+                                        <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/modifyShowView/<?php echo $oneShow->getIdShow()?>'"> Modify </button>
+                                        <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/removeShow/<?php echo $oneShow->getIdShow()?>'"> Delete </button>
+                                    </div>
+                                    
+                                </div>
+                                </div>
+                            </div>    
+                    <!-- END Table with Show modal buttons -->       
+                </td>
+                        <?php }
+                    }
+                } ?>    
+            </tr>
+                <?php }
                 }
-            } ?>
-            <td style="text-align:center;" rowspan="<?php echo $value?>"><?php echo $oneCinema->getName()."<br><i>(".$oneCinema->getOpenning()." - ".$oneCinema->getClosing()." hrs)</i>";?></td>
-            <td hidden></td>              
-            <td hidden></td>
-        </tr>
-            
-        <?php foreach ($rooms as $oneRoom){ 
-                if($oneRoom->getCinema()->getId() == $oneCinema->getId()){ ?>
-
-        <tr>
-            <td stye="text-align:center;" scope="row"><?php echo $oneRoom->getName()?></td>
-                            
-            <?php 
-            if(empty($shows)) {
-                echo "<td><p> No active shows </h4></p>";
             }
-            else{
-                foreach ($shows as $oneShow){
-                    if($oneShow->getRoom()->getId() == $oneRoom->getId()) { ?>
+        }else{
+            ?>
+            <tr> 
+                <td ></td>         
+                <td ></td>                          
+                <td class="text-center mr-5">NO SHOWS ADDED YET</td>              
+            </tr>
+            <?php
+        }
+            ?>
 
-            <td style="display:inline-block">
-            
-                <!-- BEGINS Table with Show modal buttons -->
- 
-                        <button type="button" data-toggle="modal" data-target="#myModal-<?php echo $oneShow->getIdShow();?>">
-                        <?php echo $oneShow->getDate().": ".$oneShow->getMovie()->getTitle();?>
-                        </button>
-
-                        <!-- The Modal -->
-                        <div class="modal fade" id="myModal-<?php echo $oneShow->getIdShow();?>">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                            
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title text-dark"><?php echo "Date: ".$oneShow->getDate();?></h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                
-                                <!-- Modal body -->
-                                <div class="modal-body text-dark"">
-                                    <ul>
-                                        <li><strong>Starting hour:</strong> <?php echo $oneShow->getStart() ?></li>
-                                        <li><strong>Ending hour:</strong> <?php echo $oneShow->getEnd() ?></li>
-                                        <?php $ticketsSold = $oneShow->getSpectators(); $capacity = $oneShow->getRoom()->getCapacity(); ?>
-                                        <li><strong>Tickets sold:</strong> <?php echo $ticketsSold?> / <?php echo $capacity?> <?php if($ticketsSold == $capacity) echo "<i><b> SOLD OUT!</b></i>"?></li>
-                                        <li><strong>Movie:</strong> <?php echo $oneShow->getMovie()->getTitle();?></li>  
-                                    </ul>
-                                </div>
-                                
-                                <!-- Modal footer -->
-                                <div class="modal-footer text-dark"">
-                                    <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/modifyShowView/<?php echo $oneShow->getIdShow()?>'"> Modify </button>
-                                    <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Show/removeShow/<?php echo $oneShow->getIdShow()?>'"> Delete </button>
-                                </div>
-                                
-                            </div>
-                            </div>
-                        </div>    
-                <!-- END Table with Show modal buttons -->       
-            </td>
-                    <?php }
-                        } 
-                    } ?>    
-        </tr>
-            <?php }
-            } 
-        } ?>
     </tbody>
 
 </table>

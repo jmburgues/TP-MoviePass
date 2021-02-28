@@ -112,14 +112,14 @@
 <!-- Pagination -->
 
 <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center mt-3">
-    <li class="page-item <?php echo $page <= 1 ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Movie/listAPIMovies/<?php echo $page-1 ?>">Previous</a></li>
+  <ul class="pagination justify-content-center mt-5">
+    <li class="page-item <?php echo $page <= 1 ? "disabled" : "" ?>"><a class=" mb-5 page-link text-dark btn btn-danger  " href="<?php echo FRONT_ROOT?>Movie/listAPIMovies/<?php echo $page-1 ?>">Previous</a></li>
     
     <?php for($i=0; $i<$pages; $i++) {?>
-      <li class="page-item <?php echo $page == $i+1 ? "active" : ""?>"><a class="page-link"  href="<?php echo  FRONT_ROOT?>Movie/listAPIMovies/<?php echo $i+1?>"> <?php echo $i+1?></a></li>
+      <li class="page-item <?php echo $page == $i+1 ? "active" : ""?>"><a style="background-color: <?php echo $page == $i+1 ? "red" : ""?>"  class="text-dark page-link text-dark btn btn-danger "  href="<?php echo  FRONT_ROOT?>Movie/listAPIMovies/<?php echo $i+1?>"> <?php echo $i+1?></a></li>
     <?php }?>
 
-    <li class="page-item <?php echo $page >= $pages ? "disabled" : "" ?>"><a class="page-link  " href="<?php echo FRONT_ROOT?>Movie/listAPIMovies/<?php echo $page+1 ?>">Next</a></li>
+    <li class="page-item <?php echo $page >= $pages ? "disabled" : "" ?>"><a class="page-link text-dark btn btn-danger  " href="<?php echo FRONT_ROOT?>Movie/listAPIMovies/<?php echo $page+1 ?>">Next</a></li>
   </ul>
 </nav>
 

@@ -73,7 +73,7 @@
                 <div class="col-sm-10">
                     <select name="roomType" id="roomType">
                         <option value="2DMovie">2D Movie</option>
-                        <option value="3DMoovie">3D Movie</option>
+                        <option value="3DMovie">3D Movie</option>
                         <option value="Atmos">ATMOS</option>
                     </select> 
                 </div>

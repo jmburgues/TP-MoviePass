@@ -38,16 +38,16 @@
 
     <form action="<?php echo FRONT_ROOT?>Show/selectRoomForShow" method="POST" class= " mt-5 mb-5">
         <div class= "container">            
-            <div class="card card-body ">
+            <div class="card card-body p-2 ">
                 <input type="hidden"  value="<?php echo $date?>" name="date" ></input>     
                 <input type="hidden"  value="<?php echo $start?>" name="start" ></input>   
-                <button type="submit" value="<?php  echo $movie->getMovieId()?>" name="movieId" class="buttonList"><?php echo $movie->getTitle()?></button>     
+                <button type="submit" value="<?php  echo $movie->getMovieId()?>" name="movieId" class="buttonList btn-light"><?php echo $movie->getTitle()?></button>     
             </div>
         </div>
         
         <?php } 
             if(!$moviesDB){ ?>
-             <div class= "container">    
+              <div class= "container">    
                 <div class="card card-body ">
                     <?php echo "No movies loaded yet"?>  
                 </div>

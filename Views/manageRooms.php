@@ -70,7 +70,7 @@
                     <div class="col-sm-10">
                         <select name="roomType" id="roomType">
                             <option value="2DMovie">2D Movie</option>
-                            <option value="3DMoovie">3D Movie</option>
+                            <option value="3DMovie">3D Movie</option>
                             <option value="Atmos">ATMOS</option>
                         </select> 
                     </div>
@@ -86,7 +86,7 @@
     <tr>
         <?php 
         if(empty($rooms)){ ?>
-            <h4 class="text-center" style="color:grey;">no rooms added</h4>";
+            <h4 class="text-center" style="color:grey;">No rooms added</h4>";
         <?php }else{?>
         <td>
             <?php foreach($rooms as $oneRoom) { ?>

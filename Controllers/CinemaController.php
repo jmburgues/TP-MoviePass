@@ -106,7 +106,8 @@ class CinemaController{
     //Agrega un nuevo cinema
     //Verifica el nombre del cine y el borrado lógico
     public function AddCinema($name, $address, $number, $openning, $closing ){
-      if(AuthController::validate('admin')){
+    
+    //if(AuthController::validate('admin')){
         try {
           if ($name != "") { 
               $cinema = new Cinema();
@@ -144,7 +145,7 @@ class CinemaController{
           $arrayOfErrors [] = $ex->getMessage();
           ViewController::errorView($arrayOfErrors);
         }
-      }
+     // }
     } 
   }
 

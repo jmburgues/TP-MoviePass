@@ -136,11 +136,11 @@
       }
     }
 
-    public function getOpenCinemas($start){
+    public function getOpenCinemas($starting){
       try{
         $query = "SELECT * FROM ".$this->tableName. " WHERE isActive = :active AND openning <= :starting;";
         $parameters['active'] = true;
-        $parameters['starting'] = $start;
+        $parameters['starting'] = $starting;
         $this->connection = Connection::GetInstance();
         $resultSet = $this->connection->Execute($query,$parameters);
         $activeCinemas = $this->toArray($this->parseToObject($resultSet));
