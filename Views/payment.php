@@ -7,9 +7,26 @@
 
 <div class="card mb-3" style="max-width: 1200px; margin: auto; margin-top:20px;">
   <div class="row no-gutters">
-    <div class="col-md-4">
-      <img src="https://image.tmdb.org/t/p/w400/.<?php echo $movieForShows[0]->getPoster()?>" class="card-img" alt="...">
+    
+  
+  
+  <div class="col-md-4">
+  <?php
+            if($movieForShows[0]->getPoster() == null){
+                ?><img id="notFoundImageCard" style="height:620px; width:100%; background-color:#ffe4ec" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+            <?php
+            }else{
+                ?>
+            <img src="https://image.tmdb.org/t/p/w400/.<?php echo $movieForShows[0]->getPoster()?>" class="card-img" alt="...">
+            <?php
+            }    
+            ?>
     </div>
+  
+  
+  
+  
+  
     <div class="col-md-8">
       <div class="card-body">
         <ul>
