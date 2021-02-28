@@ -38,10 +38,19 @@
 
 <!-- SHOW CARD -->
 
-<div class="card mb-5 " style="max-width: 400px; margin: auto;">
+<div class="card mb-5 " style="max-width: 500px; margin: auto;">
     <div class="row no-gutters">
-        <div class="col-md-4">
-            <img src="https://image.tmdb.org/t/p/w400/.<?php echo $selectedMovie->getPoster()?>" class="card-img" alt="...">
+        <div class="col-md-4 ">
+            <?php
+                if($selectedMovie->getPoster() == null){
+                    ?><img id="notFoundImageCard" class="mt-4" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+                    <?php
+                }else{
+                        ?>
+                    <img src="https://image.tmdb.org/t/p/w400/.<?php echo $selectedMovie->getPoster()?>" class="card-img" alt="...">
+                    <?php
+                }?>
+
         </div>
         <div class="col-md-8">
             <div class="card-body">
