@@ -102,8 +102,8 @@
     </div>
 </div>
 </div>
-<input type="hidden" class="form-control" name="show" value=<?php echo $idShow ?> >
-<input type="hidden" class="form-control" name="card" value=<?php echo $cardBank ?> >
+<input type="hidden" class="form-control" name="idShow" value=<?php echo $idShow ?> >
+<input type="hidden" class="form-control" name="cardBank" value=<?php echo $cardBank ?> >
 </td>
 </tr>
 </table>

@@ -100,7 +100,8 @@
         }
 
         public function frontLogin($userName, $pass)
-        {
+        {   echo $userName;
+            echo $pass;
             try{
                 $loggedUser = $this->login($userName,$pass);
 
@@ -238,7 +239,6 @@
                 ViewController::navView(null,null,null,null);
                 ViewController::errorView($arrayOfErrors);
             }
-            exit;
         }
 
         public function login($userName, $password)

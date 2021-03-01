@@ -64,12 +64,12 @@
       }
     }
 
-    public function createNewShow($date, $start, $end, $selectedMovieId, $roomId){
+    public function createNewShow($date, $dateToInsert, $dateToInsertEnd, $selectedMovieId, $roomId){
       if(AuthController::validate('admin')){
         try{
-          $newShow = new Show($date,$start, $end,$this->DAORoom->getById($roomId), $this->DAOMovie->getById($selectedMovieId),0);    
-          $startAux = new DateTime ($start);
-          $endAux = new DateTime ($end);
+          $newShow = new Show($date,$dateToInsert, $dateToInsertEnd,$this->DAORoom->getById($roomId), $this->DAOMovie->getById($selectedMovieId),0);    
+          $startAux = new DateTime ($dateToInsert);
+          $endAux = new DateTime ($dateToInsertEnd);
 
           // $flag = 0; 
           

@@ -13,7 +13,7 @@
         <form action="<?php echo FRONT_ROOT ?>Cinema/modifyCinema" method="POST">
             <div class="form-group row"> 
                 <div class="col-sm-10">
-                    <input type="hidden" class="form-control" name="id" value=<?php echo $currentCinema->getId() ?> >
+                    <input type="hidden" class="form-control" name="idCinema" value=<?php echo $currentCinema->getId() ?> >
                 </div>
             </div>
             <div class="form-group row ">

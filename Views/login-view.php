@@ -15,7 +15,7 @@
       </div>
       <div class="form-group mt-5">
       <strong><label for="password">Password</label></strong>
-        <input type="password" maxlength="40" name="password" placeholder="********" id="password" class="form-control mb-5" required>
+        <input type="password" maxlength="40" name="pass" placeholder="********" id="password" class="form-control mb-5" required>
       </div>
       <div>
         <?php if(isset($error)) echo "<p style=\"color:red; text-align:center;\">".$error."</p><br>";?>

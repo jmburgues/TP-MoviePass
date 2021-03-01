@@ -13,7 +13,7 @@ define('CONFIG',ROOT.'Config');
 define('IMG_PATH', FRONT_ROOT . "Views/img/");
 
 // SMTP 
-define('MAIL_USR','themoviepassteamutn'); 
+define('MAIL_USR','moviepassutnbriascomontenegro'); 
 define('MAIL_DOMAIN','gmail.com'); 
 define('MAIL_PASS','mardelplata22');
 define("MAIL_SERVER","smtp.gmail.com");

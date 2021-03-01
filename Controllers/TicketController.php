@@ -118,7 +118,7 @@ use PDOException;
               }
         }
 
-        public function confirmTicket($costPerTicket, $totalCost, $ticketAmount, $creditNumber, $name, $cvc,  $expirationDate, $expirationYear, $idShow, $cardBank)
+        public function confirmTicket($costPerTicket, $totalCost, $ticketAmount, $cardNumber, $owner, $cvv,  $date, $year, $idShow, $cardBank)
         {
             #try{
                 ViewController::navView($genreList = null, $moviesYearList = null, null, null);
@@ -128,16 +128,13 @@ use PDOException;
 
                 $currentTime = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
                 $currentTime = $currentTime->format('Y-m-d H:i:s');
-                
                 $transaction = $this->generateNewTransaction($user, $currentTime, $costPerTicket, $ticketAmount);
-
                 $tickets = $this->generateTickets($show,$transaction,$ticketAmount,$idShow);       
-                        
-                $showCardLast = str_replace(range(0,9), "*", substr($creditNumber, 0, -4)) .  substr($creditNumber, -4);
-                $nameString = str_replace(' ', '', $name);
+                $showCardLast = str_replace(range(0,9), "*", substr($cardNumber, 0, -4)) .  substr($cardNumber, -4);
+                $nameString = str_replace(' ', '', $owner);
                 $movieFromShow = $this->DAOMovie->getMovieFromShowByIdShow($idShow);
                 
-                $this->sendMail($name, $costPerTicket, $totalCost, $ticketAmount, $show,$tickets);
+                $this->sendMail($owner, $costPerTicket, $totalCost, $ticketAmount, $show,$tickets);
                 //AGREGARLE LA DIRECCION Y LA SALA DEL CINE
 
                 include VIEWS_PATH.'ticketInformation.php';
@@ -186,7 +183,7 @@ use PDOException;
             $mail = new PHPMailer(true);
             try {
                 //Server settings
-                //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                     // Enable verbose debug output
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     // Enable verbose debug output
                 $mail->isSMTP();                                             // Send using SMTP
                 $mail->Host       = MAIL_SERVER;                             // Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                    // Enable SMTP authentication
@@ -197,7 +194,6 @@ use PDOException;
             
                 //Recipients
                 $mail->setFrom(MAIL_USR.'@'.MAIL_DOMAIN, 'Movie Pass');
-            //  $mail->addAddress($user->getEmail(), $user->getUserName());             // Add a recipient
                 $mail->addAddress($user->getEmail(), $user->getUserName());     // Add a recipient
                 $mail->addReplyTo('info@TheMoviePass.com', 'Information');
             

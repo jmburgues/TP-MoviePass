@@ -78,14 +78,14 @@ class CinemaController{
     }
 
     //Modifica los valores de los cines
-    public function modifyCinema($id, $name, $address, $number, $openning, $closing){
+    public function modifyCinema($idCinema, $name, $address, $number, $openning, $closing){
       if(AuthController::validate('admin')){
         try {
           $cinemasList = $this->DAOCinema->getActiveCinemas();
           foreach($cinemasList as $cinemas){
-            if ($cinemas->getId() == $id) {
+            if ($cinemas->getId() == $idCinema) {
                 $newCinema = new Cinema();
-                $newCinema->setId($id);
+                $newCinema->setId($idCinema);
                 $newCinema->setName($name);
                 $newCinema->setAddress($address);
                 $newCinema->setNumber($number);

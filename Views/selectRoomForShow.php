@@ -93,8 +93,8 @@
                                 <button 
                                     type="submit" value="<?php echo $oneRoom->getId()?>" name="roomId" 
                                     <?php if($start <= $oneCinema->getOpenning()) { echo "disabled"; } ?> 
-                                    <?php if($ends >= $oneCinema->getClosing()){  echo "disabled";  } ?> >
-
+                                    <?php $dateTime = new DateTime($oneCinema->getClosing()); 
+                                    if(($dateTime->diff(new DateTime)->format('%R') != '+')){  echo "disabled";  } ?> >
                                     <?php echo $oneRoom->getName()?>
                                     <?php if($start <= $oneCinema->getOpenning()) { echo "<i>(closed)</i>"; } ?>
                                     <?php if($ends >= $oneCinema->getClosing()) { echo "<i>(closed)</i>"; } ?>
