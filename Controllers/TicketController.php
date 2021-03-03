@@ -109,7 +109,7 @@ use PDOException;
                 }
                 $totalCost = $costPerTicket * $ticketAmount;
                 
-                $showToString = "STARTS AT: ". substr($showSelected->getStart(), 0, -3)." ENDS AT: ". substr($showSelected->getEnd(), 0, -3);
+                $showToString = "STARTS AT: ". $showSelected->getStart()." ENDS AT: ". $showSelected->getEnd();
                 include VIEWS_PATH.'payment.php';
             } 
             catch (PDOException $ex){
@@ -183,7 +183,7 @@ use PDOException;
             $mail = new PHPMailer(true);
             try {
                 //Server settings
-                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     // Enable verbose debug output
+               // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     // Enable verbose debug output
                 $mail->isSMTP();                                             // Send using SMTP
                 $mail->Host       = MAIL_SERVER;                             // Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                    // Enable SMTP authentication
@@ -219,7 +219,7 @@ use PDOException;
                 $mail->AltBody = 'Thank you for your purchase ' .$name. '! Purchase details
                 Ticket cost: '.$costPerTicket.'Quantity bought: '.$ticketAmount.'Total import: '.$totalCost.'
                 Show details: 
-                Cinema: '.$showData->getRoom()->getCinema()->getName().'Address: '.$showData->getRoom()->getCinema()->getAddress(). ' '.$showData->getRoom()->getCinema()->getNumber().'Room: '.$showData->getRoom()->getName().'Movie: '.$showData->getMovie()->getTitle().'Starts: '.$showData->getStart().'End: '.$showData->getEnd();
+                Cinema: '.$showData->getRoom()->getCinema()->getName().'Address: '.$showData->getRoom()->getCinema()->getAddress().' '.$showData->getRoom()->getCinema()->getNumber().'Room: '.$showData->getRoom()->getName().'Movie: '.$showData->getMovie()->getTitle().'Date: '.$showData->getDate().'Starts: '.$showData->getStart().'End: '.$showData->getEnd();
                 
 
 

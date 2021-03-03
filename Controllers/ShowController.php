@@ -9,6 +9,7 @@
     use DB\PDO\DAOShow as DAOShow;
     use DB\PDO\DAOCinema as DAOCinema;
     use DB\PDO\DAOGenre as DAOGenre;
+    use DB\PDO\DAOTicket as DAOTicket;
     use Models\Show as Show;    
     use PDOException;
 
@@ -17,6 +18,7 @@
         private $DAORoom;
         private $DAOShow;
         private $DAOGenre;
+        private $DAOTicket;
 
         public function __construct(){
             $this->DAOMovie = new DAOMovie();   
@@ -24,7 +26,8 @@
             $this->DAOShow = new DAOShow();    
             $this->DAOMovie = new DAOMovie();     
             $this->DAOCinema = new DAOCinema();    
-            $this->DAOGenre = new DAOGenre();    
+            $this->DAOGenre = new DAOGenre();   
+            $this->DAOTicket = new DAOTicket();    
         }
         
     //Redirige a vista manageShows donde se listan las funciones y el addShow
@@ -218,37 +221,43 @@
     public function modifyShow($idShow, $idRoom, $idMovie, $date, $start){
       if(AuthController::validate('admin')){
         try{
-          //Calculo el nuevo fin de la funcion
-          $movie = $this->DAOMovie->getById($idMovie);
-          $dateToInsert = new DateTime($date." ".$start.'M');
-          $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
-          $dateToInsertEnd = $this->addInterval($date." ".$start, ($movie->getDuration() +15 ));
-          #----------------------------------------#
-          //Creo el objeto show a modificar y por verificar
-          $modifyShow = new Show($date, $dateToInsert, $dateToInsertEnd, $this->DAORoom->getByID($idRoom), $this->DAOMovie->getByID($idMovie), 0, 1, $idShow);
-          #----------------------------------------#
-          //realizo las validaciones
-          $msg;
-          #Validacion de fecha y hora
-          $startAux = new DateTime ($date." ".$start);
-          $endAux = new DateTime ($dateToInsertEnd);
-          $showsList = $this->DAOShow->getActiveShows();
-          foreach ($showsList as $show) {
-            if ($modifyShow->getDate() == $show->getDate()) {
-              if ($show->getRoom()->getId() == $idRoom) {
-                $extremoInferior = new DateTime($show->getDate().' '.$show->getStart());
-                if ($startAux->format('Y-m-d') == $endAux->format('Y-m-d')){
-                  $extremoSuperior = new DateTime($show->getDate().' '.$show->getEnd());
-                }else{
-                  $extremoSuperior = new DateTime($endAux->format('Y-m-d').' '.$show->getEnd());
-                }
-                if (!($startAux>=$extremoSuperior) && !($endAux<=$extremoInferior)) {
-                  $msg = 'Schedule is full';
-                }
-              }
-            }
-          }
           
+          $tickets = $this->DAOTicket->getTicketsByShow($idShow); 
+          if($tickets){
+            $msg = 'Tickets for that show have already been sold';
+          }else{
+
+          //Calculo el nuevo fin de la funcion
+              $movie = $this->DAOMovie->getById($idMovie);
+              $dateToInsert = new DateTime($date." ".$start.'M');
+              $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
+              $dateToInsertEnd = $this->addInterval($date." ".$start, ($movie->getDuration() +15));
+              #----------------------------------------#
+              //Creo el objeto show a modificar y por verificar
+              $modifyShow = new Show($date, $dateToInsert, $dateToInsertEnd, $this->DAORoom->getByID($idRoom), $this->DAOMovie->getByID($idMovie), 0, 1, $idShow);
+              #----------------------------------------#
+              //realizo las validaciones
+              $msg;
+              #Validacion de fecha y hora
+              $startAux = new DateTime($date." ".$start);
+              $endAux = new DateTime($dateToInsertEnd);
+              $showsList = $this->DAOShow->getActiveShows();
+              foreach ($showsList as $show) {
+                  if ($modifyShow->getDate() == $show->getDate()) {
+                      if ($show->getRoom()->getId() == $idRoom) {
+                          $extremoInferior = new DateTime($show->getDate().' '.$show->getStart());
+                          if ($startAux->format('Y-m-d') == $endAux->format('Y-m-d')) {
+                              $extremoSuperior = new DateTime($show->getDate().' '.$show->getEnd());
+                          } else {
+                              $extremoSuperior = new DateTime($endAux->format('Y-m-d').' '.$show->getEnd());
+                          }
+                          if (!($startAux>=$extremoSuperior) && !($endAux<=$extremoInferior)) {
+                              $msg = 'Schedule is full';
+                          }
+                      }
+                  }
+              }
+          }
           $aux = $this->DAOShow->getByDateAndMovieId($date, $idMovie);
           if ($aux != null){
             if (($aux[0]->getRoom()->getId() != $idRoom) && ($aux[0]->getIdShow() != $idShow)){
@@ -257,7 +266,7 @@
           }
             
           if (isset($msg)){
-            throw new Exception($msg);
+            throw new PDOException($msg);
           }else{
             $this->DAOShow->modify($modifyShow);
           }

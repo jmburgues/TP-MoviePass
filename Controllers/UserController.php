@@ -100,8 +100,7 @@
         }
 
         public function frontLogin($userName, $pass)
-        {   echo $userName;
-            echo $pass;
+        {   
             try{
                 $loggedUser = $this->login($userName,$pass);
 

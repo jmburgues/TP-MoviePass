@@ -89,15 +89,43 @@
                     if(is_array($rooms)){
                         foreach ($rooms as $oneRoom) {
                             if($oneRoom->getCinema()->getId() == $oneCinema->getId()){ ?>
+                                    
+                                    <?php
+                                    
+                                    $cinemaStart = substr($oneCinema->getOpenning(), 0, -3);
+                                    $showStart = $start;
+                                    
+                                    $cinemaEnd = substr($oneCinema->getClosing(), 0, -3);
+                                    $showEnd = $ends;
+/*
+                                    echo $cinemaStart;
+                                    echo '<br>';
+                                    echo $showStart;
+                                    echo '<br>';
+                                    echo $cinemaEnd;
+                                    echo '<br>';
+                                    echo $showEnd;
+                                    */
+                                    ?>
+                                
                                 
                                 <button 
                                     type="submit" value="<?php echo $oneRoom->getId()?>" name="roomId" 
-                                    <?php if($start <= $oneCinema->getOpenning()) { echo "disabled"; } ?> 
-                                    <?php $dateTime = new DateTime($oneCinema->getClosing()); 
-                                    if(($dateTime->diff(new DateTime)->format('%R') != '+')){  echo "disabled";  } ?> >
+                                
+                                    
+                                    
+
+                                    <?php if($showStart == $cinemaStart) { echo "<i>(opening)</i>"; } ?> 
+                                    <?php if($showEnd == $cinemaEnd) { echo "<i>(closing)</i>"; } ?> 
+                                    <?php if($showStart < $cinemaStart){ echo "disabled"; } ?> 
+                                    <?php if($showEnd > $cinemaEnd){ echo "disabled"; } ?> 
+                                    
+                            >                                    
+                                    
+                                
+
+
                                     <?php echo $oneRoom->getName()?>
-                                    <?php if($start <= $oneCinema->getOpenning()) { echo "<i>(closed)</i>"; } ?>
-                                    <?php if($ends >= $oneCinema->getClosing()) { echo "<i>(closed)</i>"; } ?>
 
                                 </button>
 
