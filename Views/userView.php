@@ -20,8 +20,9 @@
    if (isset($transaction)) {?>
 <h3 class="text-white text-center">Shopping history:</h3>
 <?php
-   foreach ($transaction as $oneTransaction) {
-       ?>
+      foreach ($transaction as $oneTransaction) {
+      ?>
+
 <div class="container mt-5 mb-5" id="seleccion">
    <div class="card card-body border-dark ">
       <ul>
@@ -32,7 +33,13 @@
          <li><strong>Total Cost:  </strong><?php echo $oneTransaction->getCostPerTicket() * $oneTransaction->getTicketAmount() ?></li>
          <li><strong>Qr:  </strong></li>
          <?php $i = 1;
-            $tickets = $ticketsPerTT[$oneTransaction->getIdTransaction()];   
+
+         $tickets = $ticketsPerTT[$oneTransaction->getIdTransaction()];   
+
+            if(!is_array($tickets)){
+               $ticket = array($tickets);
+            }
+            
             
             foreach($tickets as $oneTT){ ?>
          <!-- Button trigger modal -->

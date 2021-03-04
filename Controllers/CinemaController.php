@@ -5,17 +5,21 @@
   use DB\PDO\DAOMovie as DAOMovie;
   use DB\PDO\DAORoom as DAORoom;
   use Models\Cinema as Cinema;
+  use DB\PDO\DAOTicket as DAOTicket ;
+  
   use PDOException;
 
 class CinemaController{
     private $DAOCinema;
     private $DAOMovie;
     private $DAORoom;
-    
+    private $DAOTicket ;
+
     public function __construct(){
       $this->DAOCinema = new DAOCinema;
       $this->DAOMovie = new DAOMovie;
       $this->DAORoom = new DAORoom;
+      $this->DAOTicket  = new DAOTicket ;
     }
 
     //Primer método luego del botón Cines, retorna los cines activos
@@ -59,17 +63,25 @@ class CinemaController{
     public function deleteCinema($idCinema){
       if(AuthController::validate('admin')){
         try {
-          $activeRooms = $this->DAORoom->getActiveRoomsByCinema($idCinema);
-          if(!$activeRooms) {
-            $this->DAOCinema->removeCinema($idCinema);
-            $message = "Cinema deleted.";
-          }
-          else{
-            $message = "Unable to delete. There are active rooms in the selected cinema.";
-          }
+
+            $tickets = $this->DAOTicket->getTicketsByShow($idShow); 
+            if ($tickets) {
+                $msg = 'Tickets for that show have already been sold';
+            }else{
+                $activeRooms = $this->DAORoom->getActiveRoomsByCinema($idCinema);
+                if (!$activeRooms) {
+                    $this->DAOCinema->removeCinema($idCinema);
+                    $message = "Cinema deleted.";
+                } else {
+                    $message = "Unable to delete. There are active rooms in the selected cinema.";
+                }
             
-            $this->manageCinemas($message);
-        } 
+                $this->manageCinemas($message);
+            }
+            if (isset($msg)) {
+              throw new PDOException($msg);
+          }
+          } 
         catch (PDOException $ex){
           $arrayOfErrors [] = $ex->getMessage();
           ViewController::errorView($arrayOfErrors);
@@ -81,20 +93,28 @@ class CinemaController{
     public function modifyCinema($idCinema, $name, $address, $number, $openning, $closing){
       if(AuthController::validate('admin')){
         try {
-          $cinemasList = $this->DAOCinema->getActiveCinemas();
-          foreach($cinemasList as $cinemas){
-            if ($cinemas->getId() == $idCinema) {
-                $newCinema = new Cinema();
-                $newCinema->setId($idCinema);
-                $newCinema->setName($name);
-                $newCinema->setAddress($address);
-                $newCinema->setNumber($number);
-                $newCinema->setOpenning($openning);
-                $newCinema->setClosing($closing);
-                $newCinema->setActive(true);
-                $this->DAOCinema->modify($newCinema);
-              }  
+          $tickets = $this->DAOTicket->getTicketsByShow($idShow); 
+            if ($tickets) {
+                $msg = 'Tickets for that show have already been sold';
+            }else{
+                $cinemasList = $this->DAOCinema->getActiveCinemas();
+                foreach ($cinemasList as $cinemas) {
+                    if ($cinemas->getId() == $idCinema) {
+                        $newCinema = new Cinema();
+                        $newCinema->setId($idCinema);
+                        $newCinema->setName($name);
+                        $newCinema->setAddress($address);
+                        $newCinema->setNumber($number);
+                        $newCinema->setOpenning($openning);
+                        $newCinema->setClosing($closing);
+                        $newCinema->setActive(true);
+                        $this->DAOCinema->modify($newCinema);
+                    }
+                }
             }
+            if (isset($msg)) {
+              throw new PDOException($msg);
+          }
           $this->manageCinemas();  
         } catch (PDOException $ex) {
           $arrayOfErrors [] = $ex->getMessage();

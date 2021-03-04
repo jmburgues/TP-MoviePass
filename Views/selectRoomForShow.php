@@ -19,6 +19,23 @@
      echo "<script type='text/javascript'>alert('TITLE ALREADY BEING PROJECTED THIS DAY: Displaying only one aviable room: ".$rooms->getName().".');</script>";
 } ?>
 
+
+
+
+<?php
+
+
+
+
+    $start = $start.':00';
+    $ends = $ends.':00';
+    
+    $start = new DateTime($start.'M');
+    $ends = new DateTime($ends.'M');
+
+    ?>
+
+
 <!-- background -->
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
 
@@ -58,8 +75,8 @@
                 <ul>
                     <li><strong>Film:  </strong><?php print_r($selectedMovie->getTitle()); ?></li>
                     <li><strong>Date: </strong><?php echo $date ?></li>
-                    <li><strong>Starting hour: </strong><?php print_r($start);?> <?php ?></li>
-                    <li><strong>Ending hour: </strong> <?php print_r($ends);?><?php ?></li>
+                    <li><strong>Starting hour: </strong><?php echo date_format($start, 'H:i');;?> <?php ?></li>
+                    <li><strong>Ending hour: </strong> <?php echo date_format($ends, 'H:i');;?><?php ?></li>
                 </ul> 
             </div>
         </div>
@@ -87,53 +104,71 @@
                     <?php $cinemaFlag = false;
                 if(!empty($rooms)){
                     if(is_array($rooms)){
+                        
                         foreach ($rooms as $oneRoom) {
+                            
                             if($oneRoom->getCinema()->getId() == $oneCinema->getId()){ ?>
                                     
+                                    <button type="submit" value="<?php echo $oneRoom->getId()?>" name="roomId" 
+                                    <?php 
+                                    $cinemaStart = new DateTime($oneCinema->getOpenning().'M');
+                                    $cinemaEnd = new DateTime($oneCinema->getClosing().'M');
+                                    
+                                    if($cinemaEnd < $cinemaStart) { 
+                                        $cinemaEnd->modify('+1 day');
+                                    }
+                                    
+                                    if($ends < $start) { 
+                                        $ends->modify('+1 day');
+                                    }
+
+                                    $aux = false;
+                                    
+                                    if($cinemaStart >= $cinemaEnd) { 
+                                        if(($start >= $cinemaStart) && ($ends <= $cinemaEnd)){
+                                            $aux = true;
+                                        }
+                                    }
+                                    
+                                    if($cinemaStart < $cinemaEnd) { 
+                                        if(($start > $cinemaStart) && ($ends < $cinemaEnd)){
+                                            $aux = true;
+                                        }
+                                    }
+                                                ?>
+                                    <?php if(!$aux) {echo "disabled";}?>
+
+                                    >
+                                    
                                     <?php
+                                    /* echo date_format($start, 'H:i');
+                                        echo '<br>';
+                                        echo date_format($ends, 'H:i');
+                                        echo '<br>';
+                                        echo date_format($cinemaStart, 'H:i');
+                                        echo '<br>';
+                                        echo date_format($cinemaEnd, 'H:i');
+                                        echo '<br>';
+                                    */
+                                    ;?>
+                                    <?php 
+                                        
+                                       echo date_format($cinemaStart, 'Y-M-d, H:i:s');
+                                        echo '<br>';
+                                        echo date_format($start, 'Y-M-d, H:i:s');
+                                        echo '<br>';
+                                        echo date_format($ends, 'Y-M-d, H:i:s');
+                                        echo '<br>';
+                                        echo date_format($cinemaEnd, 'Y-M-d, H:i:s');
+                                        echo '<br>';
                                     
-                                    //$cinemaStart = substr($oneCinema->getOpenning(), 0, -3);
-                                    $showStart = $start;
-                                    
-                                    //$cinemaEnd = substr($oneCinema->getClosing(), 0, -3);
-                                    $showEnd = $ends;
-/*
-                                    echo $cinemaStart;
-                                    echo '<br>';
-                                    echo $showStart;
-                                    echo '<br>';
-                                    echo $cinemaEnd;
-                                    echo '<br>';
-                                    echo $showEnd;
-                                    */ ?>
-                                    <?php $movieStart = new DateTime($start.'M'); ?>
-                                    <?php //$movieStart = DateTime::createFromFormat('Y-m-d H:i:s', '10-01-2020 '.$start); ?>
-                                    <?php $movieEnd = new DateTime($ends.'M'); ?>
-                                    <?php $cinemaOpen = new DateTime($oneCinema->getOpenning().'M'); ?>
-                                    <?php $cinemaClose = new DateTime($oneCinema->getClosing().'M'); ?> 
-                                    <?php //var_dump($movieStart); ?>
-                                    <?php //var_dump($movieEnd); ?>
-                                    <?php //var_dump($cinemaOpen); ?>
-                                    <?php //var_dump($cinemaClose); ?>
-                                
-                                
-                                <button 
-                                    type="submit" value="<?php echo $oneRoom->getId()?>" name="roomId"                   
-                                    <?php //if($movieStart == $cinemaOpen) { echo "<i>(opening)</i>"; } ?> 
-                                    <?php //if($movieEnd == $cinemaClose) { echo "<i>(closing)</i>"; } ?> 
-                                    <?php if(($movieEnd > $cinemaOpen) && ($movieEnd < $cinemaOpen)){ echo "disabled"; } ?> 
-                                    <?php if(($movieStart < $cinemaOpen) && ($movieStart > $cinemaClose)){ echo "disabled"; } ?> 
-                                    
-                            >                                    
-                                    
-                                
-
-
+                                    ;?>
                                     <?php echo $oneRoom->getName()?>
-
-                                </button>
-
-                        <?php $cinemaFlag = true;
+                            
+                                
+                                </button>                               
+                
+                <?php $cinemaFlag = true;
                             }
                         }
                         if($cinemaFlag == false){ ?>
@@ -148,13 +183,15 @@
 
                     <?php }
 
-                    }
+}
                 }
                 else{ ?>
                 <p><i> No rooms aviable <i></p>
                     
-                <?php echo($oneCinema->getOpenning()); 
-                echo($oneCinema->getClosing()); }    ?>
+                <?php print_r($oneCinema->getOpenning()); ?> 
+                - <?php
+          
+                print_r($oneCinema->getClosing()); }    ?>
                 </td>
             </tr>
                 <?php } ?>
@@ -162,10 +199,13 @@
             </form>
     </table>
 </div>
-
-
-
-
-
+<?php 
+                var_dump($cinemaStart); ?> <br>
+                - <?php
+                var_dump($start);?> <br>
+                - <?php
+                var_dump($ends);?> <br>
+                - <?php
+                var_dump($cinemaEnd);     ?><br>
 
 

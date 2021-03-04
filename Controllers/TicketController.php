@@ -91,6 +91,7 @@ use PDOException;
 
                 //Politica de descuento:
                 $actualDate = date('l');
+                
                 if ($ticketAmount >= 2) {
                     if ($actualDate == "Tuesday" || $actualDate == "Friday") {
                         $costPerTicket = $costPerTicket -(((25 * $costPerTicket)/100));
@@ -106,7 +107,7 @@ use PDOException;
                             $pattern = "[34-37]{2}[00-99]{2}[0000-9999]{4}[0000-9999]{4}[0000-9999]{4}";
                         }
                     }
-                }
+                }             
                 $totalCost = $costPerTicket * $ticketAmount;
                 
                 $showToString = "STARTS AT: ". $showSelected->getStart()." ENDS AT: ". $showSelected->getEnd();

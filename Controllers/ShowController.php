@@ -257,13 +257,13 @@
                       }
                   }
               }
-          }
-          $aux = $this->DAOShow->getByDateAndMovieId($date, $idMovie);
-          if ($aux != null){
-            if (($aux[0]->getRoom()->getId() != $idRoom) && ($aux[0]->getIdShow() != $idShow)){
-              $msg = 'Same day restricction.';
+              $aux = $this->DAOShow->getByDateAndMovieId($date, $idMovie);
+              if ($aux != null){
+                if (($aux[0]->getRoom()->getId() != $idRoom) && ($aux[0]->getIdShow() != $idShow)){
+                  $msg = 'Same day restricction.';
+                }
+              }
             }
-          }
             
           if (isset($msg)){
             throw new PDOException($msg);
@@ -283,14 +283,21 @@
 
     public function removeShow ($idShow){
       if(AuthController::validate('admin')){
-        #Podria agregar alguna comprobacion ? yo creo que no ya se hace en el view.
         try {
-          $this->DAOShow->removeShowFromActive($idShow);
-          $this->manageShows();
-        }
-        catch (PDOException $ex){
-          $arrayOfErrors [] = $ex->getMessage();
-          ViewController::errorView($arrayOfErrors);
+          $tickets = $this->DAOTicket->getTicketsByShow($idShow); 
+          if($tickets){
+            $msg = 'Tickets for that show have already been sold';
+          }else{
+              $this->DAOShow->removeShowFromActive($idShow);
+              $this->manageShows();
+          }
+          if (isset($msg)) {
+              throw new PDOException($msg);
+          }
+              } catch (PDOException $ex) {
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::errorView($arrayOfErrors);
+            
         }
       }
     }

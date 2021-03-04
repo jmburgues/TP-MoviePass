@@ -66,8 +66,8 @@
                 $this->manageRooms($IDCinema);
             } 
             catch (PDOException $ex){
-              $arrayOfErrors [] = $ex->getMessage();
-              ViewController::errorView($arrayOfErrors);
+                $arrayOfErrors [] = $ex->getMessage();
+                ViewController::errorView($arrayOfErrors);
             }
         }
     }
