@@ -92,10 +92,10 @@
                                     
                                     <?php
                                     
-                                    $cinemaStart = substr($oneCinema->getOpenning(), 0, -3);
+                                    //$cinemaStart = substr($oneCinema->getOpenning(), 0, -3);
                                     $showStart = $start;
                                     
-                                    $cinemaEnd = substr($oneCinema->getClosing(), 0, -3);
+                                    //$cinemaEnd = substr($oneCinema->getClosing(), 0, -3);
                                     $showEnd = $ends;
 /*
                                     echo $cinemaStart;
@@ -105,20 +105,24 @@
                                     echo $cinemaEnd;
                                     echo '<br>';
                                     echo $showEnd;
-                                    */
-                                    ?>
+                                    */ ?>
+                                    <?php $movieStart = new DateTime($start.'M'); ?>
+                                    <?php //$movieStart = DateTime::createFromFormat('Y-m-d H:i:s', '10-01-2020 '.$start); ?>
+                                    <?php $movieEnd = new DateTime($ends.'M'); ?>
+                                    <?php $cinemaOpen = new DateTime($oneCinema->getOpenning().'M'); ?>
+                                    <?php $cinemaClose = new DateTime($oneCinema->getClosing().'M'); ?> 
+                                    <?php //var_dump($movieStart); ?>
+                                    <?php //var_dump($movieEnd); ?>
+                                    <?php //var_dump($cinemaOpen); ?>
+                                    <?php //var_dump($cinemaClose); ?>
                                 
                                 
                                 <button 
-                                    type="submit" value="<?php echo $oneRoom->getId()?>" name="roomId" 
-                                
-                                    
-                                    
-
-                                    <?php if($showStart == $cinemaStart) { echo "<i>(opening)</i>"; } ?> 
-                                    <?php if($showEnd == $cinemaEnd) { echo "<i>(closing)</i>"; } ?> 
-                                    <?php if($showStart < $cinemaStart){ echo "disabled"; } ?> 
-                                    <?php if($showEnd > $cinemaEnd){ echo "disabled"; } ?> 
+                                    type="submit" value="<?php echo $oneRoom->getId()?>" name="roomId"                   
+                                    <?php //if($movieStart == $cinemaOpen) { echo "<i>(opening)</i>"; } ?> 
+                                    <?php //if($movieEnd == $cinemaClose) { echo "<i>(closing)</i>"; } ?> 
+                                    <?php if(($movieEnd > $cinemaOpen) && ($movieEnd < $cinemaOpen)){ echo "disabled"; } ?> 
+                                    <?php if(($movieStart < $cinemaOpen) && ($movieStart > $cinemaClose)){ echo "disabled"; } ?> 
                                     
                             >                                    
                                     
@@ -148,8 +152,9 @@
                 }
                 else{ ?>
                 <p><i> No rooms aviable <i></p>
-
-                <?php }    ?>
+                    
+                <?php echo($oneCinema->getOpenning()); 
+                echo($oneCinema->getClosing()); }    ?>
                 </td>
             </tr>
                 <?php } ?>

@@ -142,7 +142,7 @@
           $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
           $dateToInsertEnd = $this->addInterval($date." ".$start, ($selectedMovie->getDuration() +15 ));
           $ends = substr($dateToInsertEnd, -9, -3);
-
+          $end = $dateToInsertEnd;
           $cinemas = $this->DAOCinema->getActiveCinemas();
 
             //traigo las salas activas de los cinemas abiertos a la hora de inicio de la pelicula      
