@@ -64,10 +64,6 @@ class CinemaController{
       if(AuthController::validate('admin')){
         try {
 
-            $tickets = $this->DAOTicket->getTicketsByShow($idShow); 
-            if ($tickets) {
-                $msg = 'Tickets for that show have already been sold';
-            }else{
                 $activeRooms = $this->DAORoom->getActiveRoomsByCinema($idCinema);
                 if (!$activeRooms) {
                     $this->DAOCinema->removeCinema($idCinema);
@@ -77,7 +73,7 @@ class CinemaController{
                 }
             
                 $this->manageCinemas($message);
-            }
+            
             if (isset($msg)) {
               throw new PDOException($msg);
           }
@@ -93,10 +89,7 @@ class CinemaController{
     public function modifyCinema($idCinema, $name, $address, $number, $openning, $closing){
       if(AuthController::validate('admin')){
         try {
-          $tickets = $this->DAOTicket->getTicketsByShow($idShow); 
-            if ($tickets) {
-                $msg = 'Tickets for that show have already been sold';
-            }else{
+       
                 $cinemasList = $this->DAOCinema->getActiveCinemas();
                 foreach ($cinemasList as $cinemas) {
                     if ($cinemas->getId() == $idCinema) {
@@ -111,7 +104,7 @@ class CinemaController{
                         $this->DAOCinema->modify($newCinema);
                     }
                 }
-            }
+            
             if (isset($msg)) {
               throw new PDOException($msg);
           }
