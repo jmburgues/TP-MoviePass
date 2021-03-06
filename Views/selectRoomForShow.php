@@ -115,13 +115,35 @@
                                     $cinemaStart = new DateTime($oneCinema->getOpenning().'M');
                                     $cinemaEnd = new DateTime($oneCinema->getClosing().'M');
                                     
-                                    if($cinemaEnd < $cinemaStart) { 
+                                    /* if($cinemaEnd < $cinemaStart) { 
                                         $cinemaEnd->modify('+1 day');
-                                    }
+                                    } */
+                                    $md = '00:00:00';
+                                    $midNight = new DateTime('00:00:00'.'M');
+                                    //$midNight->format('Y-m-d 00:00:00');
+                                   // echo date_format($midNight, 'Y-M-d, H:i:s');
                                     
-                                    if($ends < $start) { 
-                                        $ends->modify('+1 day');
+                                   /*  if(($cinemaStart > $cinemaEnd) && ($cinemaEnd > $midNight)) { 
+                                        $start->modify('+12 hours');
                                     }
+ */
+
+                                         if(($cinemaEnd < $cinemaStart)) { 
+                                            $cinemaEnd->modify('+1 day');
+                                             if($start >= $midNight){
+                                                $start->modify('+1 day');
+                                                if($ends <= $cinemaEnd){
+                                                    $aux = true;
+                                                }
+                                            } 
+                                        } 
+
+
+                                        if($ends < $start) { 
+                                            $ends->modify('+1 day');
+                                        } 
+
+
 
                                     $aux = false;
                                     
@@ -153,7 +175,10 @@
                                     */
                                     ;?>
                                     <?php 
-                                        
+                                    
+                                          echo date_format($midNight, 'Y-M-d, H:i:s');
+                                          echo '<br>';
+                                          echo '<br>';
                                        echo date_format($cinemaStart, 'Y-M-d, H:i:s');
                                         echo '<br>';
                                         echo date_format($start, 'Y-M-d, H:i:s');

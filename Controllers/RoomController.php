@@ -117,6 +117,7 @@
                     if ($roomExist == false) { 
                         $this->DAORoom->add($room);
                         $message = "Room successfully added";
+                        header('Location: http://localhost/TP-MoviePass/Cinema/manageCinemas');
                     }
                 }
                 $rooms = $this->DAORoom->getByCinema($idCinema);
@@ -129,6 +130,8 @@
               ViewController::errorView($arrayOfErrors);
             }
         }
+      
+                
     }
 
     public function deleteRoom($idRoom){
