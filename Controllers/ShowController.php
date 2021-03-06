@@ -148,8 +148,11 @@
             //traigo las salas activas de los cinemas abiertos a la hora de inicio de la pelicula      
           $message = null;
          //$rooms = $this->DAORoom->getActiveRooms();
-          $rooms = $this->getOpenRooms($this->DAOCinema->getOpenCinemas($start));
-
+          //$rooms = $this->getOpenRooms($this->DAOCinema->getOpenCinemas($start));
+          $rooms = $this->DAORoom->getActiveRooms();
+          echo '<pre>';
+          //print_r($rooms);
+          echo '</pre>';
           if($rooms){
             //valido que exista una franja horaria disponible para proyectar la pelicula
             $rooms = $this->getRoomsWithAviableTime($rooms,$date,$start,$ends);
@@ -172,6 +175,9 @@
           
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
           include VIEWS_PATH.'selectRoomForShow.php';
+
+
+          
         } 
         catch (PDOException $ex){
           $arrayOfErrors [] = $ex->getMessage();
@@ -203,15 +209,20 @@
     public function modifyShowView($showID){
       if(AuthController::validate('admin')){
         try {
-          $oneDayAhead = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
-          $oneDayAhead->add(new DateInterval('P1D'));
-          $currentShow = $this->DAOShow->getById($showID);
-          $rooms = $this->DAORoom->getActiveRoomsByCinema($currentShow->getRoom()->getCinema()->getId());
-          $movies = $this->DAOMovie->getAll();
-          ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-          include VIEWS_PATH.'show-modify.php';
-        } 
-        catch (PDOException $ex){
+            $tickets = $this->DAOTicket->getTicketsByShow($showID);
+            if ($tickets) {
+                $msg = 'Tickets for that show have already been sold';
+                $this->manageShows($msg);
+            } else {
+                $oneDayAhead = new DateTime('now', new DateTimeZone('America/Argentina/Buenos_Aires'));
+                $oneDayAhead->add(new DateInterval('P1D'));
+                $currentShow = $this->DAOShow->getById($showID);
+                $rooms = $this->DAORoom->getActiveRoomsByCinema($currentShow->getRoom()->getCinema()->getId());
+                $movies = $this->DAOMovie->getAll();
+                ViewController::navView($genreList=null, $moviesYearList=null, null, null);
+                include VIEWS_PATH.'show-modify.php';
+            }
+        }catch (PDOException $ex){
           $arrayOfErrors [] = $ex->getMessage();
           ViewController::errorView($arrayOfErrors);
         }

@@ -17,6 +17,7 @@
 <!-- Movie already being broadcasted alert -->
 <?php if(!empty($rooms) && !is_array($rooms)){
      echo "<script type='text/javascript'>alert('TITLE ALREADY BEING PROJECTED THIS DAY: Displaying only one aviable room: ".$rooms->getName().".');</script>";
+     echo "<script>window.history.go(-2)</script>";
 } ?>
 
 

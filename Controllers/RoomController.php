@@ -3,6 +3,7 @@
 
     use DB\PDO\DAORoom as DAORoom;
     use DB\PDO\DAOCinema as DAOCinema;
+    use DB\PDO\DAOShow as DAOShow;
     use Models\Room as Room;
     use PDOException;
 
@@ -10,10 +11,12 @@
     class RoomController{
     private $DAORoom;
     private $DAOCinema;
+    private $DAOShow;
 
     public function __construct(){
         $this->DAORoom = new DAORoom();
         $this->DAOCinema = new DAOCinema();
+        $this->DAOShow = new DAOShow();
     }
 
     //Redirige a la vista para agregar una nueva sala
@@ -38,11 +41,21 @@
     public function modifyRoomView($idRoom){
         if(AuthController::validate('admin')){
             try {
-                $currentRoom = $this->DAORoom->getById($idRoom);
-                $rooms = $this->DAORoom->getActiveRooms();
-                ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-                include VIEWS_PATH.'room-modify.php';
-            } 
+                $activeShows = $this->DAOShow->getIfActiveShows($idRoom);
+
+                if (!$activeShows) {
+                    $currentRoom = $this->DAORoom->getById($idRoom);
+                    $rooms = $this->DAORoom->getActiveRooms();
+                    ViewController::navView($genreList=null, $moviesYearList=null, null, null);
+                    include VIEWS_PATH.'room-modify.php';
+            
+            }else{
+                //$cinemaRoom = $this->DAORoom->getByCinema($idRoom);
+                echo "<script type='text/javascript'>alert('Unable to modify. There are active rooms in the selected room');</script>";
+                //$this->manageRooms($cinemaRoom);
+                ViewController::adminView();
+            }
+        }
             catch (PDOException $ex){
               $arrayOfErrors [] = $ex->getMessage();
               ViewController::errorView($arrayOfErrors);
@@ -94,6 +107,9 @@
                                     $this->DAORoom->modify($room);
                                     $message = "The room is active again.";
                                     $roomExist=true;
+                                    
+                                    header('Location: http://localhost/TP-MoviePass/Cinema/manageCinemas');
+                
                                 }
                             }
                         }

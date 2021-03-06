@@ -63,8 +63,7 @@ class CinemaController{
     public function deleteCinema($idCinema){
       if(AuthController::validate('admin')){
         try {
-
-                $activeRooms = $this->DAORoom->getActiveRoomsByCinema($idCinema);
+              $activeRooms = $this->DAORoom->getActiveRoomsByCinema($idCinema);
                 if (!$activeRooms) {
                     $this->DAOCinema->removeCinema($idCinema);
                     $message = "Cinema deleted.";
@@ -89,7 +88,9 @@ class CinemaController{
     public function modifyCinema($idCinema, $name, $address, $number, $openning, $closing){
       if(AuthController::validate('admin')){
         try {
-       
+            $message = NULL;
+            $activeRooms = $this->DAORoom->getActiveRoomsByCinema($idCinema);
+            if (!$activeRooms) {
                 $cinemasList = $this->DAOCinema->getActiveCinemas();
                 foreach ($cinemasList as $cinemas) {
                     if ($cinemas->getId() == $idCinema) {
@@ -104,11 +105,13 @@ class CinemaController{
                         $this->DAOCinema->modify($newCinema);
                     }
                 }
-            
-            if (isset($msg)) {
-              throw new PDOException($msg);
-          }
-          $this->manageCinemas();  
+              } else {
+                $message = "Unable to modify. There are active rooms in the selected cinema.";
+            }
+
+            $this->manageCinemas($message);
+
+    
         } catch (PDOException $ex) {
           $arrayOfErrors [] = $ex->getMessage();
           ViewController::errorView($arrayOfErrors);

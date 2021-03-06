@@ -209,7 +209,19 @@
         return $this->toArray($this->parseToObject($resultSet));
 
     }
+
+    //Retorna los shows de una sala específica
+    public function getIfActiveShows($idRoom){
+        $query = "SELECT * FROM ".$this->tableNameShows. " WHERE isActive = :active AND idRoom = :idRoom";
+        $parameters['active'] = 1;
+        $parameters['idRoom'] = $idRoom;
+        $this->connection = Connection::GetInstance();
+        $resultSet = $this->connection->Execute($query,$parameters);
+        $activeRooms = $this->toArray($this->parseToObject($resultSet));
+        return $activeRooms;
+    }
     
+
     protected function parseToObject($value) {
         $value = is_array($value) ? $value : [];
         $resp = array_map(function($p){
