@@ -137,11 +137,18 @@
     public function deleteRoom($idRoom){
         if(AuthController::validate('admin')){
             try {
-                $this->DAORoom->removeRoom($idRoom);
-                
-                ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-                $this->manageRooms($this->DAORoom->getById($idRoom)->getCinema()->getId());
-            } 
+                $activeShows = $this->DAOShow->getIfActiveShows($idRoom);
+                if (!$activeShows) {
+                    $this->DAORoom->removeRoom($idRoom);
+                    
+                    ViewController::navView($genreList=null, $moviesYearList=null, null, null);
+                    $this->manageRooms($this->DAORoom->getById($idRoom)->getCinema()->getId());
+                } else {
+                    echo "<script type='text/javascript'>alert('Unable to modify. There are active rooms in the selected room');</script>";
+                    //$this->manageRooms($cinemaRoom);
+                    ViewController::adminView();
+                }
+            }
             catch (PDOException $ex){
               $arrayOfErrors [] = $ex->getMessage();
               ViewController::errorView($arrayOfErrors);
