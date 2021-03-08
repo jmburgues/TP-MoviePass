@@ -51,7 +51,7 @@
             
             }else{
                 //$cinemaRoom = $this->DAORoom->getByCinema($idRoom);
-                echo "<script type='text/javascript'>alert('Unable to modify. There are active rooms in the selected room');</script>";
+                echo "<script type='text/javascript'>alert('Unable to modify. There are active shows in the selected room');</script>";
                 //$this->manageRooms($cinemaRoom);
                 ViewController::adminView();
             }
@@ -144,7 +144,7 @@
                     ViewController::navView($genreList=null, $moviesYearList=null, null, null);
                     $this->manageRooms($this->DAORoom->getById($idRoom)->getCinema()->getId());
                 } else {
-                    echo "<script type='text/javascript'>alert('Unable to modify. There are active rooms in the selected room');</script>";
+                    echo "<script type='text/javascript'>alert('Unable to modify. There are active shows in the selected room');</script>";
                     //$this->manageRooms($cinemaRoom);
                     ViewController::adminView();
                 }

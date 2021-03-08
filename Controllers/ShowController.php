@@ -67,12 +67,12 @@
       }
     }
 
-    public function createNewShow($date, $dateToInsert, $dateToInsertEnd, $selectedMovieId, $roomId){
+    public function createNewShow($date, $movieStartingDateTime, $movieEndingDateTime, $selectedMovieId, $roomId){
       if(AuthController::validate('admin')){
         try{
-          $newShow = new Show($date,$dateToInsert, $dateToInsertEnd,$this->DAORoom->getById($roomId), $this->DAOMovie->getById($selectedMovieId),0);    
-          $startAux = new DateTime ($dateToInsert);
-          $endAux = new DateTime ($dateToInsertEnd);
+          $newShow = new Show($date,$movieStartingDateTime, $movieEndingDateTime,$this->DAORoom->getById($roomId), $this->DAOMovie->getById($selectedMovieId),0);    
+          $startAux = new DateTime ($movieStartingDateTime);
+          $endAux = new DateTime ($movieEndingDateTime);
 
           // $flag = 0; 
           
@@ -131,35 +131,37 @@
       }      
     }
 
-    //Método luego de seleccionar la película para el show
-    //Muestra la información hasta el momento de la función y elige la sala
-    public function selectRoomForShow($date, $start, $movieId){
+// Metodo llamado para elegir las salas disponibles al crear un nuevo show.
+    public function selectRoomForShow($movieStartingDate, $movieStartingHour, $movieId){
       if(AuthController::validate('admin')){
         try{
 
           $selectedMovie=$this->DAOMovie->getById($movieId);
-          $dateToInsert = new DateTime($date." ".$start.'M');
-          $dateToInsert = $dateToInsert->format('Y-m-d H:i:s');
-          $dateToInsertEnd = $this->addInterval($date." ".$start, ($selectedMovie->getDuration() +15 ));
-          $ends = substr($dateToInsertEnd, -9, -3);
-          $end = $dateToInsertEnd;
+          $movieStartingDateTimeObject = new DateTime($movieStartingDate." ".$movieStartingHour);
+          $movieStartingDateTime = $movieStartingDateTimeObject->format('Y-m-d H:i:s');
+          $movieEndingDateTime = $this->addInterval($movieStartingDate." ".$movieStartingHour, ($selectedMovie->getDuration() +15 ));
+          $ends = substr($movieEndingDateTime, -9, -3);
+          $end = $movieEndingDateTime;
           $cinemas = $this->DAOCinema->getActiveCinemas();
 
-            //traigo las salas activas de los cinemas abiertos a la hora de inicio de la pelicula      
           $message = null;
-         //$rooms = $this->DAORoom->getActiveRooms();
-          //$rooms = $this->getOpenRooms($this->DAOCinema->getOpenCinemas($start));
-          $rooms = $this->DAORoom->getActiveRooms();
-          echo '<pre>';
-          //print_r($rooms);
-          echo '</pre>';
+          
+    // FUNCIONES DE FILTRADO DE LAS SALAS QUE SE VAN A MOSTRAR //
+
+         /*
+          getOpenRooms: 
+            Filtro las salas activas, de los cines activos que se encuentren abiertos a la hora de 
+            inicio de la pelicula y que permanezcan abiertos hasta que la pelicula termine.
+        */
+          $rooms = $this->getOpenRooms($movieStartingDate,$movieStartingDateTimeObject,$movieEndingDateTime);
+  
           if($rooms){
             //valido que exista una franja horaria disponible para proyectar la pelicula
-            $rooms = $this->getRoomsWithAviableTime($rooms,$date,$start,$ends);
+            $rooms = $this->getRoomsWithAviableTime($rooms,$movieStartingDate,$movieStartingHour,$ends);
             
             if($rooms){
                //valido que la pelicula no se este proyectando en otra sala el mismo dia.
-              $rooms = $this->sameDayRestriction($rooms,$date,$movieId);
+              $rooms = $this->sameDayRestriction($rooms,$movieStartingDate,$movieId);
             }
             else{
               $message = "All rooms are full at given time.";
@@ -169,15 +171,10 @@
             $message = "No open cinemas.";
           } 
 
-
           //se toma la película y se calcula la duración para devolver el final de la función + los 15 minutos 
 
-          
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
-          include VIEWS_PATH.'selectRoomForShow.php';
-
-
-          
+          include VIEWS_PATH.'selectRoomForShow.php';          
         } 
         catch (PDOException $ex){
           $arrayOfErrors [] = $ex->getMessage();
@@ -186,7 +183,6 @@
       }
     }
     
-
     public function listByGenre($genreId){
       try{
         $genreList = $this->DAOGenre->getGenresListFromShows(); 
@@ -346,18 +342,82 @@
       }
     }
 
-    private function getOpenRooms($cinemas){
+    private function getOpenRooms($movieStartingDate,$movieStartingDateTime,$movieEndingDateTime){
       
-      $rooms = array();
+      $movieEndingDateTime = new DateTime($movieEndingDateTime);
+      $activeCinemas = $this->DAOCinema->getActiveCinemas();
+      $openRooms = array();   
+
+      foreach($activeCinemas as $oneCinema){  
+        $cineTrasnoche = false;
+        $peliTrasnoche = false;
+        // Defino el dia y hora de apertura del cine y de cierre del cine.
+        $cinemaStartingDateTime = new DateTime($movieStartingDate." ".$oneCinema->getOpenning());
+        $cinemaEndingDateTime = new DateTime ($movieStartingDate." ".$oneCinema->getClosing());
+        $cinemaTrasnocheStarting = new DateTime ($movieStartingDate." 00:00:00");
+        $cinemaTrasnocheEnding = new DateTime($movieStartingDate." ".$oneCinema->getClosing());
+        
+               
+      /* Si la hora de apertura del cine es mayor a la hora de cierre
+          es un cine de TRASNOCHE, por lo que sumo un dia a la fecha de cierre
+          o si es un cine 24 hrs agrego 2 dias para evitar problemas en la comparacion de fechas
+      */
+        if($oneCinema->getOpenning() > $oneCinema->getClosing()){
+          $cinemaEndingDateTime->add(new DateInterval('P1D'));
+          /*
+          considerar franja horaria del dia siguiente
+          */
+          echo "<br>ES CINE TRASNOCHE<br>";
+          $cineTrasnoche = true;
+        } 
+        if($oneCinema->getOpenning() == $oneCinema->getClosing()){
+          $cinemaEndingDateTime->add(new DateInterval('P2D'));
+        }
+
+        $movieStartingHour = date_format($movieStartingDateTime, 'H:i:s');
+        $movieEndingHour = date_format($movieEndingDateTime, 'H:i:s');
+        if($movieStartingHour > $movieEndingHour){
+          $peliTrasnoche = true;
+        }
+
+        echo "<br> CINEMA ".$oneCinema->getName()."<br> Cine empieza ";
+        var_dump($cinemaStartingDateTime);
+        echo "<br> Cine termina ";
+        var_dump($cinemaEndingDateTime);
+        echo "<br> Cine Trasnoche STARTING";
+        var_dump($cinemaTrasnocheStarting);
+        echo "<br> Cine Trasnoche ENDING";
+        var_dump($cinemaTrasnocheEnding);
+        echo "<br> Peli empieza: ";
+        var_dump($movieStartingDateTime);
+        echo "<br> Peli termina";
+        var_dump($movieEndingDateTime);
+        echo "<br><br>";
+        // Si el cine esta abierto mientras dura la proyeccion de la pelicula, traigo las salas disponibles del cine
+        
+        $openCinema = false;
       
-      foreach($cinemas as $oneCinema){
-        $oneCinemaRooms = $this->DAORoom->getActiveRoomsByCinema($oneCinema->getId());
-        foreach($oneCinemaRooms as $oneRoom){
-          array_push($rooms,$oneRoom);
+        if($cineTrasnoche && $peliTrasnoche){
+          if($cinemaTrasnocheStarting <= $movieStartingDateTime && $cinemaTrasnocheEnding >= $movieEndingDateTime){
+            $openCinema = true;
+
+            echo "IF DE CINE TRASNOCHE 11111";
+          }
+        }
+        else if($cinemaStartingDateTime <= $movieStartingDateTime && $cinemaEndingDateTime >= $movieEndingDateTime){
+          $openCinema = true;
+          echo "IF DE CINE COMUN DOOOOOSSSSSSSSS";
+        }
+        
+        if($openCinema){
+          $oneCinemaRooms = $this->DAORoom->getActiveRoomsByCinema($oneCinema->getId());
+          
+          foreach($oneCinemaRooms as $oneRoom){
+            array_push($openRooms,$oneRoom);
+          }
         }
       }
-
-      return $rooms;
+      return $openRooms;
     }
     private function getRoomsWithAviableTime($rooms,$date,$startingHour,$endingHour){    
       $filteredRooms = array();
