@@ -145,21 +145,20 @@
           $end = $dateToInsertEnd;
           $cinemas = $this->DAOCinema->getActiveCinemas();
 
-            //traigo las salas activas de los cinemas abiertos a la hora de inicio de la pelicula      
+          //traigo las salas activas de los cinemas abiertos a la hora de inicio de la pelicula      
           $message = null;
          //$rooms = $this->DAORoom->getActiveRooms();
-          //$rooms = $this->getOpenRooms($this->DAOCinema->getOpenCinemas($start));
-          $rooms = $this->DAORoom->getActiveRooms();
-          echo '<pre>';
-          //print_r($rooms);
-          echo '</pre>';
+         //$rooms = $this->getOpenRooms($this->DAOCinema->getOpenCinemas($start));
+        $rooms = $this->DAORoom->getActiveRooms();
+        
+        if($rooms){
+           //valido que exista una franja horaria disponible para proyectar la pelicula
+          $rooms = $this->getRoomsWithAviableTime($rooms,$date,$start,$ends);
+          //  $rooms =  $this->DAORoom->getAll();
+
           if($rooms){
-            //valido que exista una franja horaria disponible para proyectar la pelicula
-            $rooms = $this->getRoomsWithAviableTime($rooms,$date,$start,$ends);
-            
-            if($rooms){
-               //valido que la pelicula no se este proyectando en otra sala el mismo dia.
-              $rooms = $this->sameDayRestriction($rooms,$date,$movieId);
+             //valido que la pelicula no se este proyectando en otra sala el mismo dia.
+            $rooms = $this->sameDayRestriction($rooms,$date,$movieId);
             }
             else{
               $message = "All rooms are full at given time.";
@@ -168,14 +167,36 @@
           else{
             $message = "No open cinemas.";
           } 
-
-
-          //se toma la película y se calcula la duración para devolver el final de la función + los 15 minutos 
-
           
+          
+          //se toma la película y se calcula la duración para devolver el final de la función + los 15 minutos 
+          
+          /* echo $dateToInsert;
+          echo $dateToInsert;
+          echo '<br>';
+          echo $dateToInsertEnd;
+          */
+
+          $openCinema = new DateTime('00:00:00'.'M');
+          $closeCinema = new DateTime('00:00:00'.'M');
+          $startMovie = new DateTime('00:00:00'.'M');
+          $endMovie = new DateTime('00:00:00'.'M');
+          $openCinema = date_format($midNight, 'Y-M-d, H:i:s');
+
+          foreach($cinemas as $cinema){
+
+            foreach($rooms as $room){
+              if($room->getCinema()->getId() == $cinema->getId()){
+                print_r($rooms);
+              }}
+              
+          }
+
+        
+
           ViewController::navView($genreList=null,$moviesYearList=null,null,null);
           include VIEWS_PATH.'selectRoomForShow.php';
-
+          
 
           
         } 
@@ -262,9 +283,9 @@
                           } else {
                               $extremoSuperior = new DateTime($endAux->format('Y-m-d').' '.$show->getEnd());
                           }
-                          if (!($startAux>=$extremoSuperior) && !($endAux<=$extremoInferior)) {
+                          if (!($startAux>=$extremoSuperior) && !($endAux<=$extremoInferior)&& ($show->getIdShow() != $idShow)) {
                               $msg = 'Schedule is full';
-                          }
+                          } 
                       }
                   }
               }
@@ -347,9 +368,7 @@
     }
 
     private function getOpenRooms($cinemas){
-      
-      $rooms = array();
-      
+    /*   $rooms = array();
       foreach($cinemas as $oneCinema){
         $oneCinemaRooms = $this->DAORoom->getActiveRoomsByCinema($oneCinema->getId());
         foreach($oneCinemaRooms as $oneRoom){
@@ -358,7 +377,16 @@
       }
 
       return $rooms;
+     */
+    
+    
+      $openCinemas = $this->DAOCinema->getOpenCinemas();
+      
+
+
     }
+
+
     private function getRoomsWithAviableTime($rooms,$date,$startingHour,$endingHour){    
       $filteredRooms = array();
 

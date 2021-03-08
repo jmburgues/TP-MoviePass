@@ -188,7 +188,11 @@
                 $i++;
               }
             } else {
+              echo "<script type='text/javascript'>alert('intervalo invalido: Fin del intervalo anterior al inicio');</script>";
               $msg = "intervalo invalido: Fin del intervalo anterior al inicio";
+              $totalCostSold = 0;
+              $totalTicketsAmount = 0;
+              include VIEWS_PATH.'salesStatistics.php';
               throw new Exception($msg);
             }
           } else {

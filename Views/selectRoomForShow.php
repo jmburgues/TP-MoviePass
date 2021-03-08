@@ -91,7 +91,6 @@
                 <th style="text-align:center" scope="col">CINEMA</td>
                 <th style="text-align:center" scope="col">ROOMS</td>
             </tr>
-            <!-- FORM PARA ENVIAR EL ROOM -->
             <form action="<?php echo FRONT_ROOT?>Show/createNewShow" method="POST" class= " mt-5 mb-5">
                 <input type="hidden"  value="<?php echo $date?>" name="date" ></input>     
                 <input type="hidden"  value="<?php echo $dateToInsert?>" name="dateToInsert" ></input>   
@@ -100,7 +99,19 @@
             
             <?php foreach ($cinemas as $oneCinema){ ?>
             <tr>
-                <td style="text-align:center" ><?php echo $oneCinema->getName()."<br><i>(".substr($oneCinema->getOpenning(), 0, -3)." - ".substr($oneCinema->getClosing(), 0, -3)." hrs)</i>"?></td>
+                <td style="text-align:center" >
+                <?php 
+
+                echo 'asdads';
+                print_r($oneCinema->getOpenning());
+                
+                $cinemaStart = new DateTime($oneCinema->getOpenning().'M');
+                $cinemaEnd = new DateTime($oneCinema->getClosing().'M');
+                echo '<pre>';
+                echo '</pre>';
+                echo $oneCinema->getName()."<br><i>(". date_format($cinemaStart, 'H.i')." - 
+                ". date_format($cinemaEnd,  'H.i')." hrs)</i>"?></td>
+                
                 <td style="text-align:center">
                     <?php $cinemaFlag = false;
                 if(!empty($rooms)){
@@ -112,8 +123,7 @@
                                     
                                     <button type="submit" value="<?php echo $oneRoom->getId()?>" name="roomId" 
                                     <?php 
-                                    $cinemaStart = new DateTime($oneCinema->getOpenning().'M');
-                                    $cinemaEnd = new DateTime($oneCinema->getClosing().'M');
+                                    
                                     
                                     /* if($cinemaEnd < $cinemaStart) { 
                                         $cinemaEnd->modify('+1 day');
@@ -123,25 +133,20 @@
                                     //$midNight->format('Y-m-d 00:00:00');
                                    // echo date_format($midNight, 'Y-M-d, H:i:s');
                                     
-                                   /*  if(($cinemaStart > $cinemaEnd) && ($cinemaEnd > $midNight)) { 
+                                     if(($cinemaStart > $cinemaEnd) && ($cinemaEnd > $midNight)) { 
                                         $start->modify('+12 hours');
                                     }
- */
+ 
 
-                                         if(($cinemaEnd < $cinemaStart)) { 
+                                          if(($cinemaEnd < $cinemaStart)) { 
                                             $cinemaEnd->modify('+1 day');
-                                             if($start >= $midNight){
-                                                $start->modify('+1 day');
-                                                if($ends <= $cinemaEnd){
-                                                    $aux = true;
-                                                }
-                                            } 
-                                        } 
+                                            
+                                        }  
 
 
                                         if($ends < $start) { 
                                             $ends->modify('+1 day');
-                                        } 
+                                        }  
 
 
 

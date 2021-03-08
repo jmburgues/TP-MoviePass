@@ -73,14 +73,16 @@
                 $modifyRoom = new Room($name, $capacity, $cinema, $price, $roomType, $active, $roomID);
                 foreach($roomsList as $rooms){
                     if ($rooms->getId() == $roomID) {
+
                         $this->DAORoom->modify($modifyRoom);
                     }  
                 }
                 $this->manageRooms($IDCinema);
             } 
             catch (PDOException $ex){
-                $arrayOfErrors [] = $ex->getMessage();
-                ViewController::errorView($arrayOfErrors);
+         // echo $ex->getMessage();
+              //$arrayOfErrors [] = $ex->getMessage();
+              //  ViewController::errorView($arrayOfErrors);
             }
         }
     }
@@ -95,6 +97,7 @@
                     $listRoom = $this->DAORoom->getAll();
                     $roomExist = false;
                     $message ="";
+                    
                     foreach ($listRoom as $list) {
                         if ($list->getCinema()->getId() == $idCinema){
                             if ($list->getName() == $name) {
