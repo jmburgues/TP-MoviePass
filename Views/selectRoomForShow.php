@@ -107,20 +107,19 @@
                             </button>
 
                     <?php $cinemaFlag = true;
-                         }
+                        }
                     }
                     if($cinemaFlag == false){ ?>
                         <p><i> No rooms aviable </i></p>
                         
                     <?php }
-                 }
-                 else{
+                }
+             else{
                     if($rooms->getCinema()->getId() == $oneCinema->getId()){ ?>
                         
                         <button type="submit" value="<?php echo $rooms->getId()?>" name="roomId" ><?php echo $rooms->getName()?></button>
 
                 <?php }
-
                  }
             }
             else{ ?>
