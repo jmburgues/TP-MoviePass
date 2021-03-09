@@ -96,15 +96,17 @@ CONSTRAINT fk_idTransaction foreign key (idTransaction) references TRANSACTIONS(
 );
 
 #Adding users
-INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('admin','1234','admin@MoviePass.com','1988-01-01',34322111,'admin');
-INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('owner','1234','owner@MoviePass.com','1987-01-01',33322111,'owner');
-INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('Jaz','1234','briascojazmin@gmail.com','1987-01-01',32322111,'owner');
-INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('Juan','1234','juancito@hotmail.com','1987-01-01',32322111,'user');
-INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('user','1234','user@hotmail.com','1986-01-01',31322111,'user');
+INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('admin','1234','admin@MoviePass.com','1988-10-01',32154875,'admin');
+INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('owner','1234','owner@MoviePass.com','1987-02-02',32154698,'owner');
+INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('user','1234','user@hotmail.com','1986-03-03',39856321,'user');
+INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('Jaz','1234','briascojazmin@gmail.com','1990-05-04',31254698,'owner');
+INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('Juan','1234','juancito@hotmail.com','1980-04-05',32514896,'user');
+INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('Lautaro','1234','lautaro@gmail.com','1972-03-06',36985214,'owner');
+INSERT INTO USERS(username,pass,email,birthdate,dni,userRole) VALUES ('Rodrigo','1234','rodrigo@gmail.com','1982-11-07',36251456,'owner');
 
 #Adding cinemas
-INSERT INTO CINEMAS(cinemaName, adress, adressNumber, openning, closing, isActive) VALUES ('Ambassador','Cordoba',2400, 18-00-00,03-00-00,true);
-INSERT INTO CINEMAS(cinemaName, adress, adressNumber, openning, closing, isActive) VALUES ('Cine Del Paseo','Diagonal Pueyrredon',3058,13-00-00,24-00-00,true);
+INSERT INTO CINEMAS(cinemaName, adress, adressNumber, openning, closing, isActive) VALUES ('Ambassador','Cordoba',2400, '13:00:00', '21:00:00', 1);
+INSERT INTO CINEMAS(cinemaName, adress, adressNumber, openning, closing, isActive) VALUES ('Cine Del Paseo','Diagonal Pueyrredon',3058, '10:00:00', '18:00:00',1);
 
 #Adding rooms
 INSERT INTO ROOMS(roomName, capacity, idCinema, price, isActive, roomType) VALUES('A', 100, 1, 200, 1, '3D');

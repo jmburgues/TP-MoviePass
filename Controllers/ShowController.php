@@ -258,7 +258,7 @@
                           } else {
                               $extremoSuperior = new DateTime($endAux->format('Y-m-d').' '.$show->getEnd());
                           }
-                          if (!($startAux>=$extremoSuperior) && !($endAux<=$extremoInferior)) {
+                          if (!($startAux>=$extremoSuperior) && !($endAux<=$extremoInferior) && ($show->getIdShow() != $idShow)) {
                               $msg = 'Schedule is full';
                           }
                       }
@@ -411,11 +411,8 @@
         //Si el cine es trasnoche y la película comienza luego de las 12 de la noche
         //Cine de 20 a 05 y película de 02 a 04
           if($cinemaTrasnoche){
-            echo 'cine-trasnoche';
             if($movieEndingHour < $cinemaEndingHour){
-              echo 'horario-valido';
               if($movieStartingHour < $movieEndingHour){
-                echo ' pasa-las-12';
                 $movieEndingDateTime->add(new DateInterval('P1D'));
                 $movieEndingDate = date_format($movieEndingDateTime, 'Y-m-d');
                 $movieStartingDateTime->add(new DateInterval('P1D'));

@@ -11,21 +11,6 @@
     $init = ($page-1)*$articlePerPage;
 ?>
 
-<style>
-.container {
-  height: 40px;
-  position: relative;
-}
-
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-</style>
 
 <!-- background -->
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
@@ -41,7 +26,7 @@
 <!-- Navigation buttons -->
 
 <div class="container">
-  <div class="center">
+  <div class="center mt-2 mb-4 text-center">
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView'"> Go Back </button> 
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="<?php ?>" onclick="window.location.href='<?php echo FRONT_ROOT?>Movie/viewDataBaseMovies'"> View Movies Database </button> 
   </div>
@@ -88,16 +73,17 @@
                   echo $movies[$i]->getDescription();
               } else {
                   echo substr($movies[$i]->getDescription(), 0, 100);
+                  echo "...";
               }
           } else {
               echo $movies[$i]->getTitle();
           } ?>
         </p>
       </div> 
-      <?php if ($movies[$i]->getDescription() && strlen($movies[$i]->getDescription()) >= 155) {?>
+      <?php if ($movies[$i]->getDescription() && strlen($movies[$i]->getDescription()) >= 100) {?>
       <div class="dropdown show"  >
         <a class="btn dropdown-toggle card-text aDropCards"  href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <small class="text-muted" >Leer más</small>
+        <small class="text-muted" >Read more</small>
         </a>
         <div class="dropdown-menu dropdown-menu-right p-2 dropDownCard" id="dropDownCard" aria-labelledby="dropdownMenuLink">
           <strong> <?php echo $movies[$i]->getDescription(); ?> </strong>
@@ -108,18 +94,41 @@
   </div> 
  <?php } ?>
 </div>
-
+<?php if ($movies != null) { ?>
 <!-- Pagination -->
 
+
+ <?php if($page > $pages){
+   ?> 
+   <div class="container">
+    <img id="notFoundImageCardDB" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+    </div>
+    <?php
+  }else{
+  ?>
+
+
+<div class ="marginTop100" >
 <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center mt-5">
-    <li class="page-item <?php echo $page <= 1 ? "disabled" : "" ?>"><a class=" mb-5 page-link text-dark btn btn-danger  " href="<?php echo FRONT_ROOT?>Movie/listAPIMovies/<?php echo $page-1 ?>">Previous</a></li>
+  <ul class="pagination justify-content-center mt-3">
+    <li class="page-item border-0<?php echo $page <= 1 ? "disabled" : "" ?>"><a class=" page-link text-dark btn btn-danger  " href="<?php echo FRONT_ROOT?>Movie/listAPIMovies/<?php echo $page-1 ?>">Previous</a></li>
     
     <?php for($i=0; $i<$pages; $i++) {?>
-      <li class="page-item <?php echo $page == $i+1 ? "active" : ""?>"><a style="background-color: <?php echo $page == $i+1 ? "red" : ""?>"  class="text-dark page-link text-dark btn btn-danger "  href="<?php echo  FRONT_ROOT?>Movie/listAPIMovies/<?php echo $i+1?>"> <?php echo $i+1?></a></li>
+      <li class="page-item border-0<?php echo $page == $i+1 ? "active" : ""?>"><a style="background-color: <?php echo $page == $i+1 ? "red" : ""?>"  class="text-dark page-link text-dark btn btn-danger "  href="<?php echo  FRONT_ROOT?>Movie/listAPIMovies/<?php echo $i+1?>"> <?php echo $i+1?></a></li>
     <?php }?>
 
-    <li class="page-item <?php echo $page >= $pages ? "disabled" : "" ?>"><a class="page-link text-dark btn btn-danger  " href="<?php echo FRONT_ROOT?>Movie/listAPIMovies/<?php echo $page+1 ?>">Next</a></li>
+    <li class="page-item border-0 <?php echo $page >= $pages ? "disabled" : "" ?>"><a class="page-link text-dark btn btn-danger  " href="<?php echo FRONT_ROOT?>Movie/listAPIMovies/<?php echo $page+1 ?>">Next</a></li>
   </ul>
 </nav>
+<?php } ?>
 
+</div >
+
+<hr class=" mt-4 mb-1 bg-danger text-dark">
+  </div >
+  <?php }else{
+    ?><img id="noMovieImg" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">   <?php
+    ?><p class="text-white text-center font-weight-bold fontWeight">NO LOADED MOVIES YET</p>
+    <p class="text-muted text-center mb-5"> <?php echo "PLEASE TRY AGAIN LATER"?><p><?php
+  } ?>
+</div >

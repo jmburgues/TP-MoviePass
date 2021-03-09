@@ -155,7 +155,7 @@ class CinemaController{
               
               }
           }
-          $this->manageCinemas();
+          $this->manageCinemas($message);
         }
         catch (PDOException $ex) {
           $arrayOfErrors [] = $ex->getMessage();

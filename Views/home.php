@@ -89,8 +89,19 @@
     </div> 
     <?php } ?>
   </div>
+
+  
+  <?php if($page > $pages){
+   ?> 
+   <div class="container">
+    <img id="notFoundImageCardDB" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+    </div>
+    <?php
+  }else{
+  ?>
   
   <?php if ($movies != null) { ?>
+
   <div class ="marginTop100" >
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center mt-3 ">
@@ -111,4 +122,4 @@
     ?><p class="text-white text-center font-weight-bold fontWeight">NO LOADED MOVIES YET</p>
     <p class="text-muted text-center mb-5"> <?php echo "PLEASE TRY AGAIN LATER"?><p><?php
   } ?>
-</div >
+</div ><?php } ?>

@@ -132,6 +132,7 @@
               $lastDate = new DateTime($lastDate);
               $lastDate = $lastDate->format('Y-m-d');
               $transactions = $this->DAOTransaction->getAllTransactionsBetweenDates($firstDate,$lastDate);
+            
               $totalTicketsAmount = 0;
               $totalCostSold = 0;
               foreach($transactions as $t){
@@ -151,7 +152,8 @@
                 $ticketAmount = 0;
                 $ticketSold = 0;
                 $unsoldTickets = $this->DAOShow->getCapacityByCinemaBetween($cinema->getId(),$firstDate,$lastDate);
-                  
+                  print_r($unsoldTickets);
+                  echo '<br>';
                 foreach ($this->DAOTicket->getTicketsByCinemaBetween($cinema->getId(),$firstDate,$lastDate) as $corn) {
                   $ticketAmount += $corn->getTransaction()->getTicketAmount();
                   $ticketSold += ($corn->getTransaction()->getCostPerTicket()) * $ticketAmount;
@@ -188,8 +190,12 @@
                 $i++;
               }
             } else {
+              echo "<script type='text/javascript'>alert('intervalo invalido: Fin del intervalo anterior al inicio');</script>";
               $msg = "intervalo invalido: Fin del intervalo anterior al inicio";
-              throw new Exception($msg);
+              $totalCostSold = 0;
+              $totalTicketsAmount = 0;
+             // include VIEWS_PATH.'salesStatistics.php';
+              //throw new Exception($msg);
             }
           } else {
             $msg = "intervalo invalido: Falta una fecha";

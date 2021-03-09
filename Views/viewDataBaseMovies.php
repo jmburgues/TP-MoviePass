@@ -11,22 +11,6 @@
 
 ?>
 
-<style>
-.container {
-  height: 40px;
-  position: relative;
-}
-
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-</style>
-
 <!-- Page Title -->
 <div style="margin-top:10px;">
     <hr class=" mt-2 mb-4 bg-danger text-dark">
@@ -37,7 +21,7 @@
 <!-- Navigation buttons -->
 
 <div class="container">
-  <div class="center">
+  <div class="center  mt-2 mb-4 text-center">
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="history.back(-1)"> Go Back </button> 
   </div>
 </div>
@@ -106,19 +90,43 @@
   MODIFICAR LAS REFERENCIAS EN LOS BOTONES DEL PAGINADO, USAR EL HOME VIEW ENVIANDO $moviesBDD PAGINA Y TITULO.
  -->
 
+
+
+ <?php if($page > $pages){
+   ?> 
+   <div class="container">
+    <img id="notFoundImageCardDB" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+
+    </div>
+    <?php
+    
+    echo $pages ;
+    echo '<br>';
+    echo $page ;
+    echo '<br>';
+    
+  }else{
+  
+  ?>
+
+
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center mt-5">
     
-    <li class="page-item border-0 <?php echo $page <= 1 ? "disabled" : "" ?>"><a class=" mb-5 page-link text-dark btn btn-danger " href="<?php echo FRONT_ROOT?>Movie/viewDataBaseMovies/<?php echo $page-1 ?>">Previous</a></li>
+    <li class="page-item border-0 <?php echo $page <= 1 ? "disabled" : "" ?>"><a class=" page-link text-dark btn btn-danger " href="<?php echo FRONT_ROOT?>Movie/viewDataBaseMovies/<?php echo $page-1 ?>">Previous</a></li>
     
 
-    <?php for($i=0; $i<$pages; $i++) {?>
+    <?php for($i=0; $i<$pages; $i++) {
+          ?>
+    
       <li class="page-item <?php echo $page == $i+1 ? "active" : ""?>"><a style="background-color: <?php echo $page == $i+1 ? "red" : ""?>" class="text-dark page-link"  href="<?php echo  FRONT_ROOT?>Movie/viewDataBaseMovies/<?php echo $i+1?>"> <?php echo $i+1?></a></li>
-    <?php }?>
-
+    <?php 
+  
+  }?> 
     <li class="page-item <?php echo $page >= $pages ? "disabled" : "" ?>"><a class="page-link  text-dark btn btn-danger " href="<?php echo FRONT_ROOT?>Movie/viewDataBaseMovies/<?php echo $page+1 ?>">Next</a></li>
   </ul>
 </nav>
+<?php } ?>
 
 <hr class=" mt-4 mb-1 bg-danger text-dark">
 
