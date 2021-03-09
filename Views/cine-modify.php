@@ -37,13 +37,13 @@
             <div class="form-group row">
                 <label for="inputHorario" class="col-sm-2 col-form-label"><strong>Openning</strong></label>
                 <div class="col-sm-10">
-                    <input type="time" min="00:00" max="23:59" class="form-control" name="openning" value="<?php echo $currentCinema->getOpenning() ?>" required>
+                    <input type="time" min="06:00" max="23:59" class="form-control" name="openning" value="<?php echo $currentCinema->getOpenning() ?>" required>
                 </div>
             </div>  
             <div class="form-group row">
                 <label for="inputHorario" class="col-sm-2 col-form-label"><strong>Closing</strong></label>
                 <div class="col-sm-10">
-                    <input type="time" min="00:00" max="23:59" class="form-control" name="closing" value="<?php echo $currentCinema->getClosing() ?>" required>
+                    <input type="time" min="00:06" max="23:59" class="form-control" name="closing" value="<?php echo $currentCinema->getClosing() ?>" required>
                 </div>
             </div>
             <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas'"> Go Back </button> 

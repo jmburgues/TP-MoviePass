@@ -90,25 +90,29 @@ class CinemaController{
         try {
             $message = NULL;
             $activeRooms = $this->DAORoom->getActiveRoomsByCinema($idCinema);
-            if (!$activeRooms) {
-                $cinemasList = $this->DAOCinema->getActiveCinemas();
-                foreach ($cinemasList as $cinemas) {
-                    if ($cinemas->getId() == $idCinema) {
-                        $newCinema = new Cinema();
-                        $newCinema->setId($idCinema);
-                        $newCinema->setName($name);
-                        $newCinema->setAddress($address);
-                        $newCinema->setNumber($number);
-                        $newCinema->setOpenning($openning);
-                        $newCinema->setClosing($closing);
-                        $newCinema->setActive(true);
-                        $this->DAOCinema->modify($newCinema);
-                    }
-                }
-              } else {
-                $message = "Unable to modify. There are active rooms in the selected cinema.";
+            if ($openning < $closing) {
+              if (!$activeRooms) {
+                  $cinemasList = $this->DAOCinema->getActiveCinemas();
+                  foreach ($cinemasList as $cinemas) {
+                      if ($cinemas->getId() == $idCinema) {
+                          $newCinema = new Cinema();
+                          $newCinema->setId($idCinema);
+                          $newCinema->setName($name);
+                          $newCinema->setAddress($address);
+                          $newCinema->setNumber($number);
+                          $newCinema->setOpenning($openning);
+                          $newCinema->setClosing($closing);
+                          $newCinema->setActive(true);
+                          $this->DAOCinema->modify($newCinema);
+                      }
+                  }
+                } else {
+                  $message = "Unable to modify. There are active rooms in the selected cinema.";
+              }
             }
-
+          else{
+            echo "<script type='text/javascript'>alert('Unable to add. The schedule is wrong');</script>";
+          }
             $this->manageCinemas($message);
 
     
@@ -125,36 +129,41 @@ class CinemaController{
     
     //if(AuthController::validate('admin')){
         try {
-          if ($name != "") { 
-              $cinema = new Cinema();
-              $cinema->setName($name);
-              $cinema->setAddress($address);
-              $cinema->setNumber($number);
-              $cinema->setOpenning($openning);
-              $cinema->setClosing($closing);
-              $cinema->setActive(true);
-              $list=$this->DAOCinema->getAll();
-              $cinemaExist = false;
-              $message ="";
-              foreach ($list as $l) {
-                if ($l->getName() == $name) {
-                  $cinemaExist = true;
-                  if (!$l->getActive()) { 
-                    $cinema->setActive(true);
-                    $cinema->setId($l->getId()); 
-                    $this->DAOCinema->modify($cinema);
-                    $message = "The cinema is now active again.";
-                  }else{
-                    $message = "The cinema already exists.";
+          if ($name != "") {
+              if ($openning < $closing) {
+                  $cinema = new Cinema();
+                  $cinema->setName($name);
+                  $cinema->setAddress($address);
+                  $cinema->setNumber($number);
+                  $cinema->setOpenning($openning);
+                  $cinema->setClosing($closing);
+                  $cinema->setActive(true);
+                  $list=$this->DAOCinema->getAll();
+                  $cinemaExist = false;
+                  $message ="";
+                  foreach ($list as $l) {
+                      if ($l->getName() == $name) {
+                          $cinemaExist = true;
+                          if (!$l->getActive()) {
+                              $cinema->setActive(true);
+                              $cinema->setId($l->getId());
+                              $this->DAOCinema->modify($cinema);
+                              $message = "The cinema is now active again.";
+                          } else {
+                              $message = "The cinema already exists.";
+                          }
+                      }
                   }
-                }
+                  if ($cinemaExist == false) {
+                      $this->DAOCinema->add($cinema);
+                      $message = "Cinema successfully added";
+                  }
               }
-              if ($cinemaExist == false) { 
-                  $this->DAOCinema->add($cinema);
-                  $message = "Cinema successfully added";
-              
+              else{
+                echo "<script type='text/javascript'>alert('Unable to add. The schedule is wrong');</script>";
               }
           }
+          
           $this->manageCinemas();
         }
         catch (PDOException $ex) {

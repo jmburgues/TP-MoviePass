@@ -71,14 +71,14 @@ if (isset($message)){
                 <div class="form-group row">
                     <label for="inputHorario" class="col-sm-2 col-form-label"><strong>Openning hour:</strong></label>
                     <div class="col-sm-10">
-                    <input type="time"   min="00:00" max="23:59" class="form-control" name="openning" placeholder="00:00" value="00:00">
+                    <input type="time"   min="06:00" max="23:59" class="form-control" name="openning" placeholder="00:00" value="00:00">
 
                     </div>
                 </div>  
                 <div class="form-group row">
                     <label for="inputHorario" class="col-sm-2 col-form-label"><strong>Closing hour:</strong></label>
                     <div class="col-sm-10">
-                    <input type="time"   min="00:00" max="23:59" class="form-control" name="closing" placeholder="23:59" value="23:59">
+                    <input type="time"   min="06:00" max="23:59" class="form-control" name="closing" placeholder="23:59" value="23:59">
                     
                     </div>
                 </div>
