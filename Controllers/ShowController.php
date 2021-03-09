@@ -342,72 +342,137 @@
       }
     }
 
-    private function getOpenRooms($movieStartingDate,$movieStartingDateTime,$movieEndingDateTime){
+    private function getOpenRooms($movieStartingDate,$movieStartingDateTime,$movieEndingDateTimeS){
       
-      $movieEndingDateTime = new DateTime($movieEndingDateTime);
       $activeCinemas = $this->DAOCinema->getActiveCinemas();
       $openRooms = array();   
-
+      
       foreach ($activeCinemas as $oneCinema) {
-          $cineTrasnoche = false;
-          $peliTrasnoche = false;
-          // Defino el dia y hora de apertura del cine y de cierre del cine.
-          $cinemaStartingDateTime = new DateTime($movieStartingDate." ".$oneCinema->getOpenning());
-          $cinemaEndingDateTime = new DateTime($movieStartingDate." ".$oneCinema->getClosing());
-          $cinemaTrasnocheStarting = new DateTime($movieStartingDate." 00:00:00");
-          $cinemaTrasnocheEnding = new DateTime($movieStartingDate." ".$oneCinema->getClosing());
         
-          /* echo 'cinemaStartingDateTime:';
-          echo '<br>';
-          print_r($cinemaStartingDateTime);
-          echo '<br>';
-          echo 'cinemaEndingDateTime';
-          echo '<br>';
-          print_r($cinemaEndingDateTime);
-          echo '<br>';
-          echo 'cinemaTrasnocheStarting';
-          echo '<br>';
-          print_r($cinemaTrasnocheStarting);
-          echo '<br>';
-          echo 'cinemaTrasnocheEnding';
-          print_r($cinemaTrasnocheEnding);
-          echo '<br>'; */
-          /* Si la hora de apertura del cine es mayor a la hora de cierre
-              es un cine de TRASNOCHE, por lo que sumo un dia a la fecha de cierre
-              o si es un cine 24 hrs agrego 2 dias para evitar problemas en la comparacion de fechas
-          */
+        //FLAGS
+        $cinemaTrasnoche = false;
+        $movieTrasnoche = false;
+        $openCinema = false;
+        $postMidnight = false;
+      
+        //CONVERSIONES A DATE TIME DE TODOS LOS DATOS
+        $cinemaStartingDateTime = new DateTime($movieStartingDate." ".$oneCinema->getOpenning());
+        $cinemaStartingHour = new DateTime();
+        $cinemaEndingHour = new DateTime();
+        $cinemaEndingDateTime = new DateTime($movieStartingDate." ".$oneCinema->getClosing());
 
-          //$movieStartingDateTime->add(new DateInterval('P1D'));
+        $movieStartingHour = new DateTime();
+        $movieEndingHour = new DateTime();
+        $movieEndingDateTime = new DateTime($movieEndingDateTimeS);
+        
+
+        $movieStartingDate = date_format($movieStartingDateTime, 'Y-m-d');
+        $movieStartingHour = date_format($movieStartingDateTime, 'H:i:s');
+        $movieEndingHour = date_format($movieEndingDateTime, 'H:i:s');
+        $movieEndingDate = date_format($movieEndingDateTime, 'Y-m-d');
+        
+        $cinemaStartingDate = date_format($movieStartingDateTime, 'Y-m-d');
+        $cinemaStartingHour = date_format($cinemaStartingDateTime, 'H:i:s');
+        $cinemaEndingHour = date_format($cinemaEndingDateTime, 'H:i:s');
+        $cinemaEndingDate = date_format($movieStartingDateTime, 'Y-m-d');
+
           
-          echo "CINE: " . $oneCinema->getName();
-          if ($oneCinema->getOpenning() > $oneCinema->getClosing()) {
-              $cinemaEndingDateTime->add(new DateInterval('P1D'));
-              $cinemaTrasnocheStarting->add(new DateInterval('P1D'));
-              $movieEndingDateTime->add(new DateInterval('P1D'));
-
-              /*
-              considerar franja horaria del dia siguiente
-              */
-              echo "<br>ES CINE TRASNOCHE<br>";
-       
-              $cineTrasnoche = true;
+        //IF del cine con apertura mañana/tarde, de un solo día ->  de 10 a 20
+        if (($cinemaStartingHour < $cinemaEndingHour) && ($cinemaStartingDate == $cinemaEndingDate) && ($movieStartingDate == $movieEndingDate)) {
+          if ($cinemaStartingHour <= $movieStartingHour && $cinemaEndingHour >= $movieEndingHour) {
+              $openCinema = true;
           }
+        }
+
+
+          //IF de cine trasnoche -> de 20 a 02
+          if ($cinemaStartingHour > $cinemaEndingHour) {
+              $cinemaEndingDateTime->add(new DateInterval('P1D'));
+              $cinemaEndingDate = date_format($cinemaEndingDateTime, 'Y-m-d');  
+              $cinemaTrasnoche = true;
+          }
+          
+
+        //IF de película trasnoche -> de 23 a 01
+           if ($movieStartingHour > $movieEndingHour) {
+/*             $movieEndingDateTime->add(new DateInterval('P1D'));
+            $movieEndingDate = date_format($movieEndingDateTime, 'Y-m-d'); */
+            $movieTrasnoche = true;
+          } 
+
+          
+        //Si tanto el cine cómo la pelíocula pasan por el horario de las 12 de la noche:
+        //Cine de 20 a 04 y película de 23 a 01  
+        if($cinemaTrasnoche && $movieTrasnoche){
+          echo 'ambos trasnoche';
+          if($cinemaStartingDate == $movieStartingDate && $cinemaEndingDate == $movieEndingDate){
+            echo 'entre horarios';
+            if($cinemaStartingHour <= $movieStartingHour && $cinemaEndingHour >= $movieEndingHour){
+              $openCinema = true;
+            }
+          }
+        }
+        
+        //Si el cine es trasnoche y la película comienza luego de las 12 de la noche
+        //Cine de 20 a 05 y película de 02 a 04
+          if($cinemaTrasnoche){
+            echo 'cine-trasnoche';
+            if($movieEndingHour < $cinemaEndingHour){
+              echo 'horario-valido';
+              if($movieStartingHour < $movieEndingHour){
+                echo ' pasa-las-12';
+                $movieEndingDateTime->add(new DateInterval('P1D'));
+                $movieEndingDate = date_format($movieEndingDateTime, 'Y-m-d');
+                $movieStartingDateTime->add(new DateInterval('P1D'));
+                $movieStartingDate = date_format($movieStartingDateTime, 'Y-m-d');
+                $postMidnight = true;
+                $openCinema = true;
+            }
+          }
+        }
+        
+        /* if($postMidnight){
+            echo 'tercero';
+            if($cinemaEndingDate == $movieEndingDate ){
+              echo 'cuarto';
+              if($movieStartingDate == $movieEndingDate){
+                echo 'quinto';
+                if ($movieEndingHour <=  $cinemaEndingHour) {
+                  echo 'sexto';
+                  $openCinema = true;
+                }
+              }
+            } 
+          }
+         */  
+          //IF de 24 hs
           if ($oneCinema->getOpenning() == $oneCinema->getClosing()) {
               $cinemaEndingDateTime->add(new DateInterval('P2D'));
+              $cinemaEndingDate = date_format($cinemaEndingDateTime, 'Y-m-d');  
           }
-
-          $movieStartingHour = date_format($movieStartingDateTime, 'H:i:s');
-          $movieEndingHour = date_format($movieEndingDateTime, 'H:i:s');
-          $movieEndingDate = date_format($movieEndingDateTime, 'Y-m-d');
-
-          $cinemaStartingHour = date_format($cinemaStartingDateTime, 'H:i:s');
-          $cinemaEndingHour = date_format($cinemaEndingDateTime, 'H:i:s');
-          $cinemaStartingDate = date_format($cinemaStartingDateTime, 'Y-m-d');
-          $cinemaEndingDate = date_format($cinemaEndingDateTime, 'Y-m-d');
-
+        
           echo '<br>';
-      
-        echo '<br>';
+          echo '<br>';
+          echo '<br>';
+  
+  
+          echo 'El cine abre el día ' .$cinemaStartingDate. ' a las '.$cinemaStartingHour ;
+          echo ' Y cierra el día ' .$cinemaEndingDate. ' a las '.$cinemaEndingHour ;
+          echo '<br>';
+          echo 'La película empieza el día ' .$movieStartingDate. ' a las '.$movieStartingHour ;
+          echo ' Y termina el día ' .$movieEndingDate. ' a las '.$movieEndingHour ;
+          
+          echo '<br>';
+          echo '<br>';
+          echo '<br>';
+  
+
+        
+
+     /*    echo '<br>';
+        echo "<br> movieStartingDateTime";
+        print_r($movieStartingDateTime);
+        echo "<br>";
         echo "<br> movieStartingHour ";
         print_r($movieStartingHour);
         echo '<br>';
@@ -419,6 +484,11 @@
         echo '<br>';
         print_r($movieEndingDate);
         echo '<br>';
+        echo "<br>";
+        echo "<br> cinemaStartingDate";
+        echo "<br>";
+        print_r($cinemaStartingDate);
+        echo "<br>";
         echo "<br> cinemaStartingHour";
         echo "<br>";
         print_r($cinemaStartingHour);
@@ -427,67 +497,12 @@
         echo "<br>";
         print_r($cinemaEndingHour);
         echo "<br>";
-        echo "<br> cinemaStartingDate";
-        echo "<br>";
-        print_r($cinemaStartingDate);
-        echo "<br>";
         echo "<br> cinemaEndingDate";
         echo "<br>";
         print_r($cinemaEndingDate);
         echo "<br>";
-        echo "<br> movieStartingDateTime";
-        echo "<br>";
-        print_r($movieStartingDateTime);
-        echo "<br>";
-        
-        echo "<br><br>";
-        
 
-        if($movieStartingHour > $movieEndingHour){
-          $peliTrasnoche = true;
-        }
-        echo '<br>';
-       
-        /* echo '<br>';
-        print_r($cinemaStartingDateTime);
-        echo '<br>';
-        echo "<br> Cine termina ";
-        echo '<br>';
-        print_r($cinemaEndingDateTime);
-        echo '<br>';
-        echo "<br> Cine Trasnoche STARTING";
-        echo '<br>';
-        print_r($cinemaTrasnocheStarting);
-        echo '<br>';
-        echo "<br> Cine Trasnoche ENDING";
-        echo '<br>';
-        print_r($cinemaTrasnocheEnding);
-        echo '<br>';
-        echo "<br> Peli empieza: ";
-        echo '<br>';
-        print_r($movieStartingDateTime);
-        echo '<br>';
-        echo "<br> Peli termina";
-        echo '<br>';
-        print_r($movieEndingDateTime);
-        echo '<br>';
-        echo "<br><br>"; */
-        // Si el cine esta abierto mientras dura la proyeccion de la pelicula, traigo las salas disponibles del cine
-        
-        $openCinema = false;
-      
-       /*  if($cineTrasnoche && $peliTrasnoche){
-          if($cinemaTrasnocheStarting >= $movieStartingDateTime && $cinemaEndingDateTime <= $movieEndingDateTime){
-            $openCinema = true;
-            echo $openCinema;
-            echo "IF DE CINE TRASNOCHE 11111";
-          }
-        }
-        else if($cinemaStartingDateTime <= $movieStartingDateTime && $cinemaEndingDateTime >= $movieEndingDateTime){
-          $openCinema = true;
-          echo "IF DE CINE COMUN DOOOOOSSSSSSSSS";
-        } */
-        
+*/
         if($openCinema){
           $oneCinemaRooms = $this->DAORoom->getActiveRoomsByCinema($oneCinema->getId());
           
