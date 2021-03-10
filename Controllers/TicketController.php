@@ -215,7 +215,8 @@ use PDOException;
                 $mail->Body    = 'Thank you for your purchase ' .$name. '! <br><br> <h2>Purchase details</h2> <br> 
                 <ul><li>Ticket cost: '.$costPerTicket.'</li><li>Quantity bought: '.$ticketAmount.'</li><li>Total import: '.$totalCost.'</li></ul>
                 <h3>Show details: </h3><br>
-                <ul><li>Cinema: '.$showData->getRoom()->getCinema()->getName().'</li><li>Address: '.$showData->getRoom()->getCinema()->getAddress().'</li><li>Room: '.$showData->getRoom()->getName().'</li><li>Movie: '.$showData->getMovie()->getTitle().'</li><li>Starts: '.$showData->getStart().'</li><li>End: '.$showData->getEnd().'</li></ul><br>';
+                <ul>
+                <li>Cinema: '.$showData->getRoom()->getCinema()->getName().'</li><li>Address: '.$showData->getRoom()->getCinema()->getAddress().' '.$showData->getRoom()->getCinema()->getNumber().'</li><li>Room: '.$showData->getRoom()->getName().'</li><li>Movie: '.$showData->getMovie()->getTitle().'<li>Date: '.$showData->getDate().'</li><li>Starts: '.$showData->getStart().'</li><li>End: '.$showData->getEnd().'</li></ul><br>';
                 
                 $mail->AltBody = 'Thank you for your purchase ' .$name. '! Purchase details
                 Ticket cost: '.$costPerTicket.'Quantity bought: '.$ticketAmount.'Total import: '.$totalCost.'
