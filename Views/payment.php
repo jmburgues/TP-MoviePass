@@ -5,31 +5,24 @@
     <h2 class="text-white">Payment:</h2>
 </div>  
 
-<div class="card mb-3" style="max-width: 1200px; margin: auto; margin-top:20px;">
-  <div class="row no-gutters">
-    
-  
-  
-  <div class="col-md-4">
-  <?php
+<div class="card mb-3 responsive-payment" style="max-width: 1200px; margin: auto; margin-top:20px; ">
+    <div class="row no-gutters ">
+    <div class="col-md-4">
+    <?php
             if($movieForShows[0]->getPoster() == null){
                 ?><img id="notFoundImageCard" style="height:620px; width:100%; background-color:#ffe4ec" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
             <?php
             }else{
                 ?>
-            <img src="https://image.tmdb.org/t/p/w400/.<?php echo $movieForShows[0]->getPoster()?>" class="card-img" alt="...">
+            <img src="https://image.tmdb.org/t/p/w400/.<?php echo $movieForShows[0]->getPoster()?>" class="card-img card-img-respons" alt="...">
             <?php
             }    
             ?>
     </div>
-  
-  
-  
-  
-  
+
     <div class="col-md-8">
-      <div class="card-body">
-        <ul>
+        <div class="card-body ">
+        <ul class = "card-body-resp">
             <li><strong>Movie:  </strong><?php print_r($movieForShows[0]->getTitle()); ?></li>
             <li><strong>Show date:</strong> <?=$showSelected->getDate();?> <strong>Starts at:</strong> <?= $showSelected->getStart();?> <strong>Ends At:</strong> <?=$showSelected->getEnd();?></li>
             <li><strong>Tickets:  </strong><?php print_r($ticketAmount);?></li>
@@ -38,11 +31,11 @@
         </ul> 
 
         <div style="height:100px;" class="mt-4"><hr>
-        <h4 class="text-center"><strong>Credit Card:</strong></h4>
+        <h4 class="text-center credit-resp"><strong>Credit Card:</strong></h4>
 
         <form action="<?php echo FRONT_ROOT ?>Ticket/confirmTicket" method="POST">
-       
-        <table style="text-align:center;" class="mt-4">
+    
+        <table style="text-align:center;" class="mt-4 table-resp">
             <tr>
                 <td>
 
@@ -57,21 +50,21 @@
     </div>
     <div class="form-group font-weight-bold pt-2">
         <label for="cardNumber">Card Number </label>
-        <span class="text-muted">No signs or space</span>
+        <span class="text-muted muted-resp">No signs or space</span>
         <input type="text"   pattern=<?php echo $pattern?> min="1" max="9" class="form-control" name="cardNumber" required>
     </div>
     <div class="form-group font-weight-bold">
         <label for="owner">Owner</label>
-        <span class="text-muted">Name that appears on the card</span>
+        <span class="text-muted muted-resp">Name that appears on the card</span>
         <input type="text" class="form-control" name="owner" required>
     </div>
 </td>   
 <td>
     <div>
     <div style="margin-left:60px; margin-top:-40px">
-    <div class="form-group font-weight-bold pt-2" >
+    <div class="form-group font-weight-bold pt-2 cvc-resp" >
         <label for="cvv">CVC</label>
-        <span class="text-muted"> security code behind the card</span>
+        <span class="text-muted muted-resp"> security code behind the card</span>
         <input type="number" min="100" max="999" placeholder= "123" class="form-control" name="cvv" required>
     </div>
         <div class="form-group font-weight-bold pt-2" >
@@ -108,8 +101,8 @@
 </tr>
 </table>
 
-<div class="text-center">
-    <input type="submit" class="btn btn-primary bg-danger text-white  mt-4 col-md-3" value="Confirm"></input>
+<div class="text-center mt-resp">
+    <input type="submit" class=" but-resp btn btn-primary bg-danger text-white  mt-4 col-md-3" value="Confirm"></input>
 </div>
 </form>
       </div>

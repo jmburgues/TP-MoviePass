@@ -5,7 +5,7 @@
     <h3 class="text-white">Select show:</h3>
 </div>
 
-<div class="container border p-4 col-md-6 form loginCard" >
+<div class="container border p-4 col-md-6 form loginCard selectShow" >
   <div class="mt-1">
     <div class="form-group">
       <label for="idRoom" ><strong>Movie:</strong></label>

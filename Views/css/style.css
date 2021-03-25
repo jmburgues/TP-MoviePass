@@ -1,12 +1,12 @@
-body {
-    background-color: rgb(255, 0, 0); 
-    background-image: none; 
-}
+/*GENERAL*/
 body {
     background: linear-gradient(to bottom, black, #6A0000);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }      
+
+
+
 
 .liStyleNone{
     list-style: none;
@@ -31,19 +31,8 @@ body {
     margin-bottom:5%;
 }
 
-
-#cardsStyle{
-    margin-top:30px; 
-    height:720px;  
-    background-color:#ffe4ec;
-}
-
 .backgroundBlack{
     background-color: black; 
-}
-
-#maxWidth1600{
-    max-width: 1600px;
 }
 
 .marginTop100{
@@ -61,10 +50,6 @@ body {
     -webkit-border-radius: 15px 15px 15px 15px;
     border: 1px solid #000000;
     background-color:#ffe4ec;
-}
-
-.aDropCards{
-    margin-left:65%; margin-bottom:0;
 }
 
 .marginTop2{
@@ -101,16 +86,6 @@ body {
     margin:10px;
 }
 
-.navClass{
-    background-image: url(https://us.123rf.com/450wm/kebox/kebox1705/kebox170500033/77319728-fondo-degradado-rayas-colores-rojo-y-negro.jpg?ver=6); 
-    background-repeat: no-repeat;     
-    background-size: cover;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-
-}
-
 #noMovieImg{
     width:1000px; 
     display:block;
@@ -122,15 +97,10 @@ body {
 }
 
 #notFoundImageCard{
-    
     height:73%; 
-
 }
 
-
 #notFoundImageCardDB{
-    
     height:60%; 
-
 }
 

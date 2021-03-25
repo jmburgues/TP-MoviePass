@@ -5,7 +5,10 @@
      <meta name="viewport" content="width=device-width, initial-scale=1">
 
      <!--CSS-->
-     <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/style.css">
+     <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/style.css?ver=<?php echo rand(111,999)?>" />
+     <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/home.css?ver=<?php echo rand(111,999)?>" />
+     <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/payment.css?ver=<?php echo rand(111,999)?>" />
+     
      <link rel="icon" href="<?php echo FRONT_ROOT ?>/Views/img/Logo.bmp"/>
 
      <!--BOOTSTRAP-->

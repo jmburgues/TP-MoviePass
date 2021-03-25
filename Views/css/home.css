@@ -1,0 +1,80 @@
+/*NAV*/
+.navClass{
+    background-image: url('../img/nav.jpg'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+}
+
+/*HOME*/
+.row-home{
+    display: inline-flex;
+}
+
+#cardsStyle{
+    margin-top:30px; 
+    height:720px;  
+    background-color:#ffe4ec;
+}
+
+#maxWidth1600{
+    max-width: 1600px;
+}
+
+@media screen and (max-width:690px) {
+    /*NAV*/
+    .navbar-nav{
+        display: -webkit-inline-box !important;
+    }
+
+    .homeButton{
+        display: none ;
+    }
+
+    /*HOME*/
+    .row-home{
+        display: block !important;
+    }
+    
+    #cardsStyle {
+        height: 750px;
+        width: 300px;
+        padding:20px
+    } 
+
+    #maxWidth1600{
+        max-width: 350px;
+        margin-left: auto;
+    }
+
+}
+
+@media screen and (min-width: 691px) and (max-width:1099px) {
+    /*NAV*/
+    
+    .navbar-nav{
+        display: -webkit-inline-box !important; 
+    }
+
+    /*HOME*/
+    .row-home{
+        display: block !important;
+    }   
+
+    #cardsStyle {
+        height: 1150px;
+        width: 600px;
+        padding:20px
+    } 
+    #maxWidth1600{
+        max-width: 600px;
+        margin-left: auto;
+    }
+}
+
+
+@media screen and (min-width: 1100px) and (max-width:1300px) {
+
+}

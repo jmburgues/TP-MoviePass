@@ -1,0 +1,167 @@
+
+@media screen and (max-width:640px) {
+    .responsive-payment{
+        width: 355px !important;
+        height: 700px;
+    }
+    .card-img-respons{
+        height: 200px;
+        max-width:  130px;
+        margin: 1%;
+        
+    }
+    .cvc-resp{
+        margin-top: -110%;
+        
+    }
+    .credit-resp{
+        margin-top: -2%;
+        margin-left: 50%;
+
+    }
+    .muted-resp{
+        display: block;
+    }
+    
+    .table-resp{
+        width: 110%;
+        margin-left: -8%;
+        
+    }
+    .card-body-resp{
+        margin-left: 100px;
+        margin-top: -200px;
+        
+    }
+    .mt-resp{
+
+        margin-top: -24% ;
+    }
+    .but-resp{
+        margin-left: 53%;
+        margin-top: -100px;
+        max-width: 48% !important;
+
+ 
+    }
+
+
+}
+
+
+@media screen and (min-width: 641px) and (max-width:766px) {
+
+        .responsive-payment{
+            width: 540px !important;
+            height: 560px;
+        }
+        .card-img-respons{
+            height: 200px;
+            max-width:  130px;
+            margin: 1%;
+            
+        }
+        .cvc-resp{
+            margin-top: -21%;
+            
+        }
+        .credit-resp{
+            margin-top: -8%;
+            margin-left: 50%;
+        }
+        
+        .table-resp{
+            width: 110%;
+            margin-left: -8%;
+            
+        }
+        .card-body-resp{
+            margin-left: 100px;
+            margin-top: -200px;
+            
+        }
+        .mt-resp{
+    
+            margin-top: -14% ;
+        }
+        .but-resp{
+            margin-left: 53%;
+            max-width: 48% !important;
+    
+     
+        }
+}
+
+
+
+@media screen and (min-width: 767px) and (max-width:899px) {
+    .responsive-payment{
+        width: 690px !important;
+        height: 560px;
+    }
+    .card-img-respons{
+        height: 108%;
+        margin: 1%;
+    }
+    .cvc-resp{
+        margin-top: -33%;;
+    }
+    .credit-resp{
+        margin-top: -10%;
+        margin-left: 50%;
+    }
+    
+    .table-resp{
+        width: 110%;
+        margin-left: -8%;
+        
+    }
+    
+    .mt-resp{
+
+        margin-top: -14% ;
+    }
+    .but-resp{
+        margin-left: 53%;
+        max-width: 48% !important;
+
+ 
+    }
+
+}
+
+
+@media screen and (min-width: 900px) and (max-width:1250px) {
+    .responsive-payment{
+        width: 900px !important;
+        height: 500px;
+    }
+    .card-img-respons{
+        height: 108%;
+        margin: 1%;
+    }
+    .cvc-resp{
+        margin-top: -33%;;
+    }
+    .credit-resp{
+        margin-top: -10%;
+        margin-left: 70%;
+    }
+    
+    .table-resp{
+        width: 110%;
+        margin-left: -8%;
+        
+    }
+    .mt-resp{
+
+        margin-top: -14% ;
+    }
+    .but-resp{
+        margin-left: 53%;
+        max-width: 48% !important;
+
+ 
+    }
+
+}
