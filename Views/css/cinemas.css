@@ -1,0 +1,115 @@
+.container-cinema {
+    height: 100px;
+    position: relative;
+}
+.center-cinema {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.cinema-table{
+    margin-left: auto; 
+    margin-right: auto; 
+    border:1px solid black;
+}
+
+
+@media screen and (max-width:290px) {
+    .btn-resp-cine-back{
+        margin-left: 20%;
+    }
+    .btn-resp-cine-new{
+        margin-left: 5%;   
+    }
+    .cinema-table{
+        margin-top: 40px; 
+        display: table-caption;
+        padding:2px;
+        border-spacing: 3px;;
+    }
+    .btn-cinema-td{
+        margin-top:5%;
+        margin-left: 120%;
+    }
+    .btn-rooms-td{
+        margin-top:5%;
+        margin-left: 70%;
+    }
+    .mw-rooms{
+        width: max-content;
+    }
+    .mw-cinema{
+        width: max-content;
+    }
+}
+
+
+@media screen and (min-width: 291px) and (max-width:410px) {
+    .btn-resp-cine-back{
+        margin-left: 20%;
+    }
+    .btn-resp-cine-new{
+        margin-left: 5%;   
+    }
+    .cinema-table{
+        margin-top: 40px; 
+        
+    }
+}
+
+
+@media screen and (min-width: 411px) and (max-width:766px) {
+    .btn-resp-cine-back{
+        margin-left: 30%;   
+    }
+    .btn-resp-cine-new{
+        margin-left: 18%;   
+    }
+    .cinema-table{
+        margin-top: 40px; 
+        
+    }
+}
+
+
+
+@media screen and (min-width: 767px) and (max-width:899px) {
+    .btn-resp-cine-back{
+        margin-left: 20px;   
+    }
+    
+}
+
+/*
+@media screen and (min-width: 900px) and (max-width:1250px) {
+    .responsive-payment{
+        width: 900px !important;
+        height: 500px;
+    }
+    .card-img-respons{
+        height: 108%;
+        margin: 1%;
+    }
+    .cvc-resp{
+        margin-top: -33%;;
+    }
+    .credit-resp{
+        margin-top: -10%;
+        margin-left: 70%;
+    }
+    .table-resp{
+        width: 110%;
+        margin-left: -8%;
+    }
+    .mt-resp{
+        margin-top: -14% ;
+    }
+    .but-resp{
+        margin-left: 53%;
+        max-width: 48% !important;
+    }
+} */

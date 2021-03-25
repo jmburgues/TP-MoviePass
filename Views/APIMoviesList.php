@@ -35,21 +35,21 @@
 <!-- CARDS -->
 <div class="container text-center" id="maxWidth1600">
   
-  <div class="row row-cols-5">
+  <div class="row row-home row-cols-5 col-5-resp">
   
     <?php for($i = $init; $i < $init+5; $i++ ){
         if (isset($movies[$i])) { ?>
   
-    <div class="col">
+    <div class="col col-home">
       <div class="card" id="cardsStyle">
 
       <?php if ($movies[$i]->getPoster()){
         ?>
-        <img style="height:380px; width:300 px;" class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $movies[$i]->getPoster()?>">
+             <img class="card-img-top" src="https://image.tmdb.org/t/p/w400/.<?php echo $movies[$i]->getPoster()?>">
       <?php
       } 
       if($movies[$i]->getPoster() == null){
-        ?><img style="height:380px; width:300 px;" id="notFoundImageCard" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+        ?><<img id="notFoundImageCard" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
       <?php
       }
       

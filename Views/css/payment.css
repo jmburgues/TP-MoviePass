@@ -1,3 +1,15 @@
+.ticketCard{
+    background-color:#FFFFFF; 
+    margin-top:5%;
+}
+
+.btn-ticket-resp{
+    margin-top: 3em !important;
+    color: black;
+}
+.btn-resp-user{
+    margin-top: 1em !important;
+}
 
 @media screen and (max-width:640px) {
     .responsive-payment{
@@ -8,88 +20,77 @@
         height: 200px;
         max-width:  130px;
         margin: 1%;
-        
     }
     .cvc-resp{
         margin-top: -110%;
-        
     }
     .credit-resp{
         margin-top: -2%;
         margin-left: 50%;
-
     }
     .muted-resp{
         display: block;
     }
-    
     .table-resp{
         width: 110%;
         margin-left: -8%;
-        
     }
     .card-body-resp{
         margin-left: 100px;
         margin-top: -200px;
-        
     }
     .mt-resp{
-
         margin-top: -24% ;
     }
     .but-resp{
         margin-left: 53%;
         margin-top: -100px;
         max-width: 48% !important;
-
- 
     }
-
-
+    .btn-ticket-resp{
+        margin-top: 2% !important;
+    }
 }
 
 
 @media screen and (min-width: 641px) and (max-width:766px) {
-
-        .responsive-payment{
-            width: 540px !important;
-            height: 560px;
-        }
-        .card-img-respons{
-            height: 200px;
-            max-width:  130px;
-            margin: 1%;
-            
-        }
-        .cvc-resp{
-            margin-top: -21%;
-            
-        }
-        .credit-resp{
-            margin-top: -8%;
-            margin-left: 50%;
-        }
-        
-        .table-resp{
-            width: 110%;
-            margin-left: -8%;
-            
-        }
-        .card-body-resp{
-            margin-left: 100px;
-            margin-top: -200px;
-            
-        }
-        .mt-resp{
-    
-            margin-top: -14% ;
-        }
-        .but-resp{
-            margin-left: 53%;
-            max-width: 48% !important;
-    
-     
-        }
+    .responsive-payment{
+        width: 540px !important;
+        height: 560px;
+    }
+    .card-img-respons{
+        height: 200px;
+        max-width:  130px;
+        margin: 1%;
+    }
+    .cvc-resp{
+        margin-top: -21%;
+    }
+    .credit-resp{
+        margin-top: -8%;
+        margin-left: 50%;
+    }
+    .table-resp{
+        width: 110%;
+        margin-left: -8%;
+    }
+    .card-body-resp{
+        margin-left: 100px;
+        margin-top: -200px;
+    }
+    .mt-resp{
+        margin-top: -14% ;
+    }
+    .but-resp{
+        margin-left: 53%;
+        max-width: 48% !important;
+    }
+    .btn-ticket-resp{
+        margin-top: 2% !important;
+    }
+    .btn-resp-user{
+        margin-top: 1em !important;
+    }
 }
 
 
@@ -110,24 +111,17 @@
         margin-top: -10%;
         margin-left: 50%;
     }
-    
     .table-resp{
         width: 110%;
-        margin-left: -8%;
-        
+        margin-left: -8%;  
     }
-    
     .mt-resp{
-
         margin-top: -14% ;
     }
     .but-resp{
         margin-left: 53%;
         max-width: 48% !important;
-
- 
     }
-
 }
 
 
@@ -147,21 +141,15 @@
         margin-top: -10%;
         margin-left: 70%;
     }
-    
     .table-resp{
         width: 110%;
         margin-left: -8%;
-        
     }
     .mt-resp{
-
         margin-top: -14% ;
     }
     .but-resp{
         margin-left: 53%;
         max-width: 48% !important;
-
- 
     }
-
 }

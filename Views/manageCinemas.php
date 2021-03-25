@@ -1,27 +1,10 @@
-<style>
-.container {
-  height: 100px;
-  position: relative;
-}
-
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-</style>
-
 <!-- background -->
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
 
 <!-- Message Popup -->
-
 <?php 
 if (isset($message)){
-      echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
 ?>
 
@@ -31,23 +14,23 @@ if (isset($message)){
     <h3 class="text-center" style="color:white;" >Manage Cinemas<h3>
     <hr class=" mt-4 mb-1 bg-danger text-dark">
 </div>
+
 <!-- New Cinema button -->
-<div class="container">
-  <div class="center">
-  <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView/'"> Go Back </button>   
-  <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newCinema" aria-expanded="false" aria-controls="collapseExample">
-        Add new cinema
-    </button>
-  </div>
+<div class="container-cinema">
+    <div class="center-cinema">
+        <button type="submit" class=" btn-resp-cine-back btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView/'"> Go Back </button>   
+        <button class="btn-resp-cine-new btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newCinema" aria-expanded="false" aria-controls="collapseExample">
+            Add new cinema
+        </button>
+    </div>
 </div>
 
 <!-- New Cinema collapse -->
-
 <div class="collapse" id="newCinema">
     <div class="text-center mt-2 mb-2">
         <h3 class="text-white">Add new Cinemas:</h3>
     </div>
-    <div class="container mt-2"  >   
+    <div class="container-cinema mt-2"  >   
         <div class="card card-body border-dark ">
             <form  action="<?php echo FRONT_ROOT ?>Cinema/AddCinema" method="POST">
                 <div class="form-group row ">
@@ -90,7 +73,7 @@ if (isset($message)){
 </div>
 
 <!-- Table with cinema modal buttons -->
-<table style="margin-left: auto; margin-right: auto; border:1px solid black;">
+<table class="cinema-table">
     <tr>
         <?php 
         if(empty($cinema)){ ?>
@@ -99,7 +82,7 @@ if (isset($message)){
         <td>
             <?php foreach($cinema as $oneCinema) { ?>
         
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal-<?php echo $oneCinema->getId();?>">
+            <button type="button" class="btn btn-info btn-cinema-td " data-toggle="modal" data-target="#myModal-<?php echo $oneCinema->getId();?>">
             <?php echo $oneCinema->getName();?>
             </button>
 

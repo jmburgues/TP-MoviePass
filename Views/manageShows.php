@@ -28,8 +28,8 @@
 <!-- New Show button -->
 <div class="container mb-3">
   <div class="center">
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-1" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView/'"> Go Back </button>   
-    <button class="btn btn-primary bg-danger text-black mt-1" type="button" data-toggle="collapse" data-target="#newShow" aria-expanded="false" aria-controls="collapse">Add new show</button>
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-1 ml-5" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView/'"> Go Back </button>   
+    <button class="btn btn-primary bg-danger text-black mt-1 ml-4" type="button" data-toggle="collapse" data-target="#newShow" aria-expanded="false" aria-controls="collapse">Add new show</button>
   </div>
 </div>
 

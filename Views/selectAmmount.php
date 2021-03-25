@@ -4,7 +4,7 @@
 <div class="text-center mt-5 mb-5">
     <h3 class="text-white">Tickets & Payment:</h3>
 </div>  
-<div class="container border p-4 col-md-6 form loginCard selectShow mt-3" >
+<div class="container border p-4 col-md-6 form ticketCard selectShow mt-3" >
     <div class="mt-3">
         <form  action="<?php echo FRONT_ROOT ?>Ticket/payment" method="POST">
             <input type="hidden" class="form-control" name="idShow" value=<?php echo $idShow?> >
@@ -37,6 +37,6 @@
                         <label class="custom-control-label  mt-4 ml-3" for="customRadio3">American Express</label>
                     </div>
 
-            <input type="submit" class="btn btn-primary bg-danger text-white mt-5 col-md-3  float-right " value="Next"></input>
+            <input type="submit" class="btn btn-primary bg-danger text-white mt-5 col-md-3 float-right " value="Next"></input>
         </form>
-        <button type="submit" class="btn btn-secondary bg-danger text-black mt-5 col-md-3 " value="back" onclick="history.back(-1)"> Previous </button> 
+        <button type="submit" class="btn btn-secondary bg-danger text-black  col-md-3 btn-ticket-resp" value="back" onclick="history.back(-1)"> Previous </button> 

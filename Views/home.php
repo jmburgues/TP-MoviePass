@@ -107,7 +107,7 @@
 
   <div class ="marginTop100" >
   <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center mt-3 ">
+    <ul class="pagination pag-resp justify-content-center mt-3 ">
       <li class="page-item border-0 <?php echo $page <= 1 ? "disabled" : "" ?>"><a class="page-link text-dark btn btn-danger " href="<?php echo FRONT_ROOT?>Home/Index/<?php echo $page-1 ?>">Previous</a></li>
       
       <?php for($i=0; $i<$pages; $i++) {?>

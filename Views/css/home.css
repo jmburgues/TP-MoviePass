@@ -23,6 +23,38 @@
     max-width: 1600px;
 }
 
+.centerImageHome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    border: red 5px dotted;
+    margin-bottom:5%;
+}
+
+#dropDownCard{
+    width:500px; border-radius: 15px 15px 15px 15px;
+    -moz-border-radius: 15px 15px 15px 15px;
+    -webkit-border-radius: 15px 15px 15px 15px;
+    border: 1px solid #000000;
+    background-color:#ffe4ec;
+}
+
+.styleImageJumHome{
+    width:400px; 
+    height:300px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    display:block;
+}
+
+#imgCardType{
+    width:90px; 
+    height:60px; 
+    margin-left:-3%; 
+    margin-right:3%
+}
+
 @media screen and (max-width:690px) {
     /*NAV*/
     .navbar-nav{

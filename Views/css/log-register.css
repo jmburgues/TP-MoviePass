@@ -1,0 +1,55 @@
+.loginCard{
+    background-color:#FFFFFF; 
+    margin-top:5%;
+}
+
+.registerCard{
+    background-color:#FFFFFF; 
+    margin-top:5%;
+}
+
+.btn-resp-log{
+    width: 100px;
+}
+
+
+@media screen and  (max-width:766px) {
+    .loginCard{
+        height: 420px !important;
+    }
+    .loginCard{
+        max-width: 300px !important;
+        height: 370px;
+    }  
+    
+    .btn-resp-log{
+        margin-bottom: 5px;
+    }
+}
+
+
+@media screen and (min-width: 767px) and (max-width:800px) {    
+
+    .btn-resp-log{
+        max-width: 40% !important;
+    }
+
+    .btn-resp-reg{
+        max-width: 40% !important;
+    }
+}
+
+
+@media screen and (min-width: 801px) and (max-width:1300px) {
+    .loginCard{
+        height: 370px;
+    }
+
+    .btn-resp-log {
+        max-width: 40% !important;
+    }
+
+    .btn-resp-reg{
+        max-width: 40% !important;
+    }
+}

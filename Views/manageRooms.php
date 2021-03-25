@@ -26,8 +26,8 @@
 <!-- New Cinema button -->
 <div class="container">
   <div class="center">
-    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas/'"> Go Back </button> 
-    <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newRoom" aria-expanded="false" aria-controls="collapseExample">
+    <button type="submit" class="btn-resp-cine-back btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas/'"> Go Back </button> 
+    <button class="btn-resp-cine-new btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newRoom" aria-expanded="false" aria-controls="collapseExample">
         Add new room
     </button>
   </div>
@@ -82,7 +82,7 @@
 </div>
 
 <!-- Table with cinema modal buttons -->
-<table style="margin-left: auto; margin-right: auto; border:1px solid black;">
+<table class="cinema-table">
     <tr>
         <?php 
         if(empty($rooms)){ ?>
@@ -91,7 +91,7 @@
         <td>
             <?php foreach($rooms as $oneRoom) { ?>
         
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal-<?php echo $oneRoom->getId();?>">
+            <button type="button" class="btn btn-info btn-rooms-td mw-rooms" data-toggle="modal" data-target="#myModal-<?php echo $oneRoom->getId();?>">
             <?php echo $oneRoom->getName();?>
             </button>
 

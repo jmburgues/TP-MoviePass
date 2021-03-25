@@ -28,12 +28,12 @@
 
 <div class="container text-center" id="maxWidth1600">
  
-  <div class="row row-cols-5">
+  <div class="row row-home row-cols-5 col-5-resp">
   
       <?php for($i = $init; $i < $init+5; $i++ ){
           if (isset($moviesBDD[$i])) { ?>
   
-  <div class="col">
+  <div class="col col-home">
   <div class="card" id="cardsStyle">
 
 <?php

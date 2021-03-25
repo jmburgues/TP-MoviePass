@@ -5,7 +5,7 @@
 <h3 class="text-white">Welcome new user!</h3>
 </div>  
 
-<div class="container border p-4 col-md-4 form loginCard">
+<div class="container border p-4 col-md-4 form registerCard">
   <div class="abs-center">
     <form action="<?php echo FRONT_ROOT;?>User/frontRegister" method=POST>
       <div class="form-group">
@@ -32,12 +32,12 @@
         <?php if(isset($error)) echo "<p style=\"color:red; text-align:center;\">".$error."</p><br>";?>
       </div>
 
-      <button type="submit" class="btn btn-secondary bg-danger float-right col-md-3 mt-3">Register</button>
+      <button type="submit" class="btn btn-secondary bg-danger float-right col-md-3 mt-3 btn-resp-reg">Register</button>
     
     </form>
 
 
-        <button type="submit" class="btn btn-secondary bg-danger col-md-3 mt-3" value="back" onclick="history.back(-1)"> Previous </button> 
+        <button type="submit" class="btn btn-secondary bg-danger col-md-3 mt-3 btn-resp-reg" value="back" onclick="history.back(-1)"> Previous </button> 
 
      
 

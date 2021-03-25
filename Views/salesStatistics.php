@@ -1,11 +1,12 @@
 
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
-
+<hr class=" mt-2 mb-4 bg-danger text-dark">
 <div class="text-center mt-5 mb-3">
         <h3 class="text-white">Sale statistics:</h3>
         <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView'"> Go Back </button> 
     </div>
 <br>
+<hr class=" mt-2 mb-4 bg-danger text-dark">
 
 <div class="container  mt-5 mb-5" id="seleccion">       
     <div class="card card-body  border-dark  ">
@@ -20,9 +21,9 @@
 
 
 <p class="text-center mt-5 mb-3">
-  <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#betweenDates" aria-expanded="false" aria-controls="collapseExample">
-    Check between dates
-  </button>
+    <button class="btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#betweenDates" aria-expanded="false" aria-controls="collapseExample">
+        Check between dates
+    </button>
 </p>
 
 
@@ -48,7 +49,7 @@
                     
                     </div>
                 </div>
-            <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>
+            <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2 btn-resp-sales float-right" >Send</button>
             </form>
         </div>
     </div>

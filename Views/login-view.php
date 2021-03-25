@@ -20,8 +20,9 @@
       <div>
         <?php if(isset($error)) echo "<p style=\"color:red; text-align:center;\">".$error."</p><br>";?>
       </div>
-      <button type="submit" class="btn btn-secondary bg-danger col-md-3 " value="back" onclick="history.back(-1)"> Previous </button> 
-      <button type="submit" class="btn btn-primary bg-danger col-md-3 float-right">Login</button>
+      <button type="submit" class="btn btn-secondary bg-danger col-md-3 btn-resp-log" value="back" onclick="history.back(-1)"> Previous </button> 
+      <button type="submit" class="btn btn-primary bg-danger col-md-3 float-right btn-resp-log">Login</button>
+    
     </form>
   </div>
 </div>

@@ -43,7 +43,7 @@
             
             foreach($tickets as $oneTT){ ?>
          <!-- Button trigger modal -->
-         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-<?=$oneTT->getIdTicket()?>">
+         <button type="button" class="btn btn-primary btn-resp-user" data-toggle="modal" data-target="#exampleModal-<?=$oneTT->getIdTicket()?>">
          Ticket <?=$i?>
          </button>
          <!-- Modal -->
