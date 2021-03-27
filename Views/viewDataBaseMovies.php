@@ -38,7 +38,7 @@
 
 <?php
   if($moviesBDD[$i]->getPoster() == null){
-        ?>  <div class="mt-5 notFoundImageCard container"> </div>
+        ?>  <div class="mt-5 notFoundImageCardDB container"> </div>
       <?php
       }else{
         ?>
@@ -94,7 +94,7 @@
 
  <?php if($page > $pages){
    ?> 
-  <div class="mt-5 notFoundImageCard container"> </div>
+  <div class="mt-5 notFoundImageCardDB container"> </div>
     <?php
     
     echo $pages ;

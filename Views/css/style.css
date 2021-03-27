@@ -96,8 +96,20 @@ body {
     font-size: 30px;
 }
 
-#notFoundImageCardDB{
-    height:60%; 
+.notFoundImageCardDB{
+    margin-top: 40%;
+    background-image: url('../img/nomovies.svg'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 40%;
+    width: 100% !important;
+}
+
+.notFoundImageShow{
+    background-image: url('../img/nomovies.svg'); 
+    background-size: contain;
+    background-repeat: no-repeat;
     
+    width: 100% !important;
 }
 

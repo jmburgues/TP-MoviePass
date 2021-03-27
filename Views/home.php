@@ -20,7 +20,7 @@
 </div>
   
 <div class="container text-center"  id="maxWidth1600" >
-  <div class="row row-home row-cols-5 col-5-resp">
+  <div class="row row-home row-cols-5 col-5-resp ml-3 mr-3">
       <?php for($i = $init; $i < $init+5; $i++ ){
           if (isset($movies[$i])) { ?>
     <div class="col col-home">
@@ -28,7 +28,7 @@
 
     <?php
       if($movies[$i]->getPoster() == null){
-            ?><div class="notFoundImageCard container"> </div>
+            ?><div class="notFoundImageCardDB container"> </div>
           <?php
           }else{
             ?>

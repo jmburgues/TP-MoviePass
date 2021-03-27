@@ -49,7 +49,7 @@
       <?php
       } 
       if($movies[$i]->getPoster() == null){
-        ?><<img class="notFoundImageCard" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+        ?>  <div class="mt-5 notFoundImageCardDB "> </div>
       <?php
       }
       
@@ -100,9 +100,9 @@
 
  <?php if($page > $pages){
    ?> 
-   <div class="container">
-    <img id="notFoundImageCardDB" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
-    </div>
+   
+   <div class="mt-5 notFoundImageCardDB " > </div>
+   
     <?php
   }else{
   ?>
@@ -127,7 +127,7 @@
 <hr class=" mt-4 mb-1 bg-danger text-dark">
   </div >
   <?php }else{
-    ?><img id="noMovieImg" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">   <?php
+    ?>  <div class="mt-5 notFoundImageCardDB container"> </div><?php
     ?><p class="text-white text-center font-weight-bold fontWeight">NO LOADED MOVIES YET</p>
     <p class="text-muted text-center mb-5"> <?php echo "PLEASE TRY AGAIN LATER"?><p><?php
   } ?>
