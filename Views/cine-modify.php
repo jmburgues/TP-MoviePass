@@ -8,6 +8,11 @@
     <hr class=" mt-4 mb-1 bg-danger text-dark">
 </div>
 
+
+<div class="text-center mt-5 mb-3">
+    <button type="submit" class="btn btn-secondary bg-danger text-black mt-2 mb-2" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas'"> Go Back </button> 
+</div>
+
 <div class="container mt-5" >   
     <div class="card card-body border-dark ">
         <form action="<?php echo FRONT_ROOT ?>Cinema/modifyCinema" method="POST">
@@ -46,8 +51,7 @@
                     <input type="time" min="00:00" max="23:59" class="form-control" name="closing" value="<?php echo $currentCinema->getClosing() ?>" required>
                 </div>
             </div>
-            <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas'"> Go Back </button> 
-            <button type="submit" name="idCinema" class="btn btn-secondary bg-danger text-black col-2  float-right" value="<?php echo $currentCinema->getId()?>" >Send</button>
+                <button type="submit" name="idCinema" class="btn btn-secondary bg-danger text-black col-2 btn-resp-general float-right" value="<?php echo $currentCinema->getId()?>" >Send</button>
         </form>
     </div>
 </div></div>

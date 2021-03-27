@@ -4,7 +4,7 @@
     <h3 class="text-center" style="color:white;" >Administrative Tools<h3>
         <div class="container">
             <div class="center  mt-2 mb-4 text-center">
-                <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="history.back(-1)"> Go Back </button> 
+                <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back"onclick="window.location.href='<?php echo FRONT_ROOT?>index.php'"> Go Back </button> 
             </div>
         </div>
     <hr class=" mt-4 mb-1 bg-danger text-dark">

@@ -27,9 +27,9 @@
 </div>
 <!-- Nav Menu -->
 <div class="container">
-  <div class="center">
-     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3 mb-2" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas'"> Go Back </button> 
-  </div>
+    <div class="center">
+        <button type="submit" class="btn btn-secondary bg-danger text-black mt-3 mb-2" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas'"> Go Back </button> 
+    </div>
 </div>
 
 <div class="container mt-2 mb-5">   
@@ -79,7 +79,7 @@
                 </div>
             </div>
         <!--<button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button> -->
-        <button type="submit" name="idRoom" class="btn btn-secondary bg-danger text-black col-2  float-right" value="<?php echo $currentRoom->getId()?>" >Send</button>
+        <button type="submit" name="idRoom" class="btn btn-secondary bg-danger text-black col-2 btn-resp-general float-right" value="<?php echo $currentRoom->getId()?>" >Send</button>
     </form>
     </div>
     </div>

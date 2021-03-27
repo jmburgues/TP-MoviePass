@@ -13,9 +13,23 @@ body {
     }
 }
 
-.btn-resp-sales{
+/*SelecrtRoomForShow card*/
+@media screen and (max-width:515px) {
+    .card-room-resp{
+        margin: 2% !important;
+    }
+}
+
+/*Others*/
+.btn-resp-general{
     max-width: 100px !important;
 }
+
+.btn-resp-list{
+    margin-top: 1em !important;
+}
+
+
 
 .liStyleNone{
     list-style: none;

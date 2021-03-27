@@ -116,7 +116,7 @@ use PDOException;
             catch (PDOException $ex){
                 $arrayOfErrors [] = $ex->getMessage();
                 ViewController::errorView($arrayOfErrors);
-              }
+            }
         }
 
         public function confirmTicket($costPerTicket, $totalCost, $ticketAmount, $cardNumber, $owner, $cvv,  $date, $year, $idShow, $cardBank)

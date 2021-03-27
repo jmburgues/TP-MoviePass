@@ -46,7 +46,7 @@
 
 <!-- SHOW CARD -->
 
-<div class="card mb-5 " style="max-width: 500px; margin: auto;">
+<div class="card mb-5 card-room-resp" style="max-width: 500px; margin: auto;">
     <div class="row no-gutters">
         <div class="col-md-4 ">
             <?php

@@ -52,7 +52,7 @@
                     <div class="w-100"></div>
                 </div>
 
-                <button type="submit" class="btn btn-secondary bg-danger text-black col-2 mt-2" style="margin-left:80%"  >Send</button>
+                <button type="submit" class="btn btn-secondary bg-danger text-black col-2 mt-3 btn-resp-general float-right" style="margin-left:80%"  >Send</button>
             </form>  
         </div>
    </div>

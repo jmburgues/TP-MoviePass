@@ -47,7 +47,7 @@
                 </div>
             </div>
             <!--<button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button> -->
-            <button type="submit" name="idShow" class="btn btn-secondary bg-danger text-black col-2  float-right" value="<?php echo $currentShow->getIdShow()?>" >Send</button>
+            <button type="submit" name="idShow" class="btn-resp-general btn btn-secondary bg-danger text-black col-2  float-right" value="<?php echo $currentShow->getIdShow()?>" >Send</button>
         </form>
     </div>
 </div>

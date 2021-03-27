@@ -28,7 +28,7 @@ if (isset($message)){
 <!-- New Cinema collapse -->
 <div class="collapse" id="newCinema">
     <div class="text-center mt-2 mb-2">
-        <h3 class="text-white">Add new Cinemas:</h3>
+        <h3 class="text-white mt-5">Add new Cinemas:</h3>
     </div>
     <div class="container-cinema mt-2"  >   
         <div class="card card-body border-dark ">
@@ -65,7 +65,7 @@ if (isset($message)){
                     
                     </div>
                 </div>
-            <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>
+            <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2 btn-resp-general float-right" >Send</button>
             </form>
         </div>
     </div>
@@ -82,7 +82,7 @@ if (isset($message)){
         <td>
             <?php foreach($cinema as $oneCinema) { ?>
         
-            <button type="button" class="btn btn-info btn-cinema-td " data-toggle="modal" data-target="#myModal-<?php echo $oneCinema->getId();?>">
+            <button type="button" class="btn btn-info btn-cinema-td btn-resp-list" data-toggle="modal" data-target="#myModal-<?php echo $oneCinema->getId();?>">
             <?php echo $oneCinema->getName();?>
             </button>
 

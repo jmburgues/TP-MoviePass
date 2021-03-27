@@ -1,18 +1,3 @@
-<style>
-.container {
-  height: 100px;
-  position: relative;
-}
-
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-</style>
 
 <!-- background -->
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
@@ -23,14 +8,15 @@
     <h3 class="text-center" style="color:white;" >Manage <?php echo $cinema->getName()?>'s rooms:<h3>
     <hr class=" mt-4 mb-1 bg-danger text-dark">
 </div>
+
 <!-- New Cinema button -->
-<div class="container">
-  <div class="center">
-    <button type="submit" class="btn-resp-cine-back btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas/'"> Go Back </button> 
-    <button class="btn-resp-cine-new btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newRoom" aria-expanded="false" aria-controls="collapseExample">
-        Add new room
-    </button>
-  </div>
+<div class="container-cinema">
+    <div class="center-cinema">
+        <button type="submit" class="btn-resp-cine-back btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/manageCinemas/'"> Go Back </button> 
+        <button class="btn-resp-cine-new btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newRoom" aria-expanded="false" aria-controls="collapseExample">
+            Add new room
+        </button>
+    </div>
 </div>
 
 <!-- New Cinema collapse -->
@@ -75,7 +61,7 @@
                         </select> 
                     </div>
                 </div>
-                <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>
+                <button type="submit" name="button" class="btn-resp-general btn btn-secondary bg-danger text-black col-2  float-right" >Send</button>
             </form>
         </div>
     </div>
@@ -91,7 +77,7 @@
         <td>
             <?php foreach($rooms as $oneRoom) { ?>
         
-            <button type="button" class="btn btn-info btn-rooms-td mw-rooms" data-toggle="modal" data-target="#myModal-<?php echo $oneRoom->getId();?>">
+            <button type="button" class="btn btn-info btn-resp-list btn-rooms-td mw-rooms" data-toggle="modal" data-target="#myModal-<?php echo $oneRoom->getId();?>">
             <?php echo $oneRoom->getName();?>
             </button>
 
