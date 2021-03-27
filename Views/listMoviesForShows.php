@@ -19,7 +19,7 @@
 
 
 <!-- Page Title -->
-<div style="margin-top:10px;">
+<div  style="margin-top:10px;">
     <hr class=" mt-2 mb-4 bg-danger text-dark">
     <h3 class="text-center" style="color:white;" >Select movie:<h3>
     <hr class=" mt-4 mb-1 bg-danger text-dark">
@@ -27,7 +27,7 @@
 
 <!-- Navigation buttons -->
 
-<div class="container">
+<div class="container ">
   <div class="center">
     <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back" onclick="history.back(-1)"> Go Back </button> 
   </div>
@@ -48,7 +48,7 @@
         <?php } 
             if(!$moviesDB){ ?>
               <div class= "container">    
-                <div class="card card-body ">
+                <div class="card card-body mt-5">
                     <?php echo "No movies loaded yet"?>  
                 </div>
                 </div>

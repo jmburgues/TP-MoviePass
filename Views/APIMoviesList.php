@@ -49,7 +49,7 @@
       <?php
       } 
       if($movies[$i]->getPoster() == null){
-        ?><<img id="notFoundImageCard" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+        ?><<img class="notFoundImageCard" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
       <?php
       }
       

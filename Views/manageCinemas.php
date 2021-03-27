@@ -77,7 +77,7 @@ if (isset($message)){
     <tr>
         <?php 
         if(empty($cinema)){ ?>
-            <h4 class="text-center" style="color:grey;">No cinemas added</h4>";
+            <h4 class="text-center text-secondary mt-5">No cinemas added</h4>";
         <?php }else{?>
         <td>
             <?php foreach($cinema as $oneCinema) { ?>

@@ -13,11 +13,20 @@ body {
     }
 }
 
-/*SelecrtRoomForShow card*/
+/*SelectRoomForShow card*/
 @media screen and (max-width:515px) {
     .card-room-resp{
         margin: 2% !important;
     }
+}
+
+/*Not found userView*/
+.notFoundImageHistory{
+    background-image: url('../img/carrito.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 250px;
+    width: 250px !important;
 }
 
 /*Others*/
@@ -28,6 +37,8 @@ body {
 .btn-resp-list{
     margin-top: 1em !important;
 }
+
+
 
 
 
@@ -85,11 +96,8 @@ body {
     font-size: 30px;
 }
 
-#notFoundImageCard{
-    height:73%; 
-}
-
 #notFoundImageCardDB{
     height:60%; 
+    
 }
 

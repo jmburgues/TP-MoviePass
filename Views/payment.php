@@ -10,7 +10,7 @@
     <div class="col-md-4">
     <?php
             if($movieForShows[0]->getPoster() == null){
-                ?><img id="notFoundImageCard" style="height:620px; width:100%; background-color:#ffe4ec" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+                ?><img class="notFoundImageCard" style="height:620px; width:100%; background-color:#ffe4ec" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
             <?php
             }else{
                 ?>

@@ -72,7 +72,7 @@
     <tr>
         <?php 
         if(empty($rooms)){ ?>
-            <h4 class="text-center" style="color:grey;">No rooms added</h4>";
+            <h4 class="text-center text-secondary mt-5">No rooms added</h4>";
         <?php }else{?>
         <td>
             <?php foreach($rooms as $oneRoom) { ?>

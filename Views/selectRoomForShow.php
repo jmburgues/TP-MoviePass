@@ -51,7 +51,7 @@
         <div class="col-md-4 ">
             <?php
                 if($selectedMovie->getPoster() == null){
-                    ?><img id="notFoundImageCard" class="mt-4" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+                    ?><img class="notFoundImageCard" class="mt-4" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
                     <?php
                 }else{
                         ?>

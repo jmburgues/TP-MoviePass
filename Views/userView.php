@@ -1,17 +1,17 @@
-<!-- background -->
-<link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/userStyle.css">
 <script language="Javascript">
    function imprSelec(nombre) {
-     var ficha = document.getElementById(nombre);
-     var ventimp = window.open(' ', 'popimpr');
-     ventimp.document.write( ficha.innerHTML );
-     ventimp.document.close();
-     ventimp.print( );
-     ventimp.close();
+      var ficha = document.getElementById(nombre);
+      var ventimp = window.open(' ', 'popimpr');
+      ventimp.document.write( ficha.innerHTML );
+      ventimp.document.close();
+      ventimp.print( );
+      ventimp.close();
    }
 </script>
+
 <hr>
 <hr>
+
 <div class="text-center mt-5 mb-3">
    <h3 class="text-white text-uppercase"><?php echo $userName ?>'s profile:</h3>
    <button type="submit" class="btn btn-secondary bg-danger text-black mt-4 mb-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>index.php'"> Go Back </button> 
@@ -73,12 +73,14 @@
    if ($transaction == null){
    ?>
 <br>
-<div class="container  mt-5 mb-5" id="seleccion">
+<div class="container  mt-5 mb-5" >
    <div class="card card-body  border-dark ">
       <?php echo "No tickets loaded yet"?>  
    </div>
 </div>
-<img style="height:200px; margin-left:45%;" class="mt-5" src="<?php echo FRONT_ROOT ?>/Views/img/carrito.png">
+<div class="mt-5 notFoundImageHistory container">
+<!--    <img  src="<?php //echo FRONT_ROOT ?>/Views/img/carrito.png"> -->
+</div>
 <?php
    } 
    ?>

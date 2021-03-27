@@ -14,7 +14,7 @@
 <!-- Page Title -->
 <div style="margin-top:10px;">
     <hr class=" mt-2 mb-4 bg-danger text-dark">
-    <h3 class="text-center" style="color:white;" >Movies loaded on DataBase:<h3>
+    <h3 class="text-center text-white"  >Movies loaded on DataBase:<h3>
     <hr class=" mt-4 mb-1 bg-danger text-dark">
 </div>
 
@@ -38,7 +38,7 @@
 
 <?php
   if($moviesBDD[$i]->getPoster() == null){
-        ?><img id="notFoundImageCardDB" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+        ?>  <div class="mt-5 notFoundImageCard container"> </div>
       <?php
       }else{
         ?>
@@ -94,10 +94,7 @@
 
  <?php if($page > $pages){
    ?> 
-   <div class="container">
-    <img id="notFoundImageCardDB" src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
-
-    </div>
+  <div class="mt-5 notFoundImageCard container"> </div>
     <?php
     
     echo $pages ;
