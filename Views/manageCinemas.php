@@ -9,17 +9,19 @@ if (isset($message)){
 ?>
 
 <!-- Page Title -->
-<div style="margin-top:10px;">
+<div class="mt-3">
     <hr class=" mt-2 mb-4 bg-danger text-dark">
-    <h3 class="text-center" style="color:white;" >Manage Cinemas<h3>
-    <hr class=" mt-4 mb-1 bg-danger text-dark">
+    <h3 class="text-center text-white">Manage Cinemas<h3>
+            <hr class=" mt-4 mb-1 bg-danger text-dark">
 </div>
 
 <!-- New Cinema button -->
 <div class="container-cinema">
     <div class="center-cinema">
-        <button type="submit" class=" btn-resp-cine-back btn btn-secondary bg-danger text-black mt-3" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView/'"> Go Back </button>   
-        <button class="btn-resp-cine-new btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse" data-target="#newCinema" aria-expanded="false" aria-controls="collapseExample">
+        <button type="submit" class=" btn-resp-cine-back btn btn-secondary bg-danger text-black mt-3" value="back"
+            onclick="window.location.href='<?php echo FRONT_ROOT?>User/adminView/'"> Go Back </button>
+        <button class="btn-resp-cine-new btn btn-primary bg-danger text-black mt-3" type="button" data-toggle="collapse"
+            data-target="#newCinema" aria-expanded="false" aria-controls="collapseExample">
             Add new cinema
         </button>
     </div>
@@ -30,42 +32,48 @@ if (isset($message)){
     <div class="text-center mt-2 mb-2">
         <h3 class="text-white mt-5">Add new Cinemas:</h3>
     </div>
-    <div class="container-cinema mt-2"  >   
+    <div class="container-cinema mt-2">
         <div class="card card-body border-dark ">
-            <form  action="<?php echo FRONT_ROOT ?>Cinema/AddCinema" method="POST">
+            <form action="<?php echo FRONT_ROOT ?>Cinema/AddCinema" method="POST">
                 <div class="form-group row ">
                     <label for="inputName" class="col-sm-2 col-form-label"><strong>Name</strong></label>
                     <div class="col-sm-10">
-                        <input type="text" maxlength="29" class="form-control" name="name" placeholder="Example Cinema" required>
+                        <input type="text" maxlength="29" class="form-control" name="name" placeholder="Example Cinema"
+                            required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputDireccion" class="col-sm-2 col-form-label"><strong>Street:</strong></label>
                     <div class="col-sm-10">
-                        <input type="text" maxlength="49" class="form-control" name="address" placeholder="Example Street" required>
+                        <input type="text" maxlength="49" class="form-control" name="address"
+                            placeholder="Example Street" required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputNumber" class="col-sm-2 col-form-label"><strong>St. Number:</strong></label>
                     <div class="col-sm-10">
-                        <input type="number" max="99999" min="0" class="form-control" name="number" placeholder="1234" required>
+                        <input type="number" max="99999" min="0" class="form-control" name="number" placeholder="1234"
+                            required>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="inputHorario" class="col-sm-2 col-form-label"><strong>Openning hour:</strong></label>
                     <div class="col-sm-10">
-                    <input type="time"   min="00:00" max="23:59" class="form-control" name="openning" placeholder="00:00" value="00:00">
+                        <input type="time" min="00:00" max="23:59" class="form-control" name="openning"
+                            placeholder="00:00" value="00:00">
 
                     </div>
-                </div>  
+                </div>
                 <div class="form-group row">
                     <label for="inputHorario" class="col-sm-2 col-form-label"><strong>Closing hour:</strong></label>
                     <div class="col-sm-10">
-                    <input type="time"   min="00:00" max="23:59" class="form-control" name="closing" placeholder="23:59" value="23:59">
-                    
+                        <input type="time" min="00:00" max="23:59" class="form-control" name="closing"
+                            placeholder="23:59" value="23:59">
+
                     </div>
                 </div>
-            <button type="submit" name="button" class="btn btn-secondary bg-danger text-black col-2 btn-resp-general float-right" >Send</button>
+                <button type="submit" name="button"
+                    class="btn btn-secondary bg-danger text-black col-2 btn-resp-general float-right">Send</button>
             </form>
         </div>
     </div>
@@ -77,48 +85,59 @@ if (isset($message)){
     <tr>
         <?php 
         if(empty($cinema)){ ?>
-            <h4 class="text-center text-secondary mt-5">No cinemas added</h4>";
+        <h4 class="text-center text-secondary mt-5">No cinemas added</h4>";
         <?php }else{?>
         <td>
             <?php foreach($cinema as $oneCinema) { ?>
-        
-            <button type="button" class="btn btn-info btn-cinema-td btn-resp-list" data-toggle="modal" data-target="#myModal-<?php echo $oneCinema->getId();?>">
-            <?php echo $oneCinema->getName();?>
+
+            <button type="button" class="btn btn-info btn-cinema-td btn-resp-list" data-toggle="modal"
+                data-target="#myModal-<?php echo $oneCinema->getId();?>">
+                <?php echo $oneCinema->getName();?>
             </button>
 
             <!-- The Modal -->
             <div class="modal fade" id="myModal-<?php echo $oneCinema->getId();?>">
                 <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                    <h4 class="modal-title"><?php echo $oneCinema->getName()." cinema";?></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title"><?php echo $oneCinema->getName()." cinema";?></h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <ul>
+                                <li><strong>Street:
+                                    </strong><?php echo $oneCinema->getAddress(); echo " ".$oneCinema->getNumber(); ?>
+                                </li>
+                                <li><strong>Opening hour:
+                                    </strong><?php echo substr($oneCinema->getOpenning(), 0, -3); ?></li>
+                                <li><strong>Closing hour:
+                                    </strong><?php echo substr($oneCinema->getClosing(), 0, -3); ?></li>
+                            </ul>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary" value="back"
+                                onclick="window.location.href='<?php echo FRONT_ROOT?>Room/manageRooms/<?php echo $oneCinema->getId()?>'">
+                                Rooms </button>
+                            <button type="submit" class="btn btn-secondary" value="back"
+                                onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/modifyCinemaForm/<?php echo $oneCinema->getId()?>'">
+                                Modify </button>
+                            <button type="submit" class="btn btn-secondary" value="back"
+                                onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/deleteCinema/<?php echo $oneCinema->getId()?>'">
+                                Delete </button>
+                        </div>
+
                     </div>
-                    
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                    <ul>
-                        <li><strong>Street: </strong><?php echo $oneCinema->getAddress(); echo " ".$oneCinema->getNumber(); ?></li>
-                        <li><strong>Opening hour:  </strong><?php echo substr($oneCinema->getOpenning(), 0, -3); ?></li>
-                        <li><strong>Closing hour:  </strong><?php echo substr($oneCinema->getClosing(), 0, -3); ?></li>    
-                    </ul>
-                    </div>
-                    
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Room/manageRooms/<?php echo $oneCinema->getId()?>'"> Rooms </button>
-                    <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/modifyCinemaForm/<?php echo $oneCinema->getId()?>'"> Modify </button>
-                    <button type="submit" class="btn btn-secondary" value="back" onclick="window.location.href='<?php echo FRONT_ROOT?>Cinema/deleteCinema/<?php echo $oneCinema->getId()?>'"> Delete </button>
-                    </div>
-                    
-                </div>
                 </div>
             </div>
-        
-        
-        <?php } }?>
+
+
+            <?php } }?>
         </td>
     </tr>
 </table>

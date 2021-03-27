@@ -1,50 +1,59 @@
 <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/adminStyle.css">
 <style>
-    body{
-        background-image: url('https://img.wallpapersafari.com/desktop/1366/768/46/81/215NeC.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-    } 
+body {
+    background-image: url('https://img.wallpapersafari.com/desktop/1366/768/46/81/215NeC.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
 </style>
 
 <div class="mt-5">
     <hr class=" mt-2 mb-4 bg-danger text-dark">
     <h3 class="text-center text-white">Administrative Tools<h3>
-        <div class="container">
-            <div class="center mt-2 mb-4 text-center">
-                <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back"onclick="window.location.href='<?php echo FRONT_ROOT?>index.php'"> Go Back </button> 
+            <div class="container">
+                <div class="center mt-2 mb-4 text-center">
+                    <button type="submit" class="btn btn-secondary bg-danger text-black mt-3" value="back"
+                        onclick="window.location.href='<?php echo FRONT_ROOT?>index.php'"> Go Back </button>
+                </div>
             </div>
-        </div>
-    <hr class=" mt-4 mb-1 bg-danger text-dark">
+            <hr class=" mt-4 mb-1 bg-danger text-dark">
 </div>
 <div class="container ">
     <div class="row mt-2">
 
         <div class="col mt-5">
             <form action="<?php echo FRONT_ROOT?>Cinema/manageCinemas" method="POST">
-                <input type="submit" class="btn btn-primary btn-lg btn-block bg-danger" value="Manage Cinemas" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> 
+                <input type="submit" class="btn btn-primary btn-lg btn-block bg-danger" value="Manage Cinemas"
+                    data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
                 </input>
             </form>
         </div>
 
-        <div class="col mt-5">       
+        <div class="col mt-5">
             <form action="<?php echo FRONT_ROOT?>Show/manageShows" method="POST">
-                <input type ="submit" class="btn btn-primary btn-lg btn-block bg-danger" value="Manage Shows" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"> </input>
+                <input type="submit" class="btn btn-primary btn-lg btn-block bg-danger" value="Manage Shows"
+                    data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false"
+                    aria-controls="collapseExample"> </input>
             </form>
         </div>
 
         <div class="w-100"></div>
 
-        <div class="col mt-5"> 
+        <div class="col mt-5">
             <form action="<?php echo FRONT_ROOT?>Sale/statistics" method="POST">
-                <input type ="submit" class="btn btn-primary btn-lg btn-block bg-danger" value="Sales Statistics" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"></input>
+                <input type="submit" class="btn btn-primary btn-lg btn-block bg-danger" value="Sales Statistics"
+                    data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false"
+                    aria-controls="collapseExample"></input>
             </form>
         </div>
 
-        <div class="col mt-5"> 
+        <div class="col mt-5">
             <form action="<?php echo FRONT_ROOT?>Movie/listAPIMovies" method="POST">
-                <input type ="submit" class="btn btn-primary btn-lg btn-block bg-danger" value="Add Movies" data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false" aria-controls="collapseExample"></input>
+                <input type="submit" class="btn btn-primary btn-lg btn-block bg-danger" value="Add Movies"
+                    data-toggle="collapse" href="#collapseCinema" role="button" aria-expanded="false"
+                    aria-controls="collapseExample"></input>
             </form>
         </div>
     </div>

@@ -29,6 +29,29 @@ body {
     width: 250px !important;
 }
 
+/*Error*/
+.error-width{
+    background-color: #000000; 
+    height: 100%; 
+    width: 100%;
+}
+
+.error-padding{
+    text-align:center; 
+    padding-top: 6%;
+}
+
+.error-p{
+    font-size:5vw; 
+    color: white;
+}
+
+.error-p-align{
+    font-size:2vw; 
+    color: white; 
+    text-align:center;
+}
+
 /*Others*/
 .btn-resp-general{
     max-width: 100px !important;
