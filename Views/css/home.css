@@ -1,6 +1,6 @@
 /*NAV*/
 .navClass{
-    background-image: url('../img/nav.jpg'); 
+    background-image: url('https://lh3.googleusercontent.com/u/0/d/1Y0TFXPwOWvFtu8HH1gVqx_DRt569pxPc=w1366-h355-iv1');
     background-repeat: no-repeat;
     background-size: cover;
     -moz-background-size: cover;
@@ -10,7 +10,7 @@
 
 /*HOME*/
 .jmb-home{
-    background-image: url('../img/MoviePass-noBgW.png'); 
+    background-image: url('https://lh3.googleusercontent.com/fife/ABSRlIpbsV4AaUQ7jUBD2WU4JXtsCOTc8YAAxMtqb7L18ukO3rq4ISjL_ihlAmxAeUvk2mOabDKw5fb8NCYSaL1Lzxh0s3tmwxLXr8zf7Xktt5pd35BQwyuSKa1at5tL3TSXb8amxKdnIVpXJdRQWCAbaXR3QMNuUbJjxwEicc7DXC0oxXZ4Uad0_DeZLvN3Ljzro2UpTedMawrRISvdpEeA2wynxEYQ0hqTlNk9M1u-0LCmyh92968xCwgOrv1we1acUNHsVGv_WomjxBGs1Rl_HJqQxlGWoIwufI7yXlNMFBBoEdeAzUke9-vQ7UnoHCByXwoZQmBmyN7-OFCP-hmF2jbSI7Ac0wvmjk0UmmOPkJpD0nEv2kjoK9oheQcN70MfY_JufHx_YFnLBPFp8F3AzNAI0fuVOjZMoNuRGCA0WEwK5EQLzQGAT8mfXjMM2RwLiQ5M0e2XUWj3_UXQBRnkLmA8TB6EaYS_fjwZQueYcCE-NLB-MiB8Lr2PdGtcKSVFAHUK-AkL0o4WJFJ8o4bwsJzQLypmFDBX3JRm1-wQR7zTb0c6dDWqD-7mTV2ONYt8wW0gg9uiaOA4EgQt7PfqqRner8nVn3xqENjXwyjp-_OoWhPzRVoc4BHGID9LbipHU0zKKUaLJZZmDuJmKUzq4uljV00JsHaefFs-J1ncEfgw_ywxUjvR2IkSv7Dc9FFqNUiHi7dKHRjE4zk2_PPasoxEDkKYRSFV2UQ=w1366-h251-ft'); 
     background-repeat: no-repeat;
     background-size: cover;
     height: 155px;
@@ -68,7 +68,7 @@
 
 
 .notFoundImageCard{
-    background-image: url('../img/nomovies.svg'); 
+    background-image: url(IMG_NOMOVIEIMG); 
     background-size: contain;
     background-repeat: no-repeat;
     height: 5000px;
