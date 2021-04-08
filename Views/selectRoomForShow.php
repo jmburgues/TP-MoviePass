@@ -54,7 +54,7 @@
             <?php
                 if($selectedMovie->getPoster() == null){
                     ?><img class="notFoundImageShow" class="mt-4"
-                src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+                src="<?php echo IMG_NOMOVIEIMG?>">
             <?php
                 }else{
                         ?>

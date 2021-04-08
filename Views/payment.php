@@ -11,7 +11,7 @@
             <?php
             if($movieForShows[0]->getPoster() == null){
                 ?><img class="notFoundImageCard" style="height:620px; width:100%; background-color:#ffe4ec"
-                src="<?php echo FRONT_ROOT ?>/Views/img/nomovies.svg">
+                src="<?php echo IMG_NOMOVIEIMG?>">
             <?php
             }else{
                 ?>

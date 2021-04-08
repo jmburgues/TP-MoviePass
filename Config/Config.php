@@ -37,6 +37,7 @@ define('POSTER_WIDTH_ORIGINAL', "original/");
 define("DB_HOST", "bnjcqyikcuwpbcrt6swg-mysql.services.clever-cloud.com");
 define("DB_NAME", "bnjcqyikcuwpbcrt6swg");
 define("DB_USER", "udtersuq8vbpzdhd");
+define("DB_PASS", "ChwYSan0mf7eZdblMfBV");
 
 // LOCALHOST
 

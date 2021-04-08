@@ -12,7 +12,7 @@
      <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/log-register.css?ver=<?php echo rand(111,999)?>" />
      <link rel="stylesheet" href="<?php echo FRONT_ROOT ?>/Views/css/cinemas.css?ver=<?php echo rand(111,999)?>" />
 
-     <link rel="icon" href="<?php echo FRONT_ROOT ?>/Views/img/Logo.bmp" />
+     <link rel="icon" href="<?php echo IMG_ICONLOGO?>" />
 
      <!--BOOTSTRAP-->
      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
