@@ -2,9 +2,6 @@
 <h1>Bienvenido al Proyecto MoviePass</h1>
 <p>Aplicación Web modelo MVC con PHP y SQL que simula venta de entradas de peliculas y administración de cines.</p>
 <hr>
-
-<h2 id="bienvenidos-al-proyecto-moviepass">Bienvenidos al Proyecto MoviePass</h2>
-
 <p>MoviePass es un proyecto estudiantil en marco de la carrera de Tecnicatura Universitaria en Programación de la <a href="http://mdp.utn.edu.ar">Universidad Tecnológica Nacional de Mar del Plata</a> mantenido por  Juan Manuel Burgués Schaab <a href="http://github.com/jmburgues">jmburgues</a>, Jazmin Briasco <a href="http://github.com/JazminBriasco">JazminBriasco</a>, Lautaro Barreto <a href="http://github.com/LautaroBG">LautaroBG</a> y Rodrigo Montenegro <a href="http://github.com/rodrigomontenegro">rodrigomontenegro</a>.</p>
 
 <p align="center">
@@ -71,13 +68,3 @@
 </p>
 
 <p>Vea el deployment del sitio en <a href="http://themoviepass.herokuapp.com">HerokuApp</a></p>
-
-
-
-      </section>
-
-    </div>
-
-    
-  </body>
-</html>
